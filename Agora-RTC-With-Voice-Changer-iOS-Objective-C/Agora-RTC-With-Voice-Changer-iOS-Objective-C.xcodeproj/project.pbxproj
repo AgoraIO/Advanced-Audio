@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F1772EC209C2E2100625AB6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1772EB209C2E2100625AB6 /* AppDelegate.m */; };
+		0F1772F2209C2E2100625AB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1772F0209C2E2100625AB6 /* Main.storyboard */; };
+		0F1772F4209C2E2300625AB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1772F3209C2E2300625AB6 /* Assets.xcassets */; };
+		0F1772F7209C2E2300625AB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1772F5209C2E2300625AB6 /* LaunchScreen.storyboard */; };
+		0F1772FA209C2E2300625AB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1772F9209C2E2300625AB6 /* main.m */; };
+		0F177302209C2E8F00625AB6 /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F177301209C2E8E00625AB6 /* AgoraAudioKit.framework */; };
+		0F177304209C2E9600625AB6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F177303209C2E9600625AB6 /* SystemConfiguration.framework */; };
+		0F177306209C2E9F00625AB6 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F177305209C2E9F00625AB6 /* CoreTelephony.framework */; };
+		0F177308209C2EA900625AB6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F177307209C2EA900625AB6 /* libc++.tbd */; };
+		0F17730A209C2EB000625AB6 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F177309209C2EB000625AB6 /* libresolv.tbd */; };
+		0F17730C209C2EB800625AB6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F17730B209C2EB800625AB6 /* AVFoundation.framework */; };
+		0F17730E209C2EC200625AB6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F17730D209C2EC200625AB6 /* AudioToolbox.framework */; };
+		0F177313209C2F2B00625AB6 /* AppID.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F177311209C2F2A00625AB6 /* AppID.m */; };
+		0F177316209C318D00625AB6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F177315209C318D00625AB6 /* MainViewController.m */; };
+		0F177319209C31BD00625AB6 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F177318209C31BD00625AB6 /* RoomViewController.m */; };
+		0F17731C209C374C00625AB6 /* EffectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F17731B209C374C00625AB6 /* EffectTableViewController.m */; };
+		0F17731F209C4D8B00625AB6 /* LogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F17731E209C4D8B00625AB6 /* LogCell.m */; };
+		0F177325209C6CD200625AB6 /* EffectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F177324209C6CD200625AB6 /* EffectCell.m */; };
+		704C1752213E7E5000313337 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 704C1751213E7E4F00313337 /* Accelerate.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0F1772E7209C2E2100625AB6 /* Agora-RTC-With-Voice-Changer-iOS-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-RTC-With-Voice-Changer-iOS-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1772EA209C2E2100625AB6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0F1772EB209C2E2100625AB6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0F1772F1209C2E2100625AB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0F1772F3209C2E2300625AB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0F1772F6209C2E2300625AB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0F1772F8209C2E2300625AB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F1772F9209C2E2300625AB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0F177301209C2E8E00625AB6 /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = "Agora-RTC-With-Voice-Changer-iOS-Objective-C/AgoraAudioKit.framework"; sourceTree = "<group>"; };
+		0F177303209C2E9600625AB6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0F177305209C2E9F00625AB6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		0F177307209C2EA900625AB6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		0F177309209C2EB000625AB6 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		0F17730B209C2EB800625AB6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0F17730D209C2EC200625AB6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0F177311209C2F2A00625AB6 /* AppID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppID.m; sourceTree = "<group>"; };
+		0F177312209C2F2A00625AB6 /* AppID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppID.h; sourceTree = "<group>"; };
+		0F177314209C318D00625AB6 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		0F177315209C318D00625AB6 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		0F177317209C31BD00625AB6 /* RoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
+		0F177318209C31BD00625AB6 /* RoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
+		0F17731A209C374C00625AB6 /* EffectTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectTableViewController.h; sourceTree = "<group>"; };
+		0F17731B209C374C00625AB6 /* EffectTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EffectTableViewController.m; sourceTree = "<group>"; };
+		0F17731D209C4D8A00625AB6 /* LogCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogCell.h; sourceTree = "<group>"; };
+		0F17731E209C4D8B00625AB6 /* LogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogCell.m; sourceTree = "<group>"; };
+		0F177323209C6CD200625AB6 /* EffectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectCell.h; sourceTree = "<group>"; };
+		0F177324209C6CD200625AB6 /* EffectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EffectCell.m; sourceTree = "<group>"; };
+		704C1751213E7E4F00313337 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F1772E4209C2E2100625AB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				704C1752213E7E5000313337 /* Accelerate.framework in Frameworks */,
+				0F17730E209C2EC200625AB6 /* AudioToolbox.framework in Frameworks */,
+				0F17730C209C2EB800625AB6 /* AVFoundation.framework in Frameworks */,
+				0F17730A209C2EB000625AB6 /* libresolv.tbd in Frameworks */,
+				0F177308209C2EA900625AB6 /* libc++.tbd in Frameworks */,
+				0F177306209C2E9F00625AB6 /* CoreTelephony.framework in Frameworks */,
+				0F177304209C2E9600625AB6 /* SystemConfiguration.framework in Frameworks */,
+				0F177302209C2E8F00625AB6 /* AgoraAudioKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F1772DE209C2E2100625AB6 = {
+			isa = PBXGroup;
+			children = (
+				0F1772E9209C2E2100625AB6 /* Agora-RTC-With-Voice-Changer-iOS-Objective-C */,
+				0F1772E8209C2E2100625AB6 /* Products */,
+				0F177300209C2E8E00625AB6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0F1772E8209C2E2100625AB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0F1772E7209C2E2100625AB6 /* Agora-RTC-With-Voice-Changer-iOS-Objective-C.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0F1772E9209C2E2100625AB6 /* Agora-RTC-With-Voice-Changer-iOS-Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				0F177312209C2F2A00625AB6 /* AppID.h */,
+				0F177311209C2F2A00625AB6 /* AppID.m */,
+				0F177314209C318D00625AB6 /* MainViewController.h */,
+				0F177315209C318D00625AB6 /* MainViewController.m */,
+				0F177317209C31BD00625AB6 /* RoomViewController.h */,
+				0F177318209C31BD00625AB6 /* RoomViewController.m */,
+				0F17731A209C374C00625AB6 /* EffectTableViewController.h */,
+				0F17731B209C374C00625AB6 /* EffectTableViewController.m */,
+				0F17732920A001DE00625AB6 /* Cell */,
+				0F1772EA209C2E2100625AB6 /* AppDelegate.h */,
+				0F1772EB209C2E2100625AB6 /* AppDelegate.m */,
+				0F1772F0209C2E2100625AB6 /* Main.storyboard */,
+				0F1772F3209C2E2300625AB6 /* Assets.xcassets */,
+				0F1772F5209C2E2300625AB6 /* LaunchScreen.storyboard */,
+				0F1772F8209C2E2300625AB6 /* Info.plist */,
+				0F1772F9209C2E2300625AB6 /* main.m */,
+			);
+			path = "Agora-RTC-With-Voice-Changer-iOS-Objective-C";
+			sourceTree = "<group>";
+		};
+		0F177300209C2E8E00625AB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				704C1751213E7E4F00313337 /* Accelerate.framework */,
+				0F17730D209C2EC200625AB6 /* AudioToolbox.framework */,
+				0F17730B209C2EB800625AB6 /* AVFoundation.framework */,
+				0F177309209C2EB000625AB6 /* libresolv.tbd */,
+				0F177307209C2EA900625AB6 /* libc++.tbd */,
+				0F177305209C2E9F00625AB6 /* CoreTelephony.framework */,
+				0F177303209C2E9600625AB6 /* SystemConfiguration.framework */,
+				0F177301209C2E8E00625AB6 /* AgoraAudioKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F17732920A001DE00625AB6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0F177323209C6CD200625AB6 /* EffectCell.h */,
+				0F177324209C6CD200625AB6 /* EffectCell.m */,
+				0F17731D209C4D8A00625AB6 /* LogCell.h */,
+				0F17731E209C4D8B00625AB6 /* LogCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0F1772E6209C2E2100625AB6 /* Agora-RTC-With-Voice-Changer-iOS-Objective-C */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F1772FD209C2E2300625AB6 /* Build configuration list for PBXNativeTarget "Agora-RTC-With-Voice-Changer-iOS-Objective-C" */;
+			buildPhases = (
+				0F1772E3209C2E2100625AB6 /* Sources */,
+				0F1772E4209C2E2100625AB6 /* Frameworks */,
+				0F1772E5209C2E2100625AB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Agora-RTC-With-Voice-Changer-iOS-Objective-C";
+			productName = "Agora-RTC-With-Voice-Changer-iOS-Objective-C";
+			productReference = 0F1772E7209C2E2100625AB6 /* Agora-RTC-With-Voice-Changer-iOS-Objective-C.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0F1772DF209C2E2100625AB6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = ZhangJi;
+				TargetAttributes = {
+					0F1772E6209C2E2100625AB6 = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 0F1772E2209C2E2100625AB6 /* Build configuration list for PBXProject "Agora-RTC-With-Voice-Changer-iOS-Objective-C" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0F1772DE209C2E2100625AB6;
+			productRefGroup = 0F1772E8209C2E2100625AB6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0F1772E6209C2E2100625AB6 /* Agora-RTC-With-Voice-Changer-iOS-Objective-C */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0F1772E5209C2E2100625AB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F1772F7209C2E2300625AB6 /* LaunchScreen.storyboard in Resources */,
+				0F1772F4209C2E2300625AB6 /* Assets.xcassets in Resources */,
+				0F1772F2209C2E2100625AB6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F1772E3209C2E2100625AB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F177313209C2F2B00625AB6 /* AppID.m in Sources */,
+				0F177319209C31BD00625AB6 /* RoomViewController.m in Sources */,
+				0F1772FA209C2E2300625AB6 /* main.m in Sources */,
+				0F1772EC209C2E2100625AB6 /* AppDelegate.m in Sources */,
+				0F17731C209C374C00625AB6 /* EffectTableViewController.m in Sources */,
+				0F17731F209C4D8B00625AB6 /* LogCell.m in Sources */,
+				0F177325209C6CD200625AB6 /* EffectCell.m in Sources */,
+				0F177316209C318D00625AB6 /* MainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0F1772F0209C2E2100625AB6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F1772F1209C2E2100625AB6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0F1772F5209C2E2300625AB6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F1772F6209C2E2300625AB6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0F1772FB209C2E2300625AB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0F1772FC209C2E2300625AB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0F1772FE209C2E2300625AB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-RTC-With-Voice-Changer-iOS-Objective-C/",
+					"$(PROJECT_DIR)/Agora-RTC-With-Voice-Changer-iOS-Objective-C",
+				);
+				INFOPLIST_FILE = "Agora-RTC-With-Voice-Changer-iOS-Objective-C/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-RTC-With-Voice-Changer-iOS-Objective-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8f2851df-1a27-49e7-898b-bc211f878860";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2017;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		0F1772FF209C2E2300625AB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-RTC-With-Voice-Changer-iOS-Objective-C/",
+					"$(PROJECT_DIR)/Agora-RTC-With-Voice-Changer-iOS-Objective-C",
+				);
+				INFOPLIST_FILE = "Agora-RTC-With-Voice-Changer-iOS-Objective-C/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-RTC-With-Voice-Changer-iOS-Objective-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F1772E2209C2E2100625AB6 /* Build configuration list for PBXProject "Agora-RTC-With-Voice-Changer-iOS-Objective-C" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F1772FB209C2E2300625AB6 /* Debug */,
+				0F1772FC209C2E2300625AB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F1772FD209C2E2300625AB6 /* Build configuration list for PBXNativeTarget "Agora-RTC-With-Voice-Changer-iOS-Objective-C" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F1772FE209C2E2300625AB6 /* Debug */,
+				0F1772FF209C2E2300625AB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0F1772DF209C2E2100625AB6 /* Project object */;
+}

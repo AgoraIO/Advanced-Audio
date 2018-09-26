@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/et_margin"
+        android:layout_marginTop="@dimen/et_margin"
+        android:text="@string/rg_audio_prifile"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rg_audio_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/et_margin">
+
+        <RadioButton
+            android:id="@+id/rb_8000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_profile_8000" />
+
+        <RadioButton
+            android:id="@+id/rb_16000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/rb_profile_16000" />
+
+        <RadioButton
+            android:id="@+id/rb_32000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_profile_32000" />
+
+        <RadioButton
+            android:id="@+id/rb_441000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_profile_44100" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/et_margin"
+        android:text="@string/rg_channel_choose"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rg_channel_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/et_margin">
+
+        <RadioButton
+            android:id="@+id/rb_channel_communication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/rb_channel_comm" />
+
+        <RadioButton
+            android:id="@+id/rb_channel_live"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_channel_live" />
+    </RadioGroup>
+</LinearLayout>

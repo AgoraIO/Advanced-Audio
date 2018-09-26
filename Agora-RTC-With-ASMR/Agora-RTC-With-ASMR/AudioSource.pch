@@ -1,0 +1,14 @@
+//
+//  AudioSource.pch
+//  Audio Source
+//
+//  Created by CavanSu on 2017/9/19.
+//  Copyright © 2017 Agora. All rights reserved.
+//
+
+#ifndef AudioSource_pch
+#define AudioSource_pch
+
+#import "Define.h"
+
+#endif /* AudioSource_pch */

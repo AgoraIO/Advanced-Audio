@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="et_margin">16dp</dimen>
+
+    <dimen name="rb_margin_top">8dp</dimen>
+    <dimen name="rg_margin_top">32dp</dimen>
+
+    <dimen name="iv_setting_size">24dp</dimen>
+
+    <dimen name="iv_chat_room_size">48dp</dimen>
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DCE6E4">
+
+    <TextView
+        android:id="@+id/tv_channel_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/et_margin"
+        android:gravity="center_horizontal"
+        android:textSize="18sp" />
+
+    <ScrollView
+        android:id="@+id/sv_display"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_below="@id/tv_channel_room">
+
+        <TextView
+            android:id="@+id/tv_info_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/et_margin"
+            android:textSize="12sp" />
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/iv_chat_room_size"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/et_margin"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_mute"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/iv_chat_room_size"
+            android:layout_weight="1"
+            android:onClick="onMuteClick"
+            android:src="@drawable/btn_mute" />
+
+
+        <ImageView
+            android:id="@+id/iv_hung_up"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/iv_chat_room_size"
+            android:layout_weight="1"
+            android:onClick="onHungUpClick"
+            android:src="@drawable/btn_hungup" />
+
+
+        <ImageView
+            android:id="@+id/iv_speaker"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/iv_chat_room_size"
+            android:layout_weight="1"
+            android:onClick="onEarPhone"
+            android:src="@drawable/btn_earphone" />
+    </LinearLayout>
+</RelativeLayout>
