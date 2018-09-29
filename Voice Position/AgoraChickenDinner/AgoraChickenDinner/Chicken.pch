@@ -1,0 +1,22 @@
+//
+//  Chicken.pch
+//  AgoraEatChicken
+//
+//  Created by CavanSu on 15/11/2017.
+//  Copyright © 2017 Agora. All rights reserved.
+//
+
+#ifndef Chicken_pch
+#define Chicken_pch
+
+#import "UIView+CSshortFrame.h"
+
+#define Screen_Width [UIScreen mainScreen].bounds.size.width
+#define Screen_Hight [UIScreen mainScreen].bounds.size.height
+
+typedef NS_ENUM(NSInteger, RoleType){
+    RoleTypeAudience = 1,
+    RoleTypeBroadcaster = 2
+};
+
+#endif /* Chicken_pch */

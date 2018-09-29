@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hCP-yM-W5T">
+                                <rect key="frame" x="50" y="159" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agora Chicken Dinner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZX-8U-pdx">
+                                <rect key="frame" x="75" y="80" width="225.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4C-X8-64f">
+                                <rect key="frame" x="147.5" y="279" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="6NO-3h-H6X"/>
+                                    <constraint firstAttribute="width" constant="80" id="mgc-Hk-yz1"/>
+                                </constraints>
+                                <state key="normal" title="Join">
+                                    <color key="titleColor" red="0.46432183649999997" green="0.79156735909999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cyk-7m-gFy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.46432183649999997" green="0.79156735909999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JZX-8U-pdx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="80" id="8GT-b9-prc"/>
+                            <constraint firstItem="hCP-yM-W5T" firstAttribute="top" secondItem="JZX-8U-pdx" secondAttribute="bottom" constant="50" id="Bxs-y0-VW1"/>
+                            <constraint firstItem="JZX-8U-pdx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EyI-cE-0B3"/>
+                            <constraint firstItem="hCP-yM-W5T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F2O-vi-GhW"/>
+                            <constraint firstItem="hCP-yM-W5T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="IRz-V5-F0V"/>
+                            <constraint firstItem="z4C-X8-64f" firstAttribute="top" secondItem="hCP-yM-W5T" secondAttribute="bottom" constant="90" id="KIV-2C-eXO"/>
+                            <constraint firstItem="z4C-X8-64f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gwp-NH-fWE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="channelNameTextField" destination="hCP-yM-W5T" id="2sz-2C-EhD"/>
+                        <outlet property="joinButton" destination="z4C-X8-64f" id="uDX-Vy-MQ5"/>
+                        <segue destination="t9y-zx-BaZ" kind="presentation" identifier="mainToLive" id="PAq-vR-HSZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="ZeM-06-liH">
+            <objects>
+                <viewController id="t9y-zx-BaZ" customClass="GameViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nNL-vE-Ef0" customClass="TouchView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nek-2A-QTG">
+                                <rect key="frame" x="315" y="30" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="dQX-gj-N20"/>
+                                    <constraint firstAttribute="height" constant="50" id="jkv-MK-PTa"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="close"/>
+                                <connections>
+                                    <action selector="closeAction:" destination="t9y-zx-BaZ" eventType="touchUpInside" id="7CW-Lf-ada"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nek-2A-QTG" firstAttribute="top" secondItem="5ak-e0-Lbw" secondAttribute="top" constant="10" id="0hK-hY-q5N"/>
+                            <constraint firstItem="5ak-e0-Lbw" firstAttribute="trailing" secondItem="Nek-2A-QTG" secondAttribute="trailing" constant="10" id="Iv2-VO-vDi"/>
+                            <constraint firstItem="Nek-2A-QTG" firstAttribute="top" secondItem="5ak-e0-Lbw" secondAttribute="top" constant="10" id="lUT-PY-BBy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5ak-e0-Lbw"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="Nek-2A-QTG" id="gsQ-VC-8k0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sTt-Ek-DqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="981.60000000000002" y="117.39130434782609"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="64" height="64"/>
+    </resources>
+</document>
