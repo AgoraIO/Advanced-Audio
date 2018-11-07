@@ -36,7 +36,7 @@ and run it directly in Mac
 ## Connect Us
 
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Agora-iOS-Tutorial-Objective-C-1to1/issues)
+- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
 
 ## License
 
