@@ -89,7 +89,7 @@ BOOL CAGDShowVideoCapture::EnumDeviceList()
 		return FALSE;
 
 	hResult = ptrCreateDevEnum->CreateClassEnumerator(CLSID_VideoInputDeviceCategory, &ptrEnumMoniker, 0);
-	if (FAILED(hResult))
+	if (hResult != S_OK)
 		return FALSE;
 
 	m_listDeviceInfo.RemoveAll();

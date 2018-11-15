@@ -37,7 +37,7 @@ BOOL CXAudioPlayout::EnumDeviceList()
 
 	HRESULT hResult = m_ptrXAudio2->GetDeviceCount(&nDeviceCount);
 	ATLASSERT(SUCCEEDED(hResult));
-	if (FAILED(hResult))
+	if (hResult != S_OK)
 		return FALSE;
 
 	for (int nIndex = 0; nIndex < static_cast<int>(nDeviceCount); nIndex++) {
