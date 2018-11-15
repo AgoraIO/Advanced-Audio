@@ -394,39 +394,48 @@ void CExtCaptureDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 
 	nPathLen = MAX_PATH;
 	m_cmbCamera.ResetContent();
-	m_agVideoCaptureDevice.EnumDeviceList();
-	m_agVideoCaptureDevice.GetCurrentDevice(szDevicePath, &nPathLen);
-	for (int nIndex = 0; nIndex < m_agVideoCaptureDevice.GetDeviceCount(); nIndex++) {
-		m_agVideoCaptureDevice.GetDeviceInfo(nIndex, &agDeviceInfo);
-		m_cmbCamera.InsertString(nIndex, agDeviceInfo.szDeviceName);
+	if (m_agVideoCaptureDevice.EnumDeviceList())
+	{
+		m_agVideoCaptureDevice.GetCurrentDevice(szDevicePath, &nPathLen);
+		for (int nIndex = 0; nIndex < m_agVideoCaptureDevice.GetDeviceCount(); nIndex++) {
+			m_agVideoCaptureDevice.GetDeviceInfo(nIndex, &agDeviceInfo);
+			m_cmbCamera.InsertString(nIndex, agDeviceInfo.szDeviceName);
 
-		if (_tcscmp(szDevicePath, agDeviceInfo.szDevicePath) == 0)
-			m_cmbCamera.SetCurSel(nIndex);
+			if (_tcscmp(szDevicePath, agDeviceInfo.szDevicePath) == 0)
+				m_cmbCamera.SetCurSel(nIndex);
+		}
 	}
 
 
 	nPathLen = MAX_PATH;
 	m_cmbMicrophone.ResetContent();
-	m_agAudioCaptureDevice.EnumDeviceList();
-	m_agAudioCaptureDevice.GetCurrentDevice(szDevicePath, &nPathLen);
-	for (int nIndex = 0; nIndex < m_agAudioCaptureDevice.GetDeviceCount(); nIndex++) {
-		m_agAudioCaptureDevice.GetDeviceInfo(nIndex, &agDeviceInfo);
-		m_cmbMicrophone.InsertString(nIndex, agDeviceInfo.szDeviceName);
 
-		if (_tcscmp(szDevicePath, agDeviceInfo.szDevicePath) == 0)
-			m_cmbMicrophone.SetCurSel(nIndex);
+	if (m_agAudioCaptureDevice.EnumDeviceList())
+	{
+		m_agAudioCaptureDevice.GetCurrentDevice(szDevicePath, &nPathLen);
+		for (int nIndex = 0; nIndex < m_agAudioCaptureDevice.GetDeviceCount(); nIndex++) {
+			m_agAudioCaptureDevice.GetDeviceInfo(nIndex, &agDeviceInfo);
+			m_cmbMicrophone.InsertString(nIndex, agDeviceInfo.szDeviceName);
+
+			if (_tcscmp(szDevicePath, agDeviceInfo.szDevicePath) == 0)
+				m_cmbMicrophone.SetCurSel(nIndex);
+		}
 	}
 
 	nPathLen = MAX_PATH;
 	m_cmbPlayout.ResetContent();
-	m_agXAudioPlayoutDevice.EnumDeviceList();
-	m_agXAudioPlayoutDevice.GetCurrentDevice(szDevicePath, &nPathLen);
-	for (int nIndex = 0; nIndex < m_agXAudioPlayoutDevice.GetDeviceCount(); nIndex++) {
-		m_agXAudioPlayoutDevice.GetDeviceInfo(nIndex, &agDeviceInfo);
-		m_cmbPlayout.InsertString(nIndex, agDeviceInfo.szDeviceName);
 
-		if (_tcscmp(szDevicePath, agDeviceInfo.szDevicePath) == 0)
-			m_cmbPlayout.SetCurSel(nIndex);
+	if (m_agXAudioPlayoutDevice.EnumDeviceList())
+	{
+		m_agXAudioPlayoutDevice.GetCurrentDevice(szDevicePath, &nPathLen);
+		for (int nIndex = 0; nIndex < m_agXAudioPlayoutDevice.GetDeviceCount(); nIndex++) {
+			m_agXAudioPlayoutDevice.GetDeviceInfo(nIndex, &agDeviceInfo);
+			m_cmbPlayout.InsertString(nIndex, agDeviceInfo.szDeviceName);
+
+			if (_tcscmp(szDevicePath, agDeviceInfo.szDevicePath) == 0)
+				m_cmbPlayout.SetCurSel(nIndex);
+		}
+	
 	}
 }
 
