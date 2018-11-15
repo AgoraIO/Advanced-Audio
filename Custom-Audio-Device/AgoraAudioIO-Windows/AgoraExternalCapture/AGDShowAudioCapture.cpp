@@ -100,7 +100,7 @@ BOOL CAGDShowAudioCapture::EnumDeviceList()
 		return FALSE;
 
 	hResult = ptrCreateDevEnum->CreateClassEnumerator(CLSID_AudioInputDeviceCategory, &ptrEnumMoniker, 0);
-	if (FAILED(hResult))
+	if (hResult != S_OK)
 		return FALSE;
 
 	m_listDeviceInfo.RemoveAll();
