@@ -60,8 +60,8 @@ public class ChatRoomActivity extends AppCompatActivity implements IAudioCallbac
         }
 
         @Override
-        public void onApiCallExecuted(int error, String api, String result) {
-            super.onApiCallExecuted(error, api, result);
+        public void onApiCallExecuted(String api, int error) {
+            super.onApiCallExecuted(api, error);
             sendMessage("ApiCallExecuted:" + api);
         }
 
@@ -247,7 +247,7 @@ public class ChatRoomActivity extends AppCompatActivity implements IAudioCallbac
 
                 mRtcEngine.setChannelProfile(mChannleProfile);
                 if (mChannleProfile == Constants.CHANNEL_PROFILE_LIVE_BROADCASTING) {
-                    mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
+                    mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER, null);
                 }
 
                 mRtcEngine.setEnableSpeakerphone(false);
