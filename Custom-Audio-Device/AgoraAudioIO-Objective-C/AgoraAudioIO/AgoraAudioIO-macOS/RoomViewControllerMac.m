@@ -73,8 +73,8 @@
 
 - (IBAction)didClickRoleChangedButton:(NSButton *)sender {
     self.isHost = !self.isHost;
-    AgoraClientRole role = self.isHost == AgoraClientRoleBroadcaster ? AgoraClientRoleBroadcaster : AgoraClientRoleAudience;
-    [self.agoraKit setClientRole:role];
+    AgoraRtcClientRole role = self.isHost == AgoraRtc_ClientRole_Broadcaster ? AgoraRtc_ClientRole_Broadcaster : AgoraRtc_ClientRole_Audience;
+    [self.agoraKit setClientRole:role withKey:nil];
 }
 
 - (void)appendToLogView:(NSString*)text {
@@ -90,9 +90,9 @@
     if (self.channelMode == ChannelModeLiveBroadcast) {
         self.roleButton.hidden = NO;
         self.isHost = self.role == ClientRoleBroadcast ? YES : NO;
-        [self.agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
-        AgoraClientRole role = self.role == ClientRoleBroadcast ? AgoraClientRoleBroadcaster : AgoraClientRoleAudience;
-        [self.agoraKit setClientRole:role];
+        [self.agoraKit setChannelProfile:AgoraRtc_ChannelProfile_LiveBroadcasting];
+        AgoraRtcClientRole role = self.role == ClientRoleBroadcast ? AgoraRtc_ClientRole_Broadcaster : AgoraRtc_ClientRole_Audience;
+        [self.agoraKit setClientRole:role withKey:nil];
     }
     
     if (self.audioMode != AudioCRModeSDKCaptureSDKRender) {
@@ -110,7 +110,7 @@
             [self appendToLogView:[NSString stringWithFormat:@"AudioCRModeSDKCaptureExterRender"]];
             [self.agoraKit setParameters: @"{\"che.audio.external_capture\": false}"];
             [self.agoraKit setParameters: @"{\"che.audio.external_render\": true}"];
-            [self.agoraKit setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)_sampleRate channel:_channels mode:AgoraAudioRawFrameOperationModeReadOnly samplesPerCall:(NSInteger)_sampleRate * _channels * 0.01];
+            [self.agoraKit setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)_sampleRate channel:_channels mode:AgoraRtc_RawAudioFrame_OpMode_ReadOnly samplesPerCall:(NSInteger)_sampleRate * _channels * 0.01];
             break;
             
         case AudioCRModeSDKCaptureSDKRender:
@@ -123,8 +123,8 @@
             [self appendToLogView:[NSString stringWithFormat:@"AudioCRModeExterCaptureExterRender"]];
             [self.agoraKit setParameters: @"{\"che.audio.external_capture\": true}"];
             [self.agoraKit setParameters: @"{\"che.audio.external_render\": true}"];
-            [self.agoraKit setRecordingAudioFrameParametersWithSampleRate:(NSInteger)_sampleRate channel:_channels mode:AgoraAudioRawFrameOperationModeWriteOnly samplesPerCall:(NSInteger)_sampleRate * _channels * 0.01];
-            [self.agoraKit setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)_sampleRate channel:_channels mode:AgoraAudioRawFrameOperationModeReadOnly samplesPerCall:(NSInteger)_sampleRate * _channels * 0.01];
+            [self.agoraKit setRecordingAudioFrameParametersWithSampleRate:(NSInteger)_sampleRate channel:_channels mode:AgoraRtc_RawAudioFrame_OpMode_WriteOnly samplesPerCall:(NSInteger)_sampleRate * _channels * 0.01];
+            [self.agoraKit setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)_sampleRate channel:_channels mode:AgoraRtc_RawAudioFrame_OpMode_ReadOnly samplesPerCall:(NSInteger)_sampleRate * _channels * 0.01];
             break;
             
         default:
@@ -133,7 +133,7 @@
 }
 
 - (void)joinChannel {
-    [self.agoraKit joinChannelByToken:nil channelId:self.channelName info:nil uid:0 joinSuccess:nil];
+    [self.agoraKit joinChannelByKey:nil channelName:self.channelName info:nil uid:0 joinSuccess:nil];
 }
 
 #pragma mark - AgoraRtcEngineDelegate
@@ -150,7 +150,7 @@
     [self appendToLogView:@"rtcEngineConnectionDidLost"];
 }
 
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraErrorCode)errorCode {
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraRtcErrorCode)errorCode {
     [self appendToLogView:[NSString stringWithFormat:@"rtcEngine:didOccurError: %zd", errorCode]];
 }
 
@@ -162,13 +162,13 @@
     [self appendToLogView:[NSString stringWithFormat:@"rtcEngine:didJoinedOfUid: %zd", uid]];
 }
 
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraRtcUserOfflineReason)reason {
     [self appendToLogView:[NSString stringWithFormat:@"rtcEngine:didOfflineOfUid: %zd, reason:%zd", uid, reason]];
 }
 
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole {
-    NSString *newRoleStr = newRole == AgoraClientRoleAudience ? @"Audience" : @"Broadcast";
-    [self appendToLogView:[NSString stringWithFormat:@"Current became %@", newRoleStr]];
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didClientRoleChanged:(AgoraRtcClientRole)oldRole newRole:(AgoraRtcClientRole)newRole {
+    NSString *newRoleStr = newRole == AgoraRtc_ClientRole_Audience ? @"Audience" : @"Broadcast";
+    [self appendToLogView:[NSString stringWithFormat:@"Self became %@", newRoleStr]];
 }
 
 @end
