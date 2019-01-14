@@ -542,7 +542,7 @@ UINT CExtCaptureDlg::PushAudioDataThread(LPVOID lParam)
 	CAudioCapturePackageQueue *lpBufferQueue = CAudioCapturePackageQueue::GetInstance();
 
 	agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-	mediaEngine.queryInterface(CAgoraObject::GetEngine(), agora::rtc::AGORA_IID_MEDIA_ENGINE);
+	mediaEngine.queryInterface(CAgoraObject::GetEngine(), agora::AGORA_IID_MEDIA_ENGINE);
 	IAudioFrameObserver::AudioFrame frame;
 
 	lpBufferQueue->GetAudioFormat(&waveFormatEx);

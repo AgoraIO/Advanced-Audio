@@ -24,7 +24,7 @@ using namespace agora::media;
 #define AG_ENGFLAG_NSON			0x00000200	// ½µÔë
 #define AG_ENGFLAG_AECON		0x00000400	// »ØÉùÏû³ý
 
-#define APP_ID				_T("")
+#define APP_ID				_T("0c0b4b61adf94de1befd7cdd78a50444")
 
 typedef struct _SEI_INFO
 {
@@ -79,7 +79,7 @@ public:
 	BOOL EnableVideo(BOOL bEnable = TRUE);
 	BOOL IsVideoEnabled();
 
-	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL, BOOL bEnable = TRUE);
+	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL, BOOL bEnable = TRUE,int nBitrate = 15);
 	BOOL IsScreenCaptureEnabled();
 
 	BOOL MuteLocalAudio(BOOL bMuted = TRUE);
@@ -124,7 +124,7 @@ public:
 
 	BOOL LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn = TRUE);
 
-	BOOL SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath);
+	BOOL SetLogFilter(UINT logFilterType, LPCTSTR lpLogPath);
 
     BOOL SetEncryptionSecret(LPCTSTR lpKey, int nEncryptType = 0);
 
