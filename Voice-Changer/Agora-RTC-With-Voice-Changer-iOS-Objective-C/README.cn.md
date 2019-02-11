@@ -1,6 +1,6 @@
 # Agora-RTC-With-Voice-Changer-iOS 
 
-*Read this in other languages: [English](README.en.md)*
+*Read this in other languages: [English](README.md)*
 
 这个开源示例项目演示了如何快速集成Agora音频SDK，实现多人变声音频连麦直播。
 
