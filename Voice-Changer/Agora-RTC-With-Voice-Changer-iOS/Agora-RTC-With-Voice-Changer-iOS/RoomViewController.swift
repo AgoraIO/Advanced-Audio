@@ -37,13 +37,13 @@ class RoomViewController: UIViewController {
     }
     fileprivate var audioMuted = false {
         didSet {
-            muteAudioButton?.setImage(audioMuted ? #imageLiteral(resourceName: "btn_mute_blue") : #imageLiteral(resourceName: "btn_mute"), for: UIControlState())
+            muteAudioButton?.setImage(audioMuted ? #imageLiteral(resourceName: "btn_mute_blue") : #imageLiteral(resourceName: "btn_mute"), for: .normal)
         }
     }
     
     fileprivate var speakerEnabled = true {
         didSet {
-            speakerButton?.setImage(speakerEnabled ? #imageLiteral(resourceName: "btn_speaker_blue") : #imageLiteral(resourceName: "btn_speaker"), for: UIControlState())
+            speakerButton?.setImage(speakerEnabled ? #imageLiteral(resourceName: "btn_speaker_blue") : #imageLiteral(resourceName: "btn_speaker"), for: .normal)
             speakerButton?.setImage(speakerEnabled ? #imageLiteral(resourceName: "btn_speaker") : #imageLiteral(resourceName: "btn_speaker_blue"), for: .highlighted)
         }
     }
@@ -52,7 +52,7 @@ class RoomViewController: UIViewController {
         super.viewDidLoad()
         
         roomNameLabel.text = "\(roomName!)"
-        logTableView.rowHeight = UITableViewAutomaticDimension
+        logTableView.rowHeight = UITableView.automaticDimension
         logTableView.estimatedRowHeight = 25
         
         updateBroadcastButton()

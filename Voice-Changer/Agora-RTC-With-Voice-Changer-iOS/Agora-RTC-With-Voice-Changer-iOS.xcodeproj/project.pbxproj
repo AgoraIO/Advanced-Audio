@@ -354,7 +354,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "Agora-RTC-With-Voice-Changer-iOS/Agora-RTC-With-Voice-Changer-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -381,7 +381,7 @@
 				PROVISIONING_PROFILE = "cb87e624-3d61-4895-9bcf-da59ccd1192b";
 				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "Agora-RTC-With-Voice-Changer-iOS/Agora-RTC-With-Voice-Changer-iOS-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
