@@ -96,14 +96,9 @@ public class ChatRoomActivity extends AppCompatActivity implements IAudioCallbac
         }
 
         @Override
-        public void onConnectionInterrupted() {
-            super.onConnectionInterrupted();
-            sendMessage("onConnectionInterrupted");
-        }
-
-        @Override
-        public void onConnectionBanned() {
-            super.onConnectionBanned();
+        public void  onConnectionStateChanged(int state, int reason) {
+            super.onConnectionStateChanged(state, reason);
+            sendMessage("onConnectionStateChanged");
         }
 
         @Override
