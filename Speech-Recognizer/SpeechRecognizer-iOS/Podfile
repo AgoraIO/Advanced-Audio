@@ -1,0 +1,5 @@
+platform:ios, '10.0'
+
+target "SpeechRecognizer-iOS" do
+  pod 'AgoraAudio_iOS'
+end
