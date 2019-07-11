@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>AgoraAudioIO-Web-Webpack</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-light fixed-top agora-primary-bg">
+    <h5>AgoraAudioIO-Web-Webpack</h5>
+  </nav>
+  <form id="form">
+    <div class="custom-container container">
+      <div class="row">
+        <div class="custom-row-container">
+          <div class="row">
+            <div class="col-ms">
+              <div class="card custom-card">
+                <div class="form-group">
+                  <label for="appID" class="bmd-label-floating">App ID*</label>
+                  <input type="text" class="form-control" name="appID" id="appID">
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label for="channel" class="bmd-label-floating">Channel*</label>
+                  <input type="text" class="form-control" name="channel" id="channel">
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label for="token" class="bmd-label-floating">Token</label>
+                  <input type="text" class="form-control" name="token" id="token">
+                </div>
+                <div class="form-group bmd-from-group">
+                  <label for="token" class="bmd-label-floating">Audio Mixing MP3</label>
+                  <div class="form-control flex-container">
+                    <select class="flex-item" name="audio_mixing_mp3" id="audio_mixing_mp3">
+                      <option value="/assets/music_1.m4a">music_1.m4a</option>
+                      <option value="/assets/biggie.mp3">biggie.mp3</option>
+                      <option value="/assets/garden.mp3">garden.mp3</option>
+                    </select>
+                    <div class="flex-item">
+                      <a class="btn dropdown-toggle flex-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="flex-item" id="audio-mixing">START</span>
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" id="startMixing" href="#">START</a>
+                        <a class="dropdown-item" id="stopMixing" href="#">STOP</a>
+                        <a class="dropdown-item" id="pauseMixing" href="#">PAUSE</a>
+                        <a class="dropdown-item" id="resumeMixing" href="#">RESUME</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group bmd-from-group">
+                  <label for="token" class="bmd-label-floating">Audio EFFECT MP3</label>
+                  <div class="form-control flex-container">
+                      <select class="flex-item" name="audio_effect_mp3" id="audio_effect_mp3">
+                        <option value="/assets/crime-blocks.wav">crime-blocks.wav</option>
+                        <option value="/assets/friendly-porta.wav">friendly-porta.wav</option>
+                        <option value="/assets/full-fluter.wav">full-fluter.wav</option>
+                        <option value="/assets/guitar-wannabe.wav">guitar-wannabe.wav</option>
+                        <option value="/assets/harpolicious.wav">harpolicious.wav</option>
+                      </select>
+                      <div class="flex-item">
+                        <a class="btn dropdown-toggle flex-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="flex-item" id="audio-effect">START</span>
+                        </a>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" id="startEffect" href="#">START</a>
+                          <a class="dropdown-item" id="stopEffect" href="#">STOP</a>
+                          <a class="dropdown-item" id="pauseEffect" href="#">PAUSE</a>
+                          <a class="dropdown-item" id="resumeEffect" href="#">RESUME</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group bmd-form-group">
+                  <button id="join" type="button" class="btn btn-raised btn-primary agora-primary-bg">JOIN</button>
+                  <button id="leave" type="button" class="btn btn-raised btn-primary agora-primary-bg">LEAVE</button>
+                  <button id="publish" type="button"
+                    class="btn btn-raised btn-primary agora-primary-bg">PUBLISH</button>
+                  <button id="unpublish" type="button"
+                    class="btn btn-raised btn-primary agora-primary-bg">UNPUBLISH</button>
+                </div>
+              </div>
+              <div class="card">
+                <button class="btn btn-raised agora-expand-btn" id="settings" data-toggle="collapse"
+                  data-target="#setting-collapse" aria-expanded="false" aria-controls="collapse">
+                  Advanced Settings
+                </button>
+                <div id="setting-collapse" class="collapse" aria-labelledby="setting-collapse">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="uid" class="bmd-label-floating">UID</label>
+                      <input type="text" class="form-control" name="uid" id="uid">
+                    </div>
+                    <div class="form-group">
+                      <label for="cameraId" class="bmd-label-floating">CAMERA</label>
+                      <select class="form-control" id="cameraId" name="cameraId">
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="microphoneId" class="bmd-label-floating">MICROPHONE</label>
+                      <select class="form-control" id="microphoneId" name="microphoneId">
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="mode">Mode</label>
+                      <div class="row radio-list">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="mode" value="rtc" >
+                            <span class="radio-label">rtc</span>
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="mode" value="live" checked>
+                            <span class="radio-label">live</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="mode">Codec</label>
+                      <div class="row radio-list">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="codec" value="vp8">
+                            <span class="radio-label">vp8</span>
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+
+                            <input type="radio" name="codec" value="h264" checked>
+                            <span class="radio-label">h264</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="video-grid" id="video">
+            <div id="local_stream" class="video-placeholder">
+              <div id="local_video_info" class="video-info"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+</body>
+
+</html>
