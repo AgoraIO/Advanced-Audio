@@ -9,7 +9,6 @@ export default class RTCClient {
     this._joined = false;
     this._published = false;
     this._localStream = null;
-    this._soundId = Math.max(1, +Date.now() % 10000);
     this._remoteStreams = [];
     this._audioMixingState = 'stop';
     this._audioEffectState = 'stop';
@@ -383,7 +382,7 @@ export default class RTCClient {
   }
 
   _transmitAudioEffectState (state) {
-    if (this._audioEffectState == 'start' && ['stop', 'resume', 'pause'].indexOf(state) != -1) {
+    if (this._audioEffectState == 'start' && ['stop', 'resume', 'pause', 'start'].indexOf(state) != -1) {
       return true;
     } else if (this._audioEffectState == 'stop' && ['start'].indexOf(state) != -1) {
       return true;
@@ -406,7 +405,7 @@ export default class RTCClient {
    * 
    * GET MORE DETAILS PLEASE VISIT IT ON DOCUMENTATION https://docs.agora.io/en/Audio%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#playeffect
    */
-  playEffect (filePath) {
+  playEffect (filePaths) {
     if (!this._client) {
       Toast.error("Please Join First!");
       return;
@@ -419,19 +418,22 @@ export default class RTCClient {
     if (!this._transmitAudioEffectState('start')) {
       return;
     }
-    this._localStream.playEffect({
-      soundId: this._soundId, // id of the specified audio effect
-      cycle: 1, // playback loops
-      filePath: filePath  // valid audio filepath
-    }, (error) => {
-      if (error) {
-        Toast.error("start audio effect failed, please open console see more detail");
-        console.error(error);
-        return;
-      }
-      this._audioEffectState = 'start';
-      console.log("start audio effect success");
-    });
+    
+    for (let filePath of filePaths) {
+      this._localStream.playEffect({
+        soundId: Date.now() % 10000, // id of the specified audio effect
+        cycle: 1, // playback loops
+        filePath: filePath  // valid audio filepath
+      }, (error) => {
+        if (error) {
+          Toast.error("start audio effect failed, please open console see more detail");
+          console.error(error);
+          return;
+        }
+        this._audioEffectState = 'start';
+        console.log("start audio effect success");
+      });
+    }
   }
 
   stopEffect () {
@@ -448,7 +450,7 @@ export default class RTCClient {
       return;
     }
 
-    this._localStream.stopEffect(this._soundId, (error) => {
+    this._localStream.stopAllEffects((error) => {
       if (error) {
         Toast.error("stop audio effect failed, please open console see more detail");
         console.error(error);
@@ -473,7 +475,7 @@ export default class RTCClient {
       return;
     }
 
-    this._localStream.resumeEffect(this._soundId, (error) => {
+    this._localStream.resumeAllEffects((error) => {
       if (error) {
         Toast.error("resume audio effect failed, please open console see more detail");
         console.error(error);
@@ -498,7 +500,7 @@ export default class RTCClient {
       return
     }
 
-    this._localStream.resumeEffect(this._soundId, (error) => {
+    this._localStream.pauseAllEffects((error) => {
       if (error) {
         Toast.error("pause audio effect failed, please open console see more detail");
         console.error(error);

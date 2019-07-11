@@ -1,11 +1,11 @@
 import RTCClient from './rtc-client';
-import {getDevices, serializeFormData, validator} from './common';
+import {getDevices, serializeFormData, validator, Toast} from './common';
 import "./assets/style.scss";
 import * as bs from 'bootstrap-material-design';
 
 $(() => {
   let selects = null;
-
+  
   $('body').bootstrapMaterialDesign();
   $("#settings").on("click", function (e) {
     e.preventDefault();
@@ -71,14 +71,49 @@ $(() => {
     }
   });
 
+
+  $("#audio_mixing_resources").on("change", function (e) {
+    e.preventDefault();
+    console.log("change audio mixing")
+    if (rtc._audioMixingState != 'stop') {
+      rtc._localStream.stopAudioMixing((error) => {
+        if (error) {
+          Toast.error("stop audio mixing failed, please open console see more detail");
+          console.error(error);
+          return;
+        }
+        $("#audio-mixing").text("stop")
+        rtc._audioAudioMixingState = 'stop';
+        console.log("stop audio mixing success");
+      })
+    }
+  })
+
+  $("#audio_effect_resources").on("change", function (e) {
+    e.preventDefault();
+    console.log("change audio effect")
+    if (rtc._audioEffectState != 'stop') {
+      rtc._localStream.stopEffect(rtc._soundId, (error) => {
+        if (error) {
+          Toast.error("stop audio effect failed, please open console see more detail");
+          console.error(error);
+          return;
+        }
+        $("#audio-effect").text("stop");
+        rtc._audioEffectState = 'stop';
+        console.log("stop audio effect success");
+      });
+    }
+  })
+
   $("#startMixing").on("click", function (e) {
     e.preventDefault();
-    console.log("start mixing")
-    console.log(params)
+    console.log("start mixing");
+    console.log(params);
     const params = serializeFormData();
     if (validator(params, fields)) {
-      $("#audio-mixing").text("start")
-      rtc.startAudioMixing(params.audio_mixing_mp3);
+      $("#audio-mixing").text("start");
+      rtc.startAudioMixing(params.audio_mixing_file);
     }
   })
 
@@ -118,9 +153,14 @@ $(() => {
     const params = serializeFormData();
     if (validator(params, fields)) {
       $("#audio-effect").text("start")
-      rtc.playEffect(params.audio_effect_mp3);
+      const audio_effect_files = [];
+      $("#effectA").is(":checked") && audio_effect_files.push($("#effectA").attr("value"));
+      $("#effectB").is(":checked") && audio_effect_files.push($("#effectB").attr("value"));
+      console.log("play effect", audio_effect_files);
+      rtc.playEffect(audio_effect_files);
     }
   })
+
   $("#stopEffect").on("click", function (e) {
     e.preventDefault();
     console.log("stop audio effect")
@@ -130,6 +170,7 @@ $(() => {
       rtc.stopEffect();
     }
   })
+
   $("#pauseEffect").on("click", function (e) {
     e.preventDefault();
     console.log("pause audio effect")
@@ -139,6 +180,7 @@ $(() => {
       rtc.pauseEffect();
     }
   })
+
   $("#resumeEffect").on("click", function (e) {
     e.preventDefault();
     console.log("resume audio effect")
@@ -148,4 +190,5 @@ $(() => {
       rtc.resumeEffect();
     }
   })
+
 })

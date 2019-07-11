@@ -32,9 +32,9 @@
                   <input type="text" class="form-control" name="token" id="token">
                 </div>
                 <div class="form-group bmd-from-group">
-                  <label for="token" class="bmd-label-floating">Audio Mixing MP3</label>
+                  <label for="token" class="bmd-label-floating">Audio Mixing</label>
                   <div class="form-control flex-container">
-                    <select class="flex-item" name="audio_mixing_mp3" id="audio_mixing_mp3">
+                    <select class="flex-item" name="audio_mixing_file" id="audio_mixing_resources">
                       <option value="./assets/music_1.m4a">music_1.m4a</option>
                       <option value="./assets/biggie.mp3">biggie.mp3</option>
                       <option value="./assets/garden.mp3">garden.mp3</option>
@@ -53,15 +53,16 @@
                   </div>
                 </div>
                 <div class="form-group bmd-from-group">
-                  <label for="token" class="bmd-label-floating">Audio EFFECT MP3</label>
+                  <label for="token" class="bmd-label-floating">Audio EFFECTS</label>
+                  <div class="checkbox" style="display:flex;justify-content:flex-end;">
+                    <label for="effectA">
+                      <input id="effectA" name="audio_effect_files" value="./assets/effectA.wav" type="checkbox" checked>effectA
+                    </label>
+                    <label for="effectB">
+                      <input id="effectB" name="audio_effect_files" value="./assets/effectB.wav" type="checkbox">effectB
+                    </label>
+                  </div>
                   <div class="form-control flex-container">
-                      <select class="flex-item" name="audio_effect_mp3" id="audio_effect_mp3">
-                        <option value="./assets/crime-blocks.wav">crime-blocks.wav</option>
-                        <option value="./assets/friendly-porta.wav">friendly-porta.wav</option>
-                        <option value="./assets/full-fluter.wav">full-fluter.wav</option>
-                        <option value="./assets/guitar-wannabe.wav">guitar-wannabe.wav</option>
-                        <option value="./assets/harpolicious.wav">harpolicious.wav</option>
-                      </select>
                       <div class="flex-item">
                         <a class="btn dropdown-toggle flex-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="flex-item" id="audio-effect">START</span>
