@@ -1,7 +1,6 @@
 import RTCClient from './rtc-client';
 import {getDevices, serializeFormData, validator} from './common';
 import "./assets/style.scss";
-// import "./assets/music_1.m4a";
 import * as bs from 'bootstrap-material-design';
 
 $(() => {

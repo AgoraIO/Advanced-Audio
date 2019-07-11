@@ -29,7 +29,7 @@ module.exports = {
       errors: true,
     },
     hot: true,
-    contentBase: [path.join(__dirname, "./")] ,
+    contentBase: path.join(__dirname, "./"),
     compress: true,
     progress: true,
     open: true
