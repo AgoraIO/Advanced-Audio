@@ -13,10 +13,13 @@ export default class RTCClient {
     this._audioMixingState = 'stop';
     this._audioEffectState = 'stop';
     this._params = {};
+
+    this._showProfile = false;
   }
 
   handleEvents() {
     this._client.on("error", (err) => {
+      console.log("error", err)
       console.log(err)
     })
     // Occurs when the peer user leaves the channel; for example, the peer user calls Client.leave.
@@ -50,7 +53,7 @@ export default class RTCClient {
       const remoteStream = evt.stream;
       const id = remoteStream.getId();
       this._remoteStreams.push(remoteStream);
-      addView(id);
+      addView(id, this._showProfile);
       remoteStream.play("remote_video_" + id, {fit: "cover", muted: true});
       Toast.info('stream-subscribed remote-uid: ' + id);
       console.log('stream-subscribed remote-uid: ', id);
@@ -78,6 +81,22 @@ export default class RTCClient {
       // client.renewToken(token);
       Toast.info("onTokenPrivilegeDidExpire");
       console.log("onTokenPrivilegeDidExpire");
+    })
+    this._client.on("network-quality", (stats) => {
+      const qualityProgressPresenter = {
+        1: "100%",
+        2: "80%",
+        3: "60%",
+        4: "40%",
+        5: "20%",
+        6: "10%"
+      }
+      if (stats.uplinkNetworkQuality != 0) {
+        $("#net_up").attr({"style": "width: " + qualityProgressPresenter[stats.uplinkNetworkQuality] + ""});
+      }
+      if (stats.downlinkNetworkQuality != 0) {
+        $("#net_down").attr({"style": "width: " + qualityProgressPresenter[stats.downlinkNetworkQuality] + ""});
+      }
     })
   }
 
@@ -156,6 +175,11 @@ export default class RTCClient {
             Toast.info("audioMixingFinished");
             console.log("audioMixingFinished");
           });
+
+          if (data.cameraResolution && data.cameraResolution != 'default') {
+            // set local video resolution
+            this._localStream.setVideoProfile(data.cameraResolution);
+          }
     
           // init local stream
           this._localStream.init(() => {
@@ -509,6 +533,59 @@ export default class RTCClient {
       this._audioEffectState = 'pause';
       console.log("pause audio effect success");
     })
+  }
+
+  _getLostRate (lostPackets, arrivedPackets) {
+    let lost = lostPackets ? +lostPackets : 0;
+    let arrived = arrivedPackets ? +arrivedPackets : 0;
+    if (arrived == 0) return 0;
+    const result = (lost / (lost + arrived)).toFixed(2) * 100
+    return result;
+  }
+
+  _updateVideoInfo () {
+    this._localStream && this._localStream.getStats((stats) => {
+      const localStreamProfile = [
+        ['uid: ', this._localStream.getId()].join(''),
+        ['accessDelay: ', stats.accessDelay, 'ms'].join(''),
+        ['audioSendPacketsLost: ', this._getLostRate(stats.audioSendPacketsLost, stats.audioSendPackets), '%'].join(''),
+        ['videoSendFrameRate: ', stats.videoSendFrameRate, 'fps'].join(''),
+        ['videoSendPacketsLost: ', this._getLostRate(stats.videoSendPacketsLost, stats.videoSendPackets), '%'].join(''),
+        ['resolution: ', stats.videoSendResolutionWidth + 'x' + stats.videoSendResolutionHeight].join(''),
+      ].join('<br/>');
+      $("#local_video_info")[0].innerHTML = localStreamProfile;
+    })
+
+    if (this._remoteStreams.length > 0) {
+      for (let remoteStream of this._remoteStreams) {
+        remoteStream.getStats((stats) => {
+          const remoteStreamProfile = [
+            ['uid: ', this._localStream.getId()].join(''),
+            ['accessDelay: ', stats.accessDelay, 'ms'].join(''),
+            ['endToEndDelay: ', stats.endToEndDelay, 'ms'].join(''),
+            ['audioReceiveDelay: ', stats.audioReceiveDelay, 'ms'].join(''),
+            ['audioReceivePacketsLost: ', this._getLostRate(stats.audioReceivePacketsLost, stats.audioReceivePackets), '%'].join(''),
+            ['videoReceiveDecodeFrameRate: ', stats.videoReceiveDecodeFrameRate, 'fps'].join(''),
+            ['videoReceiveDelay: ', stats.videoReceiveDelay, 'ms'].join(''),
+            ['videoReceiveFrameRate: ', stats.videoReceiveFrameRate, 'fps'].join(''),
+            ['videoReceivePacketsLost: ', this._getLostRate(stats.videoReceivePacketsLost, stats.videoReceivePackets), '%'].join(''),
+            ['resolution: ', stats.videoReceiveResolutionWidth + 'x' + stats.videoReceiveResolutionHeight].join(''),
+          ].join('<br/>');
+          $("#remote_video_info_"+remoteStream.getId())[0].innerHTML = remoteStreamProfile;
+        })
+      }
+    }
+  }
+
+  setNetworkQualityAndStreamStats (enable) {
+    this._showProfile = enable;
+    this._showProfile ? $(".video-profile").removeClass("hide") : $(".video-profile").addClass("hide")
+    // this._showProfile ? $("#network-quality").removeClass("hide") : $("#network-quality").addClass("hide")
+    if (!this._interval) {
+      this._interval = setInterval(() => {
+        this._updateVideoInfo()
+      }, 2000);
+    }
   }
 }
 
