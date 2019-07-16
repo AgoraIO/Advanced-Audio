@@ -259,6 +259,8 @@ export default class RTCClient {
     this._client.leave(() => {
       // close stream
       this._localStream.close();
+
+      $("#local_video_info").addClass("hide");
       // stop stream
       this._localStream.stop();
       while (this._remoteStreams.length > 0) {
@@ -291,7 +293,7 @@ export default class RTCClient {
     } else if (this._audioMixingState == 'pause' && ['start', 'stop', 'resume'].indexOf(state) != -1) {
       return true;
     }
-    Toast.error(`Can't transmit audio mixing state: ${this._audioMixingState}, into: ${state}`);
+    console.log(`Can't transmit audio mixing state: ${this._audioMixingState}, into: ${state}`);
   }
 
   startAudioMixing (filePath) {
@@ -412,10 +414,10 @@ export default class RTCClient {
       return true;
     } else if (this._audioEffectState == 'resume' && ['start', 'stop', 'pause'].indexOf(state) != -1) {
       return true;
-    } else if (this._audioMixingState == 'pause' && ['start', 'stop', 'resume'].indexOf(state) != -1) {
+    } else if (this._audioEffectState == 'pause' && ['start', 'stop', 'resume'].indexOf(state) != -1) {
       return true;
     }
-    Toast.error(`Can't transmit audio effect state: ${this._audioEffectState}, into: ${state}`);
+    console.log(`Can't transmit audio effect state: ${this._audioEffectState}, into: ${state}`);
   }
 
   /**
@@ -442,7 +444,7 @@ export default class RTCClient {
     if (!this._transmitAudioEffectState('start')) {
       return;
     }
-    
+
     for (let filePath of filePaths) {
       this._localStream.playEffect({
         soundId: Date.now() % 10000, // id of the specified audio effect
@@ -580,7 +582,6 @@ export default class RTCClient {
   setNetworkQualityAndStreamStats (enable) {
     this._showProfile = enable;
     this._showProfile ? $(".video-profile").removeClass("hide") : $(".video-profile").addClass("hide")
-    // this._showProfile ? $("#network-quality").removeClass("hide") : $("#network-quality").addClass("hide")
     if (!this._interval) {
       this._interval = setInterval(() => {
         this._updateVideoInfo()
