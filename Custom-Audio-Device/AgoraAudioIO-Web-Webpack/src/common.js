@@ -1,5 +1,5 @@
 import AgoraRTC from 'agora-rtc-sdk';
-import Toastify from 'toastify-js';
+import * as M from 'materialize-css';
 
 export const resolutions = [
   {
@@ -20,24 +20,28 @@ export const resolutions = [
   }
 ];
 
+function Toastify (options) {
+  M.toast({html: options.text, classes: options.classes});
+}
+
 export const Toast = {
   info: (msg) => {
     Toastify({
       text: msg,
-      backgroundColor: "#3498db"
-    }).showToast();
+      classes: "info-toast"
+    })
   },
   notice: (msg) => {
     Toastify({
       text: msg,
-      backgroundColor: "#07bc0c"
-    }).showToast();
+      classes: "notice-toast"
+    })
   },
   error: (msg) => {
     Toastify({
       text: msg,
-      backgroundColor: "#e74c3c"
-    }).showToast();
+      classes: "error-toast"
+    })
   }
 };
 

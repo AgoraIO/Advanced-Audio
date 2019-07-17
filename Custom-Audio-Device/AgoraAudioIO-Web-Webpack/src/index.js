@@ -1,16 +1,14 @@
 import RTCClient from './rtc-client';
 import {getDevices, serializeFormData, validator, Toast, resolutions} from './common';
 import "./assets/style.scss";
-import * as bs from 'bootstrap-material-design';
+import * as M from 'materialize-css';
 
 $(() => {
   let selects = null;
     
-  $('body').bootstrapMaterialDesign();
   $("#settings").on("click", function (e) {
     e.preventDefault();
-    $("#settings").toggleClass("btn-raised");
-    $('#setting-collapse').collapse();
+    $(this).open(1);
   });
 
   getDevices(function (devices) {
@@ -33,13 +31,19 @@ $(() => {
         text: resolution.name
       }).appendTo("#cameraResolution");
     })
+    M.AutoInit();
   })
 
   const fields = ['appID', 'channel'];
 
   let rtc = new RTCClient();
 
-  $("#check_quality").on("change", function () {
+  $("#show_quality").on("change", function (e) {
+    e.preventDefault();
+    if (!rtc._joined) {
+      $(this).removeAttr("checked");
+      return false;
+    }
     rtc.setNetworkQualityAndStreamStats(this.checked);
   })
 
@@ -82,117 +86,93 @@ $(() => {
   });
 
 
-  $("#audio_mixing_resources").on("change", function (e) {
+  $("#audio_mixing_file").on("change", function (e) {
     e.preventDefault();
     console.log("change audio mixing")
     if (rtc._audioMixingState != 'stop') {
       rtc._localStream.stopAudioMixing((error) => {
         if (error) {
-          Toast.error("stop audio mixing failed, please open console see more detail");
           console.error(error);
           return;
         }
+        $(".audio_mixing_state").each(function () {
+          $(this).prop("checked", false);
+        })
+        $("#stop_mixing").prop("checked", true)
         rtc._audioMixingState = 'stop';
         console.log("stop audio mixing success");
       })
     }
   })
 
-  $("#audio_effect_resources").on("change", function (e) {
+  $("#audio_effect_files").on("change", function (e) {
     e.preventDefault();
     console.log("change audio effect")
     if (rtc._audioEffectState != 'stop') {
-      rtc._localStream.stopEffect(rtc._soundId, (error) => {
+      rtc._localStream.stopAllEffects((error) => {
         if (error) {
-          Toast.error("stop audio effect failed, please open console see more detail");
           console.error(error);
           return;
         }
+        $(".audio_effect_state").each(function () {
+          $(this).prop("checked", false);
+        })
+        $("#stop_effect").prop("checked", true)
         rtc._audioEffectState = 'stop';
         console.log("stop audio effect success");
       });
     }
   })
 
-  $("#startMixing").on("click", function (e) {
+  $(".audio_mixing_state").on("change", function (e) {
     e.preventDefault();
-    console.log("start mixing");
-    console.log(params);
     const params = serializeFormData();
-    if (validator(params, fields)) {
-      rtc.startAudioMixing(params.audio_mixing_file);
+    if (!validator(params, fields) || !rtc._joined) {
+      $(this).removeAttr("checked");
+      return false;
     }
-  })
-
-  $("#stopMixing").on("click", function (e) {
-    e.preventDefault();
-    console.log("start mixing")
-    const params = serializeFormData();
-    if (validator(params, fields)) {
-      rtc.stopAudioMixing();
-    }
-  })
-
-  $("#pauseMixing").on("click", function (e) {
-    e.preventDefault();
-    console.log("start mixing")
-    const params = serializeFormData();
-    if (validator(params, fields)) {
-      rtc.pauseAudioMixing();
-    }
-  })
-
-  $("#resumeMixing").on("click", function (e) {
-    e.preventDefault();
-    console.log("start mixing")
-    const params = serializeFormData();
-    if (validator(params, fields)) {
-      rtc.resumeAudioMixing();
-    }
-  })
-
-  $("#startEffect").on("click", function (e) {
-    e.preventDefault();
-    console.log("start audio effect")
-    const params = serializeFormData();
-    if (validator(params, fields)) {
-      const audio_effect_files = [];
-      $("#effectA").is(":checked") && audio_effect_files.push($("#effectA").attr("value"));
-      $("#effectB").is(":checked") && audio_effect_files.push($("#effectB").attr("value"));
-      if (audio_effect_files.length == 0) {
-        Toast.error("Please select play effect")
-        return;
+    const operate = {
+      'play': () => {
+        rtc.startAudioMixing(params.audio_mixing_file);
+      },
+      'stop': () => {
+        rtc.stopAudioMixing();
+      },
+      'pause': () => {
+        rtc.pauseAudioMixing();
+      },
+      'resume': () => {
+        rtc.resumeAudioMixing();
       }
-      console.log("play effect", audio_effect_files);
-      rtc.playEffect(audio_effect_files);
     }
+    operate[$(this).val()]();
   })
 
-  $("#stopEffect").on("click", function (e) {
+  $(".audio_effect_state").on("change", function (e) {
     e.preventDefault();
-    console.log("stop audio effect")
     const params = serializeFormData();
-    if (validator(params, fields)) {
-      rtc.stopEffect();
+    if (!validator(params, fields) || !rtc._joined) {
+      $(this).removeAttr("checked");
+      return false;
     }
-  })
 
-  $("#pauseEffect").on("click", function (e) {
-    e.preventDefault();
-    console.log("pause audio effect")
-    const params = serializeFormData();
-    if (validator(params, fields)) {
-      rtc.pauseEffect();
-    }
-  })
+    params.audio_effect_files = M.FormSelect.getInstance($("#audio_effect_files")[0]).getSelectedValues();
 
-  $("#resumeEffect").on("click", function (e) {
-    e.preventDefault();
-    console.log("resume audio effect")
-    const params = serializeFormData();
-    if (validator(params, fields)) {
-      rtc.resumeEffect();
+    const operate = {
+      'play': () => {
+        rtc.playEffect(params.audio_effect_files);
+      },
+      'stop': () => {
+        rtc.stopEffect();
+      },
+      'pause': () => {
+        rtc.pauseEffect();
+      },
+      'resume': () => {
+        rtc.resumeEffect();
+      }
     }
+    operate[$(this).val()]();
   })
 
 })
