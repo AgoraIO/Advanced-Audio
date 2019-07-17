@@ -21,7 +21,7 @@
   </div>
   <form id="form" class="row col l12 s12">
     <div class="row container col l12 s12">
-      <div class="col">
+      <div class="col" style="width: 433px;">
         <div class="card" style="margin-top: 0px; margin-bottom: 0px;">
           <div class="row card-content" style="margin-bottom: 0px;">
               <div class="input-field">
@@ -98,18 +98,16 @@
               </div>
               <!-- audio mixing -->
               <div class="row" style="margin: 0">
-                <div class="col s12">
                 <button class="btn btn-raised btn-primary waves-effect waves-light" id="join">JOIN</button>
                 <button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">LEAVE</button>
                 <button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">PUBLISH</button>
                 <button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">UNPUBLISH</button>
-                </div>
               </div>
               <div class="row col" style="margin: 0">
                 <div class="switch">
                   <h6 style="color: rgba(0,0,0,.26);">Show Profile</h6>
                   <label>
-                    <input id="check_quality" type="checkbox">
+                    <input id="show_quality" type="checkbox">
                     <span class="lever"></span>
                   </label>
                 </div>
@@ -177,7 +175,7 @@
           </li>
         </ul>
       </div>
-      <div class="col">
+      <div class="col s7">
         <div class="video-grid" id="video">
           <div class="video-view">
             <div id="local_stream" class="video-placeholder"></div>

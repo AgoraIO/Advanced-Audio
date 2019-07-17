@@ -38,7 +38,12 @@ $(() => {
 
   let rtc = new RTCClient();
 
-  $("#check_quality").on("change", function () {
+  $("#show_quality").on("change", function (e) {
+    e.preventDefault();
+    if (!rtc._joined) {
+      $(this).removeAttr("checked");
+      return false;
+    }
     rtc.setNetworkQualityAndStreamStats(this.checked);
   })
 
