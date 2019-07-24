@@ -1,7 +1,7 @@
 {
-  "name": "AgoraAudioIO-Web-Webpack",
+  "name": "AgoraAudioIO",
   "version": "2.8.0",
-  "description": "",
+  "description": "Agora-Web-Tutorial AgoraAudioIO",
   "keywords": [
     "realtime-communication",
     "agora-rtc-sdk",
