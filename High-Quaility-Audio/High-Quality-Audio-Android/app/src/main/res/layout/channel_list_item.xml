@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <io.agora.highqualityaudio.ui.ChannelListItemFixedRatioText
+        android:id="@+id/channel_list_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+    <TextView
+        android:id="@+id/channel_list_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/channel_list_item_title_height"
+        android:layout_below="@id/channel_list_item_bg"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/channel_list_item_title_padding"
+        android:paddingLeft="@dimen/channel_list_item_title_padding"
+        android:background="@drawable/channel_list_item_bg"
+        android:textColor="@color/universal_text_color"/>
+</RelativeLayout>

@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">HighQualityAudio</string>
+
+    <!-- Channel list -->
+    <string name="channel_list_title">Chat Rooms</string>
+
+    <string-array name="channel_titles">
+        <item>VoiceDemo1</item>
+        <item>VoiceDemo2</item>
+        <item>VoiceDemo3</item>
+        <item>VoiceDemo4</item>
+        <item>VoiceDemo5</item>
+    </string-array>
+
+    <!-- Chat room -->
+    <string name="room_user_hint">User\u00A0</string>
+    <string name="room_message_edit_hint">Let\'s\u00A0 say \u00A0 something.</string>
+    <string name="user_joined_hint">User joined</string>
+    <string name="seat_taken">The seat is taken</string>
+    <string name="warn_user_has_taken_a_seat">You have already taken a seat</string>
+    <string name="i_can_speak">You can speak now</string>
+    <string name="i_left_seat">You left the seat</string>
+    <string name="other_joined">User %d has taken a seat</string>
+    <string name="other_left_seat">User %d has left a seat</string>
+
+    <string-array name="sound_effects">
+        <item>Uncle</item>
+        <item>Boy</item>
+        <item>Bajie</item>
+        <item>Ethereal</item>
+        <item>Hulk</item>
+        <item>Girl</item>
+        <item>Radio KTV</item>
+        <item>Live</item>
+        <item>Studio</item>
+        <item>Pop</item>
+        <item>R&amp;B</item>
+        <item>Hip hop</item>
+        <item>R&amp;R</item>
+    </string-array>
+
+    <!-- Setting dialog -->
+    <string name="setting_dialog_title">Room Settings</string>
+    <string name="setting_dialog_change_voice">Change Voice</string>
+    <string name="setting_dialog_leave_room">Leave Room</string>
 </resources>

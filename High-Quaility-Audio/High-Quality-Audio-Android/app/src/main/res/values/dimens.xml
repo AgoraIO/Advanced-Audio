@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_text_size">16sp</dimen>
+
+    <!-- channel list -->
+    <dimen name="channel_list_margin_vertical">50dp</dimen>
+    <dimen name="channel_list_margin_horizontal">18dp</dimen>
+    <dimen name="channel_list_item_title_height">42dp</dimen>
+    <dimen name="channel_list_item_title_padding">16dp</dimen>
+    <dimen name="channel_list_item_corner">6dp</dimen>
+    <dimen name="channel_list_title_padding">26dp</dimen>
+
+    <!-- Chat Room -->
+    <dimen name="room_title_layout_height">36dp</dimen>
+    <dimen name="room_title_layout_margin_top">10dp</dimen>
+    <dimen name="room_title_back_margin">8dp</dimen>
+    <dimen name="room_setting_btn_size">36dp</dimen>
+    <dimen name="room_setting_btn_margin">15dp</dimen>
+    <dimen name="room_setting_btn_padding">8dp</dimen>
+
+    <dimen name="room_portrait_margin_top">24dp</dimen>
+    <dimen name="room_portrait_size">84dp</dimen>
+    <dimen name="room_portrait_anim_layer1_size">90dp</dimen>
+    <dimen name="room_portrait_anim_layer2_size">88dp</dimen>
+    <dimen name="room_portrait_anim_layer2_size_medium">112dp</dimen>
+
+    <dimen name="chat_room_vacancy_size">90dp</dimen>
+    <dimen name="chat_room_vacancy_portrait_size">62dp</dimen>
+    <dimen name="chat_room_vacancy_open_size">23dp</dimen>
+    <dimen name="chat_room_vacancy_mute_size">18dp</dimen>
+    <dimen name="room_vacancy_list_padding">10dp</dimen>
+
+    <dimen name="room_user_name_height">23dp</dimen>
+    <dimen name="room_user_name_margin_top">14dp</dimen>
+    <dimen name="room_user_name_padding">12dp</dimen>
+    <dimen name="room_user_name_text_size">14sp</dimen>
+
+    <dimen name="room_participants_layout_margin_top">18dp</dimen>
+
+    <dimen name="room_message_view_margin_top">12dp</dimen>
+    <dimen name="room_message_view_margin">14dp</dimen>
+    <dimen name="room_message_view_margin_bottom">9dp</dimen>
+
+    <dimen name="room_message_layout_height">58dp</dimen>
+    <dimen name="room_message_edit_layout_width">234dp</dimen>
+    <dimen name="room_message_edit_layout_height">36dp</dimen>
+    <dimen name="room_message_edit_layout_margin">14dp</dimen>
+    <dimen name="room_message_edit_padding_left">15dp</dimen>
+    <dimen name="room_message_edit_padding_right">42dp</dimen>
+    <dimen name="room_message_edit_text_size">12sp</dimen>
+    <dimen name="room_message_send_btn_size">20dp</dimen>
+    <dimen name="room_message_send_btn_margin">12dp</dimen>
+
+    <dimen name="room_bottom_btn_size">35dp</dimen>
+    <dimen name="room_bottom_btn_margin">14dp</dimen>
+
+    <!-- Dialogs -->
+    <dimen name="dialog_title_height">64dp</dimen>
+    <dimen name="dialog_title_padding_top">32dp</dimen>
+    <dimen name="dialog_item_height">42dp</dimen>
+    <dimen name="dialog_item_margin_top">12dp</dimen>
+    <dimen name="dialog_btn_width">226dp</dimen>
+    <dimen name="dialog_btn_height">42dp</dimen>
+    <dimen name="dialog_btn_margin_bottom">42dp</dimen>
+    <dimen name="dialog_btn_text_size">14sp</dimen>
+</resources>

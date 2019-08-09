@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray">
+
+    <RelativeLayout
+        android:id="@+id/change_voice_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_title_height"
+        android:background="@color/universal_blue">
+
+        <ImageView
+            android:id="@+id/change_voice_back"
+            android:layout_width="34dp"
+            android:layout_height="44.83dp"
+            android:layout_marginTop="19.17dp"
+            android:paddingLeft="16.33dp"
+            android:paddingTop="12.5dp"
+            android:paddingBottom="12.5dp"
+            android:paddingRight="6.33dp"
+            android:src="@drawable/back_white"
+            android:scaleType="centerInside"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31.33dp"
+            android:text="@string/setting_dialog_change_voice"
+            android:textColor="@color/universal_text_color"
+            android:textSize="@dimen/title_text_size"/>
+
+    </RelativeLayout>
+
+    <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
+        android:id="@+id/change_voice_recycler_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/change_voice_title_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="52.67dp"
+        android:orientation="horizontal"
+        android:paddingLeft="14.33dp"
+        android:paddingRight="14.33dp">
+
+        <Button
+            android:id="@+id/change_voice_btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_0"
+            android:text="确定"
+            android:textColor="#FFFFFF"
+            android:textSize="14.33sp" />
+
+        <Button
+            android:id="@+id/change_voice_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="14.47dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_1"
+            android:text="取消"
+            android:textColor="#09BDF4"
+            android:textSize="14.33sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
