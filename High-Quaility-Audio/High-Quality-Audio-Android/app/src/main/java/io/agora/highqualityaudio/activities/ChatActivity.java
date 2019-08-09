@@ -2,7 +2,6 @@ package io.agora.highqualityaudio.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import io.agora.highqualityaudio.R;
@@ -43,8 +43,13 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
 
     private SeatListRecyclerView mSeatRecyclerView;
 
+    // In a live broadcast channel, online users are
+    // those who have become broadcasters.
+    private HashSet<Integer> mOnlineUsers;
+
     private MessageRecyclerView mMessageView;
     private EditText mMessageEdit;
+    private ImageView mSpeakerBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,8 +97,11 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
 
         mMessageEdit = findViewById(R.id.chat_room_message_edit);
 
-        ImageView speakerBtn = findViewById(R.id.chat_room_speaker);
-        speakerBtn.setActivated(true);
+        mSpeakerBtn = findViewById(R.id.chat_room_speaker);
+
+        // Mute button will be disabled for audience
+        mSpeakerBtn.setEnabled(false);
+        mSpeakerBtn.setActivated(false);
 
         ImageView muteBtn = findViewById(R.id.chat_room_sound);
         muteBtn.setActivated(true);
@@ -101,18 +109,30 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
 
     private void handleSeatClicked(int position, UserAccountManager.UserAccount account) {
         if (account == null) {
-            if (mSeatRecyclerView.hasUserTaken(myAccount().getUid())) {
+            if (mSeatRecyclerView.hasUserTaken(mMyUid)) {
                 mMessageView.addMessage(getString(R.string.warn_user_has_taken_a_seat));
             } else {
-                rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER);
-                mSeatRecyclerView.addUser(position, myAccount().getUid(), Seat.SPEAKING);
+                startBroadcasting(position, mMyUid);
             }
-        } else if (account.getUid() == myAccount().getUid()) {
-            rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE);
-            mSeatRecyclerView.removeUserByPosition(position);
+        } else if (account.getUid() == mMyUid) {
+            endBroadcasting(position, mMyUid);
         } else {
             mMessageView.addMessage(getString(R.string.seat_taken));
         }
+    }
+
+    private void startBroadcasting(int position, int uid) {
+        mSpeakerBtn.setEnabled(true);
+        mSpeakerBtn.setActivated(true);
+        rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER);
+        mSeatRecyclerView.addUser(position, uid, Seat.SPEAKING);
+    }
+
+    private void endBroadcasting(int position, int uid) {
+        mSpeakerBtn.setActivated(false);
+        mSpeakerBtn.setEnabled(false);
+        rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE);
+        mSeatRecyclerView.removeUserByPosition(position);
     }
 
     public void onSettingClicked(View view) {
