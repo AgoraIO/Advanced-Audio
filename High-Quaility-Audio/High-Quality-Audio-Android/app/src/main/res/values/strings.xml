@@ -16,8 +16,8 @@
     <string name="room_user_hint">User\u00A0</string>
     <string name="room_message_edit_hint">Let\'s\u00A0 say \u00A0 something.</string>
     <string name="user_joined_hint">User joined</string>
-    <string name="seat_taken">The seat is taken</string>
-    <string name="warn_user_has_taken_a_seat">You have already taken a seat</string>
+    <string name="seat_taken">Seat %d is already taken</string>
+    <string name="warn_user_has_taken_a_seat">You have already taken seat %d</string>
     <string name="i_can_speak">You can speak now</string>
     <string name="i_left_seat">You left the seat</string>
     <string name="other_joined">User %d has taken a seat</string>

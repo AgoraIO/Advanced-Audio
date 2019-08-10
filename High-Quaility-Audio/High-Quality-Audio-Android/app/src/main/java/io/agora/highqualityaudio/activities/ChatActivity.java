@@ -81,10 +81,25 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
         userName.setText(nameString);
 
         mSeatRecyclerView = findViewById(R.id.chat_room_recycler_participants);
-        mSeatRecyclerView.setOnItemClickListener(new SeatListAdapter.OnItemClickListener() {
+        mSeatRecyclerView.setOnSeatClickListener(new SeatListAdapter.OnSeatClickListener() {
             @Override
-            public void onClick(int position, View view, UserAccountManager.UserAccount account) {
-                handleSeatClicked(position, account);
+            public void onSeatAvailable(int position, View seat, UserAccountManager.UserAccount account) {
+                startBroadcasting();
+            }
+
+            @Override
+            public void onSeatTakenByAnother(int position, View seat, UserAccountManager.UserAccount account) {
+                mMessageView.addMessage(String.format(getString(R.string.seat_taken), position));
+            }
+
+            @Override
+            public void onSeatTakenByMyself(int position, View seat, UserAccountManager.UserAccount account) {
+                endBroadcasting();
+            }
+
+            @Override
+            public void onUserAlreadyHasSeat(int askedPosition, int takenPosition, View seat, UserAccountManager.UserAccount account) {
+                mMessageView.addMessage(String.format(getString(R.string.warn_user_has_taken_a_seat), takenPosition));
             }
         });
 
@@ -107,32 +122,16 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
         muteBtn.setActivated(true);
     }
 
-    private void handleSeatClicked(int position, UserAccountManager.UserAccount account) {
-        if (account == null) {
-            if (mSeatRecyclerView.hasUserTaken(mMyUid)) {
-                mMessageView.addMessage(getString(R.string.warn_user_has_taken_a_seat));
-            } else {
-                startBroadcasting(position, mMyUid);
-            }
-        } else if (account.getUid() == mMyUid) {
-            endBroadcasting(position, mMyUid);
-        } else {
-            mMessageView.addMessage(getString(R.string.seat_taken));
-        }
-    }
-
-    private void startBroadcasting(int position, int uid) {
+    private void startBroadcasting() {
         mSpeakerBtn.setEnabled(true);
         mSpeakerBtn.setActivated(true);
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER);
-        mSeatRecyclerView.addUser(position, uid, Seat.SPEAKING);
     }
 
-    private void endBroadcasting(int position, int uid) {
+    private void endBroadcasting() {
         mSpeakerBtn.setActivated(false);
         mSpeakerBtn.setEnabled(false);
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE);
-        mSeatRecyclerView.removeUserByPosition(position);
     }
 
     public void onSettingClicked(View view) {

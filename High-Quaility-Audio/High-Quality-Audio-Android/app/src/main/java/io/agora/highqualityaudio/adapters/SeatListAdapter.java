@@ -23,15 +23,13 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
     private Context mContext;
     private LayoutInflater mInflater;
     private List<Vacancy> mVacancies;
-    private OnItemClickListener mOnItemClickListener;
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.mOnItemClickListener = onItemClickListener;
-    }
+    private OnSeatClickListener mOnSeatClickListener;
+    private UserAccountManager.UserAccount mMyAccount;
 
     public SeatListAdapter(Context context) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
+        mMyAccount = UserAccountManager.INSTANCE.account();
         initVacancies();
     }
 
@@ -43,6 +41,10 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         }
     }
 
+    public void setmOnSeatClickListener(OnSeatClickListener listener) {
+        mOnSeatClickListener = listener;
+    }
+
     @Override
     public SeatListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.participants_item, parent, false);
@@ -50,7 +52,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final int pos = holder.getAdapterPosition();
         final View view = holder.itemView;
 
@@ -59,9 +61,36 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onClick(pos, view,
-                    vacancy != null ? vacancy.getUser() : null);
+                if (vacancy.getUser() != null) {
+                    if (vacancy.getUser().getUid() == mMyAccount.getUid()) {
+                        // Clicking the current user's own avatar
+                        // will cause him to leave the seat
+                        removeUserByPosition(position);
+                        notifyDataSetChanged();
+                        if (mOnSeatClickListener != null) {
+                            mOnSeatClickListener.onSeatTakenByMyself(
+                                    position, view, mMyAccount);
+                        }
+                    } else if (mOnSeatClickListener != null) {
+                        // Nothing will happen in the seat list when
+                        // we click other users' avatars.
+                        mOnSeatClickListener.onSeatTakenByAnother(
+                                position, view, vacancy.getUser());
+                    }
+                } else {
+                    int index = userSeatPosition(mMyAccount.getUid());
+                    if (0 <= index && index < MAX_VACANCY &&
+                            mOnSeatClickListener != null) {
+                        // The user has taken another seat in the list,
+                        // so nothing will happen here.
+                        mOnSeatClickListener.onUserAlreadyHasSeat(
+                                position, index, view, vacancy.getUser());
+                    } else {
+                        setTaken(position, mMyAccount.getUid(), Seat.SPEAKING);
+                        if (mOnSeatClickListener != null) {
+                            mOnSeatClickListener.onSeatAvailable(position, view,vacancy.getUser());
+                        }
+                    }
                 }
             }
         });
@@ -101,10 +130,6 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         return mVacancies.size();
     }
 
-    public void setTaken(int position, int uid) {
-        setTaken(position, uid, Seat.SPEAKING);
-    }
-
     public void setTaken(int position, int uid, int state) {
         Vacancy vacancy = mVacancies.get(position);
         vacancy.setUser(new UserAccountManager.UserAccount(uid));
@@ -112,6 +137,11 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         notifyDataSetChanged();
     }
 
+    /**
+     * Whether the user has taken a seat
+     * @param uid
+     * @return
+     */
     public boolean hasUserTaken(int uid) {
         for (int i = 0; i < MAX_VACANCY; i++) {
             if (hasUserTaken(i, uid)) {
@@ -121,6 +151,23 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         return false;
     }
 
+    private int userSeatPosition(int uid) {
+        int index = -1;
+        for (int i = 0; i < MAX_VACANCY; i++) {
+            if (hasUserTaken(i, uid)) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    /**
+     * Whether the seat of a specific position
+     * is taken by this user
+     * @param position
+     * @param uid
+     * @return
+     */
     private boolean hasUserTaken(int position, int uid) {
         UserAccountManager.UserAccount account = mVacancies.get(position).getUser();
         return account != null && account.getUid() == uid;
@@ -203,14 +250,40 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         }
     }
 
-    public interface OnItemClickListener {
+    public interface OnSeatClickListener {
         /**
-         * Callback when a seat vacancy is clicked by the user.
-         * @param position the index of the seat that is clicked
-         * @param view the represent view of this seat
-         * @param account the account if the seat is taken, null if not
+         * Called when the seat asked is available and is
+         * successfully taken by this caller user
+         * @param position
+         * @param seat
+         * @param account
          */
-        void onClick(int position, View view, UserAccountManager.UserAccount account);
+        void onSeatAvailable(int position, View seat, UserAccountManager.UserAccount account);
+
+        /**
+         * Called when the seat asked is already taken by another user
+         * @param position
+         * @param seat
+         * @param account
+         */
+        void onSeatTakenByAnother(int position, View seat, UserAccountManager.UserAccount account);
+
+        /**
+         * Called when the seat is already taken by the caller user
+         * @param position
+         * @param seat
+         * @param account
+         */
+        void onSeatTakenByMyself(int position, View seat, UserAccountManager.UserAccount account);
+
+        /**
+         * Called when the user has taken another seat
+         * @param askedPosition
+         * @param takenPosition
+         * @param seat
+         * @param account
+         */
+        void onUserAlreadyHasSeat(int askedPosition, int takenPosition, View seat, UserAccountManager.UserAccount account);
     }
 
     public static class Vacancy {
@@ -220,10 +293,6 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
 
         Vacancy(Seat seat) {
             mSeat = seat;
-        }
-
-        public Seat getSeat() {
-            return mSeat;
         }
 
         UserAccountManager.UserAccount getUser() {
