@@ -66,7 +66,6 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
                         // Clicking the current user's own avatar
                         // will cause him to leave the seat
                         removeUserByPosition(position);
-                        notifyDataSetChanged();
                         if (mOnSeatClickListener != null) {
                             mOnSeatClickListener.onSeatTakenByMyself(
                                     position, view, mMyAccount);
