@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity implements
         Intent intent = new Intent();
         intent.setClass(this, ChatActivity.class);
         intent.putExtra(Constants.BUNDLE_KEY_UID, account.getUid());
-        intent.putExtra(Constants.BUNDLE_KEY_PORTRAIT_RES, account.genAvatarRes());
+        intent.putExtra(Constants.BUNDLE_KEY_PORTRAIT_RES, account.getAvatarRes());
         intent.putExtra(Constants.BUNDLE_KEY_CHANNEL_NAME, item.getName());
         intent.putExtra(Constants.BUNDLE_KEY_BG_RES, item.getRoomBgRes());
         startActivity(intent);

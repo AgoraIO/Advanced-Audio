@@ -1,7 +1,6 @@
 package io.agora.highqualityaudio.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +26,8 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
     private UserAccountManager.UserAccount mAccount;
 
     public MessageRecyclerAdapter(Context context) {
-        this.mInflater = LayoutInflater.from(context);
-        this.mItems = new ArrayList<>();
+        mInflater = LayoutInflater.from(context);
+        mItems = new ArrayList<>();
     }
 
     @Override
@@ -40,7 +39,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mAccount != null) {
-            holder.portrait.setImageResource(mAccount.genAvatarRes());
+            holder.portrait.setImageResource(mAccount.getAvatarRes());
             String msg = mAccount.getUid() + ": " + mItems.get(position).getMessage();
             holder.message.setText(msg);
         }

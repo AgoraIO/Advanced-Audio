@@ -56,6 +56,22 @@ public class SeatListRecyclerView extends RecyclerView {
         mAdapter.changeMuteStateByUid(uid, muted);
     }
 
+    /**
+     * Update the seat states when a Windows user joins if needed.
+     * @param uid windows user uid
+     */
+    public void updateWindowsClientJoin(int uid) {
+        mAdapter.changeStateWithWindowsUidJoin(uid);
+    }
+
+    /**
+     * Update the seat states when a Windows user leaves if needed.
+     * @param uid windows user uid
+     */
+    public void updateWindowsClientLeave(int uid) {
+        mAdapter.changeStateWithWindowsUidLeave(uid);
+    }
+
     public void setOnSeatClickListener(SeatListAdapter.OnSeatClickListener listener) {
         mAdapter.setmOnSeatClickListener(listener);
     }

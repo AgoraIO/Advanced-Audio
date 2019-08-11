@@ -23,7 +23,14 @@ public enum UserAccountManager {
     }
 
     public static class UserAccount {
-        private static int ANDROID_BIT = 1000;
+        private static final int PLATFORM_ANDROID = 1;
+        private static final int PLATFORM_IOS = 2;
+        private static final int PLATFORM_WINDOWS = 3;
+
+        static final int ANDROID_BIT = 1000;
+        static final int IOS_BIT = 2000;
+        static final int WINDOWS_BIT = 3000;
+
         private int mUid;
         private int mAvatarRes;
 
@@ -37,11 +44,55 @@ public enum UserAccountManager {
             mAvatarRes = UserAccountManager.genAvatarRes(mUid);
         }
 
+        static int getPlatform(int uid) {
+            return uid / ANDROID_BIT;
+        }
+
+        public static boolean isAndroidUser(int uid) {
+            return getPlatform(uid) == PLATFORM_ANDROID;
+        }
+
+        public static boolean isIOSUser(int uid) {
+            return getPlatform(uid) == PLATFORM_IOS;
+        }
+
+        public static boolean isWindowsUser(int uid) {
+            return getPlatform(uid) == PLATFORM_WINDOWS;
+        }
+
+        public static int toWindowsUid(int uid) {
+            return uid % ANDROID_BIT + WINDOWS_BIT;
+        }
+
+        public static int toAndroidUid(int uid) {
+            return uid % ANDROID_BIT + ANDROID_BIT;
+        }
+
+        public static int toIOSUid(int uid) {
+            return uid % ANDROID_BIT + IOS_BIT;
+        }
+
+        int getPlatform() {
+            return getPlatform(mUid);
+        }
+
+        boolean isAndroidUser() {
+            return getPlatform() == PLATFORM_ANDROID;
+        }
+
+        boolean isIOSUser() {
+            return getPlatform() == PLATFORM_IOS;
+        }
+
+        public boolean isWindowsUser() {
+            return getPlatform() == PLATFORM_WINDOWS;
+        }
+
         public int getUid() {
             return mUid;
         }
 
-        public int genAvatarRes() {
+        public int getAvatarRes() {
             return mAvatarRes;
         }
 

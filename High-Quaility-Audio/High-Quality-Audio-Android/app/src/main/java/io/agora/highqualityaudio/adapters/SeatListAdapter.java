@@ -85,7 +85,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
                         mOnSeatClickListener.onUserAlreadyHasSeat(
                                 position, index, view, vacancy.getUser());
                     } else {
-                        setTaken(position, mMyAccount.getUid(), Seat.SPEAKING);
+                        setTaken(position, mMyAccount.getUid());
                         if (mOnSeatClickListener != null) {
                             mOnSeatClickListener.onSeatAvailable(position, view,vacancy.getUser());
                         }
@@ -98,29 +98,31 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
                 holder.itemView.findViewById(R.id.chat_room_seat_anim_layer1),
                 holder.itemView.findViewById(R.id.chat_room_seat_anim_layer2));
 
-        switch (vacancy.getState()) {
-            case Seat.VACANT:
-                holder.mAnimLayer1.setVisibility(View.GONE);
-                holder.mAnimLayer2.setVisibility(View.GONE);
-                holder.imgPortrait.setVisibility(View.GONE);
-                holder.imgState.setVisibility(View.VISIBLE);
-                holder.imgState.setImageResource(R.drawable.ic_open);
-                holder.imgMute.setVisibility(View.GONE);
-                break;
-            case Seat.MUTE:
-                holder.imgPortrait.setVisibility(View.VISIBLE);
-                holder.imgPortrait.setImageResource(vacancy.getUser().genAvatarRes());
-                holder.imgState.setVisibility(View.GONE);
+        Seat seat = vacancy.getSeat();
+        if (seat.isVacant()) {
+            holder.mAnimLayer1.setVisibility(View.GONE);
+            holder.mAnimLayer2.setVisibility(View.GONE);
+            holder.imgPortrait.setVisibility(View.GONE);
+            holder.imgState.setVisibility(View.VISIBLE);
+            holder.imgState.setImageResource(R.drawable.ic_open);
+            holder.imgMute.setVisibility(View.GONE);
+        } else {
+            holder.imgPortrait.setVisibility(View.VISIBLE);
+            holder.imgPortrait.setImageResource(vacancy.getUser().getAvatarRes());
+            holder.imgState.setVisibility(View.GONE);
+            if (seat.isMuted()) {
                 holder.imgMute.setVisibility(View.VISIBLE);
-                break;
-            case Seat.SPEAKING:
+            } else {
                 holder.mAnimLayer1.setVisibility(View.VISIBLE);
                 holder.mAnimLayer2.setVisibility(View.VISIBLE);
-                holder.imgPortrait.setVisibility(View.VISIBLE);
-                holder.imgPortrait.setImageResource(vacancy.getUser().genAvatarRes());
-                holder.imgState.setVisibility(View.GONE);
                 holder.imgMute.setVisibility(View.GONE);
-                break;
+            }
+
+            if (seat.hasWindowsClient()) {
+                // show the icon
+            } else {
+                // don't show the icon
+            }
         }
     }
 
@@ -129,25 +131,11 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         return mVacancies.size();
     }
 
-    public void setTaken(int position, int uid, int state) {
+    public void setTaken(int position, int uid) {
         Vacancy vacancy = mVacancies.get(position);
         vacancy.setUser(new UserAccountManager.UserAccount(uid));
-        vacancy.setState(state);
+        vacancy.getSeat().setVacant(false);
         notifyDataSetChanged();
-    }
-
-    /**
-     * Whether the user has taken a seat
-     * @param uid
-     * @return
-     */
-    public boolean hasUserTaken(int uid) {
-        for (int i = 0; i < MAX_VACANCY; i++) {
-            if (hasUserTaken(i, uid)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private int userSeatPosition(int uid) {
@@ -158,6 +146,27 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             }
         }
         return index;
+    }
+
+    public void changeStateWithWindowsUidJoin(int winUid) {
+        updateWindowsClientState(winUid, true);
+    }
+
+    public void changeStateWithWindowsUidLeave(int winUid) {
+        updateWindowsClientState(winUid, false);
+    }
+
+    private void updateWindowsClientState(int winUid, boolean isInChannel) {
+        int androidUid = UserAccountManager.UserAccount.toAndroidUid(winUid);
+        int iosUid = UserAccountManager.UserAccount.toIOSUid(winUid);
+
+        for (Vacancy vacancy : mVacancies) {
+            UserAccountManager.UserAccount account = vacancy.getUser();
+            if (account != null && (account.getUid() == androidUid ||
+                    account.getUid() == iosUid)) {
+                vacancy.getSeat().setWindowsClient(isInChannel);
+            }
+        }
     }
 
     /**
@@ -177,7 +186,8 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             Vacancy vacancy = mVacancies.get(i);
             if (vacancy.getUser() == null) {
                 vacancy.setUser(new UserAccountManager.UserAccount(uid));
-                vacancy.setState(Seat.SPEAKING);
+                vacancy.getSeat().setVacant(false);
+                vacancy.getSeat().setMuted(false);
                 notifyDataSetChanged();
                 return i;
             }
@@ -189,7 +199,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
     public void removeUserByPosition(int position) {
         Vacancy vacancy = mVacancies.get(position);
         vacancy.setUser(null);
-        vacancy.setState(Seat.VACANT);
+        vacancy.getSeat().setVacant(true);
         notifyDataSetChanged();
     }
 
@@ -199,7 +209,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             UserAccountManager.UserAccount account = vacancy.getUser();
             if (account != null && account.getUid() == uid) {
                 vacancy.setUser(null);
-                vacancy.setState(Seat.VACANT);
+                vacancy.getSeat().setVacant(true);
                 notifyDataSetChanged();
             }
         }
@@ -210,7 +220,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             Vacancy vacancy = mVacancies.get(i);
             UserAccountManager.UserAccount account = vacancy.getUser();
             if (account != null && account.getUid() == uid) {
-                vacancy.setState(muted ? Seat.MUTE : Seat.SPEAKING);
+                vacancy.getSeat().setMuted(muted);
                 notifyDataSetChanged();
             }
         }
@@ -294,20 +304,16 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             mSeat = seat;
         }
 
+        Seat getSeat() {
+            return mSeat;
+        }
+
         UserAccountManager.UserAccount getUser() {
             return mUser;
         }
 
         void setUser(UserAccountManager.UserAccount user) {
             mUser = user;
-        }
-
-        int getState() {
-            return mSeat.getStatus();
-        }
-
-        private void setState(int state) {
-            mSeat.setStatus(state);
         }
 
         void initAnimator(Context context, View layer1, View layer2) {

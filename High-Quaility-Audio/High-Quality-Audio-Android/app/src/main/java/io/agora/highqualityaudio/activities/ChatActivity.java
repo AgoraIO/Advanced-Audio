@@ -19,7 +19,6 @@ import java.util.List;
 
 import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.adapters.SeatListAdapter;
-import io.agora.highqualityaudio.data.Seat;
 import io.agora.highqualityaudio.data.UserAccountManager;
 import io.agora.highqualityaudio.rtc.EventHandler;
 import io.agora.highqualityaudio.ui.MessageRecyclerView;
@@ -43,9 +42,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
 
     private SeatListRecyclerView mSeatRecyclerView;
 
-    // In a live broadcast channel, online users are
-    // those who have become broadcasters.
-    private HashSet<Integer> mOnlineUsers;
+    private HashSet<Integer> mWindowsUsers = new HashSet<>();
 
     private MessageRecyclerView mMessageView;
     private EditText mMessageEdit;
@@ -280,11 +277,29 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mMessageView.addMessage(String.format(
-                        getString(R.string.other_joined), uid));
-                mSeatRecyclerView.addUser(uid);
+                handlePlatformUserJoined(uid);
             }
         });
+    }
+
+    private void handlePlatformUserJoined(int uid) {
+        if (UserAccountManager.UserAccount.isAndroidUser(uid) ||
+                UserAccountManager.UserAccount.isIOSUser(uid)) {
+            // A mobile user joins and checks if his windows
+            // client is in the channel and update his icon
+            mMessageView.addMessage(String.format(
+                    getString(R.string.other_joined), uid));
+            mSeatRecyclerView.addUser(uid);
+
+            int winUid = UserAccountManager.UserAccount.toWindowsUid(uid);
+            if (mWindowsUsers.contains(winUid)) {
+                mSeatRecyclerView.updateWindowsClientJoin(winUid);
+            }
+        } else if (UserAccountManager.UserAccount.isWindowsUser(uid) &&
+                !mWindowsUsers.contains(uid)) {
+            mSeatRecyclerView.updateWindowsClientJoin(uid);
+            mWindowsUsers.add(uid);
+        }
     }
 
     @Override
@@ -292,11 +307,23 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mMessageView.addMessage(String.format(
-                        getString(R.string.other_left_seat), uid));
-                mSeatRecyclerView.removeUserByUid(uid);
+                handlePlatformUserOffline(uid);
             }
         });
+    }
+
+    private void handlePlatformUserOffline(int uid) {
+        if (UserAccountManager.UserAccount.isAndroidUser(uid) ||
+                UserAccountManager.UserAccount.isIOSUser(uid)) {
+            mMessageView.addMessage(String.format(
+                    getString(R.string.other_left_seat), uid));
+            mSeatRecyclerView.removeUserByUid(uid);
+        } else if (UserAccountManager.UserAccount.isWindowsUser(uid) &&
+            mWindowsUsers.contains(uid)) {
+            mSeatRecyclerView.updateWindowsClientLeave(uid);
+            mWindowsUsers.remove(uid);
+        }
+
     }
 
     @Override
