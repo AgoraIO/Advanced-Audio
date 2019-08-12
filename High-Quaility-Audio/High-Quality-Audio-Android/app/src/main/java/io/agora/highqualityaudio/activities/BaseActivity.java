@@ -35,7 +35,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void checkPermission() {
         boolean granted = true;
         for (String per : PERMISSIONS) {
-            granted = permissionGranted(per);
+            if (!permissionGranted(per)) {
+                granted = false;
+                break;
+            }
         }
 
         if (granted) {
