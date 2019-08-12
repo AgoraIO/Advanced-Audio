@@ -30,8 +30,9 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         mItems = new ArrayList<>();
     }
 
+    @NonNull
     @Override
-    public MessageRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MessageRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.msg_list_item, parent, false);
         return new ViewHolder(view);
     }
@@ -68,7 +69,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
     public void addMessage(String message) {
         int size = mItems.size();
         if (size >= MAX_MSG_COUNT) mItems.remove(size - 1);
-        mItems.add(0, new MessageItem(mAccount.getUid(), message));
+        mItems.add(0, new MessageItem(message));
         notifyDataSetChanged();
     }
 }

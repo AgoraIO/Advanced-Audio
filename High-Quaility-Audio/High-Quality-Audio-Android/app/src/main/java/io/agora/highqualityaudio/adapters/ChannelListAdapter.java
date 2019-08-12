@@ -17,7 +17,7 @@ import io.agora.highqualityaudio.utils.ChannelUtil;
 public class ChannelListAdapter extends RecyclerView.Adapter {
     private LayoutInflater mInflater;
     private List<ChannelItem> channelList;
-    private ChannelItemClickListener mListenenr;
+    private ChannelItemClickListener mListener;
 
     public ChannelListAdapter(Context context) {
         initFakeChannels(context);
@@ -44,8 +44,8 @@ public class ChannelListAdapter extends RecyclerView.Adapter {
         h.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mListenenr != null) {
-                    mListenenr.onChannelItemClicked(position, item);
+                if (mListener != null) {
+                    mListener.onChannelItemClicked(position, item);
                 }
             }
         });
@@ -61,7 +61,7 @@ public class ChannelListAdapter extends RecyclerView.Adapter {
     }
 
     public void setItemClickListener(ChannelItemClickListener listener) {
-        mListenenr = listener;
+        mListener = listener;
     }
 
     public static class ChannelItem {
@@ -75,7 +75,7 @@ public class ChannelListAdapter extends RecyclerView.Adapter {
             return mName;
         }
 
-        public int getListBgRes() {
+        int getListBgRes() {
             return mListBgRes;
         }
 
@@ -92,7 +92,7 @@ public class ChannelListAdapter extends RecyclerView.Adapter {
         TextView mBackground;
         TextView mTitle;
 
-        public ChannelListItemHolder(@NonNull View itemView) {
+        ChannelListItemHolder(@NonNull View itemView) {
             super(itemView);
             mBackground = itemView.findViewById(R.id.channel_list_item_bg);
             mTitle = itemView.findViewById(R.id.channel_list_item_title);

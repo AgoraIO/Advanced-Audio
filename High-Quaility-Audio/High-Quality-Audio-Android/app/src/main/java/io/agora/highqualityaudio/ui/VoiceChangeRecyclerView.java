@@ -40,7 +40,7 @@ public class VoiceChangeRecyclerView extends RecyclerView {
     /**
      * Used to initialize UI when one of the sound effects is
      * already in use.
-     * @param position
+     * @param position index of selection
      */
     public void setSelectedPosition(int position) { mAdapter.setSelectedPosition(position); }
 

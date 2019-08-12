@@ -103,8 +103,8 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
         mMessageView = findViewById(R.id.chat_room_recycler_msg_list);
 
         // Note that we only accept messages from the current
-        // user because this demo has no server receive the
-        // other users' messages
+        // user because this demo has no server for receiving
+        // the other users' messages
         mMessageView.setUser(myAccount());
 
         mMessageEdit = findViewById(R.id.chat_room_message_edit);

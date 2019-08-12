@@ -6,9 +6,10 @@ import android.util.AttributeSet;
 import androidx.appcompat.widget.AppCompatTextView;
 
 public class ChannelListItemFixedRatioText extends AppCompatTextView {
-    // Ratio (height over width) used to modify the ratio of the
-    // list item background according to the actual ratio of
-    // background images.
+    // Ratio (height over width) that is used to avoid the
+    // list item backgrounds being distorted.
+    // Strongly related to the actual width and height of the
+    // background images being used.
     private static final float ITEM_BG_RATIO = 141 / (float) 160;
 
     public ChannelListItemFixedRatioText(Context context) {

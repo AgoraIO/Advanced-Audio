@@ -15,7 +15,7 @@ public class ScreenHeightDialog extends AlertDialog {
     public static final int DIALOG_FULL_WIDTH = 0;
     public static final int DIALOG_WIDE = -1;
 
-    // The minimum dialog height in dp
+    // The maximum dialog width in dp
     private static final int WIDE_SCREEN_DP = 240;
 
     public interface OnDialogListener {
@@ -27,7 +27,7 @@ public class ScreenHeightDialog extends AlertDialog {
     }
 
     /**
-     * @Param res layout resource of the dialog
+     * @param res layout resource of the dialog
      * @param width Dialog width on screen in pixel, no wider than
      *        the full screen width.
      *        Use DIALOG_FULL_WIDTH or DIALOG_WIDE for simplicity.
@@ -41,7 +41,9 @@ public class ScreenHeightDialog extends AlertDialog {
 
         Window window = getWindow();
         if (window == null) return;
+
         WindowUtil.hideWindowStatusBar(window);
+
         window.setLayout(getWidth(window, width),
                 WindowManager.LayoutParams.MATCH_PARENT);
         window.setContentView(res);
@@ -55,6 +57,16 @@ public class ScreenHeightDialog extends AlertDialog {
         listener.onDialogShow(this);
     }
 
+    /**
+     * Set the dialog full screen wide if the type is DIALOG_FULL_WIDTH
+     * or the target width is larger than the actual screen width;
+     * Otherwise, the dialog is set to target width, with the maximum
+     * width WIDE_SCREEN_DP
+     * @param window dialog window
+     * @param width target width
+     * @return MATCH_PARENT if full screen wide, otherwise the actual width
+     *         of the dialog in pixels
+     */
     private int getWidth(Window window, int width) {
         if (width == DIALOG_FULL_WIDTH) return WindowManager.LayoutParams.MATCH_PARENT;
 
@@ -62,8 +74,9 @@ public class ScreenHeightDialog extends AlertDialog {
         DisplayMetrics outMetrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(outMetrics);
 
-        if (width >= outMetrics.widthPixels) return WindowManager.LayoutParams.MATCH_PARENT;
-        else if (width == DIALOG_WIDE) {
+        if (width >= outMetrics.widthPixels) {
+            return WindowManager.LayoutParams.MATCH_PARENT;
+        } else if (width == DIALOG_WIDE) {
             int w = (int) (WIDE_SCREEN_DP * outMetrics.density + 0.5);
             return Math.min(w, outMetrics.widthPixels);
         } else return width;

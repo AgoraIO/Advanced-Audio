@@ -42,10 +42,9 @@ public class SeatListRecyclerView extends RecyclerView {
     /**
      * Add a user to the first available seat
      * @param uid user id
-     * @return the index of the seat or -1 if no seat available
      */
-    public int addUser(int uid) {
-        return mAdapter.addUser(uid);
+    public void addUser(int uid) {
+        mAdapter.addUser(uid);
     }
 
     public void removeUserByUid(int uid) {
@@ -76,6 +75,10 @@ public class SeatListRecyclerView extends RecyclerView {
         mAdapter.setmOnSeatClickListener(listener);
     }
 
+    /**
+     * Start the animation indicating who are speaking
+     * @param uidList list of user ids who are speaking
+     */
     public void indicateSpeaking(List<Integer> uidList) {
         mAdapter.indicateSpeaking(uidList);
     }

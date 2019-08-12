@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import io.agora.rtc.IRtcEngineEventHandler;
 
 public class AgoraEventHandler extends IRtcEngineEventHandler {
-    ArrayList<EventHandler> mHandler = new ArrayList<>();
+    private ArrayList<EventHandler> mHandler = new ArrayList<>();
 
     public void addHandler(EventHandler handler) {
         mHandler.add(handler);

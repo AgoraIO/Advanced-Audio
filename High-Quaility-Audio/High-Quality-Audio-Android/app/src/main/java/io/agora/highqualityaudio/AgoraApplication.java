@@ -1,13 +1,16 @@
 package io.agora.highqualityaudio;
 
 import android.app.Application;
+import android.util.Log;
 
 import io.agora.highqualityaudio.data.UserAccountManager;
 import io.agora.highqualityaudio.rtc.AgoraEventHandler;
+import io.agora.highqualityaudio.utils.FileUtil;
 import io.agora.rtc.Constants;
 import io.agora.rtc.RtcEngine;
 
 public class AgoraApplication extends Application {
+
     private UserAccountManager mAccountManager = UserAccountManager.INSTANCE;
     private RtcEngine mRtcEngine;
     private AgoraEventHandler mHandler = new AgoraEventHandler();
@@ -28,7 +31,7 @@ public class AgoraApplication extends Application {
             mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_DEFAULT,
                     Constants.AUDIO_SCENARIO_GAME_STREAMING);
 
-            // mRtcEngine.setParameters("{\"rtc.log_filter\":65535}");
+            mRtcEngine.setLogFile(FileUtil.initializeLogFile(this));
         } catch (Exception e) {
             e.printStackTrace();
         }

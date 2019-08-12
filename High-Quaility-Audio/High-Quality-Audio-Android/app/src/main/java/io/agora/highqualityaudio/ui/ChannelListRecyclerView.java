@@ -38,7 +38,7 @@ public class ChannelListRecyclerView extends RecyclerView {
         mItemPadding = context.getResources().getDimensionPixelSize(
                 R.dimen.channel_list_margin_horizontal);
         mAdapter = new ChannelListAdapter(context);
-        setAdapter();
+        setAdapter(mAdapter);
 
         setHasFixedSize(true);
         GridLayoutManager manager = new GridLayoutManager(context, SPAN_COUNT);
@@ -60,10 +60,6 @@ public class ChannelListRecyclerView extends RecyclerView {
                 outRect.bottom = padding;
             }
         });
-    }
-
-    private void setAdapter() {
-        setAdapter(mAdapter);
     }
 
     public void setItemClickListener(ChannelListAdapter.ChannelItemClickListener listener) {

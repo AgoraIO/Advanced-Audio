@@ -4,7 +4,6 @@ package io.agora.highqualityaudio.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -17,20 +16,16 @@ import io.agora.highqualityaudio.utils.Constants;
 public class MainActivity extends BaseActivity implements
         ChannelListAdapter.ChannelItemClickListener,
         SwipeRefreshLayout.OnRefreshListener {
-
-    // Because we now have no server to get the room list,
-    // we finish the refreshing after a fixed delay time.
-    private static final int SWIPE_DELAY = 800;
+    private static final int SWIPE_TIMEOUT = 500;
 
     private SwipeRefreshLayout mSwipeList;
-    private Handler mHandler;
+    private Handler mSwipeHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initUI();
-        initHandler();
     }
 
     private void initUI() {
@@ -39,15 +34,12 @@ public class MainActivity extends BaseActivity implements
 
         mSwipeList = findViewById(R.id.main_channel_layout);
         mSwipeList.setOnRefreshListener(this);
-    }
-
-    private void initHandler() {
-        mHandler = new Handler(getMainLooper());
+        mSwipeHandler = new Handler(getMainLooper());
     }
 
     @Override
     protected void onAllPermissionGranted() {
-        Log.i("MainActivity", "All permission granted");
+        // Nothing to be done here.
     }
 
     @Override
@@ -64,11 +56,13 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onRefresh() {
-        mHandler.postDelayed(new Runnable() {
+        mSwipeHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                // There is no server to get the room list, so we
+                // finish the refreshing after timeout.
                 mSwipeList.setRefreshing(false);
             }
-        }, SWIPE_DELAY);
+        }, SWIPE_TIMEOUT);
     }
 }
