@@ -4,6 +4,10 @@ import "./assets/style.scss";
 import * as M from 'materialize-css';
 
 $(() => {
+  $('input[name="appID"],input[name="token"]').on("input", function () {
+    this.value = $.trim(this.value);
+  });
+
   let selects = null;
     
   $("#settings").on("click", function (e) {
