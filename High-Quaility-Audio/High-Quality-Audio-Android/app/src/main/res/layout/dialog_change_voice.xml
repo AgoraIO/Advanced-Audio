@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_gray">
+    android:background="@color/gray_1">
 
     <RelativeLayout
         android:id="@+id/change_voice_title_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_title_height"
-        android:background="@color/universal_blue">
+        android:background="@color/blue">
 
         <ImageView
             android:id="@+id/change_voice_back"
@@ -55,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_0"
+            android:background="@drawable/bg_button_highlight"
             android:text="确定"
             android:textColor="#FFFFFF"
             android:textSize="14.33sp" />
@@ -66,7 +66,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="14.47dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_1"
+            android:background="@drawable/bg_button_normal"
             android:text="取消"
             android:textColor="#09BDF4"
             android:textSize="14.33sp" />

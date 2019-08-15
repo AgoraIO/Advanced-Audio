@@ -24,6 +24,8 @@
     <dimen name="room_portrait_anim_layer2_size">88dp</dimen>
     <dimen name="room_portrait_anim_layer2_size_medium">112dp</dimen>
 
+    <dimen name="room_my_name_corner">24dp</dimen>
+
     <dimen name="chat_room_vacancy_size">90dp</dimen>
     <dimen name="chat_room_vacancy_portrait_size">62dp</dimen>
     <dimen name="chat_room_vacancy_open_size">23dp</dimen>
@@ -40,6 +42,7 @@
     <dimen name="room_message_view_margin_top">12dp</dimen>
     <dimen name="room_message_view_margin">14dp</dimen>
     <dimen name="room_message_view_margin_bottom">9dp</dimen>
+    <dimen name="room_message_item_corner">48dp</dimen>
 
     <dimen name="room_message_layout_height">58dp</dimen>
     <dimen name="room_message_edit_layout_width">234dp</dimen>
@@ -47,6 +50,7 @@
     <dimen name="room_message_edit_layout_margin">14dp</dimen>
     <dimen name="room_message_edit_padding_left">15dp</dimen>
     <dimen name="room_message_edit_padding_right">42dp</dimen>
+    <dimen name="room_message_edit_corner">18dp</dimen>
     <dimen name="room_message_edit_text_size">12sp</dimen>
     <dimen name="room_message_send_btn_size">20dp</dimen>
     <dimen name="room_message_send_btn_margin">12dp</dimen>
@@ -63,4 +67,10 @@
     <dimen name="dialog_btn_height">42dp</dimen>
     <dimen name="dialog_btn_margin_bottom">42dp</dimen>
     <dimen name="dialog_btn_text_size">14sp</dimen>
+
+    <!-- Buttons -->
+    <dimen name="button_corner">6dp</dimen>
+    <dimen name="button_corner_1">100dp</dimen>
+    <dimen name="button_border">1dp</dimen>
+    <dimen name="round_icon_back_size">180dp</dimen>
 </resources>

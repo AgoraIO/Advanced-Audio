@@ -40,7 +40,7 @@
             android:padding="@dimen/room_setting_btn_padding"
             android:layout_marginRight="@dimen/room_setting_btn_margin"
             android:layout_marginEnd="@dimen/room_setting_btn_margin"
-            android:background="@drawable/bg_settings"
+            android:background="@drawable/bg_round_icon"
             android:src="@drawable/ic_settings"
             android:onClick="onSettingClicked"/>
     </RelativeLayout>
@@ -57,7 +57,7 @@
             android:layout_width="@dimen/room_portrait_size"
             android:layout_height="@dimen/room_portrait_size"
             android:layout_centerInParent="true"
-            app:civ_border_color="@color/universal_blue"
+            app:civ_border_color="@color/blue"
             app:civ_border_width="1dp"/>
     </RelativeLayout>
 
@@ -128,7 +128,7 @@
                 android:paddingRight="@dimen/room_message_edit_padding_right"
                 android:paddingEnd="@dimen/room_message_edit_padding_right"
                 android:textColor="@color/universal_text_color"
-                android:textColorHint="@color/room_message_edit_hint_color"
+                android:textColorHint="@color/gray_4"
                 android:textSize="@dimen/room_message_edit_text_size"/>
 
             <RelativeLayout
@@ -155,7 +155,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/chat_room_sound"
             android:layout_toStartOf="@id/chat_room_sound"
-            android:background="@drawable/bg_control"
+            android:background="@drawable/bg_round_icon"
             android:src="@drawable/ic_speaker_bg"
             android:onClick="onMicClicked"/>
 
@@ -170,7 +170,7 @@
             android:layout_marginStart="@dimen/room_bottom_btn_margin"
             android:layout_marginRight="@dimen/room_bottom_btn_margin"
             android:layout_marginEnd="@dimen/room_bottom_btn_margin"
-            android:background="@drawable/bg_control"
+            android:background="@drawable/bg_round_icon"
             android:src="@drawable/ic_sound_bg"
             android:onClick="onSpeakerClicked"/>
     </RelativeLayout>

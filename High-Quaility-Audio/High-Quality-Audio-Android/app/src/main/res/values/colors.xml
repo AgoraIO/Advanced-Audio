@@ -4,13 +4,18 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="transparent">@android:color/transparent</color>
-    <color name="dark_gray">#333333</color>
-    <color name="light_gray">#CCCCCC</color>
-    <color name="universal_blue">#09BDF4</color>
+    <color name="transparent_low">#80000000</color>
+    <color name="gray_1">#333333</color>
+    <color name="gray_2">#454545</color>
+    <color name="gray_3">#666666</color>
+    <color name="gray_4">#888888</color>
+    <color name="gray_5">#CCCCCC</color>
+    <color name="blue">#09BDF4</color>
     <color name="universal_text_color">#EFEFEF</color>
 
     <!-- chat room -->
     <color name="chat_room_portrait_border_transparent">#09BDF4FF</color>
     <color name="chat_room_portrait_border_light">#09BDF433</color>
-    <color name="room_message_edit_hint_color">#FF888888</color>
+    <color name="back_transparent">#4C9D9C98</color>
+    <color name="back_transparent_1">#339D9C98</color>
 </resources>
