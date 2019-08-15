@@ -13,7 +13,7 @@
         android:paddingBottom="@dimen/channel_list_title_padding"
         android:text="@string/channel_list_title"
         android:textColor="@color/universal_text_color"
-        android:textSize="@dimen/title_text_size"/>
+        android:textSize="@dimen/text_size_normal"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/main_channel_layout"

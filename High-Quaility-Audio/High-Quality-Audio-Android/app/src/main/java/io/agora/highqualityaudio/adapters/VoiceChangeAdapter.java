@@ -91,7 +91,7 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
 
         ViewHolder(View view) {
             super(view);
-            option = view.findViewById(R.id.change_voice_txt_option);
+            option = view.findViewById(R.id.change_voice_item);
         }
     }
 }

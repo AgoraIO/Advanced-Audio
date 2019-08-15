@@ -43,4 +43,6 @@
     <string name="setting_dialog_title">Room Settings</string>
     <string name="setting_dialog_change_voice">Change Voice</string>
     <string name="setting_dialog_leave_room">Leave Room</string>
+    <string name="setting_dialog_confirm">Confirm</string>
+    <string name="setting_dialog_cancel">Cancel</string>
 </resources>

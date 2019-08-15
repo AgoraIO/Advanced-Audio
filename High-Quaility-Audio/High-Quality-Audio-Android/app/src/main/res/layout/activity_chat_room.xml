@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/universal_text_color"
-            android:textSize="@dimen/title_text_size"/>
+            android:textSize="@dimen/text_size_normal"/>
 
         <ImageView
             android:id="@+id/chat_room_settings"
