@@ -2,6 +2,7 @@ package io.agora.highqualityaudio.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -81,6 +82,9 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
         mSeatRecyclerView.setOnSeatClickListener(new SeatListAdapter.OnSeatClickListener() {
             @Override
             public void onSeatAvailable(int position, View seat, UserAccountManager.UserAccount account) {
+                // When successfully take a seat, check if there exists my windows client
+                int winUid = UserAccountManager.UserAccount.toWindowsUid(myAccount().getUid());
+                if (mWindowsUsers.contains(winUid)) mSeatRecyclerView.updateWindowsClientJoin(winUid);
                 startBroadcasting();
             }
 
@@ -283,6 +287,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
     }
 
     private void handlePlatformUserJoined(int uid) {
+        Log.i(TAG, "User joined:" + uid);
         if (UserAccountManager.UserAccount.isAndroidUser(uid) ||
                 UserAccountManager.UserAccount.isIOSUser(uid)) {
             // A mobile user joins and checks if his windows
@@ -293,12 +298,21 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
 
             int winUid = UserAccountManager.UserAccount.toWindowsUid(uid);
             if (mWindowsUsers.contains(winUid)) {
+                Log.i(TAG, "update windows client state");
                 mSeatRecyclerView.updateWindowsClientJoin(winUid);
             }
         } else if (UserAccountManager.UserAccount.isWindowsUser(uid) &&
                 !mWindowsUsers.contains(uid)) {
+            Log.i(TAG, "Window client");
             mSeatRecyclerView.updateWindowsClientJoin(uid);
             mWindowsUsers.add(uid);
+            if (myAccount().getUid() ==
+                    UserAccountManager.UserAccount.toAndroidUid(uid)) {
+                // If the new user is current window client,
+                // don't subscribe it in case of noise interruption
+                Log.i(TAG, "mute my windows client");
+                rtcEngine().muteRemoteAudioStream(uid, true);
+            }
         }
     }
 
@@ -313,6 +327,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
     }
 
     private void handlePlatformUserOffline(int uid) {
+        Log.i(TAG, "User left:" + uid);
         if (UserAccountManager.UserAccount.isAndroidUser(uid) ||
                 UserAccountManager.UserAccount.isIOSUser(uid)) {
             mMessageView.addMessage(String.format(
@@ -320,6 +335,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
             mSeatRecyclerView.removeUserByUid(uid);
         } else if (UserAccountManager.UserAccount.isWindowsUser(uid) &&
             mWindowsUsers.contains(uid)) {
+            Log.i(TAG, "update window client state");
             mSeatRecyclerView.updateWindowsClientLeave(uid);
             mWindowsUsers.remove(uid);
         }

@@ -1,13 +1,13 @@
 package io.agora.highqualityaudio.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,6 +21,7 @@ import io.agora.highqualityaudio.ui.PortraitAnimator;
 
 public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHolder> {
     private static final int MAX_VACANCY = 8;
+    private static final String TAG = SeatListAdapter.class.getSimpleName();
 
     private Context mContext;
     private LayoutInflater mInflater;
@@ -109,12 +110,14 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             holder.imgState.setVisibility(View.VISIBLE);
             holder.imgState.setImageResource(R.drawable.ic_open);
             holder.imgMute.setVisibility(View.GONE);
+            holder.winClient.setVisibility(View.GONE);
         } else {
             holder.imgPortrait.setVisibility(View.VISIBLE);
             holder.imgPortrait.setImageResource(vacancy.getUser().getAvatarRes());
             holder.imgState.setVisibility(View.GONE);
             if (seat.isMuted()) {
                 holder.imgMute.setVisibility(View.VISIBLE);
+                holder.imgMute.setImageResource(R.drawable.ic_mute);
             } else {
                 holder.mAnimLayer1.setVisibility(View.VISIBLE);
                 holder.mAnimLayer2.setVisibility(View.VISIBLE);
@@ -122,9 +125,10 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             }
 
             if (seat.hasWindowsClient()) {
-                //TODO show the icon, the icon is not ready
+                holder.winClient.setVisibility(View.VISIBLE);
+                holder.winClient.setImageResource(R.drawable.ic_bgmusic);
             } else {
-                // don't show the icon
+                holder.winClient.setVisibility(View.GONE);
             }
         }
     }
@@ -160,16 +164,26 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
     }
 
     private void updateWindowsClientState(int winUid, boolean isInChannel) {
+        Log.i(TAG, "windows client update " + winUid);
         int androidUid = UserAccountManager.UserAccount.toAndroidUid(winUid);
         int iosUid = UserAccountManager.UserAccount.toIOSUid(winUid);
+        Log.i(TAG, "android uid: " + androidUid + " iOS uid:" + iosUid);
 
+        boolean found = false;
         for (Vacancy vacancy : mVacancies) {
             UserAccountManager.UserAccount account = vacancy.getUser();
             if (account != null && (account.getUid() == androidUid ||
                     account.getUid() == iosUid)) {
+                found = true;
+                Log.i(TAG, "mobile client uid:" + account.getUid());
                 vacancy.getSeat().setWindowsClient(isInChannel);
-            }
+                break;
+            } else vacancy.getSeat().setWindowsClient(false);
         }
+
+        if (!found) Log.i(TAG, "No mobile client found by windows uid:" + winUid);
+
+        notifyDataSetChanged();
     }
 
     /**
@@ -249,6 +263,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
         private View mAnimLayer1;
         private View mAnimLayer2;
         private ImageView imgMute;
+        private ImageView winClient;
 
         ViewHolder(View view) {
             super(view);
@@ -257,6 +272,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
             mAnimLayer1 = view.findViewById(R.id.chat_room_seat_anim_layer1);
             mAnimLayer2 = view.findViewById(R.id.chat_room_seat_anim_layer2);
             imgMute = view.findViewById(R.id.chat_room_img_mute);
+            winClient = view.findViewById(R.id.chat_room_img_win_client);
         }
     }
 
