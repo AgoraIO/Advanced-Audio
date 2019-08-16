@@ -24,19 +24,16 @@
     <string name="other_left_seat">User %d has left a seat</string>
 
     <string-array name="sound_effects">
-        <item>Uncle</item>
-        <item>Boy</item>
-        <item>Bajie</item>
-        <item>Ethereal</item>
-        <item>Hulk</item>
-        <item>Girl</item>
-        <item>Radio KTV</item>
+        <item>KTV</item>
         <item>Live</item>
+        <item>Uncle</item>
+        <item>Lady</item>
         <item>Studio</item>
+        <item>R&amp;R</item>
         <item>Pop</item>
         <item>R&amp;B</item>
-        <item>Hip hop</item>
-        <item>R&amp;R</item>
+        <item>Phonograph</item>
+        <item>Original</item>
     </string-array>
 
     <!-- Setting dialog -->

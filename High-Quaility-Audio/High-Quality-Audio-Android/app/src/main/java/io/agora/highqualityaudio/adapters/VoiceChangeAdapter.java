@@ -46,8 +46,7 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item.isSelected()) setSelected(position, false);
-                else setSelectedPosition(position);
+                setSelectedPosition(position);
             }
         });
     }
@@ -65,11 +64,7 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
 
     public void setSelectedPosition(int position) {
         for (int i = 0; i < mChangeVoiceItems.size(); i++) {
-            if (i == position) {
-                mChangeVoiceItems.get(i).setSelected(true);
-            } else {
-                mChangeVoiceItems.get(i).setSelected(false);
-            }
+            mChangeVoiceItems.get(i).setSelected(i == position);
         }
         notifyDataSetChanged();
     }

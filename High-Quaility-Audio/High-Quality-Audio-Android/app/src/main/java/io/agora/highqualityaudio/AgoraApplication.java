@@ -1,7 +1,6 @@
 package io.agora.highqualityaudio;
 
 import android.app.Application;
-import android.util.Log;
 
 import io.agora.highqualityaudio.data.UserAccountManager;
 import io.agora.highqualityaudio.rtc.AgoraEventHandler;
@@ -25,13 +24,12 @@ public class AgoraApplication extends Application {
                     io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_SMOOTH);
 
             mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-            mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_DEFAULT,
+            mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY,
                     Constants.AUDIO_SCENARIO_GAME_STREAMING);
 
             // High quality audio parameters
             mRtcEngine.setParameters("{\"che.audio.bypass.apm\":true}");
             mRtcEngine.setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
-
 
             mRtcEngine.setLogFile(FileUtil.initializeLogFile(this));
         } catch (Exception e) {

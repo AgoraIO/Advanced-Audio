@@ -27,7 +27,7 @@ import io.agora.highqualityaudio.ui.ScreenHeightDialog;
 import io.agora.highqualityaudio.ui.SeatListRecyclerView;
 import io.agora.highqualityaudio.ui.VoiceChangeRecyclerView;
 import io.agora.highqualityaudio.utils.Constants;
-import io.agora.highqualityaudio.utils.SoundEffectUtil;
+import io.agora.highqualityaudio.utils.VoiceChanger;
 import io.agora.rtc.IRtcEngineEventHandler;
 
 public class ChatActivity extends BaseActivity implements EventHandler  {
@@ -39,7 +39,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
     private int mPortraitRes;
     private int mMyUid;
 
-    private int mLastSelectedVoice = -1;
+    private int mLastSelectedVoice = VoiceChanger.VOICE_DEFAULT;
 
     private SeatListRecyclerView mSeatRecyclerView;
 
@@ -178,7 +178,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
                         final VoiceChangeRecyclerView options =
                                 dialog.findViewById(R.id.change_voice_recycler_options);
 
-                        if (mLastSelectedVoice > 0) options.setSelectedPosition(mLastSelectedVoice);
+                        options.setSelectedPosition(mLastSelectedVoice);
 
                         View.OnClickListener listener = new View.OnClickListener() {
                             @Override
@@ -190,11 +190,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
                                         break;
                                     case R.id.change_voice_btn_confirm:
                                         mLastSelectedVoice = options.getSelectedPosition();
-
-                                        // Sound effect indices start from 1, and
-                                        // index 0 refers to the original voice.
-                                        int position = mLastSelectedVoice + 1;
-                                        SoundEffectUtil.changeEffect(application(), position);
+                                        VoiceChanger.changeVoice(application(), mLastSelectedVoice);
                                         dialog.dismiss();
                                         break;
                                 }
