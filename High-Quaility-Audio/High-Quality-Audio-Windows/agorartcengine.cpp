@@ -65,13 +65,7 @@ AgoraRtcEngine::AgoraRtcEngine(QObject *parent) : QObject(parent)
     m_rtcEngine->setChannelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING);
     m_rtcEngine->setClientRole(CLIENT_ROLE_BROADCASTER);
 
-    AParameter apm(*m_rtcEngine);
-    apm->setParameters("{\"che.audio.bypass.apm\":true}");
-    apm->setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
-
     RtcEngineParameters rep(*m_rtcEngine);
-    rep.muteAllRemoteAudioStreams(true);
-
     QString strDir = QCoreApplication::applicationDirPath();
     strDir.append("\\AgoraHighSound.log");
     rep.setLogFile(strDir.toUtf8().data());
@@ -96,6 +90,14 @@ int AgoraRtcEngine::joinChannel(const QString& key, const QString& channel, cons
         QMessageBox::warning(nullptr,tr("AgoraHighSound"),tr("mobile uid is empty ,it must at least 3 characters."));
         return -1;
     }
+
+    AParameter apm(*m_rtcEngine);
+    apm->setParameters("{\"che.audio.bypass.apm\":true}");
+    apm->setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
+
+    RtcEngineParameters rep(*m_rtcEngine);
+    rep.muteAllRemoteAudioStreams(true);
+
     QString strUid = "3" + uid.mid(uid.length() - 3,3);
     m_rtcEngine->startPreview();
     int r = m_rtcEngine->joinChannel(key.toUtf8().data(), channel.toUtf8().data(), nullptr, strUid.toInt());
