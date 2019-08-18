@@ -28,7 +28,6 @@ public class AgoraApplication extends Application {
                     Constants.AUDIO_SCENARIO_GAME_STREAMING);
 
             // High quality audio parameters
-            mRtcEngine.setParameters("{\"che.audio.bypass.apm\":true}");
             mRtcEngine.setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
 
             mRtcEngine.setLogFile(FileUtil.initializeLogFile(this));
