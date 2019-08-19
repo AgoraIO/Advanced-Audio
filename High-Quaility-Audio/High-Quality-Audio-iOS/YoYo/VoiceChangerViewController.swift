@@ -53,15 +53,18 @@ private extension VoiceChangerViewController {
     func updateCollectionViewLayout() {
         let itemWidth = UIScreen.main.bounds.size.width * 0.25 * DeviceAdapt.getWidthCoefficient()
         let itemHeight = CGFloat(30)
+        let space = 36.0 * DeviceAdapt.getWidthCoefficient()
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: space, bottom: 0, right: space)
         collectionView.setCollectionViewLayout(layout, animated: false)
     }
 }
 
 extension VoiceChangerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rolesList.count - 1
+        return rolesList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
