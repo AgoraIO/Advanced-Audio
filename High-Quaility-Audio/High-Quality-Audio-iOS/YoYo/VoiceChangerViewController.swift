@@ -16,10 +16,9 @@ protocol VoiceChangerVCDelegate: NSObjectProtocol {
 class VoiceChangerViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private lazy var rolesList: [EffectRoles] = EffectRoles.list
     weak var delegate: VoiceChangerVCDelegate?
     var selectedIndex: Int?
-    
-    lazy var rolesList: [EffectRoles] = EffectType.rolesList()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,7 +51,7 @@ private extension VoiceChangerViewController {
     }
     
     func updateCollectionViewLayout() {
-        let itemWidth = UIScreen.main.bounds.size.width * 0.25
+        let itemWidth = UIScreen.main.bounds.size.width * 0.25 * DeviceAdapt.getWidthCoefficient()
         let itemHeight = CGFloat(30)
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
@@ -82,7 +81,7 @@ extension VoiceChangerViewController: UICollectionViewDataSource {
 extension VoiceChangerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let selected = selectedIndex, selected == indexPath.item {
-            let index = IndexPath.init(item: selected, section: 0)
+            let index = IndexPath(item: selected, section: 0)
             selectedIndex = indexPath.item
             selectedIndex = nil
             collectionView.reloadItems(at: [index])
@@ -90,7 +89,7 @@ extension VoiceChangerViewController: UICollectionViewDelegate {
         }
         
         if let selected = selectedIndex {
-            let index = IndexPath.init(item: selected, section: 0)
+            let index = IndexPath(item: selected, section: 0)
             selectedIndex = indexPath.item
             collectionView.reloadItems(at: [index])
         } else {

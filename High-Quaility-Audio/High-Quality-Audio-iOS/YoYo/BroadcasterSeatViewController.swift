@@ -19,11 +19,20 @@ class BroadcasterSeatViewController: UIViewController {
     private var isDeviceAdapt: Bool = false {
         didSet {
             if isDeviceAdapt == true,
-                (DeviceAdapt.currentType() == .classicFivePointFiveInch || DeviceAdapt.currentType() == .newFivePointFiveInch) {
+                (DeviceAdapt.currentType() != .classicFourPointSevenInch || DeviceAdapt.currentType() != .newFourPointSevenInch) {
                 buttonWidth.constant = buttonWidth.constant * DeviceAdapt.getWidthCoefficient()
             }
         }
     }
+    
+    private lazy var aureolaViews: [AureolaView] = {
+        var list = [AureolaView]()
+        for _ in 0..<buttonList.count {
+            let view = AureolaView(color: UIColor.init(hexString: "#09BDF4"))
+            list.append(view)
+        }
+        return list
+    }()
     
     private lazy var seatList = [Seat]()
     
@@ -64,6 +73,11 @@ extension BroadcasterSeatViewController {
         seatList[index] = seat
         let button = buttonList[index]
         button.update(seat)
+        
+        if seat.type == .none {
+            let aureola = aureolaViews[index]
+            aureola.removeAnimation()
+        }
     }
     
     func seat(with index: Int) -> Seat? {
@@ -85,5 +99,11 @@ extension BroadcasterSeatViewController {
             return seat.type == .none
         }
         return index
+    }
+    
+    func startAureolaing(at index: Int) {
+        let aureola = aureolaViews[index]
+        let button = buttonList[index]
+        aureola.startLayerAnimation(aboveView: button, layerWidth: 2)
     }
 }

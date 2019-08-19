@@ -21,13 +21,12 @@ class AureolaView: UIView {
     private var isAnimating: Bool = false
     private var animationDuration = 1.1 * 0.9
     
-    static func createAureolaView(layerColor: UIColor) -> AureolaView {
-        let view = AureolaView()
-        view.layerColor = layerColor
-        view.isHidden = true
-        view.createLayer1WithoutFrame()
-        view.createLayer2WithoutFrame()
-        return view
+    convenience init(color: UIColor) {
+        self.init()
+        self.layerColor = color
+        self.isHidden = true
+        self.createLayer1WithoutFrame()
+        self.createLayer2WithoutFrame()
     }
     
     func startLayerAnimation(aboveView: UIView, layerWidth: CGFloat) {
@@ -39,8 +38,7 @@ class AureolaView: UIView {
             self.isHidden = false
         }
         
-        if let _ = self.aboveView {
-        } else {
+        if self.aboveView == nil {
             self.aboveView = aboveView
             self.layWidth = layerWidth
             
@@ -61,6 +59,7 @@ class AureolaView: UIView {
     }
     
     func removeAnimation() {
+        self.isHidden = true
         layer1.removeAllAnimations()
         layer2.removeAllAnimations()
     }

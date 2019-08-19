@@ -16,21 +16,21 @@ class SeatButton: UIButton {
         static let hasPlayer = Tags(rawValue: 1 << 1)
     }
     
-    private lazy var icon1ImageView: UIImageView = {() -> UIImageView in
+    private lazy var icon1ImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.isHidden = true
         return imageView
     }()
     
-    private lazy var icon2ImageView: UIImageView = {() -> UIImageView in
+    private lazy var icon2ImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.isHidden = true
         return imageView
     }()
     
-    private lazy var centerImageView: UIImageView = {() -> UIImageView in
+    private lazy var centerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "g_add")
         imageView.contentMode = .scaleAspectFill
@@ -74,7 +74,7 @@ class SeatButton: UIButton {
             let imageWH: CGFloat = 15.0
             let imageXY = d + r - (imageWH * 0.5)
             icon1ImageView.frame = CGRect(x: imageXY, y: imageXY, width: imageWH, height: imageWH)
-            icon2ImageView.frame = CGRect(x: imageXY, y: imageXY - imageWH - 5, width: imageWH, height: imageWH)
+            icon2ImageView.frame = CGRect(x: r * 2 - imageWH * 0.5, y: r - imageWH * 0.5, width: imageWH, height: imageWH)
             
             self.cornerRadius = r
             
@@ -86,7 +86,7 @@ class SeatButton: UIButton {
             centerImageView.center = CGPoint(x: cx, y: cy)
             
             imageView?.cornerRadius = self.frame.width * 0.5
-            imageView?.contentMode = .scaleToFill
+            imageView?.contentMode = .scaleAspectFill
         }
     }
 }
@@ -96,6 +96,8 @@ extension SeatButton {
         switch seat.type {
         case .none:
             centerImageView.isHidden = false
+            icon1ImageView.isHidden = true
+            icon2ImageView.isHidden = true
             setImage(nil, for: .normal)
         case .takeup(let broadcaster):
             centerImageView.isHidden = true
@@ -120,9 +122,11 @@ extension SeatButton {
     private func updateIconTag(_ tag: Tags) {
         if tag.contains([.hasPlayer, .muteAudio]) {
             icon1ImageView.image = UIImage(named: "g_mute")
+            icon2ImageView.image = UIImage(named: "g_bgmusic")
             icon1ImageView.isHidden = false
             icon2ImageView.isHidden = false
         } else if tag.contains(.hasPlayer) {
+            icon1ImageView.image = UIImage(named: "g_bgmusic")
             icon1ImageView.isHidden = false
             icon2ImageView.isHidden = true
         } else if tag.contains(.muteAudio) {

@@ -20,4 +20,11 @@ extension Array where Element == Player {
         }
         return player
     }
+    
+    func firstIndex(of id: UInt) -> Int? {
+        let index = self.firstIndex { (player) -> Bool in
+            return player.id == id
+        }
+        return index
+    }
 }

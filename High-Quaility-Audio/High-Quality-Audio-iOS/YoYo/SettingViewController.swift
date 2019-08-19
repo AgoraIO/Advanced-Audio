@@ -82,42 +82,34 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView.init()
+        let view = UIView()
         view.backgroundColor = UIColor.clear
         return view
     }
 }
 
 private extension SettingViewController {
-    func viewMove(to bgView: UIView, isShow: Bool) {
-        if let _ = self.beginFrame {
-        } else {
-            var beginFrame = self.view.frame
-            beginFrame.origin.x = bgView.bounds.width
+    func viewMove(to superView: UIView, isShow: Bool) {
+        if self.beginFrame == nil {
+            var begin = self.view.frame
+            begin.origin.x = superView.bounds.width
             
-            var height: CGFloat
-            if DeviceAdapt.currentType() == DeviceAdapt.newFourPointSevenInch {
-                height = UIScreen.main.bounds.height - 34
-            } else {
-                height = UIScreen.main.bounds.height
-            }
-            
+            let height = UIScreen.main.bounds.height
             let width = 284 * DeviceAdapt.getWidthCoefficient()
-            beginFrame.size.width = width
-            beginFrame.size.height = height
-            self.beginFrame = beginFrame
+            begin.size.width = width
+            begin.size.height = height
+            self.beginFrame = begin
         }
         
-        if let _ = self.endFrame {
-        } else if let beginFrame = self.beginFrame {
-            var endFrame = beginFrame
-            endFrame.origin.x = bgView.frame.width - beginFrame.size.width
-            self.endFrame = endFrame
+        if self.endFrame == nil, let begin = beginFrame {
+            var end = begin
+            end.origin.x = superView.frame.width - begin.size.width
+            self.endFrame = end
         }
         
         if let beginFrame = self.beginFrame, let endFrame = self.endFrame {
             if isShow {
-                bgView.addSubview(self.view)
+                superView.addSubview(self.view)
                 self.preferredContentSize = CGSize(width: beginFrame.size.width, height: beginFrame.size.height)
                 self.view.frame = beginFrame
                 UIView.animate(withDuration: 0.3) { [weak self]  in

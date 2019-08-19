@@ -17,8 +17,8 @@ protocol CSValueRange {
 }
 
 struct CSRange {
-    var minValue : Int!
-    var maxValue : Int!
+    var minValue : Int
+    var maxValue : Int
 }
 
 struct EffectType {
@@ -42,25 +42,6 @@ struct EffectType {
                 .wetDelay,
                 .strength]
     }
-    
-    static func rolesList() -> [EffectRoles] {
-        return [.OldMan,
-                .BabyBoy,
-                .ZhuBaJie,
-                .Ethereal,
-                .Hulk,
-                .BabyGirl,
-                .KTV,
-                .RecordingRoom,
-                .VocalConcert,
-                .Fashion,
-                .HipHop,
-                .Rock,
-                .RB,
-                .Ethereal2,
-                .Default]
-    }
-    
 }
 
 extension AgoraAudioEqualizationBandFrequency: CSDescriptable, CSValueRange {
@@ -111,228 +92,57 @@ extension AgoraAudioReverbType: CSDescriptable, CSValueRange {
 
 enum EffectRoles {
     case OldMan
-    case BabyBoy
-    case ZhuBaJie
-    case Ethereal
-    case Hulk
     case BabyGirl
     case KTV
     case RecordingRoom
     case VocalConcert
-    case Fashion
-    case HipHop
+    case Pop
     case Rock
     case RB
-    case Ethereal2
+    case Phonograph
     case Default
+    
+    var rawValue: Int {
+        switch self {
+        case .KTV:              return 0
+        case .VocalConcert:     return 1
+        case .OldMan:           return 2
+        case .BabyGirl:         return 3
+        case .RecordingRoom:    return 4
+        case .Rock:             return 5
+        case .Pop:              return 6
+        case .RB:               return 7
+        case .Phonograph:       return 8
+        case .Default:          return 9
+        }
+    }
+    
+    static var list: [EffectRoles] {
+        return [.KTV,
+                .VocalConcert,
+                .OldMan,
+                .BabyGirl,
+                .RecordingRoom,
+                .Rock,
+                .Pop,
+                .RB,
+                .Phonograph]
+    }
 }
 
 extension EffectRoles: CSDescriptable {
     func description() -> String {
         switch self {
-        case .OldMan:           return "大叔"
-        case .BabyBoy:          return "正太"
-        case .ZhuBaJie:         return "猪八戒"
-        case .Ethereal:         return "空灵"
-        case .Hulk:             return "浩克"
-        case .BabyGirl:         return "萝莉"
         case .KTV:              return "KTV"
-        case .RecordingRoom:    return "录音棚"
         case .VocalConcert:     return "演唱会"
-        case .Fashion:          return "流行"
-        case .HipHop:           return "嘻哈"
+        case .OldMan:           return "大叔"
+        case .BabyGirl:         return "小姐姐"
+        case .RecordingRoom:    return "录音棚"
         case .Rock:             return "摇滚"
+        case .Pop:              return "流行"
         case .RB:               return "R&B"
-        case .Ethereal2:        return "空灵2"
+        case .Phonograph:       return "留声机"
         case .Default:          return "Default"
-        }
-    }
-    
-    func character(with agoraKit: AgoraRtcEngineKit) {
-        switch self {
-        case .OldMan:
-            agoraKit.setLocalVoiceChanger(.oldMan)
-        case .BabyBoy:
-            agoraKit.setLocalVoiceChanger(.babyBoy)
-        case .ZhuBaJie:
-            agoraKit.setLocalVoiceChanger(.zhuBaJie)
-        case .Ethereal:
-            agoraKit.setLocalVoiceChanger(.ethereal)
-        case .Hulk:
-            agoraKit.setLocalVoiceChanger(.hulk)
-        case .BabyGirl:
-            agoraKit.setLocalVoiceChanger(.babyGirl)
-        case .KTV:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: 10)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 30)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 100)
-        case .RecordingRoom:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: 10)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 10)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 50)
-        case .VocalConcert:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: 10)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 50)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 45)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 100)
-        case .Fashion:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: 1)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: 1)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 5)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 20)
-        case .HipHop:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: -4)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: 5)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 66)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 100)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 0)
-        case .Rock:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: -7)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: -7)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 95)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 170)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 58)
-        case .RB:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: -12)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: -1)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 20)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 59)
-        case .Ethereal2:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: -1)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: 3)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 100)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 26)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 82)
-        case .Default:
-            agoraKit.setLocalVoicePitch(1)
-            
-            agoraKit.setLocalVoiceEqualizationOf(.band31, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band62, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band125, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band250, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band500, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band1K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
-            agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
-            
-            agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 0)
-            agoraKit.setLocalVoiceReverbOf(.strength, withValue: 0)
         }
     }
 }

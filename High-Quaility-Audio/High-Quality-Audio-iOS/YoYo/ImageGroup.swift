@@ -11,6 +11,7 @@ import UIKit
 class ImageGroup: NSObject {
     static let instance = ImageGroup()
     
+    var roomList: [UIImage]
     var roomBackgroundList: [UIImage]
     var userHeadList: [UIImage]
     
@@ -19,14 +20,20 @@ class ImageGroup: NSObject {
     }
     
     override init() {
-        roomBackgroundList = [UIImage]()
-        for index in 0...11 {
+        roomList = [UIImage]()
+        for index in 0...4 {
             let image = UIImage(named:"room\(index)")
+            roomList.append(image!)
+        }
+        
+        roomBackgroundList = [UIImage]()
+        for index in 0...4 {
+            let image = UIImage(named:"bg\(index)")
             roomBackgroundList.append(image!)
         }
         
         userHeadList = [UIImage]()
-        for index in 0...11 {
+        for index in 0...7 {
             let image = UIImage(named:"head\(index)")
             userHeadList.append(image!)
         }

@@ -22,12 +22,36 @@ class RoomViewController: UIViewController {
     @IBOutlet weak var micButton: UIButton!
     @IBOutlet weak var playbackButton: UIButton!
     @IBOutlet weak var remindInputTextField: UITextField!
-    @IBOutlet weak var backButtonTop: NSLayoutConstraint!
-    @IBOutlet weak var bgImageViewBottom: NSLayoutConstraint!
     @IBOutlet weak var seatViewWidth: NSLayoutConstraint!
     @IBOutlet weak var seatViewBottom: NSLayoutConstraint!
-    
     @IBOutlet weak var settingButton: UIButton!
+    
+    private lazy var settingVC: SettingViewController = {
+        let story = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let setVC = story.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+        setVC.delegate = self
+        return setVC
+    }()
+    
+    private lazy var settingBackgroundView: UIView = {
+        var subFrame = CGRect(x: 0, y: 0, width: 91 * DeviceAdapt.getWidthCoefficient(), height: self.view.bounds.height)
+        let subView = UIView(frame: subFrame)
+        subView.backgroundColor = UIColor.clear
+        
+        let view = UIView(frame: self.view.bounds)
+        view.backgroundColor = UIColor.init(hexString: "#000000-0.6")
+        view.addSubview(subView)
+        
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(endSettingView))
+        subView.addGestureRecognizer(tap)
+        return view
+    }()
+    
+    private lazy var playerList = [Player]()
+    
+    private weak var momentsVC: MomentsViewController?
+    private weak var seatVC: BroadcasterSeatViewController?
     
     private var role: RoomRole = .audience {
         didSet {
@@ -73,7 +97,7 @@ class RoomViewController: UIViewController {
         }
     }
     
-    private var isSettingViewShow: Bool! {
+    private var isSettingViewShow: Bool = false {
         didSet {
             if isSettingViewShow == true {
                 settingVC.isShow(isShow: true)
@@ -89,59 +113,17 @@ class RoomViewController: UIViewController {
                 return
             }
             
-            if DeviceAdapt.currentType() == .classicFivePointFiveInch {
+            if (DeviceAdapt.currentType() != .classicFourPointSevenInch) || (DeviceAdapt.currentType() != .newFourPointSevenInch) {
                 seatViewWidth.constant = seatViewWidth.constant * DeviceAdapt.getWidthCoefficient()
-                seatViewBottom.constant = seatViewBottom.constant * DeviceAdapt.getWidthCoefficient()
+                seatViewBottom.constant = seatViewBottom.constant * DeviceAdapt.getHeightCoefficient()
             }
         }
     }
-    
-    lazy var playerList = [Player]()
-    
-    weak var momentsVC: MomentsViewController?
-    weak var seatVC: BroadcasterSeatViewController?
     
     var current: RoomCurrent!
     var info: RoomInfo!
     var voiceRoleIndex: Int?
     var agoraMediaKit: AgoraRtcEngineKit!
-    
-    lazy var settingVC: SettingViewController = {() -> SettingViewController in
-        let story = UIStoryboard.init(name: "Main", bundle: Bundle.main)
-        let setVC = story.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
-        setVC.delegate = self
-        return setVC
-    }()
-    
-    lazy var settingBackgroundView: UIView = {() -> UIView in
-        var subFrame = CGRect(x: 0, y: 0, width: 91 * DeviceAdapt.getWidthCoefficient(), height: self.view.bounds.height)
-        let subView = UIView(frame: subFrame)
-        subView.backgroundColor = UIColor.clear
-        
-        let view = UIView(frame: self.view.bounds)
-        view.backgroundColor = UIColor.init(hexString: "#000000-0.6")
-        view.addSubview(subView)
-        
-        let tap = UITapGestureRecognizer(target: self,
-                                         action: #selector(endSettingView))
-        subView.addGestureRecognizer(tap)
-        return view
-    }()
-    
-    lazy var aureolaView: AureolaView = {() -> AureolaView in
-        let view = AureolaView.createAureolaView(layerColor: UIColor.init(hexString: "#09BDF4"))
-        return view
-    }()
-    
-    lazy var aureolaViews: [AureolaView] = {() -> [AureolaView] in
-        var list = [AureolaView]()
-        for _ in 0..<8 {
-            let view = AureolaView.createAureolaView(layerColor: UIColor.init(hexString: "#09BDF4"))
-            list.append(view)
-        }
-        
-        return list
-    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -155,7 +137,6 @@ class RoomViewController: UIViewController {
         super.viewDidLoad()
         loadAgoraMediaKit()
         updateRoomInfo()
-        updateViews()
         addKeyboardObserver()
         mediaJoinChannel()
     }
@@ -189,10 +170,12 @@ class RoomViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+}
+
 // MARK: -
 // MARK: Response Action
 // MARK:
+extension RoomViewController {
     @IBAction func doCloseRoomPressed(_ sender: UIButton) {
         leaveRoom()
     }
@@ -219,6 +202,7 @@ private extension RoomViewController {
         agoraMediaKit.setChannelProfile(.liveBroadcasting)
         agoraMediaKit.enableAudioVolumeIndication(1000, smooth: 3)
         agoraMediaKit.setAudioProfile(.default, scenario: .gameStreaming)
+        agoraMediaKit.setParameters("{\"che.audio.specify.codec\":HEAAC_2ch}")
         debugLog(log: "getSdkVersion: \(AgoraRtcEngineKit.getSdkVersion())")
     }
     
@@ -226,19 +210,19 @@ private extension RoomViewController {
         agoraMediaKit.joinChannel(byToken: KeyCenter.token,
                                   channelId: info.roomId,
                                   info: nil,
-                                  uid: current.info.streamId) { [unowned self] (_, _, _) in
-            self.momentsVC?.append(content: "join room", from: self.current.info)
+                                  uid: current.info.streamId) { [weak self] (_, _, _) in
+                                    guard let strongSelf = self else {
+                                        return
+                                    }
+            strongSelf.momentsVC?.append(content: "加入房间", from: strongSelf.current.info)
         }
     }
     
     func updateRoomInfo() {
         currentNameLabel.text = "用户 \(current.info.streamId)"
         currenHeadImageView.image = ImageGroup.shared().head(of: current.info.head)
+        bgImageView.image = info.backgroundImage
         titleLabel.text = info.name
-    }
-    
-    func updateViews() {
-        inputMessageTextField.delegate = self
     }
     
     func addKeyboardObserver() {
@@ -283,7 +267,6 @@ private extension RoomViewController {
     
     func leaveRoom() {
         agoraMediaKit.leaveChannel(nil)
-        allAureolaRemoveAnimation()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -294,13 +277,6 @@ private extension RoomViewController {
 extension RoomViewController {
     func setPopoverDelegate(of vc: UIViewController) {
         vc.popoverPresentationController?.delegate = self
-    }
-    
-    func presentAlerlControllerAsNotification(title: String, message: String?) {
-        let alertController = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        let sureAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
-        alertController.addAction(sureAction)
-        present(alertController, animated: true, completion: nil)
     }
     
     func settingBackGroundViewShow(isShow: Bool) {
@@ -335,13 +311,6 @@ extension RoomViewController {
             self.navigationController?.pushViewController(vc, animated: true)            
         }
     }
-    
-    func allAureolaRemoveAnimation() {
-        aureolaView.removeAnimation()
-        for item in aureolaViews {
-            item.removeAnimation()
-        }
-    }
 }
 
 extension RoomViewController: SettingVCDelegate {
@@ -367,7 +336,9 @@ extension RoomViewController: SettingVCDelegate {
 // MARK: AgoraRtcEngineDelegate
 // MARK:
 extension RoomViewController: AgoraRtcEngineDelegate {
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
+        debugLog(log: "didJoinedOfUid: \(uid)")
+        
         let result = StreamIdParse.parse(with: uid)
         
         switch result {
@@ -389,6 +360,8 @@ extension RoomViewController: AgoraRtcEngineDelegate {
                                                audioRecording: true)
             let seat = Seat(type: .takeup(broadcaster))
             seatVC?.updateSeat(seat, index: index)
+            
+            self.momentsVC?.append(content: "加入麦位", from: user)
         case .player(let player):
             playerList.append(player)
             
@@ -408,6 +381,41 @@ extension RoomViewController: AgoraRtcEngineDelegate {
         }
     }
     
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
+        debugLog(log: "didOfflineOfUid: \(uid)")
+        
+        let result = StreamIdParse.parse(with: uid)
+        
+        switch result {
+        case .user(let user):
+            guard current.info.streamId != user.streamId,
+                let index = seatVC?.indexOfSeat(with: user.id) else {
+                    return
+            }
+            
+            if let player = playerList.first(of: user.id) {
+                agoraMediaKit.muteRemoteAudioStream(player.streamId, mute: true)
+            }
+            
+            let seat = Seat(type: .none)
+            seatVC?.updateSeat(seat, index: index)
+            
+            self.momentsVC?.append(content: "离开麦位", from: user)
+        case .player(let player):
+            guard let playerIndex = playerList.firstIndex(of: player.id),
+                let index = seatVC?.indexOfSeat(with: player.id),
+                let seat = seatVC?.seat(with: index),
+                var broadcaster = seat.broadcaster else {
+                    return
+            }
+            
+            playerList.remove(at: playerIndex)
+            broadcaster.hasPlayer = false
+            let new = Seat(type: .takeup(broadcaster))
+            seatVC?.updateSeat(new, index: index)
+        }
+    }
+    
     func rtcEngineConnectionDidInterrupted(_ engine: AgoraRtcEngineKit) {
         debugLog(log: "rtcEngineConnectionDidInterrupted")
     }
@@ -417,34 +425,32 @@ extension RoomViewController: AgoraRtcEngineDelegate {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
-        debugLog(log: "didOccurError errorCode: \(errorCode)")
+        debugLog(log: "didOccurError errorCode: \(errorCode.rawValue)")
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, reportAudioVolumeIndicationOfSpeakers speakers: [AgoraRtcAudioVolumeInfo], totalVolume: Int) {
-        
-        if speakers.count == 1, speakers[0].uid == 0 {
-            aureolaView.startLayerAnimation(aboveView: currenHeadImageView, layerWidth: 2)
-        } else {
-            
+        func startAureolaing(of user: User) {
+            guard let index = seatVC?.indexOfSeat(with: user.id),
+                let seat = seatVC?.seat(with: index),
+                seat.type != .none else {
+                    return
+            }
+            seatVC?.startAureolaing(at: index)
         }
         
-//        if speakers.count == 1, speakers[0].uid == 0 {
-//            if role == .owner {
-//                aureolaView.startLayerAnimation(aboveView: currenHeadImageView, layerWidth: 2)
-//            } else if let micSeatVC = micSeatVC, let button = micSeatVC.getActiveSpeaker(account: userListManager.currentUser.uid) {
-//                let view = aureolaViews[button.tag]
-//                view.startLayerAnimation(aboveView: button, layerWidth: 2)
-//            }
-//        } else {
-//            for speaker in speakers {
-//                if let roomOwner = roomOwner, roomOwner == speaker.uid {
-//                    aureolaView.startLayerAnimation(aboveView: currenHeadImageView, layerWidth: 2)
-//                } else if let micSeatVC = micSeatVC, let button = micSeatVC.getActiveSpeaker(account: speaker.uid) {
-//                    let view = aureolaViews[button.tag]
-//                    view.startLayerAnimation(aboveView: button, layerWidth: 2)
-//                }
-//            }
-//        }
+        if speakers.count == 1, speakers[0].uid == 0 {
+            startAureolaing(of: current.info)
+        } else {
+            for speaker in speakers {
+                let result = StreamIdParse.parse(with: speaker.uid)
+                switch result {
+                case .user(let user):
+                    startAureolaing(of: user)
+                default:
+                    continue
+                }
+            }
+        }
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didAudioMuted muted: Bool, byUid uid: UInt) {
@@ -457,7 +463,7 @@ extension RoomViewController: AgoraRtcEngineDelegate {
                 var broadcaster = seat.broadcaster else {
                     return
             }
-            broadcaster.audioRecording = false
+            broadcaster.audioRecording = !muted
             let new = Seat(type: .takeup(broadcaster))
             seatVC?.updateSeat(new, index: index)
         case .player:
@@ -472,14 +478,14 @@ extension RoomViewController: AgoraRtcEngineDelegate {
 extension RoomViewController: VoiceChangerVCDelegate {
     func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex: Int) {
         voiceRoleIndex = roleIndex
-        role.character(with: agoraMediaKit)
+        agoraMediaKit.setParameters("{\"che.audio.morph.reverb_preset\": \(role.rawValue)")
         settingBackGroundViewShow(isShow: false)
         vc.navigationController?.popViewController(animated: true)
     }
     
     func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController) {
         if let _ = voiceRoleIndex {
-            EffectRoles.Default.character(with: agoraMediaKit)
+            agoraMediaKit.setParameters("che.audio.morph.reverb_preset: \(EffectRoles.Default.rawValue)")
             self.voiceRoleIndex = nil
         }
         
@@ -501,7 +507,9 @@ extension RoomViewController: BroadcasterSeatVCDelegate {
             } else {
                 hasPlayer = false
             }
-            let broadcaster = Seat.Broadcaster(info: current.info, hasPlayer: hasPlayer, audioRecording: true)
+            let broadcaster = Seat.Broadcaster(info: current.info,
+                                               hasPlayer: hasPlayer,
+                                               audioRecording: true)
             let seat = Seat(type: .takeup(broadcaster))
             vc.updateSeat(seat, index: index)
             role = .broadcast

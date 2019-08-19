@@ -16,12 +16,17 @@ class RoomListViewController: UIViewController {
     
     lazy var roomsList: [RoomInfo] = {
         var list = [RoomInfo]()
-        
-        for image in imageGroup.roomBackgroundList {
-            let item = RoomInfo(image: image)
-            list.append(item)
+        for index in 0...4 {
+            let image = imageGroup.roomList[index]
+            let background = imageGroup.roomBackgroundList[index]
+            let name = RoomInfo.titleList[index]
+            let roomId = RoomInfo.idList[index]
+            let info = RoomInfo(image: image,
+                                backgroundImage: background,
+                                name: name,
+                                roomId: roomId)
+            list.append(info)
         }
-        
         return list
     }()
     
@@ -47,7 +52,7 @@ private extension RoomListViewController {
     }
     
     func presentRoom(_ room: RoomInfo) {
-        let story = UIStoryboard.init(name: "Main", bundle: Bundle.main)
+        let story = UIStoryboard(name: "Main", bundle: Bundle.main)
         let navigation = story.instantiateViewController(withIdentifier: "NavigationViewController")
         let vc = navigation.children.first
         guard let roomVC = vc as? RoomViewController else {
@@ -56,14 +61,8 @@ private extension RoomListViewController {
         
         roomVC.info = room
         roomVC.current = RoomCurrent(info: current)
-        self.present(navigation, animated: true, completion: nil)
-    }
-    
-    func presentAlerlControllerAsNotification(title: String, message: String?) {
-        let alertController = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        let sureAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
-        alertController.addAction(sureAction)
-        present(alertController, animated: true, completion: nil)
+        navigation.modalPresentationStyle = .fullScreen
+        present(navigation, animated: true, completion: nil)
     }
     
     func debugLog(log: String) {
@@ -90,11 +89,5 @@ extension RoomListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let room = roomsList[indexPath.item]
         presentRoom(room)
-    }
-}
-
-extension RoomListViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
     }
 }

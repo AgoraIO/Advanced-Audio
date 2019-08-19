@@ -28,6 +28,10 @@ struct Seat {
         static func ==(left: Seat.SeatType, right: Seat.SeatType) -> Bool {
             return left.rawValue == right.rawValue
         }
+        
+        static func !=(left: Seat.SeatType, right: Seat.SeatType) -> Bool {
+            return left.rawValue != right.rawValue
+        }
     }
     
     var broadcaster: Broadcaster? {

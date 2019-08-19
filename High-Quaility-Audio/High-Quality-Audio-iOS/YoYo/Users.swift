@@ -27,7 +27,7 @@ struct User {
     init(streamId: UInt, id: UInt) {
         self.streamId = streamId
         self.id = id
-        self.head = Int(id % 9)
+        self.head = Int(id % 8)
     }
     
     static func fake() -> User {

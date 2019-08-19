@@ -15,7 +15,6 @@
 		A711051722FAD7F80041CA81 /* StreamIdParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711051622FAD7F80041CA81 /* StreamIdParse.swift */; };
 		A711051A22FBC70B0041CA81 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711051922FBC70B0041CA81 /* Player.swift */; };
 		A730EF2321006C04003174AD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A730EF2021006C04003174AD /* Accelerate.framework */; };
-		A730EFCC2101CFA9003174AD /* UnRepeatRand.m in Sources */ = {isa = PBXBuildFile; fileRef = A730EFCB2101CFA9003174AD /* UnRepeatRand.m */; };
 		A76D801020D8CC6100A626C4 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A76D800F20D8CC6100A626C4 /* UIColor+Hex.m */; };
 		A76D802E20E0BE6200A626C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D802D20E0BE6200A626C4 /* SettingViewController.swift */; };
 		A76D803020E0DF9E00A626C4 /* SubSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D802F20E0DF9E00A626C4 /* SubSettingViewController.swift */; };
@@ -39,7 +38,6 @@
 		A7B541F020C905E50023FE2E /* BroadcasterSeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B541EF20C905E50023FE2E /* BroadcasterSeatViewController.swift */; };
 		A7C5C29A20EBBA15003A391B /* AureolaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5C29920EBBA15003A391B /* AureolaView.swift */; };
 		A7C5C29C20ECC939003A391B /* SubSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5C29B20ECC939003A391B /* SubSettingCell.swift */; };
-		A7C5C2BB20EF69BD003A391B /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C5C2BA20EF69BD003A391B /* NSString+UUID.m */; };
 		A7F1FC2720A14C0E00CAEECE /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1FC2620A14C0E00CAEECE /* Moment.swift */; };
 		A7F1FC2A20A14E7800CAEECE /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC2920A14E7800CAEECE /* libresolv.tbd */; };
 		A7F1FC2C20A14E8000CAEECE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC2B20A14E8000CAEECE /* CoreTelephony.framework */; };
@@ -59,8 +57,6 @@
 		A711051622FAD7F80041CA81 /* StreamIdParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamIdParse.swift; sourceTree = "<group>"; };
 		A711051922FBC70B0041CA81 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		A730EF2021006C04003174AD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		A730EFCA2101CFA9003174AD /* UnRepeatRand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnRepeatRand.h; sourceTree = "<group>"; };
-		A730EFCB2101CFA9003174AD /* UnRepeatRand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnRepeatRand.m; sourceTree = "<group>"; };
 		A76D800E20D8CC6100A626C4 /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		A76D800F20D8CC6100A626C4 /* UIColor+Hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		A76D802D20E0BE6200A626C4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -89,8 +85,6 @@
 		A7B541EF20C905E50023FE2E /* BroadcasterSeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcasterSeatViewController.swift; sourceTree = "<group>"; };
 		A7C5C29920EBBA15003A391B /* AureolaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AureolaView.swift; sourceTree = "<group>"; };
 		A7C5C29B20ECC939003A391B /* SubSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSettingCell.swift; sourceTree = "<group>"; };
-		A7C5C2B920EF69BD003A391B /* NSString+UUID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
-		A7C5C2BA20EF69BD003A391B /* NSString+UUID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
 		A7F1FC2620A14C0E00CAEECE /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		A7F1FC2920A14E7800CAEECE /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		A7F1FC2B20A14E8000CAEECE /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -151,7 +145,6 @@
 		A79FDCE2209C43BC00EB58B5 /* YoYo */ = {
 			isa = PBXGroup;
 			children = (
-				A79FDCE3209C43BC00EB58B5 /* AppDelegate.swift */,
 				A79FDCE7209C43BC00EB58B5 /* Main.storyboard */,
 				A79FDD01209C4D8A00EB58B5 /* Model */,
 				A79FDD04209C4F5C00EB58B5 /* View */,
@@ -195,6 +188,7 @@
 		A79FDD02209C4DCA00EB58B5 /* Supporting Files  */ = {
 			isa = PBXGroup;
 			children = (
+				A79FDCE3209C43BC00EB58B5 /* AppDelegate.swift */,
 				A79FDCEA209C43BC00EB58B5 /* Assets.xcassets */,
 				A79FDCEC209C43BC00EB58B5 /* LaunchScreen.storyboard */,
 				A79FDCEF209C43BC00EB58B5 /* Info.plist */,
@@ -206,14 +200,10 @@
 		A79FDD03209C4DF600EB58B5 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				A730EFCA2101CFA9003174AD /* UnRepeatRand.h */,
-				A730EFCB2101CFA9003174AD /* UnRepeatRand.m */,
 				A79FDCF9209C4AB600EB58B5 /* UIView+ExProperty.h */,
 				A79FDCF8209C4AB600EB58B5 /* UIView+ExProperty.m */,
 				A76D800E20D8CC6100A626C4 /* UIColor+Hex.h */,
 				A76D800F20D8CC6100A626C4 /* UIColor+Hex.m */,
-				A7C5C2B920EF69BD003A391B /* NSString+UUID.h */,
-				A7C5C2BA20EF69BD003A391B /* NSString+UUID.m */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -327,7 +317,6 @@
 				A7F1FC3820A1501F00CAEECE /* KeyCenter.swift in Sources */,
 				A76D801020D8CC6100A626C4 /* UIColor+Hex.m in Sources */,
 				A711050622F98A8D0041CA81 /* Users.swift in Sources */,
-				A730EFCC2101CFA9003174AD /* UnRepeatRand.m in Sources */,
 				A711051322FAC3D40041CA81 /* MomentsViewController.swift in Sources */,
 				A79FDCFA209C4AB600EB58B5 /* UIView+ExProperty.m in Sources */,
 				A76D808320E516AA00A626C4 /* Popover.swift in Sources */,
@@ -341,7 +330,6 @@
 				A7B541F020C905E50023FE2E /* BroadcasterSeatViewController.swift in Sources */,
 				A76D803220E11C1D00A626C4 /* VoiceChangerViewController.swift in Sources */,
 				A76D803620E11FF700A626C4 /* VoiceChangerCell.swift in Sources */,
-				A7C5C2BB20EF69BD003A391B /* NSString+UUID.m in Sources */,
 				A711051722FAD7F80041CA81 /* StreamIdParse.swift in Sources */,
 				A7C5C29C20ECC939003A391B /* SubSettingCell.swift in Sources */,
 				A76D802E20E0BE6200A626C4 /* SettingViewController.swift in Sources */,
@@ -509,7 +497,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.fenbei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2018;
+				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2019;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AudioEffect=0";
 				SWIFT_OBJC_BRIDGING_HEADER = "YoYo/AgoraChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -537,7 +525,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.fenbei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2018;
+				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2019;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "AudioEffect=0";
 				SWIFT_OBJC_BRIDGING_HEADER = "YoYo/AgoraChat-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
