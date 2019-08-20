@@ -21,7 +21,13 @@ HomeJoinedForm {
 
     ckloopback.onClicked: {
         //console.log("click:" + ckloopback.selected)
-        agoraRtcEngine.startLoopback(ckloopback.selected) }
+        agoraRtcEngine.startLoopback(ckloopback.selected)
+    }
+
+
+    ckpcm.onClicked: {
+        agoraRtcEngine.startPcmDump(ckpcm.selected)
+    }
 
     cbMicrophones.activeFocusOnPress: {
         var current = cbMicrophones.model.get(cbMicrophones.currentIndex)

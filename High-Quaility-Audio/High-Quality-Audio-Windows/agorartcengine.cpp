@@ -94,6 +94,7 @@ int AgoraRtcEngine::joinChannel(const QString& key, const QString& channel, cons
     AParameter apm(*m_rtcEngine);
     apm->setParameters("{\"che.audio.bypass.apm\":true}");
     apm->setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
+    apm->setParameters("{\"che.audio.stereo.capture\":true}");
 
     RtcEngineParameters rep(*m_rtcEngine);
     rep.muteAllRemoteAudioStreams(true);
@@ -130,6 +131,20 @@ int AgoraRtcEngine::startLoopback(bool enabled)
         nRet = apm->setParameters("{\"che.audio.loopback.recording\":true}");
     else
         nRet = apm->setParameters("{\"che.audio.loopback.recording\":false}");
+
+    return nRet == 0 ? TRUE : FALSE;
+}
+
+int AgoraRtcEngine::startPcmDump(bool enabled)
+{
+    int nRet = 0;
+
+    AParameter apm(*m_rtcEngine);
+
+    if (enabled)
+        nRet = apm->setParameters("{\"che.audio.start_debug_recording\":\"NoName\"}");
+    else
+        nRet = apm->setParameters("{\"che.audio.stop_debug_recording\":true}");
 
     return nRet == 0 ? TRUE : FALSE;
 }

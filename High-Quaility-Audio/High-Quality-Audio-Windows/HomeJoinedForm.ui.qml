@@ -5,7 +5,8 @@ Rectangle {
     id: channelpage
     width: 800
     height: 600
-	property alias btnLeave: btnLeave
+    property alias ckpcm: ckpcm
+    property alias btnLeave: btnLeave
 
     Image {
         id: bkjoined
@@ -74,5 +75,16 @@ Rectangle {
          defaultImageSource: "images/leave_channel.png"
          hoverImageSource: "images/leave_channel_hover.png"
          pressedImageSource: "images/leave_channel.png"
+    }
+
+    ACheckBox {
+        id: ckpcm
+        x: 589
+        y: 334
+        width: 15
+        height: 15
+        selected: false
+        selectedImageSource: "images/icon_accept.png"
+        defaultImageSource: "images/loop_back.png"
     }
 }
