@@ -29,6 +29,8 @@ public class AgoraApplication extends Application {
 
             // High quality audio parameters
             mRtcEngine.setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
+            // Enable stereo
+            mRtcEngine.setParameters("{\"che.audio.stereo\":true}");
 
             mRtcEngine.setLogFile(FileUtil.initializeLogFile(this));
         } catch (Exception e) {
