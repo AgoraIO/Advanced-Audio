@@ -27,6 +27,7 @@ import io.agora.highqualityaudio.ui.ScreenHeightDialog;
 import io.agora.highqualityaudio.ui.SeatListRecyclerView;
 import io.agora.highqualityaudio.ui.VoiceChangeRecyclerView;
 import io.agora.highqualityaudio.utils.Constants;
+import io.agora.highqualityaudio.utils.FileUtil;
 import io.agora.highqualityaudio.utils.VoiceChanger;
 import io.agora.rtc.IRtcEngineEventHandler;
 
@@ -240,6 +241,16 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
     }
 
     private void joinChannel() {
+        rtcEngine().setChannelProfile(io.agora.rtc.Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+        rtcEngine().setAudioProfile(io.agora.rtc.Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO,
+                io.agora.rtc.Constants.AUDIO_SCENARIO_GAME_STREAMING);
+
+        // High quality audio parameters
+        rtcEngine().setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
+        // Enable stereo
+        rtcEngine().setParameters("{\"che.audio.stereo\":true}");
+
+        rtcEngine().setLogFile(FileUtil.initializeLogFile(this));
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE);
         rtcEngine().joinChannel("", mRoomName, "", mMyUid);
     }
