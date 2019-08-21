@@ -21,7 +21,6 @@
 		A76D803220E11C1D00A626C4 /* VoiceChangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D803120E11C1D00A626C4 /* VoiceChangerViewController.swift */; };
 		A76D803420E11EDB00A626C4 /* EffectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D803320E11EDB00A626C4 /* EffectType.swift */; };
 		A76D803620E11FF700A626C4 /* VoiceChangerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D803520E11FF700A626C4 /* VoiceChangerCell.swift */; };
-		A76D808320E516AA00A626C4 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D808220E516AA00A626C4 /* Popover.swift */; };
 		A76D808520E6190F00A626C4 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D808420E6190F00A626C4 /* NavigationViewController.swift */; };
 		A79FDCE4209C43BC00EB58B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79FDCE3209C43BC00EB58B5 /* AppDelegate.swift */; };
 		A79FDCE9209C43BC00EB58B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79FDCE7209C43BC00EB58B5 /* Main.storyboard */; };
@@ -64,7 +63,6 @@
 		A76D803120E11C1D00A626C4 /* VoiceChangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerViewController.swift; sourceTree = "<group>"; };
 		A76D803320E11EDB00A626C4 /* EffectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectType.swift; sourceTree = "<group>"; };
 		A76D803520E11FF700A626C4 /* VoiceChangerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerCell.swift; sourceTree = "<group>"; };
-		A76D808220E516AA00A626C4 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		A76D808420E6190F00A626C4 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		A79FDCE0209C43BC00EB58B5 /* YoYo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoYo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79FDCE3209C43BC00EB58B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 				A79FDD1B209EE2E500EB58B5 /* MomentCell.swift */,
 				A7C5C29B20ECC939003A391B /* SubSettingCell.swift */,
 				A76D803520E11FF700A626C4 /* VoiceChangerCell.swift */,
-				A76D808220E516AA00A626C4 /* Popover.swift */,
 				A7C5C29920EBBA15003A391B /* AureolaView.swift */,
 				A7B541ED20C8CF7C0023FE2E /* SeatButton.swift */,
 			);
@@ -319,7 +316,6 @@
 				A711050622F98A8D0041CA81 /* Users.swift in Sources */,
 				A711051322FAC3D40041CA81 /* MomentsViewController.swift in Sources */,
 				A79FDCFA209C4AB600EB58B5 /* UIView+ExProperty.m in Sources */,
-				A76D808320E516AA00A626C4 /* Popover.swift in Sources */,
 				A7C5C29A20EBBA15003A391B /* AureolaView.swift in Sources */,
 				A79FDD0A209C51D500EB58B5 /* RoomInfos.swift in Sources */,
 				A79FDD14209DF92800EB58B5 /* RoomViewController.swift in Sources */,
