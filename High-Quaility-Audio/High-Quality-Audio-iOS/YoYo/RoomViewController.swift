@@ -478,7 +478,7 @@ extension RoomViewController: AgoraRtcEngineDelegate {
 extension RoomViewController: VoiceChangerVCDelegate {
     func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex: Int) {
         voiceRoleIndex = roleIndex
-        agoraMediaKit.setParameters("{\"che.audio.morph.reverb_preset\": \(role.rawValue)")
+        agoraMediaKit.setParameters("{\"che.audio.morph.reverb_preset\": \(role.rawValue)}")
         settingBackGroundViewShow(isShow: false)
         vc.navigationController?.popViewController(animated: true)
     }
