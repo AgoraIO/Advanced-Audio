@@ -319,6 +319,15 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
                 // don't subscribe it in case of noise interruption
                 Log.i(TAG, "mute my windows client");
                 rtcEngine().muteRemoteAudioStream(uid, true);
+
+                // auto mute self local audio when windows join
+                View muteBtn = this.findViewById(R.id.chat_room_speaker);
+                boolean activated = muteBtn.isActivated();
+                if(activated) {
+                    muteBtn.setActivated(false);
+                    rtcEngine().muteLocalAudioStream(true);
+                    mSeatRecyclerView.changeMuteStateByUid(mMyUid, true);
+                }
             }
         }
     }
@@ -345,6 +354,19 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
             Log.i(TAG, "update window client state");
             mSeatRecyclerView.updateWindowsClientLeave(uid);
             mWindowsUsers.remove(uid);
+
+            if (myAccount().getUid() ==
+                    UserAccountManager.UserAccount.toAndroidUid(uid)) {
+                // If the left user is current window client
+                // auto un-mute self local audio when windows left
+                View muteBtn = this.findViewById(R.id.chat_room_speaker);
+                boolean activated = muteBtn.isActivated();
+                if(!activated) {
+                    muteBtn.setActivated(true);
+                    rtcEngine().muteLocalAudioStream(false);
+                    mSeatRecyclerView.changeMuteStateByUid(mMyUid, false);
+                }
+            }
         }
 
     }
