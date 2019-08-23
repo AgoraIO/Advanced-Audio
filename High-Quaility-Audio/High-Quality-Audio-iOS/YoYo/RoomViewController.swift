@@ -377,6 +377,9 @@ extension RoomViewController: AgoraRtcEngineDelegate {
             
             if player.id == current.info.id {
                 agoraMediaKit.muteRemoteAudioStream(uid, mute: true)
+                
+                //auto mute self when accompanied windows joined
+                self.isMuteAudioRecording = true
             }
         }
     }
@@ -413,6 +416,11 @@ extension RoomViewController: AgoraRtcEngineDelegate {
             broadcaster.hasPlayer = false
             let new = Seat(type: .takeup(broadcaster))
             seatVC?.updateSeat(new, index: index)
+            
+            if player.id == current.info.id {
+                //auto unmute self when accompanied windows left
+                self.isMuteAudioRecording = false
+            }
         }
     }
     
