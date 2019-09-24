@@ -61,7 +61,7 @@ AgoraRtcEngine::AgoraRtcEngine(QObject *parent) : QObject(parent)
     mediaEngine.queryInterface(m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
 
     m_rtcEngine->enableAudio();
-    m_rtcEngine->setAudioProfile(AUDIO_PROFILE_MUSIC_HIGH_QUALITY,AUDIO_SCENARIO_GAME_STREAMING);
+    m_rtcEngine->setAudioProfile(AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO,AUDIO_SCENARIO_GAME_STREAMING);
     m_rtcEngine->setChannelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING);
     m_rtcEngine->setClientRole(CLIENT_ROLE_BROADCASTER);
 
