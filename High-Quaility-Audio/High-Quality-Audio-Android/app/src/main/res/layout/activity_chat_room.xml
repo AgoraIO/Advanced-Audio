@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chat_room_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/room_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/room_title_layout_height"
+        android:layout_marginTop="@dimen/room_title_layout_margin_top">
+
+        <ImageView
+            android:id="@+id/chat_room_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/room_title_back_margin"
+            android:layout_marginLeft="@dimen/room_title_back_margin"
+            android:layout_marginStart="@dimen/room_title_back_margin"
+            android:onClick="onBackClicked"
+            android:src="@drawable/back_blue"/>
+
+        <TextView
+            android:id="@+id/chat_room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/universal_text_color"
+            android:textSize="@dimen/text_size_normal"/>
+
+        <ImageView
+            android:id="@+id/chat_room_settings"
+            android:layout_width="@dimen/room_setting_btn_size"
+            android:layout_height="@dimen/room_setting_btn_size"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/room_setting_btn_padding"
+            android:layout_marginRight="@dimen/room_setting_btn_margin"
+            android:layout_marginEnd="@dimen/room_setting_btn_margin"
+            android:background="@drawable/bg_round_icon"
+            android:src="@drawable/ic_settings"
+            android:onClick="onSettingClicked"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/chat_room_portrait_wrapper"
+        android:layout_width="@dimen/room_portrait_anim_layer2_size_medium"
+        android:layout_height="@dimen/room_portrait_anim_layer2_size_medium"
+        android:layout_below="@id/room_title_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/room_portrait_margin_top">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chat_room_portrait"
+            android:layout_width="@dimen/room_portrait_size"
+            android:layout_height="@dimen/room_portrait_size"
+            android:layout_centerInParent="true"
+            app:civ_border_color="@color/blue"
+            app:civ_border_width="1dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/chat_room_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/room_user_name_height"
+        android:layout_below="@id/chat_room_portrait_wrapper"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/room_user_name_margin_top"
+        android:background="@drawable/bg_host_name"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/room_user_name_padding"
+        android:paddingRight="@dimen/room_user_name_padding"
+        android:textColor="@color/universal_text_color"
+        android:textSize="@dimen/room_user_name_text_size"/>
+
+    <io.agora.highqualityaudio.ui.SeatListRecyclerView
+        android:id="@+id/chat_room_recycler_participants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/room_vacancy_list_padding"
+        android:layout_marginRight="@dimen/room_vacancy_list_padding"
+        android:layout_below="@id/chat_room_user_name"
+        android:layout_marginTop="@dimen/room_participants_layout_margin_top"/>
+
+    <io.agora.highqualityaudio.ui.MessageRecyclerView
+        android:id="@+id/chat_room_recycler_msg_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/chat_room_msg_layout"
+        android:layout_below="@id/chat_room_recycler_participants"
+        android:layout_marginTop="@dimen/room_message_view_margin_top"
+        android:layout_marginBottom="@dimen/room_message_view_margin_bottom"
+        android:layout_marginLeft="@dimen/room_message_view_margin"
+        android:layout_marginRight="@dimen/room_message_view_margin"
+        android:scrollbars="vertical"/>
+
+    <RelativeLayout
+        android:id="@+id/chat_room_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/room_message_layout_height"
+        android:layout_alignParentBottom="true">
+
+        <FrameLayout
+            android:layout_width="@dimen/room_message_edit_layout_width"
+            android:layout_height="@dimen/room_message_edit_layout_height"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/room_message_edit_layout_margin"
+            android:layout_marginStart="@dimen/room_message_edit_layout_margin"
+            android:layout_marginRight="@dimen/room_message_edit_layout_margin"
+            android:layout_marginEnd="@dimen/room_message_edit_layout_margin"
+            android:layout_toLeftOf="@id/chat_room_speaker"
+            android:layout_toStartOf="@id/chat_room_speaker">
+
+            <EditText
+                android:id="@+id/chat_room_message_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_msg_edit"
+                android:gravity="center_vertical"
+                android:hint="@string/room_message_edit_hint"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/room_message_edit_padding_left"
+                android:paddingStart="@dimen/room_message_edit_padding_left"
+                android:paddingRight="@dimen/room_message_edit_padding_right"
+                android:paddingEnd="@dimen/room_message_edit_padding_right"
+                android:textColor="@color/universal_text_color"
+                android:textColorHint="@color/gray_4"
+                android:textSize="@dimen/room_message_edit_text_size"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/chat_room_send_msg"
+                    android:layout_width="@dimen/room_message_send_btn_size"
+                    android:layout_height="@dimen/room_message_send_btn_size"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/room_message_send_btn_margin"
+                    android:layout_marginRight="@dimen/room_message_send_btn_margin"
+                    android:src="@drawable/ic_send_msg"
+                    android:onClick="onSendMessageClicked"/>
+            </RelativeLayout>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/chat_room_speaker"
+            android:layout_width="@dimen/room_bottom_btn_size"
+            android:layout_height="@dimen/room_bottom_btn_size"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/chat_room_sound"
+            android:layout_toStartOf="@id/chat_room_sound"
+            android:background="@drawable/bg_round_icon"
+            android:src="@drawable/ic_speaker_bg"
+            android:onClick="onMicClicked"/>
+
+        <ImageView
+            android:id="@+id/chat_room_sound"
+            android:layout_width="@dimen/room_bottom_btn_size"
+            android:layout_height="@dimen/room_bottom_btn_size"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/room_bottom_btn_margin"
+            android:layout_marginStart="@dimen/room_bottom_btn_margin"
+            android:layout_marginRight="@dimen/room_bottom_btn_margin"
+            android:layout_marginEnd="@dimen/room_bottom_btn_margin"
+            android:background="@drawable/bg_round_icon"
+            android:src="@drawable/ic_sound_bg"
+            android:onClick="onSpeakerClicked"/>
+    </RelativeLayout>
+</RelativeLayout>

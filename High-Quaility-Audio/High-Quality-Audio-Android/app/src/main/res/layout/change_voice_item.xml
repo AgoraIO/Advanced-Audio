@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/change_voice_item"
+    android:layout_width="@dimen/change_voice_item_width"
+    android:layout_height="@dimen/change_voice_item_height"
+    android:layout_marginBottom="@dimen/change_voice_item_margin_vertical"
+    android:layout_marginTop="@dimen/change_voice_item_margin_vertical"
+    android:layout_marginLeft="@dimen/change_voice_item_margin_horizontal"
+    android:layout_marginRight="@dimen/change_voice_item_margin_horizontal"
+    android:background="@drawable/voice_change_item_back"
+    android:gravity="center"
+    android:textColor="@color/voice_change_item_text"
+    android:textSize="@dimen/text_size_smallest"/>

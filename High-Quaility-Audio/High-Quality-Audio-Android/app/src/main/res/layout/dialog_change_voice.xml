@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_1">
+
+    <RelativeLayout
+        android:id="@+id/change_voice_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_title_height"
+        android:background="@color/blue">
+
+        <ImageView
+            android:id="@+id/change_voice_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/room_title_back_margin"
+            android:layout_marginStart="@dimen/room_title_back_margin"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/room_title_back_margin"
+            android:src="@drawable/back_white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/setting_dialog_change_voice"
+            android:textColor="@color/universal_text_color"
+            android:textSize="@dimen/text_size_normal"/>
+
+    </RelativeLayout>
+
+    <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
+        android:id="@+id/change_voice_recycler_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/change_voice_title_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/change_voice_options_margin_top"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/change_voice_button_margin_bottom"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginRight="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginStart="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginEnd="@dimen/change_voice_button_margin_horizontal">
+
+        <Button
+            android:id="@+id/change_voice_btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/change_voice_item_margin_horizontal"
+            android:layout_marginEnd="@dimen/change_voice_item_margin_horizontal"
+            android:background="@drawable/bg_button_highlight"
+            android:text="@string/setting_dialog_confirm"
+            android:textColor="@color/universal_text_color"
+            android:textSize="@dimen/text_size_small"/>
+        <Button
+            android:id="@+id/change_voice_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/change_voice_item_margin_horizontal"
+            android:layout_marginStart="@dimen/change_voice_item_margin_horizontal"
+            android:background="@drawable/bg_button_normal"
+            android:text="@string/setting_dialog_cancel"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_small"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
