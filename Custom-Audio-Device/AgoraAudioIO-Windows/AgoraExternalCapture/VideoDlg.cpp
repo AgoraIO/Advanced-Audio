@@ -362,7 +362,7 @@ void CVideoDlg::OnBnClickedBtnclose()
     CAgoraObject::GetAgoraObject()->MuteLocalAudio(FALSE);
     m_btnAudio.SwitchButtonStatus(CAGButton::AGBTN_NORMAL);
 
-    CAgoraObject::GetAgoraObject()->EnableScreenCapture(NULL, 0, NULL, FALSE);
+    CAgoraObject::GetAgoraObject()->EnableScreenCapture(NULL, 0, NULL, 0,FALSE);
     m_btnScrCap.SwitchButtonStatus(CAGButton::AGBTN_NORMAL);
 
     m_dlgChat.ShowWindow(SW_HIDE);
@@ -516,7 +516,7 @@ void CVideoDlg::OnBnClickedBtnScreenCapture()
 	CAgoraObject *lpAgora = CAgoraObject::GetAgoraObject();
 	
 	if (lpAgora->IsScreenCaptureEnabled()) {
-		lpAgora->EnableScreenCapture(NULL, 0, NULL, FALSE);
+		lpAgora->EnableScreenCapture(NULL, 0, NULL, 0,FALSE);
 		m_btnScrCap.SwitchButtonStatus(CAGButton::AGBTN_NORMAL);
         CAgoraObject::GetAgoraObject()->EnableLocalRender(TRUE);
 	}
@@ -799,7 +799,7 @@ LRESULT CVideoDlg::OnRemoteVideoStat(WPARAM wParam, LPARAM lParam)
 		AGVIDEO_WNDINFO &rWndInfo = m_listWndInfo.GetNext(posNext);
 
 		if (rWndInfo.nUID == lpData->uid) {
-			rWndInfo.nFramerate = lpData->receivedFrameRate;
+			rWndInfo.nFramerate = lpData->decoderOutputFrameRate;
 			rWndInfo.nBitrate = lpData->receivedBitrate;
 			rWndInfo.nWidth = lpData->width;
 			rWndInfo.nHeight = lpData->height;
@@ -1182,7 +1182,7 @@ LRESULT CVideoDlg::OnWindowShareStart(WPARAM wParam, LPARAM lParam)
         m_wndLocal.Invalidate(TRUE);
     }
 
-	CAgoraObject::GetAgoraObject()->EnableScreenCapture((HWND)wParam, 15, NULL, TRUE);
+	CAgoraObject::GetAgoraObject()->EnableScreenCapture((HWND)wParam, 15,NULL,1000,TRUE);
 	m_btnScrCap.SwitchButtonStatus(CAGButton::AGBTN_PUSH);
 
 	return 0;
@@ -1200,7 +1200,7 @@ LRESULT CVideoDlg::OnDesktopShareStart(WPARAM wParam, LPARAM lParam)
 	rcRegion.right = rcRegion.left + lpDesktopShareParam->nWidth;
 	rcRegion.bottom = rcRegion.top + lpDesktopShareParam->nHeight;
 
-	CAgoraObject::GetAgoraObject()->EnableScreenCapture(NULL, lpDesktopShareParam->nFPS, &rcRegion, TRUE);
+	CAgoraObject::GetAgoraObject()->EnableScreenCapture(NULL, lpDesktopShareParam->nFPS, &rcRegion,1000, TRUE);
 	//	Sleep(1000);
 	//	CAgoraObject::GetAgoraObject()->SetVideoProfileEx(lpDesktopShareParam->nWidth, lpDesktopShareParam->nHeight, lpDesktopShareParam->nFPS, lpDesktopShareParam->nBitrate);
 

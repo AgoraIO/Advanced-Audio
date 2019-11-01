@@ -39,7 +39,6 @@
 
 #include "../SDK/include/IAgoraRtcEngine.h"
 #include "../SDK/include/IAgoraMediaEngine.h"
-#include "../SDK/include/IAgoraRtcEngine2.h"
 #include "AgoraObject.h"
 #include "AGEventDef.h"
 #include <afxdisp.h>
