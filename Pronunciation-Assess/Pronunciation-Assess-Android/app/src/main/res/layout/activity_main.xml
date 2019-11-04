@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/word_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/word_hint"
+            android:textAllCaps="false"/>
+        <TextView
+            android:id="@+id/result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/spacing_narrow"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/random_pick_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="@string/pick_word"
+            android:onClick="onPickWord"/>
+        <Button
+            android:id="@+id/start_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_narrow"
+            android:textAllCaps="false"
+            android:text="@string/start_test"
+            android:onClick="onStartTestWord"/>
+        <Button
+            android:id="@+id/stop_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_narrow"
+            android:text="@string/stop_test"
+            android:textAllCaps="false"
+            android:onClick="onStopTestWord"/>
+    </LinearLayout>
+</LinearLayout>
