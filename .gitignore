@@ -2,3 +2,7 @@
 Speech-Recognizer/SpeechRecognizer-iOS/Pods
 Podfile.lock
 xcuserdata
+*.framework
+*.a
+aiengine.h
+aiengine.provision
