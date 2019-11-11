@@ -3,10 +3,11 @@
 
 #include "../SDK/include/IAgoraRtcEngine.h"
 #include "../SDK/include/IAgoraMediaEngine.h"
-#include "../SDK/include/IAgoraRtcEngine2.h"
 #include "ExtendVideoFrameObserver.h"
 #include "ExtendAudioFrameObserver.h"
 #include "AGEngineEventHandler.h"
+#include "../SDK/include/AgoraBase.h"
+using namespace agora;
 
 // #define ENABLE_CODEC	1
 
@@ -79,7 +80,7 @@ public:
 	BOOL EnableVideo(BOOL bEnable = TRUE);
 	BOOL IsVideoEnabled();
 
-	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL, BOOL bEnable = TRUE);
+	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL,int nBitrate = 0, BOOL bEnable = TRUE);
 	BOOL IsScreenCaptureEnabled();
 
 	BOOL MuteLocalAudio(BOOL bMuted = TRUE);
