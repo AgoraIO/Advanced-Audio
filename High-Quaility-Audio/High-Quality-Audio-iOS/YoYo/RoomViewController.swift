@@ -134,6 +134,7 @@ class RoomViewController: UIViewController {
     var current: RoomCurrent!
     var info: RoomInfo!
     var voiceRoleIndex: Int?
+    var voiceBeautifyIndex: Int?
     var agoraMediaKit: AgoraRtcEngineKit!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -318,6 +319,15 @@ extension RoomViewController {
                 voiceVC.selectedIndex = voiceRoleIndex
             }
             voiceVC.delegate = self
+            break
+        case "VoiceBeautifyViewController":
+            vc = story.instantiateViewController(withIdentifier: "VoiceBeautifyViewController")
+            let voiceVC = vc as! VoiceBeautifyViewController
+            if let voiceBeautifyIndex = voiceBeautifyIndex {
+                voiceVC.selectedIndex = voiceBeautifyIndex
+            }
+            voiceVC.delegate = self
+            break
         default:
             break
         }
@@ -340,6 +350,10 @@ extension RoomViewController: SettingVCDelegate {
     
     func settingVCDidSelectedVoiceChanger(_ vc: SettingViewController) {
         pushSubFunctionsInSettingView(vcId: "VoiceChangerViewController")
+    }
+    
+    func settingVCDidSelectedVoiceBeautify(_ vc: SettingViewController) {
+        pushSubFunctionsInSettingView(vcId: "VoiceBeautifyViewController")
     }
     
     func settingVCDidSelectedExitRoom(_ vc: SettingViewController) {
@@ -501,15 +515,36 @@ extension RoomViewController: AgoraRtcEngineDelegate {
 extension RoomViewController: VoiceChangerVCDelegate {
     func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex: Int) {
         voiceRoleIndex = roleIndex
-        agoraMediaKit.setParameters("{\"che.audio.morph.reverb_preset\": \(role.rawValue)}")
+        role.character(with: agoraMediaKit)
         settingBackGroundViewShow(isShow: false)
         vc.navigationController?.popViewController(animated: true)
     }
     
     func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController) {
         if let _ = voiceRoleIndex {
-            agoraMediaKit.setParameters("{\"che.audio.morph.reverb_preset\": \(EffectRoles.Default.rawValue)}")
+            EffectRoles.fmDefault(with: agoraMediaKit)
             self.voiceRoleIndex = nil
+        }
+        
+        vc.navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: -
+// MARK: VoiceBeautifyVCDelegate
+// MARK:
+extension RoomViewController: VoiceBeautifyVCDelegate {
+    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: BeautyVoiceType, roleIndex: Int) {
+        voiceBeautifyIndex = roleIndex
+        role.character(with: agoraMediaKit)
+        settingBackGroundViewShow(isShow: false)
+        vc.navigationController?.popViewController(animated: true)
+    }
+    
+    func voiceBeautifyVCDidCancel(_ vc: VoiceBeautifyViewController) {
+        if let _ = voiceBeautifyIndex {
+            BeautyVoiceType.fmDefault(with: agoraMediaKit)
+            self.voiceBeautifyIndex = nil
         }
         
         vc.navigationController?.popViewController(animated: true)
