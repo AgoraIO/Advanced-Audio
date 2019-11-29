@@ -24,6 +24,7 @@
     <string name="other_left_seat">User %d has left a seat</string>
 
     <string-array name="sound_effects">
+        <item>Original</item>
         <item>KTV</item>
         <item>Live</item>
         <item>Uncle</item>
@@ -33,7 +34,7 @@
         <item>Pop</item>
         <item>R&amp;B</item>
         <item>Phonograph</item>
-        <item>Original</item>
+        <item>Electric</item>
     </string-array>
 
     <!-- Setting dialog -->

@@ -24,6 +24,7 @@
     <string name="other_left_seat">用户 %d 已离开麦位</string>
 
     <string-array name="sound_effects">
+        <item>原声</item>
         <item>KTV</item>
         <item>演唱会</item>
         <item>大叔</item>
@@ -33,7 +34,7 @@
         <item>流行</item>
         <item>R&amp;B</item>
         <item>留声机</item>
-        <item>原声</item>
+        <item>电音</item>
     </string-array>
 
     <!-- Setting dialog -->

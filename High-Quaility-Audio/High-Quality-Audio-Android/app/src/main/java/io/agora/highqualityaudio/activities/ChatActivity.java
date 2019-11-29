@@ -31,7 +31,7 @@ import io.agora.highqualityaudio.utils.FileUtil;
 import io.agora.highqualityaudio.utils.VoiceChanger;
 import io.agora.rtc.IRtcEngineEventHandler;
 
-public class ChatActivity extends BaseActivity implements EventHandler  {
+public class ChatActivity extends BaseActivity implements EventHandler {
     private static final String TAG = ChatActivity.class.getSimpleName();
 
     // channel and current user info passed through bundle
@@ -85,7 +85,8 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
             public void onSeatAvailable(int position, View seat, UserAccountManager.UserAccount account) {
                 // When successfully take a seat, check if there exists my windows client
                 int winUid = UserAccountManager.UserAccount.toWindowsUid(myAccount().getUid());
-                if (mWindowsUsers.contains(winUid)) mSeatRecyclerView.updateWindowsClientJoin(winUid);
+                if (mWindowsUsers.contains(winUid))
+                    mSeatRecyclerView.updateWindowsClientJoin(winUid);
                 startBroadcasting();
             }
 
@@ -122,6 +123,10 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
 
         ImageView muteBtn = findViewById(R.id.chat_room_sound);
         muteBtn.setActivated(true);
+
+        ImageView earsBackBtn = findViewById(R.id.chat_room_ears_back);
+        earsBackBtn.setActivated(false);
+        setEarsBackEnabled(false);
     }
 
     private void startBroadcasting() {
@@ -140,34 +145,34 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
         ScreenHeightDialog dialog = new ScreenHeightDialog(this);
         dialog.show(R.layout.dialog_room_config, ScreenHeightDialog.DIALOG_WIDE,
                 Gravity.END, new ScreenHeightDialog.OnDialogListener() {
-                @Override
-                public void onDialogShow(final AlertDialog dialog) {
-                    if (dialog.getWindow() == null) return;
+                    @Override
+                    public void onDialogShow(final AlertDialog dialog) {
+                        if (dialog.getWindow() == null) return;
 
-                    View.OnClickListener listener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            dialog.dismiss();
+                        View.OnClickListener listener = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
 
-                            switch (view.getId()) {
-                                case R.id.config_room_change_voice_point:
-                                    openVoiceChangeDialog();
-                                    break;
-                                case R.id.config_room_btn_quit:
-                                    finish();
-                                    break;
+                                switch (view.getId()) {
+                                    case R.id.config_room_change_voice_point:
+                                        openVoiceChangeDialog();
+                                        break;
+                                    case R.id.config_room_btn_quit:
+                                        finish();
+                                        break;
+                                }
                             }
-                        }
-                    };
+                        };
 
-                    RelativeLayout changeVoice = dialog.findViewById(
-                            R.id.config_room_change_voice_point);
-                    changeVoice.setOnClickListener(listener);
+                        RelativeLayout changeVoice = dialog.findViewById(
+                                R.id.config_room_change_voice_point);
+                        changeVoice.setOnClickListener(listener);
 
-                    Button btnQuit = dialog.findViewById(R.id.config_room_btn_quit);
-                    btnQuit.setOnClickListener(listener);
-                 }
-            });
+                        Button btnQuit = dialog.findViewById(R.id.config_room_btn_quit);
+                        btnQuit.setOnClickListener(listener);
+                    }
+                });
     }
 
     private void openVoiceChangeDialog() {
@@ -231,6 +236,17 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
             mMessageView.addMessage(message);
             mMessageEdit.setText("");
         }
+    }
+
+    public void onEarsBackClicked(View view) {
+        boolean earsBackEnabled = !view.isActivated();
+        rtcEngine().enableInEarMonitoring(earsBackEnabled);
+        view.setActivated(earsBackEnabled);
+        setEarsBackEnabled(earsBackEnabled);
+    }
+
+    private void setEarsBackEnabled(boolean enabled) {
+        rtcEngine().setParameters(String.format("{\"che.audio.morph.earsback\":%b}", enabled));
     }
 
     @Override
@@ -323,7 +339,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
                 // auto mute self local audio when windows join
                 View muteBtn = this.findViewById(R.id.chat_room_speaker);
                 boolean activated = muteBtn.isActivated();
-                if(activated) {
+                if (activated) {
                     muteBtn.setActivated(false);
                     rtcEngine().muteLocalAudioStream(true);
                     mSeatRecyclerView.changeMuteStateByUid(mMyUid, true);
@@ -350,7 +366,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
                     getString(R.string.other_left_seat), uid));
             mSeatRecyclerView.removeUserByUid(uid);
         } else if (UserAccountManager.UserAccount.isWindowsUser(uid) &&
-            mWindowsUsers.contains(uid)) {
+                mWindowsUsers.contains(uid)) {
             Log.i(TAG, "update window client state");
             mSeatRecyclerView.updateWindowsClientLeave(uid);
             mWindowsUsers.remove(uid);
@@ -361,7 +377,7 @@ public class ChatActivity extends BaseActivity implements EventHandler  {
                 // auto un-mute self local audio when windows left
                 View muteBtn = this.findViewById(R.id.chat_room_speaker);
                 boolean activated = muteBtn.isActivated();
-                if(!activated) {
+                if (!activated) {
                     muteBtn.setActivated(true);
                     rtcEngine().muteLocalAudioStream(false);
                     mSeatRecyclerView.changeMuteStateByUid(mMyUid, false);
