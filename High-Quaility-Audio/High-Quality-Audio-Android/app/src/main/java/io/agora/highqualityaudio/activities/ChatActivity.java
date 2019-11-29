@@ -20,6 +20,7 @@ import java.util.List;
 
 import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.adapters.SeatListAdapter;
+import io.agora.highqualityaudio.adapters.VoiceChangeAdapter;
 import io.agora.highqualityaudio.data.UserAccountManager;
 import io.agora.highqualityaudio.rtc.EventHandler;
 import io.agora.highqualityaudio.ui.MessageRecyclerView;
@@ -28,7 +29,7 @@ import io.agora.highqualityaudio.ui.SeatListRecyclerView;
 import io.agora.highqualityaudio.ui.VoiceChangeRecyclerView;
 import io.agora.highqualityaudio.utils.Constants;
 import io.agora.highqualityaudio.utils.FileUtil;
-import io.agora.highqualityaudio.utils.VoiceChanger;
+import io.agora.highqualityaudio.utils.SoundEffectUtil;
 import io.agora.rtc.IRtcEngineEventHandler;
 
 public class ChatActivity extends BaseActivity implements EventHandler {
@@ -40,7 +41,8 @@ public class ChatActivity extends BaseActivity implements EventHandler {
     private int mPortraitRes;
     private int mMyUid;
 
-    private int mLastSelectedVoice = VoiceChanger.VOICE_DEFAULT;
+    private int mLastSelectedChange = SoundEffectUtil.EFFECT_NONE;
+    private int mLastSelectedBeautify = SoundEffectUtil.EFFECT_NONE;
 
     private SeatListRecyclerView mSeatRecyclerView;
 
@@ -49,6 +51,7 @@ public class ChatActivity extends BaseActivity implements EventHandler {
     private MessageRecyclerView mMessageView;
     private EditText mMessageEdit;
     private ImageView mSpeakerBtn;
+    private ImageView mEarsBackBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,20 +127,23 @@ public class ChatActivity extends BaseActivity implements EventHandler {
         ImageView muteBtn = findViewById(R.id.chat_room_sound);
         muteBtn.setActivated(true);
 
-        ImageView earsBackBtn = findViewById(R.id.chat_room_ears_back);
-        earsBackBtn.setActivated(false);
+        mEarsBackBtn = findViewById(R.id.chat_room_ears_back);
+        mEarsBackBtn.setEnabled(false);
+        mEarsBackBtn.setActivated(false);
         setEarsBackEnabled(false);
     }
 
     private void startBroadcasting() {
         mSpeakerBtn.setEnabled(true);
         mSpeakerBtn.setActivated(true);
+        mEarsBackBtn.setEnabled(true);
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER);
     }
 
     private void endBroadcasting() {
         mSpeakerBtn.setActivated(false);
         mSpeakerBtn.setEnabled(false);
+        mEarsBackBtn.setEnabled(false);
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE);
     }
 
@@ -158,6 +164,9 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                                     case R.id.config_room_change_voice_point:
                                         openVoiceChangeDialog();
                                         break;
+                                    case R.id.config_room_beautify_voice_point:
+                                        openVoiceBeatifyDialog();
+                                        break;
                                     case R.id.config_room_btn_quit:
                                         finish();
                                         break;
@@ -165,12 +174,11 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                             }
                         };
 
-                        RelativeLayout changeVoice = dialog.findViewById(
-                                R.id.config_room_change_voice_point);
-                        changeVoice.setOnClickListener(listener);
+                        dialog.findViewById(R.id.config_room_change_voice_point).setOnClickListener(listener);
 
-                        Button btnQuit = dialog.findViewById(R.id.config_room_btn_quit);
-                        btnQuit.setOnClickListener(listener);
+                        dialog.findViewById(R.id.config_room_beautify_voice_point).setOnClickListener(listener);
+
+                        dialog.findViewById(R.id.config_room_btn_quit).setOnClickListener(listener);
                     }
                 });
     }
@@ -184,7 +192,10 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                         final VoiceChangeRecyclerView options =
                                 dialog.findViewById(R.id.change_voice_recycler_options);
 
-                        options.setSelectedPosition(mLastSelectedVoice);
+                        final VoiceChangeAdapter adapter = new VoiceChangeAdapter(ChatActivity.this, R.array.voice_preset_items);
+                        adapter.setSelectedPosition(mLastSelectedChange);
+
+                        options.setAdapter(adapter);
 
                         View.OnClickListener listener = new View.OnClickListener() {
                             @Override
@@ -195,8 +206,59 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                                         dialog.dismiss();
                                         break;
                                     case R.id.change_voice_btn_confirm:
-                                        mLastSelectedVoice = options.getSelectedPosition();
-                                        VoiceChanger.changeVoice(application(), mLastSelectedVoice);
+                                        mLastSelectedChange = adapter.getSelectedPosition();
+                                        // There is no index 6 in preset list
+                                        int type = mLastSelectedChange < 6 ? mLastSelectedChange : mLastSelectedChange + 1;
+                                        SoundEffectUtil.changePreset(rtcEngine(), type);
+
+                                        dialog.dismiss();
+                                        break;
+                                }
+                            }
+                        };
+
+                        ImageView imgBack = dialog.findViewById(R.id.change_voice_back);
+                        imgBack.setOnClickListener(listener);
+                        Button btnConfirm = dialog.findViewById(R.id.change_voice_btn_confirm);
+                        btnConfirm.setOnClickListener(listener);
+                        Button btnCancel = dialog.findViewById(R.id.change_voice_btn_cancel);
+                        btnCancel.setOnClickListener(listener);
+                    }
+                });
+    }
+
+    private void openVoiceBeatifyDialog() {
+        ScreenHeightDialog dialog = new ScreenHeightDialog(this);
+        dialog.show(R.layout.dialog_change_voice, ScreenHeightDialog.DIALOG_FULL_WIDTH,
+                Gravity.END, new ScreenHeightDialog.OnDialogListener() {
+                    @Override
+                    public void onDialogShow(final AlertDialog dialog) {
+                        TextView title = dialog.findViewById(R.id.change_voice_title);
+                        title.setText(R.string.setting_dialog_beautify_voice);
+
+                        final VoiceChangeRecyclerView options =
+                                dialog.findViewById(R.id.change_voice_recycler_options);
+
+                        final VoiceChangeAdapter adapter = new VoiceChangeAdapter(ChatActivity.this, R.array.voice_change_items);
+                        adapter.setSelectedPosition(mLastSelectedBeautify);
+
+                        options.setAdapter(adapter);
+
+                        View.OnClickListener listener = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                switch (view.getId()) {
+                                    case R.id.change_voice_back:
+                                    case R.id.change_voice_btn_cancel:
+                                        dialog.dismiss();
+                                        break;
+                                    case R.id.change_voice_btn_confirm:
+                                        mLastSelectedBeautify = adapter.getSelectedPosition();
+
+                                        // Voice change list starts from 7 except for not being changed
+                                        int type = mLastSelectedBeautify == 0 ? mLastSelectedBeautify : mLastSelectedBeautify + 6;
+                                        SoundEffectUtil.changeVoice(rtcEngine(), type);
+
                                         dialog.dismiss();
                                         break;
                                 }
@@ -246,7 +308,7 @@ public class ChatActivity extends BaseActivity implements EventHandler {
     }
 
     private void setEarsBackEnabled(boolean enabled) {
-        rtcEngine().setParameters(String.format("{\"che.audio.morph.earsback\":%b}", enabled));
+        rtcEngine().setParameters(String.format("{\"che.audio.morph.earsback\": %b}", enabled));
     }
 
     @Override
@@ -262,9 +324,9 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                 io.agora.rtc.Constants.AUDIO_SCENARIO_GAME_STREAMING);
 
         // High quality audio parameters
-        rtcEngine().setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
+        rtcEngine().setParameters("{\"che.audio.specify.codec\": \"HEAAC_2ch\"}");
         // Enable stereo
-        rtcEngine().setParameters("{\"che.audio.stereo\":true}");
+        rtcEngine().setParameters("{\"che.audio.stereo\": true}");
 
         rtcEngine().setLogFile(FileUtil.initializeLogFile(this));
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE);
