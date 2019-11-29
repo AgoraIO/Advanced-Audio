@@ -21,6 +21,7 @@ class RoomViewController: UIViewController {
     
     @IBOutlet weak var micButton: UIButton!
     @IBOutlet weak var playbackButton: UIButton!
+    @IBOutlet weak var earsBackButton: UIButton!
     @IBOutlet weak var remindInputTextField: UITextField!
     @IBOutlet weak var seatViewWidth: NSLayoutConstraint!
     @IBOutlet weak var seatViewBottom: NSLayoutConstraint!
@@ -61,6 +62,7 @@ class RoomViewController: UIViewController {
                 isMuteAudioPlaying = false
                 settingButton.isHidden = false
                 micButton.isEnabled = true
+                earsBackButton.isEnabled = true
                 agoraMediaKit.setClientRole(.broadcaster)
             case .audience:
                 if micButton.isSelected == true {
@@ -69,6 +71,7 @@ class RoomViewController: UIViewController {
                 
                 settingButton.isHidden = true
                 micButton.isEnabled = false
+                earsBackButton.isEnabled = false
                 agoraMediaKit.setClientRole(.audience)
             }
         }
@@ -94,6 +97,14 @@ class RoomViewController: UIViewController {
         didSet {
             playbackButton.isSelected = isMuteAudioPlaying
             agoraMediaKit.muteAllRemoteAudioStreams(isMuteAudioPlaying)
+        }
+    }
+    
+    private var isEarsbackOpen: Bool = false {
+        didSet {
+            earsBackButton.isSelected = isEarsbackOpen
+            agoraMediaKit.enable(inEarMonitoring: isEarsbackOpen)
+            agoraMediaKit.setParameters("{\"che.audio.morph.earsback\": \(isEarsbackOpen)}")
         }
     }
     
@@ -188,6 +199,10 @@ extension RoomViewController {
         isMuteAudioPlaying.toggle()
     }
     
+    @IBAction func doEarsbackPressed(_ sender: UIButton) {
+        isEarsbackOpen.toggle()
+    }
+    
     @IBAction func doSettingPressed(_ sender: UIButton) {
         isSettingViewShow = true
     }
@@ -200,9 +215,9 @@ private extension RoomViewController {
     func loadAgoraMediaKit() {
         agoraMediaKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.appId, delegate: self)
         agoraMediaKit.setChannelProfile(.liveBroadcasting)
-        agoraMediaKit.enableAudioVolumeIndication(1000, smooth: 3)
+        agoraMediaKit.enableAudioVolumeIndication(1000, smooth: 3, report_vad: false)
         agoraMediaKit.setAudioProfile(.default, scenario: .gameStreaming)
-        agoraMediaKit.setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}")
+        agoraMediaKit.setParameters("{\"che.audio.specify.codec\": \"HEAAC_2ch\"}")
         debugLog(log: "getSdkVersion: \(AgoraRtcEngineKit.getSdkVersion())")
     }
     
@@ -493,7 +508,7 @@ extension RoomViewController: VoiceChangerVCDelegate {
     
     func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController) {
         if let _ = voiceRoleIndex {
-            agoraMediaKit.setParameters("che.audio.morph.reverb_preset: \(EffectRoles.Default.rawValue)")
+            agoraMediaKit.setParameters("{\"che.audio.morph.reverb_preset\": \(EffectRoles.Default.rawValue)}")
             self.voiceRoleIndex = nil
         }
         

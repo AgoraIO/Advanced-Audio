@@ -91,6 +91,7 @@ extension AgoraAudioReverbType: CSDescriptable, CSValueRange {
 }
 
 enum EffectRoles {
+    case Default
     case OldMan
     case BabyGirl
     case KTV
@@ -100,25 +101,27 @@ enum EffectRoles {
     case Rock
     case RB
     case Phonograph
-    case Default
+    case Electric
     
     var rawValue: Int {
         switch self {
-        case .KTV:              return 0
-        case .VocalConcert:     return 1
-        case .OldMan:           return 2
-        case .BabyGirl:         return 3
-        case .RecordingRoom:    return 4
-        case .Rock:             return 5
-        case .Pop:              return 6
-        case .RB:               return 7
-        case .Phonograph:       return 8
-        case .Default:          return 9
+        case .Default:          return 0
+        case .KTV:              return 1
+        case .VocalConcert:     return 2
+        case .OldMan:           return 3
+        case .BabyGirl:         return 4
+        case .RecordingRoom:    return 5
+        case .Rock:             return 6
+        case .Pop:              return 7
+        case .RB:               return 8
+        case .Phonograph:       return 9
+        case .Electric:         return 10
         }
     }
     
     static var list: [EffectRoles] {
-        return [.KTV,
+        return [.Default,
+                .KTV,
                 .VocalConcert,
                 .OldMan,
                 .BabyGirl,
@@ -126,13 +129,15 @@ enum EffectRoles {
                 .Rock,
                 .Pop,
                 .RB,
-                .Phonograph]
+                .Phonograph,
+                .Electric]
     }
 }
 
 extension EffectRoles: CSDescriptable {
     func description() -> String {
         switch self {
+        case .Default:          return "Default"
         case .KTV:              return "KTV"
         case .VocalConcert:     return "演唱会"
         case .OldMan:           return "大叔"
@@ -142,7 +147,7 @@ extension EffectRoles: CSDescriptable {
         case .Pop:              return "流行"
         case .RB:               return "R&B"
         case .Phonograph:       return "留声机"
-        case .Default:          return "Default"
+        case .Electric:         return "电音"
         }
     }
 }
