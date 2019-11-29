@@ -45,6 +45,7 @@
 		A7F1FC3220A14E9900CAEECE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC3120A14E9900CAEECE /* AVFoundation.framework */; };
 		A7F1FC3420A14EA300CAEECE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC3320A14EA300CAEECE /* libc++.tbd */; };
 		A7F1FC3820A1501F00CAEECE /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1FC3720A1501F00CAEECE /* KeyCenter.swift */; };
+		F5D376CB2390DD8000AE7513 /* VoiceBeautifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D376CA2390DD8000AE7513 /* VoiceBeautifyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		A7F1FC3120A14E9900CAEECE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A7F1FC3320A14EA300CAEECE /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A7F1FC3720A1501F00CAEECE /* KeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCenter.swift; sourceTree = "<group>"; };
+		F5D376CA2390DD8000AE7513 /* VoiceBeautifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBeautifyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				A76D802D20E0BE6200A626C4 /* SettingViewController.swift */,
 				A76D802F20E0DF9E00A626C4 /* SubSettingViewController.swift */,
 				A76D803120E11C1D00A626C4 /* VoiceChangerViewController.swift */,
+				F5D376CA2390DD8000AE7513 /* VoiceBeautifyViewController.swift */,
 			);
 			name = Popover;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				A7F1FC2720A14C0E00CAEECE /* Moment.swift in Sources */,
 				A7B541F020C905E50023FE2E /* BroadcasterSeatViewController.swift in Sources */,
 				A76D803220E11C1D00A626C4 /* VoiceChangerViewController.swift in Sources */,
+				F5D376CB2390DD8000AE7513 /* VoiceBeautifyViewController.swift in Sources */,
 				A76D803620E11FF700A626C4 /* VoiceChangerCell.swift in Sources */,
 				A711051722FAD7F80041CA81 /* StreamIdParse.swift in Sources */,
 				A7C5C29C20ECC939003A391B /* SubSettingCell.swift in Sources */,

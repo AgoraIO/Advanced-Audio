@@ -21,6 +21,7 @@ class RoomViewController: UIViewController {
     
     @IBOutlet weak var micButton: UIButton!
     @IBOutlet weak var playbackButton: UIButton!
+    @IBOutlet weak var earsBackButton: UIButton!
     @IBOutlet weak var remindInputTextField: UITextField!
     @IBOutlet weak var seatViewWidth: NSLayoutConstraint!
     @IBOutlet weak var seatViewBottom: NSLayoutConstraint!
@@ -61,6 +62,7 @@ class RoomViewController: UIViewController {
                 isMuteAudioPlaying = false
                 settingButton.isHidden = false
                 micButton.isEnabled = true
+                earsBackButton.isEnabled = true
                 agoraMediaKit.setClientRole(.broadcaster)
             case .audience:
                 if micButton.isSelected == true {
@@ -69,6 +71,7 @@ class RoomViewController: UIViewController {
                 
                 settingButton.isHidden = true
                 micButton.isEnabled = false
+                earsBackButton.isEnabled = false
                 agoraMediaKit.setClientRole(.audience)
             }
         }
@@ -94,6 +97,14 @@ class RoomViewController: UIViewController {
         didSet {
             playbackButton.isSelected = isMuteAudioPlaying
             agoraMediaKit.muteAllRemoteAudioStreams(isMuteAudioPlaying)
+        }
+    }
+    
+    private var isEarsbackOpen: Bool = false {
+        didSet {
+            earsBackButton.isSelected = isEarsbackOpen
+            agoraMediaKit.enable(inEarMonitoring: isEarsbackOpen)
+            agoraMediaKit.setParameters("{\"che.audio.morph.earsback\": \(isEarsbackOpen)}")
         }
     }
     
@@ -123,6 +134,7 @@ class RoomViewController: UIViewController {
     var current: RoomCurrent!
     var info: RoomInfo!
     var voiceRoleIndex: Int?
+    var voiceBeautifyIndex: Int?
     var agoraMediaKit: AgoraRtcEngineKit!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -188,6 +200,10 @@ extension RoomViewController {
         isMuteAudioPlaying.toggle()
     }
     
+    @IBAction func doEarsbackPressed(_ sender: UIButton) {
+        isEarsbackOpen.toggle()
+    }
+    
     @IBAction func doSettingPressed(_ sender: UIButton) {
         isSettingViewShow = true
     }
@@ -200,9 +216,9 @@ private extension RoomViewController {
     func loadAgoraMediaKit() {
         agoraMediaKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.appId, delegate: self)
         agoraMediaKit.setChannelProfile(.liveBroadcasting)
-        agoraMediaKit.enableAudioVolumeIndication(1000, smooth: 3)
+        agoraMediaKit.enableAudioVolumeIndication(1000, smooth: 3, report_vad: false)
         agoraMediaKit.setAudioProfile(.default, scenario: .gameStreaming)
-        agoraMediaKit.setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}")
+        agoraMediaKit.setParameters("{\"che.audio.specify.codec\": \"HEAAC_2ch\"}")
         debugLog(log: "getSdkVersion: \(AgoraRtcEngineKit.getSdkVersion())")
     }
     
@@ -303,6 +319,15 @@ extension RoomViewController {
                 voiceVC.selectedIndex = voiceRoleIndex
             }
             voiceVC.delegate = self
+            break
+        case "VoiceBeautifyViewController":
+            vc = story.instantiateViewController(withIdentifier: "VoiceBeautifyViewController")
+            let voiceVC = vc as! VoiceBeautifyViewController
+            if let voiceBeautifyIndex = voiceBeautifyIndex {
+                voiceVC.selectedIndex = voiceBeautifyIndex
+            }
+            voiceVC.delegate = self
+            break
         default:
             break
         }
@@ -325,6 +350,10 @@ extension RoomViewController: SettingVCDelegate {
     
     func settingVCDidSelectedVoiceChanger(_ vc: SettingViewController) {
         pushSubFunctionsInSettingView(vcId: "VoiceChangerViewController")
+    }
+    
+    func settingVCDidSelectedVoiceBeautify(_ vc: SettingViewController) {
+        pushSubFunctionsInSettingView(vcId: "VoiceBeautifyViewController")
     }
     
     func settingVCDidSelectedExitRoom(_ vc: SettingViewController) {
@@ -486,15 +515,36 @@ extension RoomViewController: AgoraRtcEngineDelegate {
 extension RoomViewController: VoiceChangerVCDelegate {
     func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex: Int) {
         voiceRoleIndex = roleIndex
-        agoraMediaKit.setParameters("{\"che.audio.morph.reverb_preset\": \(role.rawValue)}")
+        role.character(with: agoraMediaKit)
         settingBackGroundViewShow(isShow: false)
         vc.navigationController?.popViewController(animated: true)
     }
     
     func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController) {
         if let _ = voiceRoleIndex {
-            agoraMediaKit.setParameters("che.audio.morph.reverb_preset: \(EffectRoles.Default.rawValue)")
+            EffectRoles.fmDefault(with: agoraMediaKit)
             self.voiceRoleIndex = nil
+        }
+        
+        vc.navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: -
+// MARK: VoiceBeautifyVCDelegate
+// MARK:
+extension RoomViewController: VoiceBeautifyVCDelegate {
+    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: BeautyVoiceType, roleIndex: Int) {
+        voiceBeautifyIndex = roleIndex
+        role.character(with: agoraMediaKit)
+        settingBackGroundViewShow(isShow: false)
+        vc.navigationController?.popViewController(animated: true)
+    }
+    
+    func voiceBeautifyVCDidCancel(_ vc: VoiceBeautifyViewController) {
+        if let _ = voiceBeautifyIndex {
+            BeautyVoiceType.fmDefault(with: agoraMediaKit)
+            self.voiceBeautifyIndex = nil
         }
         
         vc.navigationController?.popViewController(animated: true)

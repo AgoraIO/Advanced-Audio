@@ -13,6 +13,7 @@ protocol SettingVCDelegate: NSObjectProtocol {
     func settingVCDidEndShow(_ vc: SettingViewController)
 
     func settingVCDidSelectedVoiceChanger(_ vc: SettingViewController)
+    func settingVCDidSelectedVoiceBeautify(_ vc: SettingViewController)
     func settingVCDidSelectedExitRoom(_ vc: SettingViewController)
 }
 
@@ -72,6 +73,8 @@ extension SettingViewController: UITableViewDelegate {
         switch indexPath {
         case IndexPath(row: 0, section: 0):
             delegate?.settingVCDidSelectedVoiceChanger(self)
+        case IndexPath(row: 1, section: 0):
+            delegate?.settingVCDidSelectedVoiceBeautify(self)
         default:
             break
         }

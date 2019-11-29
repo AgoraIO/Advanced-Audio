@@ -12,137 +12,110 @@ protocol CSDescriptable {
     func description() -> String
 }
 
-protocol CSValueRange {
-    func valueRange() -> CSRange
-}
-
-struct CSRange {
-    var minValue : Int
-    var maxValue : Int
-}
-
-struct EffectType {
-    static func equalizationBandFrequencysList() -> [AgoraAudioEqualizationBandFrequency] {
-        return  [.band31,
-                 .band62,
-                 .band125,
-                 .band250,
-                 .band500,
-                 .band1K,
-                 .band2K,
-                 .band4K,
-                 .band8K,
-                 .band16K]
-    }
-
-    static func reverbsList() -> [AgoraAudioReverbType] {
-        return [.dryLevel,
-                .wetLevel,
-                .roomSize,
-                .wetDelay,
-                .strength]
-    }
-}
-
-extension AgoraAudioEqualizationBandFrequency: CSDescriptable, CSValueRange {
-    func description() -> String {
-        switch self {
-        case .band31:     return "Band31"
-        case .band62:     return "Band62"
-        case .band125:    return "Band125"
-        case .band250:    return "Band250"
-        case .band500:    return "Band500"
-        case .band1K:     return "Band1k"
-        case .band2K:     return "Band2k"
-        case .band4K:     return "Band4k"
-        case .band8K:     return "Band8k"
-        case .band16K:    return "Band16k"
-        @unknown default: return "unknown"
-        }
-    }
-    
-    func valueRange() -> CSRange {
-        return CSRange(minValue: -15, maxValue: 15)
-    }
-}
-
-extension AgoraAudioReverbType: CSDescriptable, CSValueRange {
-    func description() -> String {
-        switch self {
-        case .dryLevel:   return "DryLevel"
-        case .wetLevel:   return "WetLevel"
-        case .roomSize:   return "RoomSize"
-        case .wetDelay:   return "WetDelay"
-        case .strength:   return "Strength"
-        @unknown default: return "unknown"
-        }
-    }
-    
-    func valueRange() -> CSRange {
-        switch self {
-        case .dryLevel:   return CSRange(minValue: -20, maxValue: 10)
-        case .wetLevel:   return CSRange(minValue: -20, maxValue: 10)
-        case .roomSize:   return CSRange(minValue: 0, maxValue: 100)
-        case .wetDelay:   return CSRange(minValue: 0, maxValue: 200)
-        case .strength:   return CSRange(minValue: 0, maxValue: 100)
-        @unknown default: return CSRange(minValue: 0, maxValue: 0)
-        }
-    }
-}
-
-enum EffectRoles {
-    case OldMan
-    case BabyGirl
-    case KTV
-    case RecordingRoom
-    case VocalConcert
-    case Pop
-    case Rock
-    case RB
-    case Phonograph
-    case Default
-    
-    var rawValue: Int {
-        switch self {
-        case .KTV:              return 0
-        case .VocalConcert:     return 1
-        case .OldMan:           return 2
-        case .BabyGirl:         return 3
-        case .RecordingRoom:    return 4
-        case .Rock:             return 5
-        case .Pop:              return 6
-        case .RB:               return 7
-        case .Phonograph:       return 8
-        case .Default:          return 9
-        }
-    }
-    
-    static var list: [EffectRoles] {
-        return [.KTV,
+class EffectType {
+    static func rolesList() -> [EffectRoles] {
+        return [.Default,
+                .KTV,
                 .VocalConcert,
                 .OldMan,
                 .BabyGirl,
                 .RecordingRoom,
-                .Rock,
-                .Pop,
+                .Fashion,
                 .RB,
                 .Phonograph]
+    }
+    static func beautyVoiceList() -> [BeautyVoiceType] {
+        return [.Default,
+                .DeepVoice,
+                .LowVoice,
+                .MellowVoice,
+                .FakeVoice,
+                .FullVoice,
+                .ClearVoice,
+                .HighVoice,
+                .LoudVoice,
+                .EmptyVoice]
+    }
+}
+
+enum EffectRoles: Int, CaseIterable {
+    case Default
+    case KTV
+    case VocalConcert
+    case OldMan
+    case BabyGirl
+    case RecordingRoom
+    case Fashion = 7
+    case RB
+    case Phonograph
+}
+
+enum BeautyVoiceType: Int, CaseIterable {
+    case Default = 0
+    case DeepVoice = 7
+    case LowVoice
+    case MellowVoice
+    case FakeVoice
+    case FullVoice
+    case ClearVoice
+    case HighVoice
+    case LoudVoice
+    case EmptyVoice
+}
+
+extension BeautyVoiceType: CSDescriptable {
+    func description() -> String {
+        switch self {
+        case .Default:         return "原声"
+        case .DeepVoice:       return "浑厚"
+        case .LowVoice:        return "低沉"
+        case .MellowVoice:     return "圆润"
+        case .FakeVoice:       return "假音"
+        case .FullVoice:       return "饱满"
+        case .ClearVoice:      return "清澈"
+        case .HighVoice:       return "高亢"
+        case .LoudVoice:       return "嘹亮"
+        case .EmptyVoice:      return "空旷"
+        }
+    }
+    
+    static func fmDefault(with agoraKit: AgoraRtcEngineKit) {
+        beautifulVoice(with: agoraKit, type: BeautyVoiceType.Default.rawValue)
+    }
+
+    static func beautifulVoice(with agoraKit: AgoraRtcEngineKit, type:Int) {
+        agoraKit.setParameters("{\"che.audio.morph.voice_changer\": \(type)}")
+    }
+
+    func character(with agoraKit: AgoraRtcEngineKit) {
+        BeautyVoiceType.beautifulVoice(with: agoraKit, type: self.rawValue)
     }
 }
 
 extension EffectRoles: CSDescriptable {
     func description() -> String {
         switch self {
+        case .Default:          return "原声"
         case .KTV:              return "KTV"
         case .VocalConcert:     return "演唱会"
         case .OldMan:           return "大叔"
         case .BabyGirl:         return "小姐姐"
         case .RecordingRoom:    return "录音棚"
-        case .Rock:             return "摇滚"
-        case .Pop:              return "流行"
+        case .Fashion:          return "流行"
         case .RB:               return "R&B"
         case .Phonograph:       return "留声机"
-        case .Default:          return "Default"
         }
+    }
+    
+    static func fmDefault(with agoraKit: AgoraRtcEngineKit) {
+        changeVoice(with: agoraKit, type: EffectRoles.Default.rawValue)
+    }
+
+    static func changeVoice(with agoraKit: AgoraRtcEngineKit, type:Int) {
+        agoraKit.setParameters("{\"che.audio.morph.reverb_preset\": \(type)}")
+    }
+
+    func character(with agoraKit: AgoraRtcEngineKit) {
+        EffectRoles.changeVoice(with: agoraKit, type: self.rawValue)
     }
 }

@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol VoiceChangerVCDelegate: NSObjectProtocol {
-    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex:Int)
-    func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController)
+protocol VoiceBeautifyVCDelegate: NSObjectProtocol {
+    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: BeautyVoiceType, roleIndex:Int)
+    func voiceBeautifyVCDidCancel(_ vc: VoiceBeautifyViewController)
 }
 
-class VoiceChangerViewController: UIViewController {
+class VoiceBeautifyViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private lazy var rolesList: [EffectRoles] = EffectType.rolesList()
-    weak var delegate: VoiceChangerVCDelegate?
+    private lazy var rolesList: [BeautyVoiceType] = EffectType.beautyVoiceList()
+    weak var delegate: VoiceBeautifyVCDelegate?
     var selectedIndex: Int?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,20 +34,20 @@ class VoiceChangerViewController: UIViewController {
     @IBAction func doConfirmPressed(_ sender: UIButton) {
         if let selectedIndex = selectedIndex {
             let role = rolesList[selectedIndex]
-            delegate?.voiceChangerVC(self, didSelected: role, roleIndex: selectedIndex)
+            delegate?.voiceBeautifyVC(self, didSelected: role, roleIndex: selectedIndex)
         } else {
-            delegate?.voiceChanngerVCDidCancel(self)
+            delegate?.voiceBeautifyVCDidCancel(self)
         }
     }
     
     @IBAction func doCancelPressed(_ sender: UIButton) {
-        delegate?.voiceChanngerVCDidCancel(self)
+        delegate?.voiceBeautifyVCDidCancel(self)
     }
 }
 
-private extension VoiceChangerViewController {
+private extension VoiceBeautifyViewController {
     func updateViews() {
-        self.navigationItem.title = "变声"
+        self.navigationItem.title = "美声"
     }
     
     func updateCollectionViewLayout() {
@@ -62,7 +62,7 @@ private extension VoiceChangerViewController {
     }
 }
 
-extension VoiceChangerViewController: UICollectionViewDataSource {
+extension VoiceBeautifyViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return rolesList.count
     }
@@ -81,7 +81,7 @@ extension VoiceChangerViewController: UICollectionViewDataSource {
     }
 }
 
-extension VoiceChangerViewController: UICollectionViewDelegate {
+extension VoiceBeautifyViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let selected = selectedIndex, selected == indexPath.item {
             let index = IndexPath(item: selected, section: 0)
