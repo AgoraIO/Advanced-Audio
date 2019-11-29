@@ -23,22 +23,35 @@
     <string name="other_joined">User %d has taken a seat</string>
     <string name="other_left_seat">User %d has left a seat</string>
 
-    <string-array name="sound_effects">
+    <string-array name="voice_change_items">
+        <item>None</item>
+        <item>Thick</item>
+        <item>Low</item>
+        <item>Round</item>
+        <item>Falsetto</item>
+        <item>Full</item>
+        <item>Clear</item>
+        <item>Resounding</item>
+        <item>Loud</item>
+        <item>OpenAir</item>
+    </string-array>
+
+    <string-array name="voice_preset_items">
+        <item>None</item>
         <item>KTV</item>
         <item>Live</item>
         <item>Uncle</item>
-        <item>Lady</item>
+        <item>Girl</item>
         <item>Studio</item>
-        <item>R&amp;R</item>
         <item>Pop</item>
         <item>R&amp;B</item>
         <item>Phonograph</item>
-        <item>Original</item>
     </string-array>
 
     <!-- Setting dialog -->
     <string name="setting_dialog_title">Room Settings</string>
     <string name="setting_dialog_change_voice">Change Voice</string>
+    <string name="setting_dialog_beautify_voice">Beautify Voice</string>
     <string name="setting_dialog_leave_room">Leave Room</string>
     <string name="setting_dialog_confirm">Confirm</string>
     <string name="setting_dialog_cancel">Cancel</string>
