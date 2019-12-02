@@ -50,7 +50,7 @@
 
     <!-- Setting dialog -->
     <string name="setting_dialog_title">Room Settings</string>
-    <string name="setting_dialog_change_voice">Change Voice</string>
+    <string name="setting_dialog_change_voice">Voice Effect</string>
     <string name="setting_dialog_beautify_voice">Beautify Voice</string>
     <string name="setting_dialog_leave_room">Leave Room</string>
     <string name="setting_dialog_confirm">Confirm</string>

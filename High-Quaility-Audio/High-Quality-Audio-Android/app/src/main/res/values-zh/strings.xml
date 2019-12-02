@@ -50,7 +50,7 @@
 
     <!-- Setting dialog -->
     <string name="setting_dialog_title">房间设置</string>
-    <string name="setting_dialog_change_voice">变声</string>
+    <string name="setting_dialog_change_voice">音效</string>
     <string name="setting_dialog_beautify_voice">美声</string>
     <string name="setting_dialog_leave_room">离开房间</string>
     <string name="setting_dialog_confirm">确定</string>

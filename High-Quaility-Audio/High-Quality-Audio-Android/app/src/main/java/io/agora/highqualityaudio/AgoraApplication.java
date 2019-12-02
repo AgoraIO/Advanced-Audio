@@ -21,7 +21,9 @@ public class AgoraApplication extends Application {
             mRtcEngine = RtcEngine.create(getApplicationContext(), getString(R.string.app_id), mHandler);
             mRtcEngine.enableAudioVolumeIndication(
                     io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_INTERVAL,
-                    io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_SMOOTH);
+                    io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_SMOOTH,
+                    false);
+            mRtcEngine.setParameters(String.format("{\"che.audio.morph.earsback\": %b}", true));
         } catch (Exception e) {
             e.printStackTrace();
         }

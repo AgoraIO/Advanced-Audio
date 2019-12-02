@@ -130,7 +130,6 @@ public class ChatActivity extends BaseActivity implements EventHandler {
         mEarsBackBtn = findViewById(R.id.chat_room_ears_back);
         mEarsBackBtn.setEnabled(false);
         mEarsBackBtn.setActivated(false);
-        setEarsBackEnabled(false);
     }
 
     private void startBroadcasting() {
@@ -304,11 +303,6 @@ public class ChatActivity extends BaseActivity implements EventHandler {
         boolean earsBackEnabled = !view.isActivated();
         rtcEngine().enableInEarMonitoring(earsBackEnabled);
         view.setActivated(earsBackEnabled);
-        setEarsBackEnabled(earsBackEnabled);
-    }
-
-    private void setEarsBackEnabled(boolean enabled) {
-        rtcEngine().setParameters(String.format("{\"che.audio.morph.earsback\": %b}", enabled));
     }
 
     @Override

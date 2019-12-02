@@ -104,7 +104,6 @@ class RoomViewController: UIViewController {
         didSet {
             earsBackButton.isSelected = isEarsbackOpen
             agoraMediaKit.enable(inEarMonitoring: isEarsbackOpen)
-            agoraMediaKit.setParameters("{\"che.audio.morph.earsback\": \(isEarsbackOpen)}")
         }
     }
     
@@ -219,6 +218,7 @@ private extension RoomViewController {
         agoraMediaKit.enableAudioVolumeIndication(1000, smooth: 3, report_vad: false)
         agoraMediaKit.setAudioProfile(.default, scenario: .gameStreaming)
         agoraMediaKit.setParameters("{\"che.audio.specify.codec\": \"HEAAC_2ch\"}")
+        agoraMediaKit.setParameters("{\"che.audio.morph.earsback\": true}")
         debugLog(log: "getSdkVersion: \(AgoraRtcEngineKit.getSdkVersion())")
     }
     
