@@ -6,8 +6,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.media.AudioRecord;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -83,7 +85,6 @@ public class CustomRecorderService extends Service {
     }
 
     private class RecordThread extends Thread {
-        private static final int RECORD_WAIT = 20;
         private CustomRecorder mRecorder;
         private byte[] mBuffer;
 
@@ -96,22 +97,35 @@ public class CustomRecorderService extends Service {
         @Override
         public void run() {
             mRecorder.start();
-
             while (!mStopped) {
-                int size = mRecorder.read(mBuffer, 0, mBuffer.length);
-                rtcEngine().pushExternalAudioFrame(
-                        mBuffer, System.currentTimeMillis());
-                // sleepForNextConsume();
+                int result = mRecorder.read(mBuffer, 0, mBuffer.length);
+                if (result >= 0) {
+                    rtcEngine().pushExternalAudioFrame(
+                            mBuffer, System.currentTimeMillis());
+                } else {
+                    logRecordError(result);
+                }
             }
             release();
         }
 
-        void sleepForNextConsume() {
-            try {
-                Thread.sleep(RECORD_WAIT);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        private void logRecordError(int error) {
+            String message = "";
+            switch (error) {
+                case AudioRecord.ERROR:
+                    message = "generic operation failure";
+                    break;
+                case AudioRecord.ERROR_BAD_VALUE:
+                    message = "failure due to the use of an invalid value";
+                    break;
+                case AudioRecord.ERROR_DEAD_OBJECT:
+                    message = "object is no longer valid and needs to be recreated";
+                    break;
+                case AudioRecord.ERROR_INVALID_OPERATION:
+                    message = "failure due to the improper use of method";
+                    break;
             }
+            Log.e(TAG, message);
         }
 
         private void release() {

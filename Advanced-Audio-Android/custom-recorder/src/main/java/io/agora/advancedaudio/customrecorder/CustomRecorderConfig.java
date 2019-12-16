@@ -4,12 +4,14 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 
 class CustomRecorderConfig {
-    public static final int DEFAULT_SAMPLE_RATE = 16000;
+    static final int DEFAULT_SAMPLE_RATE = 16000;
 
     private int mSampleRate;
     private int mChannelCount;
     private int mAudioFormat;
     private int mBufferSize;
+
+    private static CustomRecorderConfig sDefaultConfig;
 
     int getSampleRate() {
         return mSampleRate;
@@ -52,15 +54,18 @@ class CustomRecorderConfig {
      * @return
      */
      static CustomRecorderConfig createDefaultConfig() {
-        CustomRecorderConfig config = new CustomRecorderConfig();
-        config.setSampleRate(DEFAULT_SAMPLE_RATE);
-        config.setChannelCount(AudioFormat.CHANNEL_IN_MONO);
-        config.setAudioFormat(AudioFormat.ENCODING_PCM_16BIT);
-        int bufSize = AudioRecord.getMinBufferSize(
-                config.getSampleRate(),
-                config.getChannelCount(),
-                config.getAudioFormat());
-        config.setBufferSize(bufSize * 2);
-        return config;
+         if (sDefaultConfig == null) {
+             sDefaultConfig = new CustomRecorderConfig();
+             sDefaultConfig.setSampleRate(DEFAULT_SAMPLE_RATE);
+             sDefaultConfig.setChannelCount(AudioFormat.CHANNEL_IN_MONO);
+             sDefaultConfig.setAudioFormat(AudioFormat.ENCODING_PCM_16BIT);
+             int bufSize = AudioRecord.getMinBufferSize(
+                     sDefaultConfig.getSampleRate(),
+                     sDefaultConfig.getChannelCount(),
+                     sDefaultConfig.getAudioFormat());
+             sDefaultConfig.setBufferSize(bufSize * 2);
+         }
+
+        return sDefaultConfig;
     }
 }

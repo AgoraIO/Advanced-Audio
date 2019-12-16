@@ -31,8 +31,21 @@ public class CustomRecorderActivity extends BaseActivity {
         String channelName = getIntent().
                 getStringExtra(Constants.KEY_CHANNEL_NAME);
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER);
+
+        // Notify the Rtc Engine that we want to use external
+        // audio sources, instead of creating a recorder inside
+        // the engine.
+        // This must be called before joining a channel. So
+        // there must be a way to obtain the recording
+        // parameters globally.
+        // Here we take the default recording configuration
+        // as an example. Developers should implement the
+        // mechanism of their own.
+        CustomRecorderConfig config =
+                CustomRecorderConfig.createDefaultConfig();
         rtcEngine().setExternalAudioSource(true,
-                CustomRecorderConfig.DEFAULT_SAMPLE_RATE, 1);
+                config.getSampleRate(),
+                config.getChannelCount());
         rtcEngine().joinChannel(null, channelName, null, 0);
     }
 
