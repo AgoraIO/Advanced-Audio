@@ -42,7 +42,7 @@ public class CustomRecorderActivity extends BaseActivity {
         // as an example. Developers should implement the
         // mechanism of their own.
         CustomRecorderConfig config =
-                CustomRecorderConfig.createDefaultConfig();
+                CustomRecorderConfig.getDefaultConfig();
         rtcEngine().setExternalAudioSource(true,
                 config.getSampleRate(),
                 config.getChannelCount());

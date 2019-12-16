@@ -8,7 +8,7 @@ class CustomRecorder {
     private CustomRecorderConfig mConfig;
 
     CustomRecorder() {
-        mConfig = CustomRecorderConfig.createDefaultConfig();
+        mConfig = CustomRecorderConfig.getDefaultConfig();
         mAudioRecord = new AudioRecord(
                 MediaRecorder.AudioSource.MIC,
                 mConfig.getSampleRate(),

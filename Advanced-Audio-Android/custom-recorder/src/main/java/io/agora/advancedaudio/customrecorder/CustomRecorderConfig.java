@@ -4,10 +4,10 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 
 class CustomRecorderConfig {
-    static final int DEFAULT_SAMPLE_RATE = 16000;
+    private static final int DEFAULT_SAMPLE_RATE = 16000;
 
     private int mSampleRate;
-    private int mChannelCount;
+    private int mChannel;
     private int mAudioFormat;
     private int mBufferSize;
 
@@ -22,11 +22,27 @@ class CustomRecorderConfig {
     }
 
     int getChannelCount() {
-        return mChannelCount;
+        switch (mChannel) {
+            case AudioFormat.CHANNEL_IN_MONO:
+                return 1;
+            case AudioFormat.CHANNEL_IN_STEREO:
+                return 2;
+            default:
+                return 0;
+        }
     }
 
-    void setChannelCount(int mChannelCount) {
-        this.mChannelCount = mChannelCount;
+    /**
+     * Set audio channel count
+     * @param channel One of AudioFormat.CHANNEL_IN_MONO
+     *                or AudioFormat.CHANNEL_IN_STEREO
+     */
+    void setChannel(int channel) {
+        mChannel = channel;
+    }
+
+    int getChannelType() {
+        return mChannel;
     }
 
     int getAudioFormat() {
@@ -53,15 +69,15 @@ class CustomRecorderConfig {
      * 4) Buffer size: twice the minimum buffer size
      * @return
      */
-     static CustomRecorderConfig createDefaultConfig() {
+     static CustomRecorderConfig getDefaultConfig() {
          if (sDefaultConfig == null) {
              sDefaultConfig = new CustomRecorderConfig();
              sDefaultConfig.setSampleRate(DEFAULT_SAMPLE_RATE);
-             sDefaultConfig.setChannelCount(AudioFormat.CHANNEL_IN_MONO);
+             sDefaultConfig.setChannel(AudioFormat.CHANNEL_IN_MONO);
              sDefaultConfig.setAudioFormat(AudioFormat.ENCODING_PCM_16BIT);
              int bufSize = AudioRecord.getMinBufferSize(
                      sDefaultConfig.getSampleRate(),
-                     sDefaultConfig.getChannelCount(),
+                     sDefaultConfig.getChannelType(),
                      sDefaultConfig.getAudioFormat());
              sDefaultConfig.setBufferSize(bufSize * 2);
          }
