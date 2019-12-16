@@ -16,7 +16,7 @@ public class AgoraApplication extends Application {
     public void onCreate() {
         super.onCreate();
         try {
-            mRtcEngine = RtcEngine.create(getApplicationContext(), getString(R.string.private_app_id), mHandler);
+            mRtcEngine = RtcEngine.create(getApplicationContext(), getString(R.string.agora_app_id), mHandler);
             mRtcEngine.setChannelProfile(io.agora.rtc.Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
             mRtcEngine.setLogFile(FileUtil.initializeLogFile(this));
         } catch (Exception e) {
