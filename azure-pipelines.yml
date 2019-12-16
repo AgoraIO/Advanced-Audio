@@ -5,6 +5,9 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
+variables:
+- group: AgoraKeys
+
 jobs:
 
 - template: Advanced-Audio-Android/build-template/build-android.yml
