@@ -1,0 +1,14 @@
+trigger:
+- master
+- dev/3.1.0_android_ci
+
+pool:
+  vmImage: 'macos-latest'
+
+jobs:
+
+- template: Advanced-Audio-Android/build-template/build-android.yml
+  parameters:
+    project: 'Advanced-Audio-Android'
+    module: 'custom-recorder'
+    name: 'CustomRecorder'
