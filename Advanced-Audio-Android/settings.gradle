@@ -1,2 +1,2 @@
-include ':app'
+include ':component', ':custom-recorder'
 rootProject.name='Advanced-Audio-Android'
