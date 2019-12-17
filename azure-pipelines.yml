@@ -1,6 +1,6 @@
 trigger:
 - master
-- dev/3.1.0_android_ci
+- dev/*
 
 pool:
   vmImage: 'macos-latest'
