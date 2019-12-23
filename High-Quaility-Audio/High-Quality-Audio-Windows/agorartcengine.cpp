@@ -69,6 +69,14 @@ AgoraRtcEngine::AgoraRtcEngine(QObject *parent) : QObject(parent)
     QString strDir = QCoreApplication::applicationDirPath();
     strDir.append("\\AgoraHighSound.log");
     rep.setLogFile(strDir.toUtf8().data());
+
+    reverbPresetIndex= -1;
+    voiceChangerIndex= -1;
+    beautyVoiceIndex = -1;
+
+	preReverbPreset = -1;
+	preVoiceChanger = -1;
+	preBeautyVoices = -1;
 }
 
 AgoraRtcEngine::~AgoraRtcEngine()
@@ -104,6 +112,8 @@ int AgoraRtcEngine::joinChannel(const QString& key, const QString& channel, cons
     int r = m_rtcEngine->joinChannel(key.toUtf8().data(), channel.toUtf8().data(), nullptr, strUid.toInt());
     if (!r)
         emit joiningChannel();
+
+	bJoin = true;
     return r;
 }
 
@@ -347,4 +357,51 @@ int AgoraRtcEngine::testSpeaker(bool start)
 int AgoraRtcEngine::testCamera(bool start, QQuickItem* view)
 {
 	return 0;
+}
+
+//0:关闭 ，1:KTV，2:演唱会，3:大叔，4:小姐姐，5:录音棚，7:流行，8:R&B，9:留声机
+void AgoraRtcEngine::setReverbPreset(int index)
+{
+    agora::rtc::AParameter apm(m_rtcEngine);
+    apm->setInt( "che.audio.morph.reverb_preset", index);
+
+    reverbPresetIndex = index;
+}
+
+void AgoraRtcEngine::setVoiceChanger(int index)
+{
+    agora::rtc::AParameter apm(m_rtcEngine);
+    int i = index;
+    if(i>0){
+        i+=6;
+    }
+    apm->setInt( "che.audio.morph.voice_changer", i);
+	voiceChangerIndex = index;
+}
+
+void AgoraRtcEngine::setBeautyVoice(int index)
+{
+    agora::rtc::AParameter apm(m_rtcEngine);
+    apm->setInt( "che.audio.morph.beauty_voice", index);
+
+    beautyVoiceIndex = index;
+}
+
+int AgoraRtcEngine::getReverbPreset()
+{
+   qDebug() << "ReverbPreset=" << reverbPresetIndex << endl;
+    return reverbPresetIndex;
+}
+
+int AgoraRtcEngine::getVoiceChanger()
+{
+    qDebug() << "voiceChanger=" << voiceChangerIndex << endl;
+
+    return voiceChangerIndex;
+}
+
+int AgoraRtcEngine::getBeautyVoice()
+{
+    qDebug() << "beautyVoice=" << beautyVoiceIndex << endl;
+    return beautyVoiceIndex;
 }

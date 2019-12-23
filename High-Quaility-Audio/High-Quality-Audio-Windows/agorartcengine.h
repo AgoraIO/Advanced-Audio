@@ -36,8 +36,14 @@ public:
     Q_INVOKABLE int testCamera(bool start, QQuickItem* view);
     Q_INVOKABLE int setupLocalVideo(QQuickItem* view);
     Q_INVOKABLE int setupRemoteVideo(unsigned int uid, QQuickItem* view);
-    agora::rtc::IRtcEngine* getRtcEngine() {return m_rtcEngine;}
+    Q_INVOKABLE void setReverbPreset(int index);
+    Q_INVOKABLE void setVoiceChanger(int index);
+    Q_INVOKABLE void setBeautyVoice(int index);
 
+    Q_INVOKABLE int getReverbPreset();
+    Q_INVOKABLE int getVoiceChanger();
+    Q_INVOKABLE int getBeautyVoice();
+    agora::rtc::IRtcEngine* getRtcEngine() {return m_rtcEngine;}
 signals:
     void joiningChannel();
     void leavingChannel();
@@ -54,6 +60,16 @@ private:
 private:
 	agora::rtc::IRtcEngine* m_rtcEngine;
     std::unique_ptr<agora::rtc::IRtcEngineEventHandler> m_eventHandler;
+    int reverbPresetIndex;
+    int voiceChangerIndex;
+    int beautyVoiceIndex;
+
+	int preReverbPreset;
+	int preVoiceChanger;
+	int preBeautyVoices;
+
+	bool bJoin;
+	bool bLeave;
 };
 
 #endif // AGORARTCENGINE_H
