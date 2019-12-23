@@ -49,7 +49,7 @@ AgoraRtcEngine::AgoraRtcEngine(QObject *parent) : QObject(parent)
 {
     agora::rtc::RtcEngineContext context;
     context.eventHandler = m_eventHandler.get();
-    context.appId = "";//Specify your APP ID here
+    context.appId = "aab8b8f5a8cd4469a63042fcfafe7063";//Specify your APP ID here
     if (*context.appId == '\0')
     {
         QMessageBox::critical(nullptr, tr("AgoraHighSound"),

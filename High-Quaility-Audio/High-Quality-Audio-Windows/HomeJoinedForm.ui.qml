@@ -49,7 +49,7 @@ Rectangle {
         width: 86
         height: 25
         x: 452
-        y: 380
+        y: 403
         fontSize: 14
         fontBold: false
         currentIndex: 0
@@ -70,10 +70,10 @@ Rectangle {
     property alias cbVoiceChanger: cbVoiceChanger
     AComboBox {
         id: cbVoiceChanger
-        width: 80
+        width: 87
         height: 25
-        x: 556
-        y: 380
+        x: 558
+        y: 403
         fontSize: 14
         fontBold: false
         model: ListModel {
@@ -97,8 +97,8 @@ Rectangle {
         id: cbBeautyVoice
         width: 80
         height: 25
-        x: 663
-        y: 380
+        x: 668
+        y: 403
         fontSize: 14
         fontBold: false
         model: ListModel {
@@ -136,8 +136,8 @@ Rectangle {
         id: btnLeave
         width: 305
         height: 44
-        x: 447
-        y: 432
+        x: 452
+        y: 470
         text: qsTr("离开频道")
         defaultImageSource: "images/leave_channel.png"
         hoverImageSource: "images/leave_channel_hover.png"
