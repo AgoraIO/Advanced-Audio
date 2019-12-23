@@ -9,6 +9,5 @@ win32/
 debug/
 release/
 GeneratedFiles/
-sdk/git
 *.dll
 *.lib
