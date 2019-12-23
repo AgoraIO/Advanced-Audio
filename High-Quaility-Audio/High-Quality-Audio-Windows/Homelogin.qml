@@ -12,10 +12,21 @@ HomeloginForm{
             agoraRtcEngine.setRecordingDevice(current.guid)
     }
 
+     cbReverbPreset.activeFocusOnPress: {
+         agoraRtcEngine.setReverbPreset(cbReverbPreset.currentIndex);
+     }
+
+     cbVoiceChanger.activeFocusOnPress: {
+         agoraRtcEngine.setVoiceChanger(cbVoiceChanger.currentIndex);
+     }
+
+     cbBeautyVoice.activeFocusOnPress: {
+         agoraRtcEngine.setBeautyVoice(cbBeautyVoice.currentIndex);
+     }
+
     Component.onCompleted: {
         textInputChannel.text = main.channelName
         textInputMobileUid.text = main.mobileuid
-
 		var i, devices
         devices = agoraRtcEngine.getRecordingDeviceList()
         //console.log(devices.name)
@@ -24,5 +35,14 @@ HomeloginForm{
                 cbMicrophones.model.append({text: devices.name[i], guid: devices.guid[i]})
             }
         }
+
+		var reverbIndex =  agoraRtcEngine.getReverbPreset()
+        cbReverbPreset.currentIndex = reverbIndex
+		var changerIndex =agoraRtcEngine.getVoiceChanger()
+        cbVoiceChanger.currentIndex = changerIndex
+		var beautyIndex =  agoraRtcEngine.getBeautyVoice()
+        cbBeautyVoice.currentIndex = beautyIndex
+
+        agoraRtcEngine.setReverbPreset(reverbIndex);
     }
 }

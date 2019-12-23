@@ -13,6 +13,13 @@ HomeJoinedForm {
         }
 
         sliderMicrophoneVolume.value = agoraRtcEngine.getRecordingDeviceVolume();
+
+
+        cbReverbPreset.currentIndex = agoraRtcEngine.getReverbPreset()
+       // cbVoiceChanger.currentIndex = agoraRtcEngine.getVoiceChanger()
+       // cbBeautyVoice.currentIndex = agoraRtcEngine.getBeautyVoice()
+
+      //  agoraRtcEngine.setReverbPreset(cbReverbPreset.currentIndex);
     }
 
     sliderMicrophoneVolume.onValueChanged:{
@@ -33,5 +40,17 @@ HomeJoinedForm {
         var current = cbMicrophones.model.get(cbMicrophones.currentIndex)
         if (current && current.guid)
             agoraRtcEngine.setRecordingDevice(current.guid)
+    }
+
+    cbReverbPreset.activeFocusOnPress: {
+        agoraRtcEngine.setReverbPreset(cbReverbPreset.currentIndex);
+    }
+
+    cbVoiceChanger.activeFocusOnPress: {
+        agoraRtcEngine.setVoiceChanger(cbVoiceChanger.currentIndex);
+    }
+
+    cbBeautyVoice.activeFocusOnPress: {
+        agoraRtcEngine.setBeautyVoice(cbBeautyVoice.currentIndex);
     }
 }
