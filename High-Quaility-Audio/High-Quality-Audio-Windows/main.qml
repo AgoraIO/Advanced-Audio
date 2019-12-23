@@ -20,8 +20,6 @@ Item {
     }
 
     function leaveChannel() {
-	       agoraRtcEngine.setShowLogin(true)
-		   agoraRtcEngine.setShowJoined(false)
         if (agoraRtcEngine.leaveChannel() === 0) {
             homepage()
         }
@@ -33,9 +31,6 @@ Item {
         if (agoraRtcEngine.joinChannel("", channel, uid) === 0) {
            channelName = channel
 		   mobileuid = uid
-		   agoraRtcEngine.setShowLogin(false)
-		   agoraRtcEngine.setShowJoined(true)
-
            loader.setSource(Qt.resolvedUrl("HomeJoined.qml"))
         }
     }
