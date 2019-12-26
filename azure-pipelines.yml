@@ -13,5 +13,5 @@ jobs:
 - template: Advanced-Audio-Android/build-template/build-android.yml
   parameters:
     project: 'Advanced-Audio-Android'
-    module: 'custom-recorder'
+    module: 'sample-custom-recorder'
     name: 'CustomRecorder'
