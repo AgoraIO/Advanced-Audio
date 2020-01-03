@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A71BD75620079046000A9839 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD75520079046000A9839 /* AppDelegate.m */; };
+		A71BD76120079046000A9839 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A71BD75F20079046000A9839 /* LaunchScreen.storyboard */; };
+		A71BD76420079046000A9839 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD76320079046000A9839 /* main.m */; };
+		A71BD78720079073000A9839 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A71BD78620079073000A9839 /* Main.storyboard */; };
+		A71BD7892007907A000A9839 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71BD7882007907A000A9839 /* Assets.xcassets */; };
+		A71BD7B32007916B000A9839 /* ChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD78C2007916A000A9839 /* ChooseButton.m */; };
+		A71BD7B42007916B000A9839 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD78D2007916A000A9839 /* MainViewController.m */; };
+		A71BD7B52007916B000A9839 /* ChannelNameCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD78E2007916A000A9839 /* ChannelNameCheck.m */; };
+		A71BD7B62007916B000A9839 /* LogAudioSessionStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7922007916A000A9839 /* LogAudioSessionStatus.m */; };
+		A71BD7B92007916B000A9839 /* InfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7A12007916A000A9839 /* InfoTableView.m */; };
+		A71BD7BA2007916B000A9839 /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7A32007916A000A9839 /* InfoModel.m */; };
+		A71BD7BB2007916B000A9839 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7A42007916A000A9839 /* InfoCell.m */; };
+		A71BD7BC2007916B000A9839 /* ChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7A62007916A000A9839 /* ChatButton.m */; };
+		A71BD7BD2007916B000A9839 /* AudioWriteToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7A82007916A000A9839 /* AudioWriteToFile.m */; };
+		A71BD7BF2007916B000A9839 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7AD2007916A000A9839 /* AudioController.m */; };
+		A71BD7C22007916B000A9839 /* RoomViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7B22007916A000A9839 /* RoomViewController.mm */; };
+		A79A7E5023B309EC00335021 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A79A7E4F23B309EC00335021 /* KeyCenter.m */; };
+		A79A7E5323B30B5E00335021 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E5123B30B4F00335021 /* AgoraRtcKit.framework */; };
+		A79A7E5423B30B5E00335021 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E5123B30B4F00335021 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A79A7E5723B3148500335021 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A79A7E5623B3148400335021 /* README.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A79A7E5523B30B5E00335021 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A79A7E5423B30B5E00335021 /* AgoraRtcKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A71BD75120079046000A9839 /* Agora-RTC-With-ASMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-RTC-With-ASMR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A71BD75420079046000A9839 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A71BD75520079046000A9839 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A71BD76020079046000A9839 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A71BD76220079046000A9839 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A71BD76320079046000A9839 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A71BD78620079073000A9839 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A71BD7882007907A000A9839 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A71BD78C2007916A000A9839 /* ChooseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseButton.m; sourceTree = "<group>"; };
+		A71BD78D2007916A000A9839 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		A71BD78E2007916A000A9839 /* ChannelNameCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelNameCheck.m; sourceTree = "<group>"; };
+		A71BD78F2007916A000A9839 /* LogAudioSessionStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogAudioSessionStatus.h; sourceTree = "<group>"; };
+		A71BD7902007916A000A9839 /* ChooseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseButton.h; sourceTree = "<group>"; };
+		A71BD7912007916A000A9839 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		A71BD7922007916A000A9839 /* LogAudioSessionStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogAudioSessionStatus.m; sourceTree = "<group>"; };
+		A71BD7932007916A000A9839 /* ChannelNameCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelNameCheck.h; sourceTree = "<group>"; };
+		A71BD79A2007916A000A9839 /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
+		A71BD79B2007916A000A9839 /* AudioSource.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSource.pch; sourceTree = "<group>"; };
+		A71BD79D2007916A000A9839 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
+		A71BD79F2007916A000A9839 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoCell.h; sourceTree = "<group>"; };
+		A71BD7A02007916A000A9839 /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoModel.h; sourceTree = "<group>"; };
+		A71BD7A12007916A000A9839 /* InfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableView.m; sourceTree = "<group>"; };
+		A71BD7A22007916A000A9839 /* InfoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableView.h; sourceTree = "<group>"; };
+		A71BD7A32007916A000A9839 /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoModel.m; sourceTree = "<group>"; };
+		A71BD7A42007916A000A9839 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
+		A71BD7A62007916A000A9839 /* ChatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatButton.m; sourceTree = "<group>"; };
+		A71BD7A82007916A000A9839 /* AudioWriteToFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWriteToFile.m; sourceTree = "<group>"; };
+		A71BD7A92007916A000A9839 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
+		A71BD7AC2007916A000A9839 /* AudioWriteToFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWriteToFile.h; sourceTree = "<group>"; };
+		A71BD7AD2007916A000A9839 /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
+		A71BD7B12007916A000A9839 /* ChatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatButton.h; sourceTree = "<group>"; };
+		A71BD7B22007916A000A9839 /* RoomViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoomViewController.mm; sourceTree = "<group>"; };
+		A71BD7C420079281000A9839 /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = "Agora-RTC-With-ASMR/AgoraAudioKit.framework"; sourceTree = "<group>"; };
+		A71BD7C62007928E000A9839 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A71BD7C82007929A000A9839 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		A71BD7CA200792A2000A9839 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A71BD7CC200792B7000A9839 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A71BD7CE200792C6000A9839 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A71BD7CF200792CB000A9839 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A71BD7D2200792DB000A9839 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A7237F5F2126DDC200F2F397 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		A79A7E4E23B309EC00335021 /* KeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyCenter.h; path = "../../shared/Objective-C/KeyCenter.h"; sourceTree = "<group>"; };
+		A79A7E4F23B309EC00335021 /* KeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyCenter.m; path = "../../shared/Objective-C/KeyCenter.m"; sourceTree = "<group>"; };
+		A79A7E5123B30B4F00335021 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = ../../libs/iOS/AgoraRtcKit.framework; sourceTree = "<group>"; };
+		A79A7E5623B3148400335021 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A71BD74E20079046000A9839 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A79A7E5323B30B5E00335021 /* AgoraRtcKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A71BD74820079046000A9839 = {
+			isa = PBXGroup;
+			children = (
+				A79A7E5623B3148400335021 /* README.md */,
+				A71BD75320079046000A9839 /* Agora-RTC-With-ASMR */,
+				A71BD75220079046000A9839 /* Products */,
+				A71BD7C320079280000A9839 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A71BD75220079046000A9839 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A71BD75120079046000A9839 /* Agora-RTC-With-ASMR.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A71BD75320079046000A9839 /* Agora-RTC-With-ASMR */ = {
+			isa = PBXGroup;
+			children = (
+				A7237F522126A12700F2F397 /* Controllers */,
+				A7237F4F2126A10B00F2F397 /* Views */,
+				A7237F4E2126A10500F2F397 /* Models */,
+				A71BD78A200790B8000A9839 /* Supporting Files */,
+				A79A7E5123B30B4F00335021 /* AgoraRtcKit.framework */,
+			);
+			path = "Agora-RTC-With-ASMR";
+			sourceTree = "<group>";
+		};
+		A71BD78A200790B8000A9839 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A71BD7882007907A000A9839 /* Assets.xcassets */,
+				A71BD75F20079046000A9839 /* LaunchScreen.storyboard */,
+				A71BD76220079046000A9839 /* Info.plist */,
+				A71BD76320079046000A9839 /* main.m */,
+				A71BD75420079046000A9839 /* AppDelegate.h */,
+				A71BD75520079046000A9839 /* AppDelegate.m */,
+				A71BD79A2007916A000A9839 /* Define.h */,
+				A71BD79B2007916A000A9839 /* AudioSource.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A71BD7C320079280000A9839 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7237F5F2126DDC200F2F397 /* Accelerate.framework */,
+				A71BD7D2200792DB000A9839 /* libc++.tbd */,
+				A71BD7CF200792CB000A9839 /* AVFoundation.framework */,
+				A71BD7CE200792C6000A9839 /* AudioToolbox.framework */,
+				A71BD7CC200792B7000A9839 /* CoreTelephony.framework */,
+				A71BD7CA200792A2000A9839 /* SystemConfiguration.framework */,
+				A71BD7C82007929A000A9839 /* libresolv.tbd */,
+				A71BD7C62007928E000A9839 /* CoreMedia.framework */,
+				A71BD7C420079281000A9839 /* AgoraAudioKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7237F4E2126A10500F2F397 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A79A7E4E23B309EC00335021 /* KeyCenter.h */,
+				A79A7E4F23B309EC00335021 /* KeyCenter.m */,
+				A71BD7A02007916A000A9839 /* InfoModel.h */,
+				A71BD7A32007916A000A9839 /* InfoModel.m */,
+				A71BD7932007916A000A9839 /* ChannelNameCheck.h */,
+				A71BD78E2007916A000A9839 /* ChannelNameCheck.m */,
+				A71BD78F2007916A000A9839 /* LogAudioSessionStatus.h */,
+				A71BD7922007916A000A9839 /* LogAudioSessionStatus.m */,
+				A71BD7AC2007916A000A9839 /* AudioWriteToFile.h */,
+				A71BD7A82007916A000A9839 /* AudioWriteToFile.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A7237F4F2126A10B00F2F397 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A71BD78620079073000A9839 /* Main.storyboard */,
+				A71BD7902007916A000A9839 /* ChooseButton.h */,
+				A71BD78C2007916A000A9839 /* ChooseButton.m */,
+				A71BD7B12007916A000A9839 /* ChatButton.h */,
+				A71BD7A62007916A000A9839 /* ChatButton.m */,
+				A71BD79F2007916A000A9839 /* InfoCell.h */,
+				A71BD7A42007916A000A9839 /* InfoCell.m */,
+				A71BD7A22007916A000A9839 /* InfoTableView.h */,
+				A71BD7A12007916A000A9839 /* InfoTableView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A7237F522126A12700F2F397 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A71BD7912007916A000A9839 /* MainViewController.h */,
+				A71BD78D2007916A000A9839 /* MainViewController.m */,
+				A71BD79D2007916A000A9839 /* RoomViewController.h */,
+				A71BD7B22007916A000A9839 /* RoomViewController.mm */,
+				A71BD7A92007916A000A9839 /* AudioController.h */,
+				A71BD7AD2007916A000A9839 /* AudioController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A71BD75020079046000A9839 /* Agora-RTC-With-ASMR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A71BD77D20079046000A9839 /* Build configuration list for PBXNativeTarget "Agora-RTC-With-ASMR" */;
+			buildPhases = (
+				A71BD74D20079046000A9839 /* Sources */,
+				A71BD74E20079046000A9839 /* Frameworks */,
+				A71BD74F20079046000A9839 /* Resources */,
+				A79A7E5523B30B5E00335021 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Agora-RTC-With-ASMR";
+			productName = "Agora-RTC-With-ASMR";
+			productReference = A71BD75120079046000A9839 /* Agora-RTC-With-ASMR.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A71BD74920079046000A9839 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = CavanSu;
+				TargetAttributes = {
+					A71BD75020079046000A9839 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = A71BD74C20079046000A9839 /* Build configuration list for PBXProject "Agora-RTC-With-ASMR" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A71BD74820079046000A9839;
+			productRefGroup = A71BD75220079046000A9839 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A71BD75020079046000A9839 /* Agora-RTC-With-ASMR */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A71BD74F20079046000A9839 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71BD76120079046000A9839 /* LaunchScreen.storyboard in Resources */,
+				A71BD7892007907A000A9839 /* Assets.xcassets in Resources */,
+				A79A7E5723B3148500335021 /* README.md in Resources */,
+				A71BD78720079073000A9839 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A71BD74D20079046000A9839 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A79A7E5023B309EC00335021 /* KeyCenter.m in Sources */,
+				A71BD7BF2007916B000A9839 /* AudioController.m in Sources */,
+				A71BD7B62007916B000A9839 /* LogAudioSessionStatus.m in Sources */,
+				A71BD7BA2007916B000A9839 /* InfoModel.m in Sources */,
+				A71BD76420079046000A9839 /* main.m in Sources */,
+				A71BD7BC2007916B000A9839 /* ChatButton.m in Sources */,
+				A71BD7C22007916B000A9839 /* RoomViewController.mm in Sources */,
+				A71BD75620079046000A9839 /* AppDelegate.m in Sources */,
+				A71BD7B32007916B000A9839 /* ChooseButton.m in Sources */,
+				A71BD7B42007916B000A9839 /* MainViewController.m in Sources */,
+				A71BD7B52007916B000A9839 /* ChannelNameCheck.m in Sources */,
+				A71BD7BB2007916B000A9839 /* InfoCell.m in Sources */,
+				A71BD7BD2007916B000A9839 /* AudioWriteToFile.m in Sources */,
+				A71BD7B92007916B000A9839 /* InfoTableView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A71BD75F20079046000A9839 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A71BD76020079046000A9839 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A71BD77B20079046000A9839 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A71BD77C20079046000A9839 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A71BD77E20079046000A9839 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = SW3CA7M752;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../libs",
+				);
+				GCC_PREFIX_HEADER = "$SRCROOT/Agora-RTC-With-ASMR/AudioSource.pch";
+				INFOPLIST_FILE = "Agora-RTC-With-ASMR/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-RTC-With-ASMR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A71BD77F20079046000A9839 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = SW3CA7M752;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../libs",
+				);
+				GCC_PREFIX_HEADER = "$SRCROOT/Agora-RTC-With-ASMR/AudioSource.pch";
+				INFOPLIST_FILE = "Agora-RTC-With-ASMR/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-RTC-With-ASMR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A71BD74C20079046000A9839 /* Build configuration list for PBXProject "Agora-RTC-With-ASMR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A71BD77B20079046000A9839 /* Debug */,
+				A71BD77C20079046000A9839 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A71BD77D20079046000A9839 /* Build configuration list for PBXNativeTarget "Agora-RTC-With-ASMR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A71BD77E20079046000A9839 /* Debug */,
+				A71BD77F20079046000A9839 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A71BD74920079046000A9839 /* Project object */;
+}

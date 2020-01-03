@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.agora.advancedaudio">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <application
+        android:name=".AgoraApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".customrecorder.CustomRecorderActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <service android:name=".customrecorder.CustomRecorderService"
+            android:exported="false"/>
+    </application>
+</manifest>

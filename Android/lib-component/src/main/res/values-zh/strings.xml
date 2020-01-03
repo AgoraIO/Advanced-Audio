@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Advanced-Audio-Android</string>
+
+    <!-- Main Activity -->
+    <string name="start_broadcast_title">开始直播</string>
+    <string name="topic_edit_hint">输入一个话题</string>
+    <string name="powered_by_agora" translatable="false">Powered by agora.io</string>
+    <string name="need_necessary_permissions">缺少必要权限</string>
+</resources>
