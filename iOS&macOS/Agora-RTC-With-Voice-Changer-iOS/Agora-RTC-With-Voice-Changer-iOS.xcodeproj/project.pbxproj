@@ -357,7 +357,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Agora-RTC-With-Voice-Changer-iOS",
-					"$(PROJECT_DIR)/../libs/",
+					"$(PROJECT_DIR)/../libs/iOS",
 				);
 				INFOPLIST_FILE = "Agora-RTC-With-Voice-Changer-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -386,7 +386,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Agora-RTC-With-Voice-Changer-iOS",
-					"$(PROJECT_DIR)/../libs/",
+					"$(PROJECT_DIR)/../libs/iOS",
 				);
 				INFOPLIST_FILE = "Agora-RTC-With-Voice-Changer-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

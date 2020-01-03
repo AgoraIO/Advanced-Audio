@@ -428,7 +428,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/../libs/iOS",
 				);
 				GCC_PREFIX_HEADER = "$SRCROOT/Agora-RTC-With-ASMR/AudioSource.pch";
 				INFOPLIST_FILE = "Agora-RTC-With-ASMR/Info.plist";
@@ -452,7 +452,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/../libs/iOS",
 				);
 				GCC_PREFIX_HEADER = "$SRCROOT/Agora-RTC-With-ASMR/AudioSource.pch";
 				INFOPLIST_FILE = "Agora-RTC-With-ASMR/Info.plist";
