@@ -10,7 +10,7 @@ variables:
 
 jobs:
 
-- template: Advanced-Audio-Android/build-template/build-android.yml
+- template: Android/build-template/build-android.yml
   parameters:
     project: 'Advanced-Audio-Android'
     module: 'sample-custom-recorder'
