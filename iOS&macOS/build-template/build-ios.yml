@@ -15,7 +15,7 @@ jobs:
       - group: AgoraKeys
 
     steps:
-      - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
+      - script: cd 'iOS&macOS' && ls && python ci_ios_env.py && ls
         env:
           AGORA_APP_ID: $(agora.appId)
           SDK_URL: ${{ parameters.sdkurl }}
@@ -29,9 +29,9 @@ jobs:
         inputs:
           provProfileSecureFile: 'AgoraAppsDevProfile.mobileprovision'
 
-      - script: cd ${{ parameters.workingDirectory }} && chmod +x build.sh && ./build.sh
+      - script: cd '${{ parameters.workingDirectory }}' && chmod +x build.sh && ./build.sh
 
-      - script: cd ${{ parameters.workingDirectory }} && mkdir app && mv *.ipa app && mv *.xcarchive app 
+      - script: cd '${{ parameters.workingDirectory }}' && mkdir app && mv *.ipa app && mv *.xcarchive app
 
       - task: PublishBuildArtifacts@1
         inputs:
