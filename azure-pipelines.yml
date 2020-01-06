@@ -48,7 +48,7 @@ jobs:
 - template: iOS&macOS/build-template/build-ios.yml
   parameters:
     displayName: 'PronunciationAssess'
-    workingDirectory: 'iOS&macOS/Pronunciation-Assess'
+    workingDirectory: 'iOS&macOS/Pronunciation-Assess-iOS'
     scheme: 'Pronunciation-Assess'
     sdkurl: $(iOSRTCSDK)
 
