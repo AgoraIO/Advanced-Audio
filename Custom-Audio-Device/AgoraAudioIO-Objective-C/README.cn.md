@@ -19,9 +19,9 @@
 NSString *appID = @"YOUR APPID"; 
 ```
 
-然后，iOS 在[Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **语音通话 + 直播 SDK**，解压后将其中的 **libs** 文件夹中的 **AgoraAudioKit.framework** 复制到本项目 ** AgoraAudioIO/AgoraAudioIO** 目录下。
+然后，iOS 在[Agora.io SDK](https://docs.agora.io/en/Agora%20Platform/downloads) 下载 **语音通话 + 直播 SDK**，解压后将其中的 **libs** 文件夹中的 **AgoraAudioKit.framework** 复制到本项目 ** AgoraAudioIO/AgoraAudioIO** 目录下。
 
-macOS 在[Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs** 文件夹中的 
+macOS 在[Agora.io SDK](https://docs.agora.io/en/Agora%20Platform/downloads) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs** 文件夹中的 
 **AgoraRtcEngineKit.framework** 复制到本项目 **AgoraAudioIO/AgoraAudioIOmac** 目录下。
 
 最后 iOS使用 XCode 打开 AgoraAudioIO.xcodeproj，iOS 选择 **AgoraAudioIO Scheme**, 连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
