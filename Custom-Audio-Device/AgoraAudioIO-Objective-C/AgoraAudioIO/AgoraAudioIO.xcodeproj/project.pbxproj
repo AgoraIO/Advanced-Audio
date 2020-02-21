@@ -20,6 +20,7 @@
 		09F5B9E12360013900343732 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9E02360013900343732 /* CoreTelephony.framework */; };
 		09F5B9E32360014400343732 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9E22360014400343732 /* SystemConfiguration.framework */; };
 		09F5B9E52360014B00343732 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9E42360014B00343732 /* VideoToolbox.framework */; };
+		1DBDB9C823FF7ABC003855ED /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBDB9C723FF7ABC003855ED /* CoreWLAN.framework */; };
 		A71FEA26205A8E23007BFDAE /* DefaultChannelName.m in Sources */ = {isa = PBXBuildFile; fileRef = A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */; };
 		A71FEA27205A8E23007BFDAE /* DefaultChannelName.m in Sources */ = {isa = PBXBuildFile; fileRef = A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */; };
 		A7237F622126E1D800F2F397 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7237F612126E1D800F2F397 /* Accelerate.framework */; };
@@ -78,6 +79,7 @@
 		09F5B9E02360013900343732 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		09F5B9E22360014400343732 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		09F5B9E42360014B00343732 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		1DBDB9C723FF7ABC003855ED /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreWLAN.framework; sourceTree = DEVELOPER_DIR; };
 		A71FEA24205A8E23007BFDAE /* DefaultChannelName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultChannelName.h; sourceTree = "<group>"; };
 		A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultChannelName.m; sourceTree = "<group>"; };
 		A7237F612126E1D800F2F397 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -183,6 +185,7 @@
 				09F5B9D92360011D00343732 /* AudioToolbox.framework in Frameworks */,
 				09F5B9D72360011500343732 /* Accelerate.framework in Frameworks */,
 				09F5B9D52360010800343732 /* libc++.tbd in Frameworks */,
+				1DBDB9C823FF7ABC003855ED /* CoreWLAN.framework in Frameworks */,
 				09F5B9D3235FFC5C00343732 /* AgoraRtcEngineKit.framework in Frameworks */,
 				A78AD3D5205122FF001B8C7A /* libresolv.tbd in Frameworks */,
 			);
@@ -267,6 +270,7 @@
 		A73042991FBAF913001AA04B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DBDB9C723FF7ABC003855ED /* CoreWLAN.framework */,
 				09F5B9E42360014B00343732 /* VideoToolbox.framework */,
 				09F5B9E22360014400343732 /* SystemConfiguration.framework */,
 				09F5B9E02360013900343732 /* CoreTelephony.framework */,
