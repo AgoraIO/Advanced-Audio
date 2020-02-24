@@ -55,6 +55,7 @@ void CAGEngineEventHandler::onWarning(int warn, const char* msg)
 
 void CAGEngineEventHandler::onError(int err, const char* msg)
 {
+	return;
 	LPAGE_ERROR lpData = new AGE_ERROR;
 
 	int nMsgLen = 0;
@@ -79,6 +80,7 @@ void CAGEngineEventHandler::onError(int err, const char* msg)
 
 void CAGEngineEventHandler::onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost)
 {
+	return;
 	LPAGE_AUDIO_QUALITY lpData = new AGE_AUDIO_QUALITY;
 
 	lpData->uid = uid;
@@ -107,6 +109,7 @@ void CAGEngineEventHandler::onAudioVolumeIndication(const AudioVolumeInfo* speak
 
 void CAGEngineEventHandler::onLeaveChannel(const RtcStats& stat)
 {
+	return;
 	LPAGE_LEAVE_CHANNEL lpData = new AGE_LEAVE_CHANNEL;
 
 	memcpy(&lpData->rtcStat, &stat, sizeof(RtcStats));
@@ -120,18 +123,6 @@ void CAGEngineEventHandler::onRtcStats(const RtcStats& stat)
 	CString str;
 
 	str = _T("stat");
-}
-
-
-void CAGEngineEventHandler::onMediaEngineEvent(int evt)
-{
-	LPAGE_MEDIA_ENGINE_EVENT lpData = new AGE_MEDIA_ENGINE_EVENT;
-
-	lpData->evt = evt;
-
-	if (m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_MEDIA_ENGINE_EVENT), (WPARAM)lpData, 0);
-
 }
 
 void CAGEngineEventHandler::onAudioDeviceStateChanged(const char* deviceId, int deviceType, int deviceState)
@@ -282,12 +273,13 @@ void CAGEngineEventHandler::onStreamMessage(uid_t uid, int streamId, const char*
 
 }
 
-void CAGEngineEventHandler::onApiCallExecuted(const char* api, int error)
+void CAGEngineEventHandler::onApiCallExecuted(int err, const char* api, const char* result)
 {
+	return;
 	LPAGE_APICALL_EXECUTED lpData = new AGE_APICALL_EXECUTED;
 
 	strcpy_s(lpData->api, 128, api);
-	lpData->error = error;
+	lpData->error = err;
 
 	if (m_hMainWnd != NULL)
 		::PostMessage(m_hMainWnd, WM_MSGID(EID_APICALL_EXECUTED), (WPARAM)lpData, 0);
@@ -295,6 +287,7 @@ void CAGEngineEventHandler::onApiCallExecuted(const char* api, int error)
 
 void CAGEngineEventHandler::onLocalVideoStats(const LocalVideoStats& stats)
 {
+	return;
 	LPAGE_LOCAL_VIDEO_STAT lpData = new AGE_LOCAL_VIDEO_STAT;
 
 	lpData->sentBitrate = stats.sentBitrate;
@@ -352,28 +345,4 @@ void CAGEngineEventHandler::onUserEnableVideo(uid_t uid, bool enabled)
 //	if (m_hMainWnd != NULL)
 //		::PostMessage(m_hMainWnd, WM_MSGID(EID_CONNECTION_LOST), 0, 0);
 
-}
-
-void CAGEngineEventHandler::onStartRecordingService(int error)
-{
-	if (m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_START_RCDSRV), 0, 0);
-
-}
-
-void CAGEngineEventHandler::onStopRecordingService(int error)
-{
-	if (m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_STOP_RCDSRV), 0, 0);
-
-}
-
-void CAGEngineEventHandler::onRefreshRecordingServiceStatus(int status)
-{
-	LPAGE_RCDSRV_STATUS lpData = new AGE_RCDSRV_STATUS;
-
-	lpData->status = status;
-
-	if (m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_REFREASH_RCDSRV), (WPARAM)lpData, 0);
 }

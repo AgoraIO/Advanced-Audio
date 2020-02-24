@@ -37,6 +37,10 @@ bool CExtendVideoFrameObserver::onCaptureVideoFrame(VideoFrame& videoFrame)
 	videoFrame.type = FRAME_TYPE_YUV420;
 	videoFrame.rotation = 0;
 
+	videoFrame.renderTimeMs = GetTickCount();
+	CString str;
+	str.Format(_T("onCaptureVideoFrame:%d\n"), GetTickCount());
+	OutputDebugString(str);
 	return true;
 }
 

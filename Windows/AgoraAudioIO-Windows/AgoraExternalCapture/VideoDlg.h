@@ -90,8 +90,6 @@ protected:
 	afx_msg LRESULT OnEIDVideoDeviceChanged(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnRemoteVideoStat(WPARAM wParam, LPARAM lParam);
 
-	afx_msg LRESULT OnStartRecordingService(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnStopRecordingService(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnApiCallExecuted(WPARAM wParam, LPARAM lParam);
 	
     afx_msg LRESULT OnStreamMessage(WPARAM wParam, LPARAM lParam);

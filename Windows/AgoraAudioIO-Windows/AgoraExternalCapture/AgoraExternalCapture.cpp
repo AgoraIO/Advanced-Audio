@@ -41,6 +41,8 @@ CAgoraExternalCaptureApp theApp;
 
 BOOL CAgoraExternalCaptureApp::InitInstance()
 {
+	::CoInitialize(NULL);
+
 	// InitCommonControlsEx() is required on Windows XP if an application
 	// manifest specifies use of ComCtl32.dll version 6 or later to enable
 	// visual styles.  Otherwise, any window creation will fail.
@@ -73,8 +75,7 @@ BOOL CAgoraExternalCaptureApp::InitInstance()
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 	CAgoraObject::EnableWhiteboardVer(TRUE);
 	CAgoraObject::EnableWhiteboardFeq(TRUE);
-	::CoInitialize(NULL);
-
+	
 	INT_PTR nResponse = 0;
 	CLogoDlg Logo;
 

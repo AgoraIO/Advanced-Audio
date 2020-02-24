@@ -80,7 +80,7 @@ public:
 	BOOL EnableVideo(BOOL bEnable = TRUE);
 	BOOL IsVideoEnabled();
 
-	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL,int nBitrate = 0, BOOL bEnable = TRUE);
+	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL, int nBitrate = 0, BOOL bEnable = TRUE);
 	BOOL IsScreenCaptureEnabled();
 
 	BOOL MuteLocalAudio(BOOL bMuted = TRUE);
@@ -156,7 +156,7 @@ public:
 	BOOL EnableH264Compatible();
 	BOOL AdjustVolume(int nRcdVol, int nPlaybackVol, int nMixVol);
 	void GetVolume(int *nRcdVol, int *nPlaybackVol, int *nMixVol);
-
+	
 	int GetAudioMixingPos();
 	int GetAudioMixingDuration();
 

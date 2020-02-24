@@ -60,8 +60,6 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 	
 	ON_MESSAGE(WM_MSGID(EID_REMOTE_VIDEO_STAT), &CVideoDlg::OnRemoteVideoStat)
 
-	ON_MESSAGE(WM_MSGID(EID_START_RCDSRV), &CVideoDlg::OnStartRecordingService)
-	ON_MESSAGE(WM_MSGID(EID_STOP_RCDSRV), &CVideoDlg::OnStopRecordingService)
 
     ON_MESSAGE(WM_MSGID(EID_STREAM_MESSAGE), &CVideoDlg::OnStreamMessage)
 
@@ -687,11 +685,15 @@ void CVideoDlg::OnBnClickedBtnaudio()
 
 LRESULT CVideoDlg::OnEIDJoinChannelSuccess(WPARAM wParam, LPARAM lParam)
 {
+	CString str;
+	str.Format(_T("onjoinchannelsuccess:%d\n"), GetTickCount());
+	OutputDebugString(str);
 	LPAGE_JOINCHANNEL_SUCCESS lpData = (LPAGE_JOINCHANNEL_SUCCESS)wParam;
 
 	m_listWndInfo.RemoveAll();
 	CAgoraObject::GetAgoraObject()->SetSelfUID(lpData->uid);
 
+	delete[] lpData->channel;
 	delete lpData;
 	return 0;
 }
@@ -701,6 +703,8 @@ LRESULT CVideoDlg::OnEIDReJoinChannelSuccess(WPARAM wParam, LPARAM lParam)
 	LPAGE_REJOINCHANNEL_SUCCESS lpData = (LPAGE_REJOINCHANNEL_SUCCESS)wParam;
 
 	m_listWndInfo.RemoveAll();
+
+	delete[] lpData->channel;
 	delete lpData;
 
 	return 0;
@@ -714,7 +718,9 @@ LRESULT CVideoDlg::OnEIDFirstLocalFrame(WPARAM wParam, LPARAM lParam)
 		ShowVideo1();
 
 	delete lpData;
-
+	CString str;
+	str.Format(_T("firstLocalVideoFrame:%d\n"), GetTickCount());
+	OutputDebugString(str);
 	return 0;
 }
 
@@ -815,17 +821,6 @@ LRESULT CVideoDlg::OnRemoteVideoStat(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-LRESULT CVideoDlg::OnStartRecordingService(WPARAM wParam, LPARAM lParam)
-{
-
-	return 0;
-}
-
-LRESULT CVideoDlg::OnStopRecordingService(WPARAM wParam, LPARAM lParam)
-{
-	return 0;
-}
-
 LRESULT CVideoDlg::OnStreamMessage(WPARAM wParam, LPARAM lParam)
 {
     LPAGE_STREAM_MESSAGE lpData = (LPAGE_STREAM_MESSAGE)wParam;
@@ -887,12 +882,12 @@ void CVideoDlg::InitCtrls()
 	m_btnShow.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTNSCR_VIDEO);
 	
 	for (int nIndex = 0; nIndex < 4; nIndex++){
-		m_wndVideo[nIndex].Create(NULL, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, CRect(0, 0, 1, 1), this, IDC_BASEWND_VIDEO + nIndex);
+		m_wndVideo[nIndex].Create(NULL, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, CRect(0, 0, 1, 1), this, IDC_BASEWND_VIDEO + nIndex);
 		m_wndVideo[nIndex].SetBackImage(IDB_BACKGROUND_VIDEO, 96, 96, RGB(0x44, 0x44, 0x44));
 		m_wndVideo[nIndex].SetFaceColor(RGB(0x58, 0x58, 0x58));
 	}
 
-	m_wndLocal.Create(NULL, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, CRect(0, 0, 1, 1), this, IDC_BASEWND_VIDEO + 4);
+	m_wndLocal.Create(NULL, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, CRect(0, 0, 1, 1), this, IDC_BASEWND_VIDEO + 4);
 	m_wndLocal.SetBackImage(IDB_BACKGROUND_VIDEO, 96, 96, RGB(0x44, 0x44, 0x44));
 	m_wndLocal.SetFaceColor(RGB(0x58, 0x58, 0x58));
 	m_wndLocal.SetUID(0);

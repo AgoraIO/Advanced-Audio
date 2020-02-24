@@ -374,6 +374,7 @@ LRESULT CDeviceDlg::OnEIDAudioVolumeIndication(WPARAM wParam, LPARAM lParam)
 	LPAGE_AUDIO_VOLUME_INDICATION lpData = (LPAGE_AUDIO_VOLUME_INDICATION)wParam;
 	m_wndVideoTest.SetCurVol(lpData->totalVolume);
 
+	delete[] lpData->speakers;
 	delete lpData;
 
 	return 0;

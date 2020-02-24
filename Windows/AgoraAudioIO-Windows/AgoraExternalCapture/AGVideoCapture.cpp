@@ -59,6 +59,9 @@ STDMETHODIMP CAGVideoCapture::SampleCB(double SampleTime, IMediaSample* pSample)
 
 STDMETHODIMP CAGVideoCapture::BufferCB(double dblSampleTime, BYTE *pBuffer, long lBufferSize)
 {
+	CString str;
+	str.Format(_T("onCaptureVideoFrame:%d\n"), GetTickCount());
+	OutputDebugString(str);
 	CVideoPackageQueue *lpPackageQueue = CVideoPackageQueue::GetInstance();
 	BITMAPINFOHEADER bmiHeader;
 

@@ -191,7 +191,7 @@ void CExtCaptureDlg::OnBnClickedBtnconfirmExtcap()
 	if (m_ckExtVideoCapture.GetCheck()) {
 		m_agVideoCaptureDevice.SelectMediaCap(nCamCapSel);
 		m_agVideoCaptureDevice.GetCurrentVideoCap(&videoInfo);
-		m_agVideoCaptureDevice.SetCaptureBuffer(videoInfo.bmiHeader.biSizeImage, 30, 4);
+	//	m_agVideoCaptureDevice.SetCaptureBuffer(videoInfo.bmiHeader.biSizeImage, 30, 4);
 		m_agVideoCaptureDevice.SetGrabberCallback(&m_agVideoCapture, 1);
 		CVideoPackageQueue::GetInstance()->SetVideoFormat(&videoInfo.bmiHeader);
 
@@ -203,7 +203,7 @@ void CExtCaptureDlg::OnBnClickedBtnconfirmExtcap()
 		m_agAudioCaptureDevice.GetCurrentAudioCap(&waveFormat);
 		nBufferSize = waveFormat.nAvgBytesPerSec / 100;
 
-		m_agAudioCaptureDevice.SetCaptureBuffer(nBufferSize, 16, waveFormat.nBlockAlign);
+	//	m_agAudioCaptureDevice.SetCaptureBuffer(nBufferSize, 16, waveFormat.nBlockAlign);
 		m_agAudioCaptureDevice.SetGrabberCallback(&m_agAudioCapture, 1);
 		CAudioCapturePackageQueue::GetInstance()->SetAudioFormat(&waveFormat);
 		CAudioCapturePackageQueue::GetInstance()->SetAudioPackageSize(nBufferSize);
@@ -292,7 +292,7 @@ void CExtCaptureDlg::OnCmbselCameraDevice()
 
 	if (nSel != -1) {
 		m_agVideoCaptureDevice.OpenDevice(nSel);
-		m_agVideoCaptureDevice.SetCaptureBuffer(0x1950000, 30, 4);
+	//	m_agVideoCaptureDevice.SetCaptureBuffer(0x1950000, 30, 4);
 	}
 
 	m_cmbCamCap.ResetContent();
