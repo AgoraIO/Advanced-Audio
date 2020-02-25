@@ -133,8 +133,10 @@ class RoomViewController: UIViewController {
     
     var current: RoomCurrent!
     var info: RoomInfo!
-    var voiceRoleIndex: Int?
-    var voiceBeautifyIndex: Int?
+    var voiceChangerGenderedIndex: Int?
+    var voiceChangerAdjIndex: Int?
+    var voiceChangerSceneIndex: Int?
+    var voiceChangerStereoIndex: Int?
     var agoraMediaKit: AgoraRtcEngineKit!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -307,27 +309,32 @@ extension RoomViewController {
         isSettingViewShow = false
     }
     
-    func pushSubFunctionsInSettingView(vcId: String) {
+    func pushSubFunctionsInSettingView(vcId: String, sender: Any? = nil) {
         let story = UIStoryboard.init(name: "Main", bundle: Bundle.main)
         var vc: UIViewController?
         
         switch vcId {
         case "VoiceChangerViewController":
+            guard let sender = sender, let changerType = sender as? VoiceChanger.VType else {
+                fatalError()
+            }
+            
             vc = story.instantiateViewController(withIdentifier: "VoiceChangerViewController")
             let voiceVC = vc as! VoiceChangerViewController
-            if let voiceRoleIndex = voiceRoleIndex {
-                voiceVC.selectedIndex = voiceRoleIndex
+            voiceVC.changerType = changerType
+            
+            switch changerType {
+            case .adj:
+                voiceVC.selectedIndex = voiceChangerAdjIndex
+            case .gendered:
+                voiceVC.selectedIndex = voiceChangerGenderedIndex
+            case .scene:
+                voiceVC.selectedIndex = voiceChangerSceneIndex
+            case .stereo:
+                voiceVC.selectedIndex = voiceChangerStereoIndex
             }
+            
             voiceVC.delegate = self
-            break
-        case "VoiceBeautifyViewController":
-            vc = story.instantiateViewController(withIdentifier: "VoiceBeautifyViewController")
-            let voiceVC = vc as! VoiceBeautifyViewController
-            if let voiceBeautifyIndex = voiceBeautifyIndex {
-                voiceVC.selectedIndex = voiceBeautifyIndex
-            }
-            voiceVC.delegate = self
-            break
         default:
             break
         }
@@ -348,12 +355,8 @@ extension RoomViewController: SettingVCDelegate {
         settingBackGroundViewShow(isShow: false)
     }
     
-    func settingVCDidSelectedVoiceChanger(_ vc: SettingViewController) {
-        pushSubFunctionsInSettingView(vcId: "VoiceChangerViewController")
-    }
-    
-    func settingVCDidSelectedVoiceBeautify(_ vc: SettingViewController) {
-        pushSubFunctionsInSettingView(vcId: "VoiceBeautifyViewController")
+    func settingVC(_ vc: SettingViewController, didSelected voiceChanger: VoiceChanger.VType) {
+        pushSubFunctionsInSettingView(vcId: "VoiceChangerViewController", sender: voiceChanger)
     }
     
     func settingVCDidSelectedExitRoom(_ vc: SettingViewController) {
@@ -513,38 +516,60 @@ extension RoomViewController: AgoraRtcEngineDelegate {
 // MARK: VoiceChangerVCDelegate
 // MARK:
 extension RoomViewController: VoiceChangerVCDelegate {
-    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex: Int) {
-        voiceRoleIndex = roleIndex
-        role.character(with: agoraMediaKit)
+    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected index: Int) {
+        switch vc.changerType {
+        case .gendered:
+            voiceChangerGenderedIndex = index
+            let item = VoiceChanger.genderedList()[index]
+            VoiceChanger.gendered(item, with: agoraMediaKit)
+            
+            voiceChangerSceneIndex = nil
+            voiceChangerAdjIndex = nil
+            voiceChangerStereoIndex = nil
+        case .adj:
+            voiceChangerAdjIndex = index
+            let item = VoiceChanger.adjList()[index]
+            VoiceChanger.adj(item, with: agoraMediaKit)
+            
+            voiceChangerGenderedIndex = nil
+            voiceChangerSceneIndex = nil
+            voiceChangerStereoIndex = nil
+        case .scene:
+            voiceChangerSceneIndex = index
+            let item = VoiceChanger.sceneList()[index]
+            VoiceChanger.scene(item, with: agoraMediaKit)
+            
+            voiceChangerGenderedIndex = nil
+            voiceChangerAdjIndex = nil
+            voiceChangerStereoIndex = nil
+        case .stereo:
+            voiceChangerStereoIndex = index
+            let item = VoiceChanger.stereoList()[index]
+            VoiceChanger.stereo(item, with: agoraMediaKit)
+            
+            voiceChangerGenderedIndex = nil
+            voiceChangerAdjIndex = nil
+            voiceChangerSceneIndex = nil
+        }
+        
         settingBackGroundViewShow(isShow: false)
         vc.navigationController?.popViewController(animated: true)
     }
     
     func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController) {
-        if let _ = voiceRoleIndex {
-            EffectRoles.fmDefault(with: agoraMediaKit)
-            self.voiceRoleIndex = nil
-        }
-        
-        vc.navigationController?.popViewController(animated: true)
-    }
-}
-
-// MARK: -
-// MARK: VoiceBeautifyVCDelegate
-// MARK:
-extension RoomViewController: VoiceBeautifyVCDelegate {
-    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: BeautyVoiceType, roleIndex: Int) {
-        voiceBeautifyIndex = roleIndex
-        role.character(with: agoraMediaKit)
-        settingBackGroundViewShow(isShow: false)
-        vc.navigationController?.popViewController(animated: true)
-    }
-    
-    func voiceBeautifyVCDidCancel(_ vc: VoiceBeautifyViewController) {
-        if let _ = voiceBeautifyIndex {
-            BeautyVoiceType.fmDefault(with: agoraMediaKit)
-            self.voiceBeautifyIndex = nil
+        switch vc.changerType {
+        case .gendered:
+            voiceChangerGenderedIndex = nil
+            VoiceChanger.adj(.voiceChangerOff, with: agoraMediaKit)
+        case .adj:
+            voiceChangerAdjIndex = nil
+            VoiceChanger.adj(.voiceChangerOff, with: agoraMediaKit)
+        case .scene:
+            voiceChangerSceneIndex = nil
+            VoiceChanger.scene(.off, with: agoraMediaKit)
+        case .stereo:
+            voiceChangerStereoIndex = nil
+            VoiceChanger.stereo(.off, with: agoraMediaKit)
         }
         
         vc.navigationController?.popViewController(animated: true)

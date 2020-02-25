@@ -12,8 +12,7 @@ protocol SettingVCDelegate: NSObjectProtocol {
     func settingVCWillShowOnSettingBackgroundView(_ vc: SettingViewController) -> UIView
     func settingVCDidEndShow(_ vc: SettingViewController)
 
-    func settingVCDidSelectedVoiceChanger(_ vc: SettingViewController)
-    func settingVCDidSelectedVoiceBeautify(_ vc: SettingViewController)
+    func settingVC(_ vc: SettingViewController, didSelected voiceChanger: VoiceChanger.VType)
     func settingVCDidSelectedExitRoom(_ vc: SettingViewController)
 }
 
@@ -72,9 +71,13 @@ extension SettingViewController: UITableViewDelegate {
         
         switch indexPath {
         case IndexPath(row: 0, section: 0):
-            delegate?.settingVCDidSelectedVoiceChanger(self)
+            delegate?.settingVC(self, didSelected: .gendered)
         case IndexPath(row: 1, section: 0):
-            delegate?.settingVCDidSelectedVoiceBeautify(self)
+            delegate?.settingVC(self, didSelected: .adj)
+        case IndexPath(row: 2, section: 0):
+            delegate?.settingVC(self, didSelected: .scene)
+        case IndexPath(row: 3, section: 0):
+            delegate?.settingVC(self, didSelected: .stereo)
         default:
             break
         }

@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38D618C3224B8ADB004A6C87 /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D618C2224B8ADB004A6C87 /* AgoraAudioKit.framework */; };
 		A711050222F985420041CA81 /* ImageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711050122F985420041CA81 /* ImageGroup.swift */; };
 		A711050622F98A8D0041CA81 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711050522F98A8D0041CA81 /* Users.swift */; };
 		A711050F22FAA36A0041CA81 /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711050E22FAA36A0041CA81 /* Seat.swift */; };
 		A711051322FAC3D40041CA81 /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711051222FAC3D40041CA81 /* MomentsViewController.swift */; };
 		A711051722FAD7F80041CA81 /* StreamIdParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711051622FAD7F80041CA81 /* StreamIdParse.swift */; };
 		A711051A22FBC70B0041CA81 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711051922FBC70B0041CA81 /* Player.swift */; };
-		A730EF2321006C04003174AD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A730EF2021006C04003174AD /* Accelerate.framework */; };
 		A76D801020D8CC6100A626C4 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A76D800F20D8CC6100A626C4 /* UIColor+Hex.m */; };
 		A76D802E20E0BE6200A626C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D802D20E0BE6200A626C4 /* SettingViewController.swift */; };
 		A76D803020E0DF9E00A626C4 /* SubSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D802F20E0DF9E00A626C4 /* SubSettingViewController.swift */; };
 		A76D803220E11C1D00A626C4 /* VoiceChangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D803120E11C1D00A626C4 /* VoiceChangerViewController.swift */; };
-		A76D803420E11EDB00A626C4 /* EffectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D803320E11EDB00A626C4 /* EffectType.swift */; };
+		A76D803420E11EDB00A626C4 /* VoiceChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D803320E11EDB00A626C4 /* VoiceChanger.swift */; };
 		A76D803620E11FF700A626C4 /* VoiceChangerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D803520E11FF700A626C4 /* VoiceChangerCell.swift */; };
 		A76D808520E6190F00A626C4 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D808420E6190F00A626C4 /* NavigationViewController.swift */; };
+		A794E60C2404F7EF007997F9 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A794E60A2404F307007997F9 /* AgoraRtcKit.framework */; };
+		A794E60D2404F7EF007997F9 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A794E60A2404F307007997F9 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A79FDCE4209C43BC00EB58B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79FDCE3209C43BC00EB58B5 /* AppDelegate.swift */; };
 		A79FDCE9209C43BC00EB58B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79FDCE7209C43BC00EB58B5 /* Main.storyboard */; };
 		A79FDCEB209C43BC00EB58B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A79FDCEA209C43BC00EB58B5 /* Assets.xcassets */; };
@@ -38,18 +38,24 @@
 		A7C5C29A20EBBA15003A391B /* AureolaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5C29920EBBA15003A391B /* AureolaView.swift */; };
 		A7C5C29C20ECC939003A391B /* SubSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5C29B20ECC939003A391B /* SubSettingCell.swift */; };
 		A7F1FC2720A14C0E00CAEECE /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1FC2620A14C0E00CAEECE /* Moment.swift */; };
-		A7F1FC2A20A14E7800CAEECE /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC2920A14E7800CAEECE /* libresolv.tbd */; };
-		A7F1FC2C20A14E8000CAEECE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC2B20A14E8000CAEECE /* CoreTelephony.framework */; };
-		A7F1FC2E20A14E8A00CAEECE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC2D20A14E8A00CAEECE /* AudioToolbox.framework */; };
-		A7F1FC3020A14E9300CAEECE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC2F20A14E9300CAEECE /* SystemConfiguration.framework */; };
-		A7F1FC3220A14E9900CAEECE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC3120A14E9900CAEECE /* AVFoundation.framework */; };
-		A7F1FC3420A14EA300CAEECE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1FC3320A14EA300CAEECE /* libc++.tbd */; };
 		A7F1FC3820A1501F00CAEECE /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1FC3720A1501F00CAEECE /* KeyCenter.swift */; };
-		F5D376CB2390DD8000AE7513 /* VoiceBeautifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D376CA2390DD8000AE7513 /* VoiceBeautifyViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A794E60E2404F7EF007997F9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A794E60D2404F7EF007997F9 /* AgoraRtcKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		38D618C2224B8ADB004A6C87 /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraAudioKit.framework; sourceTree = "<group>"; };
 		A711050122F985420041CA81 /* ImageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroup.swift; sourceTree = "<group>"; };
 		A711050522F98A8D0041CA81 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		A711050E22FAA36A0041CA81 /* Seat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
@@ -62,9 +68,10 @@
 		A76D802D20E0BE6200A626C4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A76D802F20E0DF9E00A626C4 /* SubSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSettingViewController.swift; sourceTree = "<group>"; };
 		A76D803120E11C1D00A626C4 /* VoiceChangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerViewController.swift; sourceTree = "<group>"; };
-		A76D803320E11EDB00A626C4 /* EffectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectType.swift; sourceTree = "<group>"; };
+		A76D803320E11EDB00A626C4 /* VoiceChanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceChanger.swift; sourceTree = "<group>"; };
 		A76D803520E11FF700A626C4 /* VoiceChangerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerCell.swift; sourceTree = "<group>"; };
 		A76D808420E6190F00A626C4 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		A794E60A2404F307007997F9 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
 		A79FDCE0209C43BC00EB58B5 /* YoYo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoYo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79FDCE3209C43BC00EB58B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A79FDCE8209C43BC00EB58B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,7 +99,6 @@
 		A7F1FC3120A14E9900CAEECE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A7F1FC3320A14EA300CAEECE /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A7F1FC3720A1501F00CAEECE /* KeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCenter.swift; sourceTree = "<group>"; };
-		F5D376CA2390DD8000AE7513 /* VoiceBeautifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBeautifyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,14 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A730EF2321006C04003174AD /* Accelerate.framework in Frameworks */,
-				A7F1FC3420A14EA300CAEECE /* libc++.tbd in Frameworks */,
-				38D618C3224B8ADB004A6C87 /* AgoraAudioKit.framework in Frameworks */,
-				A7F1FC3220A14E9900CAEECE /* AVFoundation.framework in Frameworks */,
-				A7F1FC3020A14E9300CAEECE /* SystemConfiguration.framework in Frameworks */,
-				A7F1FC2E20A14E8A00CAEECE /* AudioToolbox.framework in Frameworks */,
-				A7F1FC2C20A14E8000CAEECE /* CoreTelephony.framework in Frameworks */,
-				A7F1FC2A20A14E7800CAEECE /* libresolv.tbd in Frameworks */,
+				A794E60C2404F7EF007997F9 /* AgoraRtcKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +120,6 @@
 				A76D802D20E0BE6200A626C4 /* SettingViewController.swift */,
 				A76D802F20E0DF9E00A626C4 /* SubSettingViewController.swift */,
 				A76D803120E11C1D00A626C4 /* VoiceChangerViewController.swift */,
-				F5D376CA2390DD8000AE7513 /* VoiceBeautifyViewController.swift */,
 			);
 			name = Popover;
 			sourceTree = "<group>";
@@ -152,8 +150,8 @@
 				A79FDCFD209C4D6100EB58B5 /* Controller */,
 				A764F99020A033460000EA7C /* Popover */,
 				A79FDD03209C4DF600EB58B5 /* Others */,
-				38D618C2224B8ADB004A6C87 /* AgoraAudioKit.framework */,
 				A79FDD02209C4DCA00EB58B5 /* Supporting Files  */,
+				A794E60A2404F307007997F9 /* AgoraRtcKit.framework */,
 			);
 			path = YoYo;
 			sourceTree = "<group>";
@@ -177,7 +175,7 @@
 				A7F1FC2620A14C0E00CAEECE /* Moment.swift */,
 				A7B541D620C69A5A0023FE2E /* DeviceAdapt.swift */,
 				A711051622FAD7F80041CA81 /* StreamIdParse.swift */,
-				A76D803320E11EDB00A626C4 /* EffectType.swift */,
+				A76D803320E11EDB00A626C4 /* VoiceChanger.swift */,
 				A711050122F985420041CA81 /* ImageGroup.swift */,
 				A711050522F98A8D0041CA81 /* Users.swift */,
 				A711051922FBC70B0041CA81 /* Player.swift */,
@@ -246,6 +244,7 @@
 				A79FDCDC209C43BC00EB58B5 /* Sources */,
 				A79FDCDD209C43BC00EB58B5 /* Frameworks */,
 				A79FDCDE209C43BC00EB58B5 /* Resources */,
+				A794E60E2404F7EF007997F9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -328,13 +327,12 @@
 				A7F1FC2720A14C0E00CAEECE /* Moment.swift in Sources */,
 				A7B541F020C905E50023FE2E /* BroadcasterSeatViewController.swift in Sources */,
 				A76D803220E11C1D00A626C4 /* VoiceChangerViewController.swift in Sources */,
-				F5D376CB2390DD8000AE7513 /* VoiceBeautifyViewController.swift in Sources */,
 				A76D803620E11FF700A626C4 /* VoiceChangerCell.swift in Sources */,
 				A711051722FAD7F80041CA81 /* StreamIdParse.swift in Sources */,
 				A7C5C29C20ECC939003A391B /* SubSettingCell.swift in Sources */,
 				A76D802E20E0BE6200A626C4 /* SettingViewController.swift in Sources */,
 				A76D803020E0DF9E00A626C4 /* SubSettingViewController.swift in Sources */,
-				A76D803420E11EDB00A626C4 /* EffectType.swift in Sources */,
+				A76D803420E11EDB00A626C4 /* VoiceChanger.swift in Sources */,
 				A7B541EE20C8CF7C0023FE2E /* SeatButton.swift in Sources */,
 				A711050222F985420041CA81 /* ImageGroup.swift in Sources */,
 				A79FDD06209C4F8600EB58B5 /* RoomCell.swift in Sources */,
@@ -485,7 +483,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				DEVELOPMENT_TEAM = SW3CA7M752;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -494,10 +492,10 @@
 				INFOPLIST_FILE = YoYo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.fenbei;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.openYoYo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2019;
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AudioEffect=0";
 				SWIFT_OBJC_BRIDGING_HEADER = "YoYo/AgoraChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -513,7 +511,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				DEVELOPMENT_TEAM = SW3CA7M752;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,10 +520,10 @@
 				INFOPLIST_FILE = YoYo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.fenbei;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.openYoYo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2019;
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "AudioEffect=0";
 				SWIFT_OBJC_BRIDGING_HEADER = "YoYo/AgoraChat-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

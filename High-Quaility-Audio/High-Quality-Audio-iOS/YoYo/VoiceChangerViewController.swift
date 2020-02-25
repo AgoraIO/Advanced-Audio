@@ -9,14 +9,36 @@
 import UIKit
 
 protocol VoiceChangerVCDelegate: NSObjectProtocol {
-    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex:Int)
+    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected index:Int)
     func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController)
 }
 
 class VoiceChangerViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private lazy var rolesList: [EffectRoles] = EffectType.rolesList()
+    var changerType: VoiceChanger.VType = .gendered
+    
+    private var itemList: [String] {
+        switch changerType {
+        case .gendered:
+            return VoiceChanger.genderedList().map { (item) -> String in
+                return item.description()
+            }
+        case .adj:
+            return VoiceChanger.adjList().map { (item) -> String in
+                return item.description()
+            }
+        case .scene:
+            return VoiceChanger.sceneList().map { (item) -> String in
+                return item.description()
+            }
+        case .stereo:
+            return VoiceChanger.stereoList().map { (item) -> String in
+                return item.description()
+            }
+        }
+    }
+    
     weak var delegate: VoiceChangerVCDelegate?
     var selectedIndex: Int?
     
@@ -33,8 +55,7 @@ class VoiceChangerViewController: UIViewController {
     
     @IBAction func doConfirmPressed(_ sender: UIButton) {
         if let selectedIndex = selectedIndex {
-            let role = rolesList[selectedIndex]
-            delegate?.voiceChangerVC(self, didSelected: role, roleIndex: selectedIndex)
+            delegate?.voiceChangerVC(self, didSelected: selectedIndex)
         } else {
             delegate?.voiceChanngerVCDidCancel(self)
         }
@@ -47,7 +68,7 @@ class VoiceChangerViewController: UIViewController {
 
 private extension VoiceChangerViewController {
     func updateViews() {
-        self.navigationItem.title = "变声"
+        self.navigationItem.title = changerType.description()
     }
     
     func updateCollectionViewLayout() {
@@ -64,14 +85,15 @@ private extension VoiceChangerViewController {
 
 extension VoiceChangerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rolesList.count
+        return itemList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VoiceChangerCell", for: indexPath) as! VoiceChangerCell
-        let role = rolesList[indexPath.item]
-        cell.roleLabel.text = role.description()
-       
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VoiceChangerCell",
+                                                      for: indexPath) as! VoiceChangerCell
+        let description = itemList[indexPath.item]
+        cell.roleLabel.text = description
+        
         if let _ = selectedIndex, selectedIndex == indexPath.item {
             cell.isRoleSelected = true
         } else {
