@@ -159,6 +159,16 @@ int AgoraRtcEngine::startPcmDump(bool enabled)
     return nRet == 0 ? TRUE : FALSE;
 }
 
+int AgoraRtcEngine::setVirtualStereo(bool enabled)
+{
+    int nRet = 0;
+    if (enabled)
+       nRet = m_rtcEngine->setLocalVoiceReverbPreset(AUDIO_VIRTUAL_STEREO);
+    else
+        nRet = m_rtcEngine->setLocalVoiceReverbPreset(AUDIO_REVERB_OFF);
+    return nRet == 0 ? TRUE : FALSE;
+}
+
 int AgoraRtcEngine::enableVideo(bool enabled)
 {
     return enabled ? m_rtcEngine->enableVideo() : m_rtcEngine->disableVideo();
@@ -362,28 +372,29 @@ int AgoraRtcEngine::testCamera(bool start, QQuickItem* view)
 //0:关闭 ，1:KTV，2:演唱会，3:大叔，4:小姐姐，5:录音棚，7:流行，8:R&B，9:留声机
 void AgoraRtcEngine::setReverbPreset(int index)
 {
-    agora::rtc::AParameter apm(m_rtcEngine);
-    apm->setInt( "che.audio.morph.reverb_preset", index);
-
+   // agora::rtc::AParameter apm(m_rtcEngine);
+   // apm->setInt( "che.audio.morph.reverb_preset", index);
+    m_rtcEngine->setLocalVoiceReverbPreset ((AUDIO_REVERB_PRESET )index);
     reverbPresetIndex = index;
 }
 
 void AgoraRtcEngine::setVoiceChanger(int index)
 {
-    agora::rtc::AParameter apm(m_rtcEngine);
+   /* agora::rtc::AParameter apm(m_rtcEngine);
     int i = index;
     if(i>0){
         i+=6;
     }
-    apm->setInt( "che.audio.morph.voice_changer", i);
+    apm->setInt( "che.audio.morph.voice_changer", i);*/
+    m_rtcEngine->setLocalVoiceChanger((VOICE_CHANGER_PRESET)index);
 	voiceChangerIndex = index;
 }
 
 void AgoraRtcEngine::setBeautyVoice(int index)
 {
-    agora::rtc::AParameter apm(m_rtcEngine);
-    apm->setInt( "che.audio.morph.beauty_voice", index);
-
+    //agora::rtc::AParameter apm(m_rtcEngine);
+    //apm->setInt( "che.audio.morph.beauty_voice", index);
+    m_rtcEngine->setLocalVoiceChanger((VOICE_CHANGER_PRESET)(index + 0x02000000));
     beautyVoiceIndex = index;
 }
 

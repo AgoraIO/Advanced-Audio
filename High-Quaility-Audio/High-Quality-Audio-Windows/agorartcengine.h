@@ -20,6 +20,7 @@ public:
 	Q_INVOKABLE int muteLocalAudioStream(bool muted);
     Q_INVOKABLE int startLoopback(bool enabled);
     Q_INVOKABLE int startPcmDump(bool enabled);
+    Q_INVOKABLE int setVirtualStereo(bool enabled);
     Q_INVOKABLE int enableVideo(bool enabled);
     Q_INVOKABLE QVariantMap getRecordingDeviceList();
     Q_INVOKABLE QVariantMap getPlayoutDeviceList();
