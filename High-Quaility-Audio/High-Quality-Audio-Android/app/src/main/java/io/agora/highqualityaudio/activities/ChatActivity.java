@@ -29,7 +29,7 @@ import io.agora.highqualityaudio.ui.SeatListRecyclerView;
 import io.agora.highqualityaudio.ui.VoiceChangeRecyclerView;
 import io.agora.highqualityaudio.utils.Constants;
 import io.agora.highqualityaudio.utils.FileUtil;
-import io.agora.highqualityaudio.utils.SoundEffectUtil;
+import io.agora.highqualityaudio.utils.VoiceEffectUtil;
 import io.agora.rtc.IRtcEngineEventHandler;
 
 public class ChatActivity extends BaseActivity implements EventHandler {
@@ -41,8 +41,10 @@ public class ChatActivity extends BaseActivity implements EventHandler {
     private int mPortraitRes;
     private int mMyUid;
 
-    private int mLastSelectedChange = SoundEffectUtil.EFFECT_NONE;
-    private int mLastSelectedBeautify = SoundEffectUtil.EFFECT_NONE;
+    private int mLastSelectedVoiceChange = -1;
+    private int mLastSelectedVoiceBeauty = -1;
+    private int mLastSelectedSoundEffect = -1;
+    private int mLastSelectedSoundStereo = -1;
 
     private SeatListRecyclerView mSeatRecyclerView;
 
@@ -161,11 +163,17 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                                 dialog.dismiss();
 
                                 switch (view.getId()) {
-                                    case R.id.config_room_change_voice_point:
+                                    case R.id.config_room_voice_change:
                                         openVoiceChangeDialog();
                                         break;
-                                    case R.id.config_room_beautify_voice_point:
-                                        openVoiceBeatifyDialog();
+                                    case R.id.config_room_voice_beauty:
+                                        openVoiceBeautyDialog();
+                                        break;
+                                    case R.id.config_room_sound_effect:
+                                        openSoundEffectDialog();
+                                        break;
+                                    case R.id.config_room_virtual_stereo:
+                                        openVirtualStereoDialog();
                                         break;
                                     case R.id.config_room_btn_quit:
                                         finish();
@@ -174,10 +182,10 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                             }
                         };
 
-                        dialog.findViewById(R.id.config_room_change_voice_point).setOnClickListener(listener);
-
-                        dialog.findViewById(R.id.config_room_beautify_voice_point).setOnClickListener(listener);
-
+                        dialog.findViewById(R.id.config_room_voice_change).setOnClickListener(listener);
+                        dialog.findViewById(R.id.config_room_voice_beauty).setOnClickListener(listener);
+                        dialog.findViewById(R.id.config_room_sound_effect).setOnClickListener(listener);
+                        dialog.findViewById(R.id.config_room_virtual_stereo).setOnClickListener(listener);
                         dialog.findViewById(R.id.config_room_btn_quit).setOnClickListener(listener);
                     }
                 });
@@ -185,16 +193,15 @@ public class ChatActivity extends BaseActivity implements EventHandler {
 
     private void openVoiceChangeDialog() {
         ScreenHeightDialog dialog = new ScreenHeightDialog(this);
-        dialog.show(R.layout.dialog_change_voice, ScreenHeightDialog.DIALOG_FULL_WIDTH,
+        dialog.show(R.layout.voice_setting_dialog, ScreenHeightDialog.DIALOG_FULL_WIDTH,
                 Gravity.END, new ScreenHeightDialog.OnDialogListener() {
                     @Override
                     public void onDialogShow(final AlertDialog dialog) {
                         final VoiceChangeRecyclerView options =
-                                dialog.findViewById(R.id.change_voice_recycler_options);
-
-                        final VoiceChangeAdapter adapter = new VoiceChangeAdapter(ChatActivity.this, R.array.voice_preset_items);
-                        adapter.setSelectedPosition(mLastSelectedChange);
-
+                                dialog.findViewById(R.id.voice_setting_recycler);
+                        final VoiceChangeAdapter adapter = new
+                                VoiceChangeAdapter(ChatActivity.this, R.array.voice_change_items);
+                        adapter.setSelectedPosition(mLastSelectedVoiceChange);
                         options.setAdapter(adapter);
 
                         View.OnClickListener listener = new View.OnClickListener() {
@@ -206,11 +213,8 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                                         dialog.dismiss();
                                         break;
                                     case R.id.change_voice_btn_confirm:
-                                        mLastSelectedChange = adapter.getSelectedPosition();
-                                        // There is no index 6 in preset list
-                                        int type = mLastSelectedChange < 6 ? mLastSelectedChange : mLastSelectedChange + 1;
-                                        SoundEffectUtil.changePreset(rtcEngine(), type);
-
+                                        mLastSelectedVoiceChange = adapter.getSelectedPosition();
+                                        VoiceEffectUtil.changeVoice(rtcEngine(), mLastSelectedVoiceChange);
                                         dialog.dismiss();
                                         break;
                                 }
@@ -227,21 +231,20 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                 });
     }
 
-    private void openVoiceBeatifyDialog() {
+    private void openVoiceBeautyDialog() {
         ScreenHeightDialog dialog = new ScreenHeightDialog(this);
-        dialog.show(R.layout.dialog_change_voice, ScreenHeightDialog.DIALOG_FULL_WIDTH,
+        dialog.show(R.layout.voice_setting_dialog, ScreenHeightDialog.DIALOG_FULL_WIDTH,
                 Gravity.END, new ScreenHeightDialog.OnDialogListener() {
                     @Override
                     public void onDialogShow(final AlertDialog dialog) {
-                        TextView title = dialog.findViewById(R.id.change_voice_title);
-                        title.setText(R.string.setting_dialog_beautify_voice);
+                        TextView title = dialog.findViewById(R.id.dialog_title);
+                        title.setText(R.string.setting_dialog_voice_beauty);
 
                         final VoiceChangeRecyclerView options =
-                                dialog.findViewById(R.id.change_voice_recycler_options);
-
-                        final VoiceChangeAdapter adapter = new VoiceChangeAdapter(ChatActivity.this, R.array.voice_change_items);
-                        adapter.setSelectedPosition(mLastSelectedBeautify);
-
+                                dialog.findViewById(R.id.voice_setting_recycler);
+                        final VoiceChangeAdapter adapter = new
+                                VoiceChangeAdapter(ChatActivity.this, R.array.voice_beauty_items);
+                        adapter.setSelectedPosition(mLastSelectedVoiceBeauty);
                         options.setAdapter(adapter);
 
                         View.OnClickListener listener = new View.OnClickListener() {
@@ -253,12 +256,94 @@ public class ChatActivity extends BaseActivity implements EventHandler {
                                         dialog.dismiss();
                                         break;
                                     case R.id.change_voice_btn_confirm:
-                                        mLastSelectedBeautify = adapter.getSelectedPosition();
+                                        mLastSelectedVoiceBeauty = adapter.getSelectedPosition();
+                                        VoiceEffectUtil.beautifyVoice(rtcEngine(), mLastSelectedVoiceBeauty);
+                                        dialog.dismiss();
+                                        break;
+                                }
+                            }
+                        };
 
-                                        // Voice change list starts from 7 except for not being changed
-                                        int type = mLastSelectedBeautify == 0 ? mLastSelectedBeautify : mLastSelectedBeautify + 6;
-                                        SoundEffectUtil.changeVoice(rtcEngine(), type);
+                        ImageView imgBack = dialog.findViewById(R.id.change_voice_back);
+                        imgBack.setOnClickListener(listener);
+                        Button btnConfirm = dialog.findViewById(R.id.change_voice_btn_confirm);
+                        btnConfirm.setOnClickListener(listener);
+                        Button btnCancel = dialog.findViewById(R.id.change_voice_btn_cancel);
+                        btnCancel.setOnClickListener(listener);
+                    }
+                });
+    }
 
+    private void openSoundEffectDialog() {
+        ScreenHeightDialog dialog = new ScreenHeightDialog(this);
+        dialog.show(R.layout.voice_setting_dialog, ScreenHeightDialog.DIALOG_FULL_WIDTH,
+                Gravity.END, new ScreenHeightDialog.OnDialogListener() {
+                    @Override
+                    public void onDialogShow(final AlertDialog dialog) {
+                        TextView title = dialog.findViewById(R.id.dialog_title);
+                        title.setText(R.string.setting_dialog_sound_effect);
+
+                        final VoiceChangeRecyclerView options =
+                                dialog.findViewById(R.id.voice_setting_recycler);
+                        final VoiceChangeAdapter adapter = new
+                                VoiceChangeAdapter(ChatActivity.this, R.array.sound_effect_items);
+                        adapter.setSelectedPosition(mLastSelectedSoundEffect);
+                        options.setAdapter(adapter);
+
+                        View.OnClickListener listener = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                switch (view.getId()) {
+                                    case R.id.change_voice_back:
+                                    case R.id.change_voice_btn_cancel:
+                                        dialog.dismiss();
+                                        break;
+                                    case R.id.change_voice_btn_confirm:
+                                        mLastSelectedSoundEffect = adapter.getSelectedPosition();
+                                        VoiceEffectUtil.changeSoundEffect(rtcEngine(), mLastSelectedSoundEffect);
+                                        dialog.dismiss();
+                                        break;
+                                }
+                            }
+                        };
+
+                        ImageView imgBack = dialog.findViewById(R.id.change_voice_back);
+                        imgBack.setOnClickListener(listener);
+                        Button btnConfirm = dialog.findViewById(R.id.change_voice_btn_confirm);
+                        btnConfirm.setOnClickListener(listener);
+                        Button btnCancel = dialog.findViewById(R.id.change_voice_btn_cancel);
+                        btnCancel.setOnClickListener(listener);
+                    }
+                });
+    }
+
+    private void openVirtualStereoDialog() {
+        ScreenHeightDialog dialog = new ScreenHeightDialog(this);
+        dialog.show(R.layout.voice_setting_dialog, ScreenHeightDialog.DIALOG_FULL_WIDTH,
+                Gravity.END, new ScreenHeightDialog.OnDialogListener() {
+                    @Override
+                    public void onDialogShow(final AlertDialog dialog) {
+                        TextView title = dialog.findViewById(R.id.dialog_title);
+                        title.setText(R.string.setting_dialog_virtual_stereo);
+
+                        final VoiceChangeRecyclerView options =
+                                dialog.findViewById(R.id.voice_setting_recycler);
+                        final VoiceChangeAdapter adapter = new
+                                VoiceChangeAdapter(ChatActivity.this, R.array.virtual_stereo_items);
+                        adapter.setSelectedPosition(mLastSelectedSoundStereo);
+                        options.setAdapter(adapter);
+
+                        View.OnClickListener listener = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                switch (view.getId()) {
+                                    case R.id.change_voice_back:
+                                    case R.id.change_voice_btn_cancel:
+                                        dialog.dismiss();
+                                        break;
+                                    case R.id.change_voice_btn_confirm:
+                                        mLastSelectedSoundStereo = adapter.getSelectedPosition();
+                                        VoiceEffectUtil.changeSoundStereo(rtcEngine(), mLastSelectedSoundStereo);
                                         dialog.dismiss();
                                         break;
                                 }

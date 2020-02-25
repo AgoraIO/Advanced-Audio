@@ -20,18 +20,18 @@
             android:padding="@dimen/room_title_back_margin"
             android:src="@drawable/back_white"/>
         <TextView
-            android:id="@+id/change_voice_title"
+            android:id="@+id/dialog_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/setting_dialog_change_voice"
+            android:text="@string/setting_dialog_voice_change"
             android:textColor="@color/universal_text_color"
             android:textSize="@dimen/text_size_normal"/>
 
     </RelativeLayout>
 
     <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
-        android:id="@+id/change_voice_recycler_options"
+        android:id="@+id/voice_setting_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/change_voice_title_layout"

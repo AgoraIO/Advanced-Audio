@@ -25,21 +25,28 @@
 
     <string-array name="voice_change_items">
         <item>None</item>
-        <item>Thick</item>
-        <item>Low</item>
-        <item>Round</item>
+        <item>Vigorous</item>
+        <item>Deep</item>
+        <item>Mellow</item>
         <item>Falsetto</item>
         <item>Full</item>
         <item>Clear</item>
         <item>Resounding</item>
-        <item>Loud</item>
-        <item>OpenAir</item>
+        <item>Ringing</item>
+        <item>Spacial</item>
     </string-array>
 
-    <string-array name="voice_preset_items">
+    <string-array name="voice_beauty_items">
+        <item>None</item>
+        <item>Male Magnetic</item>
+        <item>Female Fresh</item>
+        <item>Female vitality</item>
+    </string-array>
+
+    <string-array name="sound_effect_items">
         <item>None</item>
         <item>KTV</item>
-        <item>Live</item>
+        <item>Concert</item>
         <item>Uncle</item>
         <item>Girl</item>
         <item>Studio</item>
@@ -48,10 +55,17 @@
         <item>Phonograph</item>
     </string-array>
 
+    <string-array name="virtual_stereo_items">
+        <item>None</item>
+        <item>Virtual Stereo</item>
+    </string-array>
+
     <!-- Setting dialog -->
     <string name="setting_dialog_title">Room Settings</string>
-    <string name="setting_dialog_change_voice">Change Voice</string>
-    <string name="setting_dialog_beautify_voice">Beautify Voice</string>
+    <string name="setting_dialog_voice_change">Voice Change</string>
+    <string name="setting_dialog_voice_beauty">Voice Beauty</string>
+    <string name="setting_dialog_sound_effect">Sound Effect</string>
+    <string name="setting_dialog_virtual_stereo">Virtual Stereo</string>
     <string name="setting_dialog_leave_room">Leave Room</string>
     <string name="setting_dialog_confirm">Confirm</string>
     <string name="setting_dialog_cancel">Cancel</string>

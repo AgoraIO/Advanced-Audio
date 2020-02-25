@@ -20,34 +20,57 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/config_room_title"
         android:orientation="vertical">
-
         <RelativeLayout
-            android:id="@+id/config_room_change_voice_point"
+            android:id="@+id/config_room_voice_change"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dialog_item_height"
             android:layout_marginTop="@dimen/dialog_item_margin_top"
             android:background="@drawable/bg_config_item">
-
             <TextView
                 style="@style/config_room_item_txt"
-                android:text="@string/setting_dialog_change_voice" />
-
+                android:text="@string/setting_dialog_voice_change" />
             <ImageView
                 style="@style/config_room_item_arrow"
                 android:src="@drawable/back_white" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/config_room_beautify_voice_point"
+            android:id="@+id/config_room_voice_beauty"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dialog_item_height"
             android:layout_marginTop="@dimen/dialog_item_margin_top"
             android:background="@drawable/bg_config_item">
-
             <TextView
                 style="@style/config_room_item_txt"
-                android:text="@string/setting_dialog_beautify_voice" />
+                android:text="@string/setting_dialog_voice_beauty" />
+            <ImageView
+                style="@style/config_room_item_arrow"
+                android:src="@drawable/back_white" />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/config_room_sound_effect"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_item_height"
+            android:layout_marginTop="@dimen/dialog_item_margin_top"
+            android:background="@drawable/bg_config_item">
+            <TextView
+                style="@style/config_room_item_txt"
+                android:text="@string/setting_dialog_sound_effect" />
+            <ImageView
+                style="@style/config_room_item_arrow"
+                android:src="@drawable/back_white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/config_room_virtual_stereo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_item_height"
+            android:layout_marginTop="@dimen/dialog_item_margin_top"
+            android:background="@drawable/bg_config_item">
+            <TextView
+                style="@style/config_room_item_txt"
+                android:text="@string/setting_dialog_virtual_stereo" />
             <ImageView
                 style="@style/config_room_item_arrow"
                 android:src="@drawable/back_white" />

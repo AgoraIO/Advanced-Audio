@@ -24,7 +24,7 @@
     <string name="other_left_seat">用户 %d 已离开麦位</string>
 
     <string-array name="voice_change_items">
-        <item>无</item>
+        <item>原声</item>
         <item>浑厚</item>
         <item>低沉</item>
         <item>圆润</item>
@@ -36,8 +36,15 @@
         <item>空旷</item>
     </string-array>
 
-    <string-array name="voice_preset_items">
-        <item>无</item>
+    <string-array name="voice_beauty_items">
+        <item>原声</item>
+        <item>磁性（男）</item>
+        <item>清新（女）</item>
+        <item>活力（女）</item>
+    </string-array>
+
+    <string-array name="sound_effect_items">
+        <item>原声</item>
         <item>KTV</item>
         <item>演唱会</item>
         <item>大叔</item>
@@ -48,10 +55,17 @@
         <item>留声机</item>
     </string-array>
 
+    <string-array name="virtual_stereo_items">
+        <item>原声</item>
+        <item>虚拟立体声</item>
+    </string-array>
+
     <!-- Setting dialog -->
     <string name="setting_dialog_title">房间设置</string>
-    <string name="setting_dialog_change_voice">变声</string>
-    <string name="setting_dialog_beautify_voice">美声</string>
+    <string name="setting_dialog_voice_change">美音</string>
+    <string name="setting_dialog_voice_beauty">美声</string>
+    <string name="setting_dialog_sound_effect">音效</string>
+    <string name="setting_dialog_virtual_stereo">虚拟立体声</string>
     <string name="setting_dialog_leave_room">离开房间</string>
     <string name="setting_dialog_confirm">确定</string>
     <string name="setting_dialog_cancel">取消</string>
