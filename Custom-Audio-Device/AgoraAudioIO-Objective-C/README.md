@@ -20,9 +20,9 @@ First, create a developer account at [Agora.io](https://dashboard.agora.io/signi
 NSString * appID = @"YOUR APPID"; 
 ```
 
-Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/) for running AudioIO of macOS. Unzip the downloaded SDK package and copy **AgoraRtcEngineKit.framework** of the "libs" folder to the project folder **AgoraAudioIO/AgoraAudioIOmac**.
+Next, download the **Agora Video SDK** from [Agora.io SDK](https://docs.agora.io/en/Agora%20Platform/downloads) for running AudioIO of macOS. Unzip the downloaded SDK package and copy **AgoraRtcEngineKit.framework** of the "libs" folder to the project folder **AgoraAudioIO/AgoraAudioIO-macOS**.
 
-And download the **Agora Voice SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/) for running AudioIO of iOS. Unzip the downloaded SDK package and copy **AgoraAudioKit.framework** of the "libs" folder to the project folder **AgoraAudioIO/AgoraAudioIO**.
+And download the **Agora Voice SDK** from [Agora.io SDK](https://docs.agora.io/en/Agora%20Platform/downloads) for running AudioIO of iOS. Unzip the downloaded SDK package and copy **AgoraAudioKit.framework** and **AgoraRtcCryptoLoader.framework** of the "libs" folder to the project folder **AgoraAudioIO/AgoraAudioIO-iOS**.
 
 Finally, Open AgoraAudio.xcodeproj, selected **AgoraAudioIO Scheme** for running iOS, connect your iPhone／iPad device, setup your development signing and run.
 Or selected **AgoraAudioIOmac Scheme** for running macOS,

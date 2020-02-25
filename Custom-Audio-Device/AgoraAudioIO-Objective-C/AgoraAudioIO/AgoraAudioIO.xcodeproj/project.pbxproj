@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09F5B9CF235FFC4B00343732 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9CC235FFC4B00343732 /* libcrypto.a */; };
+		09F5B9D0235FFC4B00343732 /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9CD235FFC4B00343732 /* AgoraAudioKit.framework */; };
+		09F5B9D1235FFC4B00343732 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9CE235FFC4B00343732 /* AgoraRtcCryptoLoader.framework */; };
+		09F5B9D3235FFC5C00343732 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9D2235FFC5C00343732 /* AgoraRtcEngineKit.framework */; };
+		09F5B9D52360010800343732 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9D42360010700343732 /* libc++.tbd */; };
+		09F5B9D72360011500343732 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9D62360011500343732 /* Accelerate.framework */; };
+		09F5B9D92360011D00343732 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9D82360011D00343732 /* AudioToolbox.framework */; };
+		09F5B9DB2360012300343732 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9DA2360012200343732 /* AVFoundation.framework */; };
+		09F5B9DD2360012A00343732 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9DC2360012A00343732 /* CoreMedia.framework */; };
+		09F5B9DF2360013100343732 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9DE2360013100343732 /* CoreML.framework */; };
+		09F5B9E12360013900343732 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9E02360013900343732 /* CoreTelephony.framework */; };
+		09F5B9E32360014400343732 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9E22360014400343732 /* SystemConfiguration.framework */; };
+		09F5B9E52360014B00343732 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F5B9E42360014B00343732 /* VideoToolbox.framework */; };
+		1DBDB9C823FF7ABC003855ED /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBDB9C723FF7ABC003855ED /* CoreWLAN.framework */; };
 		A71FEA26205A8E23007BFDAE /* DefaultChannelName.m in Sources */ = {isa = PBXBuildFile; fileRef = A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */; };
 		A71FEA27205A8E23007BFDAE /* DefaultChannelName.m in Sources */ = {isa = PBXBuildFile; fileRef = A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */; };
 		A7237F622126E1D800F2F397 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7237F612126E1D800F2F397 /* Accelerate.framework */; };
@@ -20,7 +34,6 @@
 		A73042A71FBAF961001AA04B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A730429A1FBAF914001AA04B /* libc++.tbd */; };
 		A730EEF820F88BCC003174AD /* UIColor+CSRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A730EEF620F88BCC003174AD /* UIColor+CSRGB.m */; };
 		A730EEF920F88BCC003174AD /* UIView+CSshortFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = A730EEF720F88BCC003174AD /* UIView+CSshortFrame.m */; };
-		A767A0862074CCC60070BAFF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A767A07B2074CCC60070BAFF /* Info.plist */; };
 		A767A0B12074CCCD0070BAFF /* InfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A08D2074CCCD0070BAFF /* InfoTableView.m */; };
 		A767A0B22074CCCD0070BAFF /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A08F2074CCCD0070BAFF /* InfoModel.m */; };
 		A767A0B32074CCCD0070BAFF /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0902074CCCD0070BAFF /* InfoCell.m */; };
@@ -35,7 +48,6 @@
 		A767A0BF2074CCCD0070BAFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A767A0A72074CCCD0070BAFF /* Main.storyboard */; };
 		A767A0C02074CCCD0070BAFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0A82074CCCD0070BAFF /* main.m */; };
 		A767A0C12074CCCD0070BAFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0AC2074CCCD0070BAFF /* AppDelegate.m */; };
-		A767A0C22074CCCD0070BAFF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A767A0AD2074CCCD0070BAFF /* Info.plist */; };
 		A767A0C42074CF700070BAFF /* RoomViewControllerMac.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0722074CCC60070BAFF /* RoomViewControllerMac.m */; };
 		A767A0C52074CF770070BAFF /* MainViewControllerMac.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0732074CCC60070BAFF /* MainViewControllerMac.m */; };
 		A767A0C62074CF7B0070BAFF /* ReplacementSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0772074CCC60070BAFF /* ReplacementSegue.m */; };
@@ -44,16 +56,6 @@
 		A767A0CC2074D15E0070BAFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0762074CCC60070BAFF /* main.m */; };
 		A767A0CD2074D2210070BAFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A767A09F2074CCCD0070BAFF /* Assets.xcassets */; };
 		A78AD3D5205122FF001B8C7A /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD3D4205122FF001B8C7A /* libresolv.tbd */; };
-		A78AD3D72051230C001B8C7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD3D62051230C001B8C7A /* SystemConfiguration.framework */; };
-		A78AD3D920512313001B8C7A /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD3D820512313001B8C7A /* VideoToolbox.framework */; };
-		A78AD3DB2051231E001B8C7A /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD3DA2051231E001B8C7A /* AudioUnit.framework */; };
-		A78AD572205139AE001B8C7A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD571205139AE001B8C7A /* CoreMedia.framework */; };
-		A78AD574205139B9001B8C7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD573205139B9001B8C7A /* AVFoundation.framework */; };
-		A78AD576205139C9001B8C7A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD575205139C9001B8C7A /* CoreAudio.framework */; };
-		A78AD578205139D5001B8C7A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AD577205139D5001B8C7A /* AudioToolbox.framework */; };
-		A7AE175D20611D41002E6DC2 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AE175C20611D41002E6DC2 /* AgoraRtcEngineKit.framework */; };
-		A7AE175E20611F71002E6DC2 /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73042A81FBAF96D001AA04B /* AgoraAudioKit.framework */; };
-		A7E1987D205162C100CCA4CC /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E1987C205162C100CCA4CC /* CoreWLAN.framework */; };
 		A7E1995D2052611000CCA4CC /* AudioWriteToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E199572052611000CCA4CC /* AudioWriteToFile.m */; };
 		A7E1995E2052611000CCA4CC /* AudioWriteToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E199572052611000CCA4CC /* AudioWriteToFile.m */; };
 		A7E1995F2052611000CCA4CC /* ExternalAudio.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7E1995A2052611000CCA4CC /* ExternalAudio.mm */; };
@@ -64,6 +66,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09F5B9CC235FFC4B00343732 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		09F5B9CD235FFC4B00343732 /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraAudioKit.framework; sourceTree = "<group>"; };
+		09F5B9CE235FFC4B00343732 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
+		09F5B9D2235FFC5C00343732 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		09F5B9D42360010700343732 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
+		09F5B9D62360011500343732 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		09F5B9D82360011D00343732 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		09F5B9DA2360012200343732 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		09F5B9DC2360012A00343732 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
+		09F5B9DE2360013100343732 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreML.framework; sourceTree = DEVELOPER_DIR; };
+		09F5B9E02360013900343732 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
+		09F5B9E22360014400343732 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		09F5B9E42360014B00343732 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		1DBDB9C723FF7ABC003855ED /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreWLAN.framework; sourceTree = DEVELOPER_DIR; };
 		A71FEA24205A8E23007BFDAE /* DefaultChannelName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultChannelName.h; sourceTree = "<group>"; };
 		A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultChannelName.m; sourceTree = "<group>"; };
 		A7237F612126E1D800F2F397 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -77,7 +93,6 @@
 		A730429E1FBAF93A001AA04B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A730429F1FBAF946001AA04B /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		A73042A01FBAF950001AA04B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		A73042A81FBAF96D001AA04B /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = AgoraAudioIO/AgoraAudioKit.framework; sourceTree = "<group>"; };
 		A730EEF420F88BCB003174AD /* UIColor+CSRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CSRGB.h"; sourceTree = "<group>"; };
 		A730EEF520F88BCB003174AD /* UIView+CSshortFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CSshortFrame.h"; sourceTree = "<group>"; };
 		A730EEF620F88BCC003174AD /* UIColor+CSRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CSRGB.m"; sourceTree = "<group>"; };
@@ -128,7 +143,6 @@
 		A78AD573205139B9001B8C7A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		A78AD575205139C9001B8C7A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
 		A78AD577205139D5001B8C7A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		A7AE175C20611D41002E6DC2 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = AgoraAudioIOmac/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		A7E1987C205162C100CCA4CC /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/CoreWLAN.framework; sourceTree = DEVELOPER_DIR; };
 		A7E199572052611000CCA4CC /* AudioWriteToFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWriteToFile.m; sourceTree = "<group>"; };
 		A7E199582052611000CCA4CC /* ExternalAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalAudio.h; sourceTree = "<group>"; };
@@ -145,12 +159,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7237F622126E1D800F2F397 /* Accelerate.framework in Frameworks */,
-				A7AE175E20611F71002E6DC2 /* AgoraAudioKit.framework in Frameworks */,
 				A73042A11FBAF961001AA04B /* CoreMedia.framework in Frameworks */,
+				09F5B9D0235FFC4B00343732 /* AgoraAudioKit.framework in Frameworks */,
 				A73042A21FBAF961001AA04B /* libresolv.tbd in Frameworks */,
 				A73042A31FBAF961001AA04B /* SystemConfiguration.framework in Frameworks */,
 				A73042A41FBAF961001AA04B /* CoreTelephony.framework in Frameworks */,
+				09F5B9CF235FFC4B00343732 /* libcrypto.a in Frameworks */,
 				A73042A51FBAF961001AA04B /* AudioToolbox.framework in Frameworks */,
+				09F5B9D1235FFC4B00343732 /* AgoraRtcCryptoLoader.framework in Frameworks */,
 				A73042A61FBAF961001AA04B /* AVFoundation.framework in Frameworks */,
 				A73042A71FBAF961001AA04B /* libc++.tbd in Frameworks */,
 			);
@@ -160,15 +176,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7AE175D20611D41002E6DC2 /* AgoraRtcEngineKit.framework in Frameworks */,
-				A7E1987D205162C100CCA4CC /* CoreWLAN.framework in Frameworks */,
-				A78AD3D920512313001B8C7A /* VideoToolbox.framework in Frameworks */,
-				A78AD578205139D5001B8C7A /* AudioToolbox.framework in Frameworks */,
-				A78AD576205139C9001B8C7A /* CoreAudio.framework in Frameworks */,
-				A78AD574205139B9001B8C7A /* AVFoundation.framework in Frameworks */,
-				A78AD572205139AE001B8C7A /* CoreMedia.framework in Frameworks */,
-				A78AD3DB2051231E001B8C7A /* AudioUnit.framework in Frameworks */,
-				A78AD3D72051230C001B8C7A /* SystemConfiguration.framework in Frameworks */,
+				09F5B9E52360014B00343732 /* VideoToolbox.framework in Frameworks */,
+				09F5B9E32360014400343732 /* SystemConfiguration.framework in Frameworks */,
+				09F5B9E12360013900343732 /* CoreTelephony.framework in Frameworks */,
+				09F5B9DF2360013100343732 /* CoreML.framework in Frameworks */,
+				09F5B9DD2360012A00343732 /* CoreMedia.framework in Frameworks */,
+				09F5B9DB2360012300343732 /* AVFoundation.framework in Frameworks */,
+				09F5B9D92360011D00343732 /* AudioToolbox.framework in Frameworks */,
+				09F5B9D72360011500343732 /* Accelerate.framework in Frameworks */,
+				09F5B9D52360010800343732 /* libc++.tbd in Frameworks */,
+				1DBDB9C823FF7ABC003855ED /* CoreWLAN.framework in Frameworks */,
+				09F5B9D3235FFC5C00343732 /* AgoraRtcEngineKit.framework in Frameworks */,
 				A78AD3D5205122FF001B8C7A /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,18 +270,30 @@
 		A73042991FBAF913001AA04B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DBDB9C723FF7ABC003855ED /* CoreWLAN.framework */,
+				09F5B9E42360014B00343732 /* VideoToolbox.framework */,
+				09F5B9E22360014400343732 /* SystemConfiguration.framework */,
+				09F5B9E02360013900343732 /* CoreTelephony.framework */,
+				09F5B9DE2360013100343732 /* CoreML.framework */,
+				09F5B9DC2360012A00343732 /* CoreMedia.framework */,
+				09F5B9DA2360012200343732 /* AVFoundation.framework */,
+				09F5B9D82360011D00343732 /* AudioToolbox.framework */,
+				09F5B9D62360011500343732 /* Accelerate.framework */,
+				09F5B9D42360010700343732 /* libc++.tbd */,
+				09F5B9D2235FFC5C00343732 /* AgoraRtcEngineKit.framework */,
 				A7237F612126E1D800F2F397 /* Accelerate.framework */,
-				A7AE175C20611D41002E6DC2 /* AgoraRtcEngineKit.framework */,
 				A7E1987C205162C100CCA4CC /* CoreWLAN.framework */,
 				A78AD577205139D5001B8C7A /* AudioToolbox.framework */,
 				A78AD575205139C9001B8C7A /* CoreAudio.framework */,
 				A78AD573205139B9001B8C7A /* AVFoundation.framework */,
+				09F5B9CD235FFC4B00343732 /* AgoraAudioKit.framework */,
+				09F5B9CE235FFC4B00343732 /* AgoraRtcCryptoLoader.framework */,
+				09F5B9CC235FFC4B00343732 /* libcrypto.a */,
 				A78AD571205139AE001B8C7A /* CoreMedia.framework */,
 				A78AD3DA2051231E001B8C7A /* AudioUnit.framework */,
 				A78AD3D820512313001B8C7A /* VideoToolbox.framework */,
 				A78AD3D62051230C001B8C7A /* SystemConfiguration.framework */,
 				A78AD3D4205122FF001B8C7A /* libresolv.tbd */,
-				A73042A81FBAF96D001AA04B /* AgoraAudioKit.framework */,
 				A73042A01FBAF950001AA04B /* CoreMedia.framework */,
 				A730429F1FBAF946001AA04B /* libresolv.tbd */,
 				A730429E1FBAF93A001AA04B /* SystemConfiguration.framework */,
@@ -399,7 +429,7 @@
 				TargetAttributes = {
 					A73042431FBAF816001AA04B = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -441,9 +471,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A767A0862074CCC60070BAFF /* Info.plist in Resources */,
 				A767A0BF2074CCCD0070BAFF /* Main.storyboard in Resources */,
-				A767A0C22074CCCD0070BAFF /* Info.plist in Resources */,
 				A767A0BE2074CCCD0070BAFF /* LaunchScreen.storyboard in Resources */,
 				A767A0BB2074CCCD0070BAFF /* Assets.xcassets in Resources */,
 			);
@@ -625,21 +653,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 48TB6ZZL5S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraAudioIO",
 					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
 					"$(PROJECT_DIR)/AgoraAudioIO-iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraAudioIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -652,21 +685,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 48TB6ZZL5S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraAudioIO",
 					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
 					"$(PROJECT_DIR)/AgoraAudioIO-iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraAudioIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -687,6 +725,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-macOS/Info.plist";
@@ -711,6 +750,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-macOS/Info.plist";
