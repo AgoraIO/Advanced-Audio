@@ -127,7 +127,7 @@ Rectangle {
         width: 15
         height: 15
         x: 457
-        y: 334
+        y: 327
         defaultImageSource: "images/loop_back.png"
         selectedImageSource: "images/icon_accept.png"
     }
@@ -147,7 +147,19 @@ Rectangle {
     ACheckBox {
         id: ckpcm
         x: 589
-        y: 334
+        y: 327
+        width: 15
+        height: 15
+        selected: false
+        selectedImageSource: "images/icon_accept.png"
+        defaultImageSource: "images/loop_back.png"
+    }
+
+    property alias ckVirtualStereo: ckVirtualStereo
+    ACheckBox {
+        id: ckVirtualStereo
+        x: 457
+        y: 363
         width: 15
         height: 15
         selected: false

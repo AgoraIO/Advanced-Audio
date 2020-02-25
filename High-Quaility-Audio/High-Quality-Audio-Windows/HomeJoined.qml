@@ -36,6 +36,10 @@ HomeJoinedForm {
         agoraRtcEngine.startPcmDump(ckpcm.selected)
     }
 
+    ckVirtualStereo.onClicked: {
+         agoraRtcEngine.setVirtualStereo(ckVirtualStereo.selected)
+    }
+
     cbMicrophones.activeFocusOnPress: {
         var current = cbMicrophones.model.get(cbMicrophones.currentIndex)
         if (current && current.guid)
