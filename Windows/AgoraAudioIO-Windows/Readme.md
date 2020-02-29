@@ -4,23 +4,44 @@ This demo show how extenal audio source give pcm data to agora sdk by using IAud
 
 ##Install Directx SDK
 
-需要下载并安装[directx sdk 2010 June](https://www.microsoft.com/en-us/download/confirmation.aspx?id=6812)。安装成功之后需要重新启动计算机。
+You need to download and install [directx sdk 2010 June](https://www.microsoft.com/en-us/download/confirmation.aspx?id=6812)。
+
+After install dx sdk successfully,you need to reboot your computer.
+
+## Developer Environment Requirements
+* VC2013 or higher
+* WIN7 or higher
 
 ## Running the App
-
-##安装Directx SDK
-
-需要下载并安装[directx sdk 2010 June](https://www.microsoft.com/en-us/download/confirmation.aspx?id=6812)。安装之后需要重新启动。
-
-## 运行示例程序
-首先在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。将 AppID 内容替换至 APP_ID 宏定义中
+First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. define the APP_ID with your App ID.
 
 ```
  #define APP_ID _T("Your App ID")
 ```
 
-然后在 [Agora.io SDK](https://docs.agora.io/cn/Agora%20Platform/downloads) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **sdk** 复制到本项目的 
+Next, download the **Agora Video SDK** from [Agora.io SDK](https://docs.agora.io/en/Agora%20Platform/downloads). Unzip the downloaded SDK package and copy the **sdk** to the "AgoraMediaSource" folder in project(the old one may be over written).
 
-## Developer Environment Requirements
-* VC2013 or higher
-* WIN7 or higher
+Finally, Open AgoraMediaSource.sln, build the solution and run.
+
+**Note：**
+
+  1. After the program is compiled, if the program "xxx\xxx\xxx\Debug\Language\English.dll" cannot be started when running the program, 
+      please select the AgoraMediaSource project in the Solution Explorer and right click. In the pop-up menu bar, select "Set as active project" to solve. Then run the program again.
+  
+  2. The dll library under the sdk/dll file needs to be placed in the corresponding execution path.
+  
+  Tips: The relevant dll library has been configured for you in this case tutorial. If you want to use the interface provided by agora for related development, you need to put the dll library into the corresponding execution path as prompted above.
+
+## Contract Us
+
+	- [FAQ](https://docs.agora.io/cn/faq)
+	- [Agora SDK](Github:https://github.com/AgoraIO)
+	- [Agora Use Case](Github:https://github.com/AgoraIO-usecase)
+	- [Agora Community](Github:https://github.com/AgoraIO-Community)
+	- You can find full API document at [Document Center](https://docs.agora.io/en/)
+	- If you encounter problems during integration, you can ask question in [Developer Forum](https://rtcdeveloper.com/)
+	- You can file bugs about this sample at [issue](https://github.com/AgoraIO/<#Sample Repository>/issues)
+
+## License
+
+The MIT License (MIT)
