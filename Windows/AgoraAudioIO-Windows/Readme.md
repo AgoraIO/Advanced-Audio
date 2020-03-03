@@ -12,16 +12,16 @@ After install dx sdk successfully,you need to reboot your computer.
 * VC2013 or higher
 * WIN7 or higher
 
-## Running the App
+## Run the sample program
 First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. define the APP_ID with your App ID.
 
-```
- #define APP_ID _T("Your App ID")
-```
 
-Next, download the **Agora Video SDK** from [Agora.io SDK](https://docs.agora.io/en/Agora%20Platform/downloads). Unzip the downloaded SDK package and copy the **sdk** to the "AgoraMediaSource" folder in project(the old one may be over written).
+     #define APP_ID _T("Your App ID")
 
-Finally, Open AgoraMediaSource.sln, build the solution and run.
+
+Next, download the **Agora Video SDK** from [Agora.io SDK](https://docs.agora.io/en/Agora%20Platform/downloads). Unzip the downloaded SDK package and copy the **sdk** to the "AgoraAudioIO-Windows" folder in project(the old one may be over written).
+
+Finally, Open AgoraExternalCapture.sln, build the solution and run.
 
 **Note：**
 
@@ -33,14 +33,13 @@ Finally, Open AgoraMediaSource.sln, build the solution and run.
   Tips: The relevant dll library has been configured for you in this case tutorial. If you want to use the interface provided by agora for related development, you need to put the dll library into the corresponding execution path as prompted above.
 
 ## Contract Us
-
-	- [FAQ](https://docs.agora.io/cn/faq)
-	- [Agora SDK](Github:https://github.com/AgoraIO)
-	- [Agora Use Case](Github:https://github.com/AgoraIO-usecase)
-	- [Agora Community](Github:https://github.com/AgoraIO-Community)
-	- You can find full API document at [Document Center](https://docs.agora.io/en/)
-	- If you encounter problems during integration, you can ask question in [Developer Forum](https://rtcdeveloper.com/)
-	- You can file bugs about this sample at [issue](https://github.com/AgoraIO/<#Sample Repository>/issues)
+- For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Would like to see how Agora SDK is used in more complicated real use case? Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase)
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
+- You can find full API document at [Document Center](https://docs.agora.io/en/)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://rtcdeveloper.com/)
+- You can file bugs about this sample at [issue](https://stackoverflow.com/questions/tagged/agora.io)
 
 ## License
 
