@@ -23,25 +23,18 @@
 		A71BD7BD2007916B000A9839 /* AudioWriteToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7A82007916A000A9839 /* AudioWriteToFile.m */; };
 		A71BD7BF2007916B000A9839 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7AD2007916A000A9839 /* AudioController.m */; };
 		A71BD7C22007916B000A9839 /* RoomViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A71BD7B22007916A000A9839 /* RoomViewController.mm */; };
+		A773BCFE2408CA0D003ECBFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7237F5F2126DDC200F2F397 /* Accelerate.framework */; };
+		A773BCFF2408CB95003ECBFD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71BD7CE200792C6000A9839 /* AudioToolbox.framework */; };
+		A773BD002408CB9D003ECBFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71BD7CF200792CB000A9839 /* AVFoundation.framework */; };
+		A773BD012408CBA5003ECBFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71BD7C62007928E000A9839 /* CoreMedia.framework */; };
+		A773BD022408CBAD003ECBFD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71BD7CC200792B7000A9839 /* CoreTelephony.framework */; };
+		A773BD032408CBB4003ECBFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A71BD7D2200792DB000A9839 /* libc++.tbd */; };
+		A773BD042408CBB9003ECBFD /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A71BD7C82007929A000A9839 /* libresolv.tbd */; };
+		A773BD052408CBBF003ECBFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71BD7CA200792A2000A9839 /* SystemConfiguration.framework */; };
 		A79A7E5023B309EC00335021 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A79A7E4F23B309EC00335021 /* KeyCenter.m */; };
 		A79A7E5323B30B5E00335021 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E5123B30B4F00335021 /* AgoraRtcKit.framework */; };
-		A79A7E5423B30B5E00335021 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E5123B30B4F00335021 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A79A7E5723B3148500335021 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A79A7E5623B3148400335021 /* README.md */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		A79A7E5523B30B5E00335021 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A79A7E5423B30B5E00335021 /* AgoraRtcKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A71BD75120079046000A9839 /* Agora-RTC-With-ASMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-RTC-With-ASMR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +89,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A773BD002408CB9D003ECBFD /* AVFoundation.framework in Frameworks */,
+				A773BD052408CBBF003ECBFD /* SystemConfiguration.framework in Frameworks */,
+				A773BD032408CBB4003ECBFD /* libc++.tbd in Frameworks */,
 				A79A7E5323B30B5E00335021 /* AgoraRtcKit.framework in Frameworks */,
+				A773BCFE2408CA0D003ECBFD /* Accelerate.framework in Frameworks */,
+				A773BCFF2408CB95003ECBFD /* AudioToolbox.framework in Frameworks */,
+				A773BD022408CBAD003ECBFD /* CoreTelephony.framework in Frameworks */,
+				A773BD012408CBA5003ECBFD /* CoreMedia.framework in Frameworks */,
+				A773BD042408CBB9003ECBFD /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +221,6 @@
 				A71BD74D20079046000A9839 /* Sources */,
 				A71BD74E20079046000A9839 /* Frameworks */,
 				A71BD74F20079046000A9839 /* Resources */,
-				A79A7E5523B30B5E00335021 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

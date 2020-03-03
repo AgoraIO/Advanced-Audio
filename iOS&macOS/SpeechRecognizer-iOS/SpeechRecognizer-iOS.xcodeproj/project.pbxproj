@@ -15,6 +15,14 @@
 		38AD966F22D2E77C0086A0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38AD966E22D2E77C0086A0BC /* Assets.xcassets */; };
 		38AD967222D2E77C0086A0BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AD967022D2E77C0086A0BC /* LaunchScreen.storyboard */; };
 		38DDBF5E22D316A200CFB4F5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38DDBF5D22D316A100CFB4F5 /* README.md */; };
+		A773BD2F2408DC41003ECBFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD2E2408DC41003ECBFD /* Accelerate.framework */; };
+		A773BD312408DC4F003ECBFD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD302408DC4F003ECBFD /* AudioToolbox.framework */; };
+		A773BD332408DC57003ECBFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD322408DC57003ECBFD /* AVFoundation.framework */; };
+		A773BD352408DC60003ECBFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD342408DC60003ECBFD /* CoreMedia.framework */; };
+		A773BD372408DC67003ECBFD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD362408DC67003ECBFD /* CoreTelephony.framework */; };
+		A773BD392408DC74003ECBFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD382408DC6F003ECBFD /* libc++.tbd */; };
+		A773BD3B2408DC81003ECBFD /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD3A2408DC7A003ECBFD /* libresolv.tbd */; };
+		A773BD3D2408DC87003ECBFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD3C2408DC87003ECBFD /* SystemConfiguration.framework */; };
 		A79A7EA223B4813200335021 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A7EA123B4813200335021 /* KeyCenter.swift */; };
 		A79A7EA423B4817800335021 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7EA323B4817800335021 /* AgoraRtcKit.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +41,14 @@
 		38AD967322D2E77C0086A0BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DDBF5D22D316A100CFB4F5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		760C8CCCAEC4881C816AC93D /* libPods-SpeechRecognizer-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpeechRecognizer-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A773BD2E2408DC41003ECBFD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		A773BD302408DC4F003ECBFD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A773BD322408DC57003ECBFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A773BD342408DC60003ECBFD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A773BD362408DC67003ECBFD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A773BD382408DC6F003ECBFD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A773BD3A2408DC7A003ECBFD /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		A773BD3C2408DC87003ECBFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A79A7EA123B4813200335021 /* KeyCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyCenter.swift; path = ../../shared/Swift/KeyCenter.swift; sourceTree = "<group>"; };
 		A79A7EA323B4817800335021 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = ../../libs/iOS/AgoraRtcKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,7 +58,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A773BD332408DC57003ECBFD /* AVFoundation.framework in Frameworks */,
+				A773BD3D2408DC87003ECBFD /* SystemConfiguration.framework in Frameworks */,
+				A773BD392408DC74003ECBFD /* libc++.tbd in Frameworks */,
 				A79A7EA423B4817800335021 /* AgoraRtcKit.framework in Frameworks */,
+				A773BD2F2408DC41003ECBFD /* Accelerate.framework in Frameworks */,
+				A773BD312408DC4F003ECBFD /* AudioToolbox.framework in Frameworks */,
+				A773BD372408DC67003ECBFD /* CoreTelephony.framework in Frameworks */,
+				A773BD352408DC60003ECBFD /* CoreMedia.framework in Frameworks */,
+				A773BD3B2408DC81003ECBFD /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +121,14 @@
 		FE3767D40B8E8E5EB2C13488 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A773BD3C2408DC87003ECBFD /* SystemConfiguration.framework */,
+				A773BD3A2408DC7A003ECBFD /* libresolv.tbd */,
+				A773BD382408DC6F003ECBFD /* libc++.tbd */,
+				A773BD362408DC67003ECBFD /* CoreTelephony.framework */,
+				A773BD342408DC60003ECBFD /* CoreMedia.framework */,
+				A773BD322408DC57003ECBFD /* AVFoundation.framework */,
+				A773BD302408DC4F003ECBFD /* AudioToolbox.framework */,
+				A773BD2E2408DC41003ECBFD /* Accelerate.framework */,
 				760C8CCCAEC4881C816AC93D /* libPods-SpeechRecognizer-iOS.a */,
 			);
 			name = Frameworks;
