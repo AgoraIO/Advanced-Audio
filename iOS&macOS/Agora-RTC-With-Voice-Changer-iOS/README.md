@@ -1,38 +1,60 @@
 # Agora-RTC-With-Voice-Changer-iOS 
 
-*其他语言版本： [简体中文](README.md)*
+*其他语言版本： [简体中文](README.zh.md)*
 
 The Agora-RTC-With-Voice-Changer-iOS Sample App is an open-source demo that will help you get live voice chat and voice change function integrated directly into your iOS applications using the Agora Voice SDK.
 
 With this sample app, you can:
+
 - Voice change
 - Join / leave channel
 - Set role as broadcaster or audience
 - Mute / unmute audio
 - Switch speaker
 
-A tutorial demo can be found here: [Agora-iOS-Voice-Tutorial-Swift-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1)
+## Prerequisites
+- Xcode 10.0+
+- Physical iOS device (iPhone or iPad)
+- iOS simulator is NOT supported
 
-## Running the App
-First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. Update "KeyCenter.swift" with your App ID.
+## Quick Start
 
-```
-static let AppId: String = "YOUR APPID"
-```
+This section shows you how to prepare, build, and run the sample application.
 
-Next, download the **Agora Voice SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/). Unzip the downloaded SDK package and copy the **libs/AgoraAudioKit.framework** to the "Agora-RTC-With-Voice-Changer-iOS" folder in project.
+### Obtain an App Id
 
-Finally, Open Agora-RTC-With-Voice-Changer-iOS.xcodeproj, connect your iPhone／iPad device, setup your development signing and run.
+To build and run the sample application, get an App Id:
 
-## Developer Environment Requirements
-* XCode 8.0 +
-* Real devices (iPhone or iPad)
-* iOS simulator is NOT supported
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
+2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
+3. Save the **App Id** from the Dashboard for later use.
+4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
 
-## Connect Us
+5. Open `Agora-RTC-With-Voice-Changer-iOS.xcodeproj` and edit the `AppID.swift` file. Update `<#Your App Id#>` with your App Id, and assign the token variable with the temp Access Token generated from dashboard.
 
+    ``` Swift
+    let AppID: String = <#Your App Id#>
+    // assign Token to nil if you have not enabled app certificate
+    let Token: String? = <#Temp Token#>
+    ```
+
+### Integrate the Agora Audio SDK
+
+1. Download the [Agora Voice SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into `iOS&macOS/libs/iOS` folder.
+
+    - `AograRtcKit.framework`
+  
+2. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
+
+## Contract Us
+
+- For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Would like to see how Agora SDK is used in more complicated real use case? Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase)
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
 
 ## License
 

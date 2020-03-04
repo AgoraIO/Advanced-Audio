@@ -4,18 +4,44 @@
 
 The SpeechRecognizer-iOS Sample App shows how to perform speech recognition on audio coming from the remote user in an Agora channel.
 
-## Running the App
+With this sample app, you can:
 
-1. Create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. Update "KeyCenter.swift" with your App ID.
+- Voice chat
+- Speech to text
 
-	``` swift
-	static let AppId: String = "Your App ID"
-	```
+## Prerequisites
+- Xcode 10.0+
+- Physical iOS device (iPhone or iPad)
+- iOS simulator is NOT supported
 
-2. Run `pod install` in the project directory to download and link Agora audio sdk.
-3. Open `SpeechRecognizer-iOS.xcworkspace`, connect your iOS device, setup your development signing and run.
+## Quick Start
 
-- Important: Apps must include the `NSMicrophoneUsageDescription` and `NSSpeechRecognitionUsageDescription` key in their `Info.plist` file and must request authorization to perform speech recognition.
+This section shows you how to prepare, build, and run the sample application.
+
+### Obtain an App Id
+
+To build and run the sample application, get an App Id:
+
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
+2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
+3. Save the **App Id** from the Dashboard for later use.
+4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
+
+5. Open `SpeechRecognizer-iOS.xcodeproj` and edit the `AppID.swift` file. Update `<#Your App Id#>` with your App Id, and assign the token variable with the temp Access Token generated from dashboard.
+
+    ``` Swift
+    let AppID: String = <#Your App Id#>
+    // assign Token to nil if you have not enabled app certificate
+    let Token: String? = <#Temp Token#>
+    ```
+
+### Integrate the Agora Audio SDK
+
+1. Download the [Agora Voice SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into `iOS&macOS/libs/iOS` folder.
+
+    - `AograRtcKit.framework`
+  
+2. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
 
 ## How to Use
 
@@ -32,10 +58,15 @@ The SpeechRecognizer-iOS Sample App shows how to perform speech recognition on a
 * Real devices (iPhone or iPad)
 * iOS simulator is NOT supported
 
-## Connect Us
+## Contract Us
 
+- For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Would like to see how Agora SDK is used in more complicated real use case? Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase)
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
 
 ## License
 

@@ -1,13 +1,16 @@
-# Speech Recognizer
+# AgoraAudioIO
 
-*[English](README.md) | 中文*
+*Read this in other languages: [English](README.md)*
 
-本示例程序展示如何将 Agora 频道中的远端语音转化成文字。
+这个开源示例项目演示了如何快速集成Agora音频SDK，实现iOS/macOS 多种音频通话模式。
 
 在这个示例项目中包含了以下功能：
 
-- 语音聊天；
-- 语音转文字；
+- 4种音频模式（外部处理与SDK处理）；
+- 2种频道模式；
+- 加入通话和离开通话；
+- 静音和解除静音；
+- 音频路由切换；
 
 ## 环境准备
 
@@ -35,25 +38,19 @@
     // 如果你没有打开Token功能，token可以直接给nil
     let Token: String? = <#Temp Token#>
     ```
-    
+
 ### 集成 Agora 音频 SDK
 
-1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **语音通话 + 直播 SDK**，解压后将其中**libs**文件夹中的下列文件拷贝到 **iOS&macOS/libs/iOS** 文件夹下。
+1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **语音通话 + 直播 iOS SDK**，解压后将其中**libs**文件夹中的下列文件拷贝到 **iOS&macOS/libs/iOS** 文件夹下。
 
   - AgoraRtcKit.framework
 
-2. 最后使用 Xcode 打开 SpeechRecognizer-iOS.xcodeproj，连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
+2. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **语音通话 + 直播 macOS SDK**，解压后将其中**libs**文件夹中的下列文件拷贝到 **iOS&macOS/libs/macOS** 文件夹下。
 
-- Important: 示例程序需要在 `Info.plist` 文件中添加 `NSMicrophoneUsageDescription` 和 `NSSpeechRecognitionUsageDescription` 两个字段，以获取麦克风采集和语音识别权限。
+  - AgoraRtcKit.framework
 
-## 使用流程
-
-1. 选择需要识别的语言；
-2. 输入频道名并加入；
-3. 示例程序将接收到的远端音频数据传入 Speech framework，并把 Speech framework 文字识别的结果展示在 text view 上；
-4. 点击离 Leave channel 停止语音识别，并离开频道。
-
-- Important: 只有第一个远端用户的音频会被识别。
+2. 后使用 XCode 打开 AgoraAudioIO.xcodeproj，iOS 选择 **AgoraAudioIO Scheme**, 连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
+macOS 选择 **AgoraAudioIOmac Scheme** 直接运行。
 
 ## 联系我们
 

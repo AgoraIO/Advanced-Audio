@@ -1,5 +1,6 @@
 # Pronunciation Assess iOS
 
+*其他语言版本： [简体中文](README.zh.md)*
 
 This demo gives an example of the combined use of Agora RTC voice sdk and Chivox language assessment sdk.
 
@@ -12,6 +13,7 @@ With this sample app, you can:
 
 - Xcode 10.0+
 - Physical iOS device (iPhone or iPad)
+- iOS simulator is NOT supported
 
 ## Quick Start
 
@@ -55,10 +57,15 @@ To build and run the sample application, get an App ID:
   
 Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
 
-## Resources
+## Contract Us
 
-- You can find full Agora API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Advance-Audio/issues)
+- For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Would like to see how Agora SDK is used in more complicated real use case? Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase)
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
+- You can find full API document at [Document Center](https://docs.agora.io/en/)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
 
 ## License
 
