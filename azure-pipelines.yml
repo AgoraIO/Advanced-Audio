@@ -11,11 +11,11 @@ variables:
 
 jobs:
 
-- template: Android/build-template/build-android.yml
-  parameters:
-    project: 'Android'
-    module: 'sample-custom-recorder'
-    name: 'CustomRecorder'
+#- template: Android/build-template/build-android.yml
+#  parameters:
+#    project: 'Android'
+#    module: 'sample-custom-recorder'
+#    name: 'CustomRecorder'
 
 - template: iOS&macOS/build-template/build-ios.yml
   parameters:
