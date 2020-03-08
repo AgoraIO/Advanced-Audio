@@ -1,0 +1,2 @@
+include ':lib-component', ':sample-custom-recorder'
+rootProject.name='Advanced-Audio-Android'
