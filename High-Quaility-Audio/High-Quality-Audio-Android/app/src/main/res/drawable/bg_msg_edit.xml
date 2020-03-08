@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="@dimen/room_message_edit_corner"/>
-    <solid android:color="@color/back_transparent"/>
-</shape>

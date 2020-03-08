@@ -1,0 +1,771 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A71FEA26205A8E23007BFDAE /* DefaultChannelName.m in Sources */ = {isa = PBXBuildFile; fileRef = A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */; };
+		A71FEA27205A8E23007BFDAE /* DefaultChannelName.m in Sources */ = {isa = PBXBuildFile; fileRef = A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */; };
+		A730EEF820F88BCC003174AD /* UIColor+CSRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A730EEF620F88BCC003174AD /* UIColor+CSRGB.m */; };
+		A730EEF920F88BCC003174AD /* UIView+CSshortFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = A730EEF720F88BCC003174AD /* UIView+CSshortFrame.m */; };
+		A767A0B12074CCCD0070BAFF /* InfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A08D2074CCCD0070BAFF /* InfoTableView.m */; };
+		A767A0B22074CCCD0070BAFF /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A08F2074CCCD0070BAFF /* InfoModel.m */; };
+		A767A0B32074CCCD0070BAFF /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0902074CCCD0070BAFF /* InfoCell.m */; };
+		A767A0B42074CCCD0070BAFF /* ChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0912074CCCD0070BAFF /* ChatButton.m */; };
+		A767A0B52074CCCD0070BAFF /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0922074CCCD0070BAFF /* RoomViewController.m */; };
+		A767A0B62074CCCD0070BAFF /* ChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0962074CCCD0070BAFF /* ChooseButton.m */; };
+		A767A0B72074CCCD0070BAFF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0972074CCCD0070BAFF /* MainViewController.m */; };
+		A767A0B82074CCCD0070BAFF /* ChannelNameCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0982074CCCD0070BAFF /* ChannelNameCheck.m */; };
+		A767A0B92074CCCD0070BAFF /* LogAudioSessionStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A09C2074CCCD0070BAFF /* LogAudioSessionStatus.m */; };
+		A767A0BB2074CCCD0070BAFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A767A09F2074CCCD0070BAFF /* Assets.xcassets */; };
+		A767A0BE2074CCCD0070BAFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A767A0A52074CCCD0070BAFF /* LaunchScreen.storyboard */; };
+		A767A0BF2074CCCD0070BAFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A767A0A72074CCCD0070BAFF /* Main.storyboard */; };
+		A767A0C02074CCCD0070BAFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0A82074CCCD0070BAFF /* main.m */; };
+		A767A0C12074CCCD0070BAFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0AC2074CCCD0070BAFF /* AppDelegate.m */; };
+		A767A0C42074CF700070BAFF /* RoomViewControllerMac.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0722074CCC60070BAFF /* RoomViewControllerMac.m */; };
+		A767A0C52074CF770070BAFF /* MainViewControllerMac.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0732074CCC60070BAFF /* MainViewControllerMac.m */; };
+		A767A0C62074CF7B0070BAFF /* ReplacementSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0772074CCC60070BAFF /* ReplacementSegue.m */; };
+		A767A0C82074D0770070BAFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0782074CCC60070BAFF /* AppDelegate.m */; };
+		A767A0C92074D0EE0070BAFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A767A0742074CCC60070BAFF /* Main.storyboard */; };
+		A767A0CC2074D15E0070BAFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A767A0762074CCC60070BAFF /* main.m */; };
+		A767A0CD2074D2210070BAFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A767A09F2074CCCD0070BAFF /* Assets.xcassets */; };
+		A773BD062408CC71003ECBFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7237F612126E1D800F2F397 /* Accelerate.framework */; };
+		A773BD072408CC77003ECBFD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A730429C1FBAF926001AA04B /* AudioToolbox.framework */; };
+		A773BD082408CC80003ECBFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A730429B1FBAF919001AA04B /* AVFoundation.framework */; };
+		A773BD092408CC89003ECBFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73042A01FBAF950001AA04B /* CoreMedia.framework */; };
+		A773BD0E2408CC8F003ECBFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A730429A1FBAF914001AA04B /* libc++.tbd */; };
+		A773BD0F2408CC95003ECBFD /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A730429F1FBAF946001AA04B /* libresolv.tbd */; };
+		A773BD102408CC9D003ECBFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A730429E1FBAF93A001AA04B /* SystemConfiguration.framework */; };
+		A773BD112408CCC4003ECBFD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A730429D1FBAF932001AA04B /* CoreTelephony.framework */; };
+		A773BD132408CCF6003ECBFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD122408CCF6003ECBFD /* Accelerate.framework */; };
+		A773BD152408CD20003ECBFD /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD142408CD20003ECBFD /* CoreWLAN.framework */; };
+		A773BD172408CD2E003ECBFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD162408CD29003ECBFD /* libc++.tbd */; };
+		A773BD192408CD3C003ECBFD /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD182408CD35003ECBFD /* libresolv.tbd */; };
+		A773BD1B2408CD47003ECBFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD1A2408CD47003ECBFD /* SystemConfiguration.framework */; };
+		A773BD1D2408CD4E003ECBFD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD1C2408CD4E003ECBFD /* AudioToolbox.framework */; };
+		A79A7E7023B358C800335021 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A79A7E6F23B358C800335021 /* KeyCenter.m */; };
+		A79A7E7123B358C800335021 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A79A7E6F23B358C800335021 /* KeyCenter.m */; };
+		A79A7E7223B359D000335021 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E6C23B3584B00335021 /* AgoraRtcKit.framework */; };
+		A79A7E7723B35A4E00335021 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E7523B35A3300335021 /* AgoraRtcKit.framework */; };
+		A79A7E8323B35CF700335021 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A79A7E8223B35CF700335021 /* README.md */; };
+		A79A7E8423B35CF700335021 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A79A7E8223B35CF700335021 /* README.md */; };
+		A7E1995D2052611000CCA4CC /* AudioWriteToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E199572052611000CCA4CC /* AudioWriteToFile.m */; };
+		A7E1995E2052611000CCA4CC /* AudioWriteToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E199572052611000CCA4CC /* AudioWriteToFile.m */; };
+		A7E1995F2052611000CCA4CC /* ExternalAudio.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7E1995A2052611000CCA4CC /* ExternalAudio.mm */; };
+		A7E199602052611000CCA4CC /* ExternalAudio.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7E1995A2052611000CCA4CC /* ExternalAudio.mm */; };
+		A7E199612052611000CCA4CC /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E1995C2052611000CCA4CC /* AudioController.m */; };
+		A7E199622052611000CCA4CC /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E1995C2052611000CCA4CC /* AudioController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A71FEA24205A8E23007BFDAE /* DefaultChannelName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultChannelName.h; sourceTree = "<group>"; };
+		A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultChannelName.m; sourceTree = "<group>"; };
+		A7237F612126E1D800F2F397 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		A73042441FBAF816001AA04B /* AgoraAudioIO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AgoraAudioIO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A730429A1FBAF914001AA04B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A730429B1FBAF919001AA04B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A730429C1FBAF926001AA04B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A730429D1FBAF932001AA04B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A730429E1FBAF93A001AA04B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A730429F1FBAF946001AA04B /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		A73042A01FBAF950001AA04B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A73042A81FBAF96D001AA04B /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = AgoraAudioIO/AgoraAudioKit.framework; sourceTree = "<group>"; };
+		A730EEF420F88BCB003174AD /* UIColor+CSRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CSRGB.h"; sourceTree = "<group>"; };
+		A730EEF520F88BCB003174AD /* UIView+CSshortFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CSshortFrame.h"; sourceTree = "<group>"; };
+		A730EEF620F88BCC003174AD /* UIColor+CSRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CSRGB.m"; sourceTree = "<group>"; };
+		A730EEF720F88BCC003174AD /* UIView+CSshortFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CSshortFrame.m"; sourceTree = "<group>"; };
+		A767A0672074CCC60070BAFF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A767A0682074CCC60070BAFF /* AgoraAudioIOmac.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AgoraAudioIOmac.entitlements; sourceTree = "<group>"; };
+		A767A0692074CCC60070BAFF /* ReplacementSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacementSegue.h; sourceTree = "<group>"; };
+		A767A0722074CCC60070BAFF /* RoomViewControllerMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewControllerMac.m; sourceTree = "<group>"; };
+		A767A0732074CCC60070BAFF /* MainViewControllerMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewControllerMac.m; sourceTree = "<group>"; };
+		A767A0742074CCC60070BAFF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A767A0762074CCC60070BAFF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A767A0772074CCC60070BAFF /* ReplacementSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacementSegue.m; sourceTree = "<group>"; };
+		A767A0782074CCC60070BAFF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A767A0792074CCC60070BAFF /* RoomViewControllerMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewControllerMac.h; sourceTree = "<group>"; };
+		A767A07A2074CCC60070BAFF /* MainViewControllerMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewControllerMac.h; sourceTree = "<group>"; };
+		A767A07B2074CCC60070BAFF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A767A0892074CCCD0070BAFF /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
+		A767A08B2074CCCD0070BAFF /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoCell.h; sourceTree = "<group>"; };
+		A767A08C2074CCCD0070BAFF /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoModel.h; sourceTree = "<group>"; };
+		A767A08D2074CCCD0070BAFF /* InfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableView.m; sourceTree = "<group>"; };
+		A767A08E2074CCCD0070BAFF /* InfoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableView.h; sourceTree = "<group>"; };
+		A767A08F2074CCCD0070BAFF /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoModel.m; sourceTree = "<group>"; };
+		A767A0902074CCCD0070BAFF /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
+		A767A0912074CCCD0070BAFF /* ChatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatButton.m; sourceTree = "<group>"; };
+		A767A0922074CCCD0070BAFF /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
+		A767A0932074CCCD0070BAFF /* ChatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatButton.h; sourceTree = "<group>"; };
+		A767A0942074CCCD0070BAFF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A767A0962074CCCD0070BAFF /* ChooseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseButton.m; sourceTree = "<group>"; };
+		A767A0972074CCCD0070BAFF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		A767A0982074CCCD0070BAFF /* ChannelNameCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelNameCheck.m; sourceTree = "<group>"; };
+		A767A0992074CCCD0070BAFF /* LogAudioSessionStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogAudioSessionStatus.h; sourceTree = "<group>"; };
+		A767A09A2074CCCD0070BAFF /* ChooseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseButton.h; sourceTree = "<group>"; };
+		A767A09B2074CCCD0070BAFF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		A767A09C2074CCCD0070BAFF /* LogAudioSessionStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogAudioSessionStatus.m; sourceTree = "<group>"; };
+		A767A09D2074CCCD0070BAFF /* ChannelNameCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelNameCheck.h; sourceTree = "<group>"; };
+		A767A09F2074CCCD0070BAFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A767A0A62074CCCD0070BAFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A767A0A72074CCCD0070BAFF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A767A0A82074CCCD0070BAFF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A767A0AC2074CCCD0070BAFF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A767A0AD2074CCCD0070BAFF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A773BD0A2408CC89003ECBFD /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		A773BD0B2408CC89003ECBFD /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		A773BD122408CCF6003ECBFD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		A773BD142408CD20003ECBFD /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreWLAN.framework; sourceTree = DEVELOPER_DIR; };
+		A773BD162408CD29003ECBFD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
+		A773BD182408CD35003ECBFD /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libresolv.tbd; sourceTree = DEVELOPER_DIR; };
+		A773BD1A2408CD47003ECBFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		A773BD1C2408CD4E003ECBFD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		A78AD3A82051210A001B8C7A /* AgoraAudioIO-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AgoraAudioIO-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A78AD3D4205122FF001B8C7A /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/lib/libresolv.tbd; sourceTree = DEVELOPER_DIR; };
+		A78AD3D62051230C001B8C7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		A78AD3D820512313001B8C7A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		A78AD3DA2051231E001B8C7A /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
+		A78AD571205139AE001B8C7A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
+		A78AD573205139B9001B8C7A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		A78AD575205139C9001B8C7A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
+		A78AD577205139D5001B8C7A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		A79A7E6C23B3584B00335021 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = ../../libs/iOS/AgoraRtcKit.framework; sourceTree = "<group>"; };
+		A79A7E6E23B358C800335021 /* KeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyCenter.h; path = "../../shared/Objective-C/KeyCenter.h"; sourceTree = "<group>"; };
+		A79A7E6F23B358C800335021 /* KeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyCenter.m; path = "../../shared/Objective-C/KeyCenter.m"; sourceTree = "<group>"; };
+		A79A7E7523B35A3300335021 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = ../../libs/macOS/AgoraRtcKit.framework; sourceTree = "<group>"; };
+		A79A7E8223B35CF700335021 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A7AE175C20611D41002E6DC2 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = AgoraAudioIOmac/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		A7E1987C205162C100CCA4CC /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/CoreWLAN.framework; sourceTree = DEVELOPER_DIR; };
+		A7E199572052611000CCA4CC /* AudioWriteToFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWriteToFile.m; sourceTree = "<group>"; };
+		A7E199582052611000CCA4CC /* ExternalAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalAudio.h; sourceTree = "<group>"; };
+		A7E199592052611000CCA4CC /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
+		A7E1995A2052611000CCA4CC /* ExternalAudio.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ExternalAudio.mm; sourceTree = "<group>"; };
+		A7E1995B2052611000CCA4CC /* AudioWriteToFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWriteToFile.h; sourceTree = "<group>"; };
+		A7E1995C2052611000CCA4CC /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
+		A7E19A29205620A700CCA4CC /* AudioOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioOptions.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A73042411FBAF816001AA04B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A773BD082408CC80003ECBFD /* AVFoundation.framework in Frameworks */,
+				A79A7E7223B359D000335021 /* AgoraRtcKit.framework in Frameworks */,
+				A773BD0E2408CC8F003ECBFD /* libc++.tbd in Frameworks */,
+				A773BD112408CCC4003ECBFD /* CoreTelephony.framework in Frameworks */,
+				A773BD062408CC71003ECBFD /* Accelerate.framework in Frameworks */,
+				A773BD0F2408CC95003ECBFD /* libresolv.tbd in Frameworks */,
+				A773BD102408CC9D003ECBFD /* SystemConfiguration.framework in Frameworks */,
+				A773BD072408CC77003ECBFD /* AudioToolbox.framework in Frameworks */,
+				A773BD092408CC89003ECBFD /* CoreMedia.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A78AD3A52051210A001B8C7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A773BD152408CD20003ECBFD /* CoreWLAN.framework in Frameworks */,
+				A79A7E7723B35A4E00335021 /* AgoraRtcKit.framework in Frameworks */,
+				A773BD192408CD3C003ECBFD /* libresolv.tbd in Frameworks */,
+				A773BD172408CD2E003ECBFD /* libc++.tbd in Frameworks */,
+				A773BD1D2408CD4E003ECBFD /* AudioToolbox.framework in Frameworks */,
+				A773BD1B2408CD47003ECBFD /* SystemConfiguration.framework in Frameworks */,
+				A773BD132408CCF6003ECBFD /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A71FEA6F205B951C007BFDAE /* SharedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				A7E199562052611000CCA4CC /* ExternalAudio */,
+				A79A7E6E23B358C800335021 /* KeyCenter.h */,
+				A79A7E6F23B358C800335021 /* KeyCenter.m */,
+				A7E19A29205620A700CCA4CC /* AudioOptions.h */,
+				A71FEA24205A8E23007BFDAE /* DefaultChannelName.h */,
+				A71FEA25205A8E23007BFDAE /* DefaultChannelName.m */,
+			);
+			path = SharedObjects;
+			sourceTree = "<group>";
+		};
+		A7237F4B2126868D00F2F397 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A767A09D2074CCCD0070BAFF /* ChannelNameCheck.h */,
+				A767A0982074CCCD0070BAFF /* ChannelNameCheck.m */,
+				A767A0992074CCCD0070BAFF /* LogAudioSessionStatus.h */,
+				A767A09C2074CCCD0070BAFF /* LogAudioSessionStatus.m */,
+				A767A08C2074CCCD0070BAFF /* InfoModel.h */,
+				A767A08F2074CCCD0070BAFF /* InfoModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A7237F4C2126869800F2F397 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A767A0A72074CCCD0070BAFF /* Main.storyboard */,
+				A767A09A2074CCCD0070BAFF /* ChooseButton.h */,
+				A767A0962074CCCD0070BAFF /* ChooseButton.m */,
+				A767A0932074CCCD0070BAFF /* ChatButton.h */,
+				A767A0912074CCCD0070BAFF /* ChatButton.m */,
+				A767A08B2074CCCD0070BAFF /* InfoCell.h */,
+				A767A0902074CCCD0070BAFF /* InfoCell.m */,
+				A767A08E2074CCCD0070BAFF /* InfoTableView.h */,
+				A767A08D2074CCCD0070BAFF /* InfoTableView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A7237F4D212686A000F2F397 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A767A0892074CCCD0070BAFF /* RoomViewController.h */,
+				A767A0922074CCCD0070BAFF /* RoomViewController.m */,
+				A767A09B2074CCCD0070BAFF /* MainViewController.h */,
+				A767A0972074CCCD0070BAFF /* MainViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A730423B1FBAF816001AA04B = {
+			isa = PBXGroup;
+			children = (
+				A79A7E8223B35CF700335021 /* README.md */,
+				A767A0872074CCCD0070BAFF /* AgoraAudioIO-iOS */,
+				A767A0662074CCC60070BAFF /* AgoraAudioIO-macOS */,
+				A71FEA6F205B951C007BFDAE /* SharedObjects */,
+				A73042451FBAF816001AA04B /* Products */,
+				A73042991FBAF913001AA04B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A73042451FBAF816001AA04B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A73042441FBAF816001AA04B /* AgoraAudioIO-iOS.app */,
+				A78AD3A82051210A001B8C7A /* AgoraAudioIO-macOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A73042991FBAF913001AA04B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A773BD1C2408CD4E003ECBFD /* AudioToolbox.framework */,
+				A773BD1A2408CD47003ECBFD /* SystemConfiguration.framework */,
+				A773BD182408CD35003ECBFD /* libresolv.tbd */,
+				A773BD162408CD29003ECBFD /* libc++.tbd */,
+				A773BD142408CD20003ECBFD /* CoreWLAN.framework */,
+				A773BD122408CCF6003ECBFD /* Accelerate.framework */,
+				A773BD0A2408CC89003ECBFD /* CoreML.framework */,
+				A773BD0B2408CC89003ECBFD /* CoreMotion.framework */,
+				A7237F612126E1D800F2F397 /* Accelerate.framework */,
+				A7AE175C20611D41002E6DC2 /* AgoraRtcEngineKit.framework */,
+				A7E1987C205162C100CCA4CC /* CoreWLAN.framework */,
+				A78AD577205139D5001B8C7A /* AudioToolbox.framework */,
+				A78AD575205139C9001B8C7A /* CoreAudio.framework */,
+				A78AD573205139B9001B8C7A /* AVFoundation.framework */,
+				A78AD571205139AE001B8C7A /* CoreMedia.framework */,
+				A78AD3DA2051231E001B8C7A /* AudioUnit.framework */,
+				A78AD3D820512313001B8C7A /* VideoToolbox.framework */,
+				A78AD3D62051230C001B8C7A /* SystemConfiguration.framework */,
+				A78AD3D4205122FF001B8C7A /* libresolv.tbd */,
+				A73042A81FBAF96D001AA04B /* AgoraAudioKit.framework */,
+				A73042A01FBAF950001AA04B /* CoreMedia.framework */,
+				A730429F1FBAF946001AA04B /* libresolv.tbd */,
+				A730429E1FBAF93A001AA04B /* SystemConfiguration.framework */,
+				A730429D1FBAF932001AA04B /* CoreTelephony.framework */,
+				A730429C1FBAF926001AA04B /* AudioToolbox.framework */,
+				A730429B1FBAF919001AA04B /* AVFoundation.framework */,
+				A730429A1FBAF914001AA04B /* libc++.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A767A0662074CCC60070BAFF /* AgoraAudioIO-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				A767A07A2074CCC60070BAFF /* MainViewControllerMac.h */,
+				A767A0732074CCC60070BAFF /* MainViewControllerMac.m */,
+				A767A0792074CCC60070BAFF /* RoomViewControllerMac.h */,
+				A767A0722074CCC60070BAFF /* RoomViewControllerMac.m */,
+				A767A0692074CCC60070BAFF /* ReplacementSegue.h */,
+				A767A0772074CCC60070BAFF /* ReplacementSegue.m */,
+				A767A0742074CCC60070BAFF /* Main.storyboard */,
+				A767A0CA2074D13D0070BAFF /* Supporting Files */,
+				A79A7E7523B35A3300335021 /* AgoraRtcKit.framework */,
+			);
+			path = "AgoraAudioIO-macOS";
+			sourceTree = "<group>";
+		};
+		A767A0872074CCCD0070BAFF /* AgoraAudioIO-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A7237F4D212686A000F2F397 /* Controllers */,
+				A7237F4C2126869800F2F397 /* Views */,
+				A7237F4B2126868D00F2F397 /* Models */,
+				A767A0C32074CCE30070BAFF /* Supporting Files */,
+				A79A7E6C23B3584B00335021 /* AgoraRtcKit.framework */,
+			);
+			path = "AgoraAudioIO-iOS";
+			sourceTree = "<group>";
+		};
+		A767A0C32074CCE30070BAFF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A767A0942074CCCD0070BAFF /* AppDelegate.h */,
+				A767A0AC2074CCCD0070BAFF /* AppDelegate.m */,
+				A730EEF420F88BCB003174AD /* UIColor+CSRGB.h */,
+				A730EEF620F88BCC003174AD /* UIColor+CSRGB.m */,
+				A730EEF520F88BCB003174AD /* UIView+CSshortFrame.h */,
+				A730EEF720F88BCC003174AD /* UIView+CSshortFrame.m */,
+				A767A0AD2074CCCD0070BAFF /* Info.plist */,
+				A767A09F2074CCCD0070BAFF /* Assets.xcassets */,
+				A767A0A52074CCCD0070BAFF /* LaunchScreen.storyboard */,
+				A767A0A82074CCCD0070BAFF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A767A0CA2074D13D0070BAFF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A767A0672074CCC60070BAFF /* AppDelegate.h */,
+				A767A0782074CCC60070BAFF /* AppDelegate.m */,
+				A767A0682074CCC60070BAFF /* AgoraAudioIOmac.entitlements */,
+				A767A07B2074CCC60070BAFF /* Info.plist */,
+				A767A0762074CCC60070BAFF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7E199562052611000CCA4CC /* ExternalAudio */ = {
+			isa = PBXGroup;
+			children = (
+				A7E199582052611000CCA4CC /* ExternalAudio.h */,
+				A7E1995A2052611000CCA4CC /* ExternalAudio.mm */,
+				A7E199592052611000CCA4CC /* AudioController.h */,
+				A7E1995C2052611000CCA4CC /* AudioController.m */,
+				A7E1995B2052611000CCA4CC /* AudioWriteToFile.h */,
+				A7E199572052611000CCA4CC /* AudioWriteToFile.m */,
+			);
+			path = ExternalAudio;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A73042431FBAF816001AA04B /* AgoraAudioIO-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A730425A1FBAF817001AA04B /* Build configuration list for PBXNativeTarget "AgoraAudioIO-iOS" */;
+			buildPhases = (
+				A73042401FBAF816001AA04B /* Sources */,
+				A73042411FBAF816001AA04B /* Frameworks */,
+				A73042421FBAF816001AA04B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AgoraAudioIO-iOS";
+			productName = AgoraAudioIO;
+			productReference = A73042441FBAF816001AA04B /* AgoraAudioIO-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A78AD3A72051210A001B8C7A /* AgoraAudioIO-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A78AD3BB2051210A001B8C7A /* Build configuration list for PBXNativeTarget "AgoraAudioIO-macOS" */;
+			buildPhases = (
+				A78AD3A42051210A001B8C7A /* Sources */,
+				A78AD3A52051210A001B8C7A /* Frameworks */,
+				A78AD3A62051210A001B8C7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AgoraAudioIO-macOS";
+			productName = AgoraAudioIOmac;
+			productReference = A78AD3A82051210A001B8C7A /* AgoraAudioIO-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A730423C1FBAF816001AA04B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = CavanSu;
+				TargetAttributes = {
+					A73042431FBAF816001AA04B = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					A78AD3A72051210A001B8C7A = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = A730423F1FBAF816001AA04B /* Build configuration list for PBXProject "AgoraAudioIO" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A730423B1FBAF816001AA04B;
+			productRefGroup = A73042451FBAF816001AA04B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A73042431FBAF816001AA04B /* AgoraAudioIO-iOS */,
+				A78AD3A72051210A001B8C7A /* AgoraAudioIO-macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A73042421FBAF816001AA04B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A767A0BF2074CCCD0070BAFF /* Main.storyboard in Resources */,
+				A767A0BE2074CCCD0070BAFF /* LaunchScreen.storyboard in Resources */,
+				A79A7E8323B35CF700335021 /* README.md in Resources */,
+				A767A0BB2074CCCD0070BAFF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A78AD3A62051210A001B8C7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A79A7E8423B35CF700335021 /* README.md in Resources */,
+				A767A0CD2074D2210070BAFF /* Assets.xcassets in Resources */,
+				A767A0C92074D0EE0070BAFF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A73042401FBAF816001AA04B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A767A0B62074CCCD0070BAFF /* ChooseButton.m in Sources */,
+				A7E199612052611000CCA4CC /* AudioController.m in Sources */,
+				A767A0B52074CCCD0070BAFF /* RoomViewController.m in Sources */,
+				A767A0B72074CCCD0070BAFF /* MainViewController.m in Sources */,
+				A730EEF820F88BCC003174AD /* UIColor+CSRGB.m in Sources */,
+				A767A0B32074CCCD0070BAFF /* InfoCell.m in Sources */,
+				A767A0B12074CCCD0070BAFF /* InfoTableView.m in Sources */,
+				A71FEA26205A8E23007BFDAE /* DefaultChannelName.m in Sources */,
+				A767A0B92074CCCD0070BAFF /* LogAudioSessionStatus.m in Sources */,
+				A767A0C02074CCCD0070BAFF /* main.m in Sources */,
+				A7E1995D2052611000CCA4CC /* AudioWriteToFile.m in Sources */,
+				A767A0B42074CCCD0070BAFF /* ChatButton.m in Sources */,
+				A730EEF920F88BCC003174AD /* UIView+CSshortFrame.m in Sources */,
+				A767A0C12074CCCD0070BAFF /* AppDelegate.m in Sources */,
+				A79A7E7023B358C800335021 /* KeyCenter.m in Sources */,
+				A767A0B82074CCCD0070BAFF /* ChannelNameCheck.m in Sources */,
+				A767A0B22074CCCD0070BAFF /* InfoModel.m in Sources */,
+				A7E1995F2052611000CCA4CC /* ExternalAudio.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A78AD3A42051210A001B8C7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A767A0CC2074D15E0070BAFF /* main.m in Sources */,
+				A7E1995E2052611000CCA4CC /* AudioWriteToFile.m in Sources */,
+				A7E199622052611000CCA4CC /* AudioController.m in Sources */,
+				A71FEA27205A8E23007BFDAE /* DefaultChannelName.m in Sources */,
+				A767A0C82074D0770070BAFF /* AppDelegate.m in Sources */,
+				A7E199602052611000CCA4CC /* ExternalAudio.mm in Sources */,
+				A767A0C52074CF770070BAFF /* MainViewControllerMac.m in Sources */,
+				A767A0C62074CF7B0070BAFF /* ReplacementSegue.m in Sources */,
+				A79A7E7123B358C800335021 /* KeyCenter.m in Sources */,
+				A767A0C42074CF700070BAFF /* RoomViewControllerMac.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A767A0A52074CCCD0070BAFF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A767A0A62074CCCD0070BAFF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A73042581FBAF817001AA04B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A73042591FBAF817001AA04B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A730425B1FBAF817001AA04B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = SW3CA7M752;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AgoraAudioIO",
+					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
+					"$(PROJECT_DIR)/AgoraAudioIO-iOS",
+					"$(PROJECT_DIR)/../libs/iOS",
+				);
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.AgoraAudioIO-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A730425C1FBAF817001AA04B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = SW3CA7M752;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AgoraAudioIO",
+					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
+					"$(PROJECT_DIR)/AgoraAudioIO-iOS",
+					"$(PROJECT_DIR)/../libs/iOS",
+				);
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.AgoraAudioIO-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A78AD3B92051210A001B8C7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "AgoraAudioIO-macOS/AgoraAudioIOmac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
+					"$(PROJECT_DIR)/../libs/macOS",
+				);
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.AgoraAudioIO-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A78AD3BA2051210A001B8C7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "AgoraAudioIO-macOS/AgoraAudioIOmac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AgoraAudioIO-macOS",
+					"$(PROJECT_DIR)/../libs/macOS",
+				);
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "$(SRCROOT)/AgoraAudioIO-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.AgoraAudioIO-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A730423F1FBAF816001AA04B /* Build configuration list for PBXProject "AgoraAudioIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A73042581FBAF817001AA04B /* Debug */,
+				A73042591FBAF817001AA04B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A730425A1FBAF817001AA04B /* Build configuration list for PBXNativeTarget "AgoraAudioIO-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A730425B1FBAF817001AA04B /* Debug */,
+				A730425C1FBAF817001AA04B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A78AD3BB2051210A001B8C7A /* Build configuration list for PBXNativeTarget "AgoraAudioIO-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A78AD3B92051210A001B8C7A /* Debug */,
+				A78AD3BA2051210A001B8C7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A730423C1FBAF816001AA04B /* Project object */;
+}

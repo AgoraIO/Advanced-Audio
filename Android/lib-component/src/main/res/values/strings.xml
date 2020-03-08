@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Advanced-Audio-Android</string>
+
+    <!-- Main Activity -->
+    <string name="start_broadcast_title">Start Live Broadcast</string>
+    <string name="topic_edit_hint">Pick a topic to chat</string>
+    <string name="powered_by_agora" translatable="false">Powered by agora.io</string>
+    <string name="need_necessary_permissions">Necessary permissions acquired</string>
+
+    <!-- Legal digits for channel names -->
+    <string name="legal_channel_name_characters" translatable="false">&#xA0;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;()+,-:;&lt;=.>?@[]^_`{|}~</string>
+</resources>

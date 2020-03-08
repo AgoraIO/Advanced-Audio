@@ -1,20 +1,60 @@
-# Android
-# Build your Android project with Gradle.
-# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/android
-
 trigger:
 - master
+- dev/*
 
 pool:
   vmImage: 'macos-latest'
 
-steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+variables:
+  iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_0_VOICE.zip?_ga=2.112593670.368877217.1583320605-5559409.1503304822'
+  MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_0_0_VOICE.zip?_ga=2.115167109.368877217.1583320605-5559409.1503304822'
+
+jobs:
+
+- template: Android/build-template/build-android.yml
+  parameters:
+    project: 'Android'
+    module: 'sample-custom-recorder'
+    name: 'CustomRecorder'
+
+- template: iOS&macOS/build-template/build-ios.yml
+  parameters:
+    displayName: 'AgoraRTCWithASMR'
+    workingDirectory: 'iOS&macOS/Agora-RTC-With-ASMR'
+    scheme: 'Agora-RTC-With-ASMR'
+    sdkurl: $(iOSRTCSDK)
+
+- template: iOS&macOS/build-template/build-ios.yml
+  parameters:
+    displayName: 'AgoraRTCWithVoiceChangeriOS'
+    workingDirectory: 'iOS&macOS/Agora-RTC-With-Voice-Changer-iOS'
+    scheme: 'Agora-RTC-With-Voice-Changer-iOS'
+    sdkurl: $(iOSRTCSDK)
+
+- template: iOS&macOS/build-template/build-ios.yml
+  parameters:
+    displayName: 'AgoraAudioIOiOS'
+    workingDirectory: 'iOS&macOS/AgoraAudioIO-Objective-C'
+    scheme: 'AgoraAudioIO-iOS'
+    sdkurl: $(iOSRTCSDK)
+
+- template: iOS&macOS/build-template/build-mac.yml
+  parameters:
+    displayName: 'AgoraAudioIOmacOS'
+    workingDirectory: 'iOS&macOS/AgoraAudioIO-Objective-C'
+    scheme: 'AgoraAudioIO-macOS'
+    sdkurl: $(MacRTCSDK)
+
+- template: iOS&macOS/build-template/build-ios.yml
+  parameters:
+    displayName: 'PronunciationAssess'
+    workingDirectory: 'iOS&macOS/Pronunciation-Assess-iOS'
+    scheme: 'Pronunciation-Assess'
+    sdkurl: $(iOSRTCSDK)
+
+- template: iOS&macOS/build-template/build-ios.yml
+  parameters:
+    displayName: 'SpeechRecognizeriOS'
+    workingDirectory: 'iOS&macOS/SpeechRecognizer-iOS'
+    scheme: 'SpeechRecognizer-iOS'
+    sdkurl: $(iOSRTCSDK)
