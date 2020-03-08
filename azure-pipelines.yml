@@ -45,12 +45,12 @@ jobs:
     scheme: 'AgoraAudioIO-macOS'
     sdkurl: $(MacRTCSDK)
 
-- template: iOS&macOS/build-template/build-ios.yml
-  parameters:
-    displayName: 'PronunciationAssess'
-    workingDirectory: 'iOS&macOS/Pronunciation-Assess-iOS'
-    scheme: 'Pronunciation-Assess'
-    sdkurl: $(iOSRTCSDK)
+#- template: iOS&macOS/build-template/build-ios.yml
+#  parameters:
+#    displayName: 'PronunciationAssess'
+#    workingDirectory: 'iOS&macOS/Pronunciation-Assess-iOS'
+#    scheme: 'Pronunciation-Assess'
+#    sdkurl: $(iOSRTCSDK)
 
 - template: iOS&macOS/build-template/build-ios.yml
   parameters:
