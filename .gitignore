@@ -4,3 +4,4 @@ xcuserdata
 *.a
 aiengine.h
 aiengine.provision
+.idea
