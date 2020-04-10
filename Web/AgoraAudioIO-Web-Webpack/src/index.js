@@ -1,204 +1,204 @@
-import RTCClient from './rtc-client';
-import {getDevices, serializeFormData, validator, Toast, resolutions} from './common';
-import "./assets/style.scss";
-import * as M from 'materialize-css';
+import RTCClient from './rtc-client'
+import {getDevices, serializeFormData, validator, Toast, resolutions} from './common'
+import './assets/style.css'
+import * as M from 'materialize-css'
 
 $(() => {
-  let selects = null;
+  let selects = null
     
-  $("#settings").on("click", function (e) {
-    e.preventDefault();
-    $(this).open(1);
-  });
+  $('#settings').on('click', function (e) {
+    e.preventDefault()
+    $(this).open(1)
+  })
 
   getDevices(function (devices) {
-    selects = devices;
+    selects = devices
     devices.audios.forEach(function (audio) {
       $('<option/>', {
         value: audio.value,
         text: audio.name,
-      }).appendTo("#microphoneId");
+      }).appendTo('#microphoneId')
     })
     devices.videos.forEach(function (video) {
       $('<option/>', {
         value: video.value,
         text: video.name,
-      }).appendTo("#cameraId");
+      }).appendTo('#cameraId')
     })
     resolutions.forEach(function (resolution) {
       $('<option/>', {
         value: resolution.value,
         text: resolution.name
-      }).appendTo("#cameraResolution");
+      }).appendTo('#cameraResolution')
     })
-    M.AutoInit();
+    M.AutoInit()
   })
 
-  const fields = ['appID', 'channel'];
+  const fields = ['appID', 'channel']
 
-  let rtc = new RTCClient();
+  let rtc = new RTCClient()
 
-  $(".autoplay-fallback").on("click", function (e) {
+  $('.autoplay-fallback').on('click', function (e) {
     e.preventDefault()
-    const id = e.target.getAttribute("id").split("video_autoplay_")[1]
-    console.log("autoplay fallback")
+    const id = e.target.getAttribute('id').split('video_autoplay_')[1]
+    console.log('autoplay fallback')
     if (id === 'local') {
       rtc._localStream.resume().then(() => {
-        Toast.notice("local resume")
-        $(e.target).addClass("hide")
+        Toast.notice('local resume')
+        $(e.target).addClass('hide')
       }).catch((err) => {
-        Toast.error("resume failed, please open console see more details")
+        Toast.error('resume failed, please open console see more details')
         console.error(err)
       })
-      return;
+      return
     }
     const remoteStream = rtc._remoteStreams.find((item) => `${item.getId()}` == id)
     if (remoteStream) {
       remoteStream.resume().then(() => {
-        Toast.notice("remote resume")
-        $(e.target).addClass("hide")
+        Toast.notice('remote resume')
+        $(e.target).addClass('hide')
       }).catch((err) => {
-        Toast.error("resume failed, please open console see more details")
+        Toast.error('resume failed, please open console see more details')
         console.error(err)
       })
     }
   })
 
-  $("#show_profile").on("change", function (e) {
-    e.preventDefault();
+  $('#show_profile').on('change', function (e) {
+    e.preventDefault()
     if (!rtc._joined) {
-      $(this).removeAttr("checked");
-      return false;
+      $(this).removeAttr('checked')
+      return false
     }
-    rtc.setNetworkQualityAndStreamStats(this.checked);
+    rtc.setNetworkQualityAndStreamStats(this.checked)
   })
 
-  $("#join").on("click", function (e) {
-    e.preventDefault();
-    console.log("join")
-    const params = serializeFormData();
+  $('#join').on('click', function (e) {
+    e.preventDefault()
+    console.log('join')
+    const params = serializeFormData()
     if (validator(params, fields)) {
       rtc.join(params).then(() => {
-        rtc.publish();
+        rtc.publish()
       })
     }
   })
 
-  $("#publish").on("click", function (e) {
-    e.preventDefault();
-    console.log("startLiveStreaming")
-    const params = serializeFormData();
+  $('#publish').on('click', function (e) {
+    e.preventDefault()
+    console.log('startLiveStreaming')
+    const params = serializeFormData()
     if (validator(params, fields)) {
-      rtc.publish();
+      rtc.publish()
     }
-  });
+  })
 
-  $("#unpublish").on("click", function (e) {
-    e.preventDefault();
-    console.log("stopLiveStreaming")
-    const params = serializeFormData();
+  $('#unpublish').on('click', function (e) {
+    e.preventDefault()
+    console.log('stopLiveStreaming')
+    const params = serializeFormData()
     if (validator(params, fields)) {
-      rtc.unpublish();
+      rtc.unpublish()
     }
-  });
+  })
 
-  $("#leave").on("click", function (e) {
-    e.preventDefault();
-    console.log("leave")
-    const params = serializeFormData();
+  $('#leave').on('click', function (e) {
+    e.preventDefault()
+    console.log('leave')
+    const params = serializeFormData()
     if (validator(params, fields)) {
-      rtc.leave();
+      rtc.leave()
     }
-  });
+  })
 
 
-  $("#audio_mixing_file").on("change", function (e) {
-    e.preventDefault();
-    console.log("change audio mixing")
+  $('#audio_mixing_file').on('change', function (e) {
+    e.preventDefault()
+    console.log('change audio mixing')
     if (rtc._audioMixingState != 'stop') {
       rtc._localStream.stopAudioMixing((error) => {
         if (error) {
-          console.error(error);
-          return;
+          console.error(error)
+          return
         }
-        $(".audio_mixing_state").each(function () {
-          $(this).prop("checked", false);
+        $('.audio_mixing_state').each(function () {
+          $(this).prop('checked', false)
         })
-        $("#stop_mixing").prop("checked", true)
-        rtc._audioMixingState = 'stop';
-        console.log("stop audio mixing success");
+        $('#stop_mixing').prop('checked', true)
+        rtc._audioMixingState = 'stop'
+        console.log('stop audio mixing success')
       })
     }
   })
 
-  $("#audio_effect_files").on("change", function (e) {
-    e.preventDefault();
-    console.log("change audio effect")
+  $('#audio_effect_files').on('change', function (e) {
+    e.preventDefault()
+    console.log('change audio effect')
     if (rtc._audioEffectState != 'stop') {
       rtc._localStream.stopAllEffects((error) => {
         if (error) {
-          console.error(error);
-          return;
+          console.error(error)
+          return
         }
-        $(".audio_effect_state").each(function () {
-          $(this).prop("checked", false);
+        $('.audio_effect_state').each(function () {
+          $(this).prop('checked', false)
         })
-        $("#stop_effect").prop("checked", true)
-        rtc._audioEffectState = 'stop';
-        console.log("stop audio effect success");
-      });
+        $('#stop_effect').prop('checked', true)
+        rtc._audioEffectState = 'stop'
+        console.log('stop audio effect success')
+      })
     }
   })
 
-  $(".audio_mixing_state").on("change", function (e) {
-    e.preventDefault();
-    const params = serializeFormData();
+  $('.audio_mixing_state').on('change', function (e) {
+    e.preventDefault()
+    const params = serializeFormData()
     if (!validator(params, fields) || !rtc._joined) {
-      $(this).removeAttr("checked");
-      return false;
+      $(this).removeAttr('checked')
+      return false
     }
     const operate = {
       'play': () => {
-        rtc.startAudioMixing(params.audio_mixing_file);
+        rtc.startAudioMixing(params.audio_mixing_file)
       },
       'stop': () => {
-        rtc.stopAudioMixing();
+        rtc.stopAudioMixing()
       },
       'pause': () => {
-        rtc.pauseAudioMixing();
+        rtc.pauseAudioMixing()
       },
       'resume': () => {
-        rtc.resumeAudioMixing();
+        rtc.resumeAudioMixing()
       }
     }
-    operate[$(this).val()]();
+    operate[$(this).val()]()
   })
 
-  $(".audio_effect_state").on("change", function (e) {
-    e.preventDefault();
-    const params = serializeFormData();
+  $('.audio_effect_state').on('change', function (e) {
+    e.preventDefault()
+    const params = serializeFormData()
     if (!validator(params, fields) || !rtc._joined) {
-      $(this).removeAttr("checked");
-      return false;
+      $(this).removeAttr('checked')
+      return false
     }
 
-    params.audio_effect_files = M.FormSelect.getInstance($("#audio_effect_files")[0]).getSelectedValues();
+    params.audio_effect_files = M.FormSelect.getInstance($('#audio_effect_files')[0]).getSelectedValues()
 
     const operate = {
       'play': () => {
-        rtc.playEffect(params.audio_effect_files);
+        rtc.playEffect(params.audio_effect_files)
       },
       'stop': () => {
-        rtc.stopEffect();
+        rtc.stopEffect()
       },
       'pause': () => {
-        rtc.pauseEffect();
+        rtc.pauseEffect()
       },
       'resume': () => {
-        rtc.resumeEffect();
+        rtc.resumeEffect()
       }
     }
-    operate[$(this).val()]();
+    operate[$(this).val()]()
   })
 
 })
