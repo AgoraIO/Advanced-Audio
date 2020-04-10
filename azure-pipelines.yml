@@ -62,7 +62,7 @@ jobs:
 - template: Windows/cicd/templates/build-Windows-dshow.yml
   parameters:
     displayName: 'AgoraAudioIOWinows'
-    workingDirectory: 'AgoraAudioIO-Windows'
+    workingDirectory: 'Windows/AgoraAudioIO-Windows'
     scheme: 'AgoraAudioIO-Windows'
     sdkurl: $(WindowsRTCSDK)
     solutionName: 'AgoraExternalCapture.sln'
