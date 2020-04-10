@@ -59,7 +59,7 @@ jobs:
     scheme: 'SpeechRecognizer-iOS'
     sdkurl: $(iOSRTCSDK)
 
-- template: Windows/cicd/templates/build-Windows.yml
+- template: Windows/cicd/templates/build-Windows-dshow.yml
   parameters:
     displayName: 'AgoraAudioIOWinows'
     workingDirectory: 'AgoraAudioIO-Windows'
