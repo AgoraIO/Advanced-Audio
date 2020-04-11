@@ -1,12 +1,11 @@
 #pragma once
 
 
-#include "../SDK/include/IAgoraRtcEngine.h"
-#include "../SDK/include/IAgoraMediaEngine.h"
-#include "ExtendVideoFrameObserver.h"
+#include "IAgoraRtcEngine.h"
+#include "IAgoraMediaEngine.h"
 #include "ExtendAudioFrameObserver.h"
 #include "AGEngineEventHandler.h"
-#include "../SDK/include/AgoraBase.h"
+#include "AgoraBase.h"
 using namespace agora;
 
 // #define ENABLE_CODEC	1
@@ -150,7 +149,7 @@ public:
 	void RemoveAllSEIInfo();
 	BOOL GetSEIInfo(UINT nUID, LPSEI_INFO lpSEIInfo);
 	BOOL GetSEIInfoByIndex(int nIndex, LPSEI_INFO lpSEIInfo);
-	int	 GetSEICount() { return m_mapSEIInfo.GetCount(); };
+    int	 GetSEICount() { return 0; }
 	BOOL EnableSEIPush(BOOL bEnable, COLORREF crBack);
 
 	BOOL EnableH264Compatible();
@@ -167,8 +166,7 @@ public:
 	
 	static CString GetSDKVersion();
 	static CString GetSDKVersionEx();
-	static BOOL EnableWhiteboardVer(BOOL bEnable);
-	static BOOL EnableWhiteboardFeq(BOOL bEnable);
+	
 
 protected:
 	CAgoraObject(void);
@@ -209,7 +207,7 @@ private:
 	int			m_nCanvasWidth;
 	int			m_nCanvasHeight;
 
-	CAtlMap<UINT, SEI_INFO>	m_mapSEIInfo;
+
 public:
 	static CAgoraObject *GetAgoraObject(LPCTSTR lpVendorKey = NULL);
 	static void CloseAgoraObject();

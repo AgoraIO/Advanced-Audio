@@ -1,17 +1,19 @@
 #AgoraAudioIO-Windows
 
+*其他语言: [中文](README.md)*
+
 This demo show how extenal audio source give pcm data to agora sdk by using IAudioFrameObserver. This demo impement external audio source by dshow.
 
-##Install Directx SDK
+##Prepare Dshow and libyuv
 
-You need to download and install [directx sdk 2010 June](https://www.microsoft.com/en-us/download/confirmation.aspx?id=6812)。
-
-After install dx sdk successfully,you need to reboot your computer.
+Download [dependencies](https://github.com/AgoraIO/Advanced-Audio/releases/download/DShow/ThirdParty.zip) .
+Unzip Thirdparty.zip, copy Dshow folder to solution directory.
 
 ## Developer Environment Requirements
-* VC2013 or higher
-* WIN7 or higher
+* VS2017 or higher
+* Win8.1 or higher
 
+ 
 ## Run the sample program
 First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. define the APP_ID with your App ID.
 

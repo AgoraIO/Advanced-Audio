@@ -58,3 +58,14 @@ jobs:
     workingDirectory: 'iOS&macOS/SpeechRecognizer-iOS'
     scheme: 'SpeechRecognizer-iOS'
     sdkurl: $(iOSRTCSDK)
+
+- template: Windows/cicd/templates/build-Windows-dshow.yml
+  parameters:
+    displayName: 'AgoraAudioIOWinows'
+    workingDirectory: 'Windows/AgoraAudioIO-Windows'
+    scheme: 'AgoraAudioIO-Windows'
+    sdkurl: $(WindowsRTCSDK)
+    solutionName: 'AgoraExternalCapture.sln'
+    sdkVersion: '3_0_0'
+    sdkFolderVersion: '3.0.0'
+    Machine: x86

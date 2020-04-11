@@ -1,25 +1,17 @@
 #pragma once
 #include "AGComboBox.h"
 #include "AGButton.h"
-#include "AGDShowAudioCapture.h"
-#include "AGAudioCapture.h"
 
-#include "AGDShowVideoCapture.h"
-#include "AGVideoCapture.h"
-
-#include "AGAudioCapture.h"
-#include "XAudioPlayout.h"
-
-#include "ExtendVideoFrameObserver.h"
 #include "ExtendAudioFrameObserver.h"
 #include "StreamingVoiceContext.h"
-
+#include "AGDShowAudioCapture.h"
 #include "afxwin.h"
 
 // CExtCaptureDlg ¶Ô»°¿ò
 
 typedef struct _PUSHAUDIO_THREAD_PARAM
 {
+
 	HANDLE		hExitEvent;
 
 } PUSHAUDIODATA_THREAD_PARAM, *PPUSHAUDIODATA_THREAD_PARAM, *LPPUSHAUDIODATA_THREAD_PARAM;
@@ -99,15 +91,10 @@ private:
 	CPen            m_penFrame;
 
 private:
-	CAGDShowVideoCapture	m_agVideoCaptureDevice;
-	CAGVideoCapture			m_agVideoCapture;
-
+	
 	CAGDShowAudioCapture	m_agAudioCaptureDevice;
-	CAGAudioCapture			m_agAudioCapture;
-
-	CXAudioPlayout			m_agXAudioPlayoutDevice;
-
-	CExtendVideoFrameObserver	m_exCapVideoFrameObserver;
+	
+	//CXAudioPlayout			m_agXAudioPlayoutDevice;
 	CExtendAudioFrameObserver	m_exCapAudioFrameObserver;
 	StreamingVoiceContext		m_exCapVoiceContext;
 

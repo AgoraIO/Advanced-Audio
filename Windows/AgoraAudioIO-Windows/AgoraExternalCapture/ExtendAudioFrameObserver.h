@@ -1,9 +1,7 @@
 #pragma once
-#include "../SDK/include/IAgoraMediaEngine.h"
-
-#include "AudioCapturePackageQueue.h"
-#include "AudioPlayPackageQueue.h"
-#include "XAudioPlayout.h"
+#include "IAgoraMediaEngine.h"
+#include "CirCleBuffer.hpp"
+//#include "XAudioPlayout.h"
 
 class CExtendAudioFrameObserver :
 	public agora::media::IAudioFrameObserver

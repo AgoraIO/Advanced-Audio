@@ -893,45 +893,27 @@ void CAgoraObject::SetSEIInfo(UINT nUID, LPSEI_INFO lpSEIInfo)
 	if (lpSEIInfo != NULL)
 		memcpy(&seiInfo, lpSEIInfo, sizeof(SEI_INFO));
 
-	m_mapSEIInfo.SetAt(nUID, seiInfo);
+	
 }
 
 void CAgoraObject::RemoveSEIInfo(UINT nUID)
 {
-	m_mapSEIInfo.RemoveKey(nUID);
+	
 }
 
 void CAgoraObject::RemoveAllSEIInfo()
 {
-	m_mapSEIInfo.RemoveAll();
+	
 }
 
 BOOL CAgoraObject::GetSEIInfo(UINT nUID, LPSEI_INFO lpSEIInfo)
 {
-	SEI_INFO seiInfo;
-
-	if (!m_mapSEIInfo.Lookup(nUID, seiInfo))
-		return FALSE;
-
-	memcpy(lpSEIInfo, &seiInfo, sizeof(SEI_INFO));
-
+	
 	return TRUE;
 }
 
 BOOL CAgoraObject::GetSEIInfoByIndex(int nIndex, LPSEI_INFO lpSEIInfo)
 {
-	int		nCounter = 0;
-
-	if (nIndex < 0 || nIndex >= m_mapSEIInfo.GetCount())
-		return FALSE;
-
-	POSITION pos = m_mapSEIInfo.GetStartPosition();
-	while (pos != NULL && nCounter < nIndex) {
-		m_mapSEIInfo.GetNext(pos);
-		nCounter++;
-	}
-
-	*lpSEIInfo = m_mapSEIInfo.GetValueAt(pos);
 	
 	return TRUE;
 }
@@ -994,50 +976,4 @@ void CAgoraObject::GetSelfResolution(int *nWidth, int *nHeight)
 {
 	*nWidth = m_nCanvasWidth;
 	*nHeight = m_nCanvasHeight;
-}
-
-BOOL CAgoraObject::EnableWhiteboardVer(BOOL bEnable)
-{
-	// HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION
-	HKEY hKey = NULL;
-
-	LSTATUS lStatus = ::RegCreateKeyEx(HKEY_CURRENT_USER, _T("SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\MAIN\\FeatureControl\\FEATURE_BROWSER_EMULATION"), 0, REG_OPTION_NON_VOLATILE
-		, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL);
-
-	if (lStatus != ERROR_SUCCESS)
-		return FALSE;
-
-	DWORD dwIEVer = 11001;
-
-	if (bEnable)
-		lStatus = ::RegSetValueEx(hKey, _T("AgoraVideoCall.exe"), 0, REG_DWORD, (const BYTE*)&dwIEVer, sizeof(DWORD));
-	else
-		lStatus = ::RegDeleteKeyValue(hKey, NULL, _T("AgoraVideoCall.exe"));
-
-	::RegCloseKey(hKey);
-
-	return lStatus == ERROR_SUCCESS ? TRUE : FALSE;
-}
-
-BOOL CAgoraObject::EnableWhiteboardFeq(BOOL bEnable)
-{
-	// HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION
-	HKEY hKey = NULL;
-	
-	LSTATUS lStatus = ::RegCreateKeyEx(HKEY_CURRENT_USER, _T("SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\MAIN\\FeatureControl\\FEATURE_MANAGE_SCRIPT_CIRCULAR_REFS"), 0, REG_OPTION_NON_VOLATILE
-		, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL);
-
-	if (lStatus != ERROR_SUCCESS)
-		return FALSE;
-
-	DWORD dwValue = 1;
-
-	if (bEnable)
-		lStatus = ::RegSetValueEx(hKey, _T("AgoraVideoCall.exe"), 0, REG_DWORD, (const BYTE*)&dwValue, sizeof(DWORD));
-	else
-		lStatus = ::RegDeleteKeyValue(hKey, NULL, _T("AgoraVideoCall.exe"));
-
-	::RegCloseKey(hKey);
-
-	return lStatus == ERROR_SUCCESS ? TRUE : FALSE;
 }

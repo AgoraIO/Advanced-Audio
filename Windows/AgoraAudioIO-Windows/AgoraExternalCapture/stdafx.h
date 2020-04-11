@@ -37,14 +37,14 @@
 #include "AGMessage.h"
 #define HAVE_JPEG
 
-#include "../SDK/include/IAgoraRtcEngine.h"
-#include "../SDK/include/IAgoraMediaEngine.h"
+#include "IAgoraRtcEngine.h"
+#include "IAgoraMediaEngine.h"
 #include "AgoraObject.h"
 #include "AGEventDef.h"
 #include <afxdisp.h>
 #include <afxdisp.h>
 
-#pragma comment(lib,"../SDK/lib/agora_rtc_sdk.lib")
+#pragma comment(lib,"agora_rtc_sdk.lib")
 
 
 #ifdef _UNICODE

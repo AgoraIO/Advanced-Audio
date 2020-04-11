@@ -1,17 +1,18 @@
 #include "stdafx.h"
 #include "AGDShowAudioCapture.h"
-#include "AudioCapturePackageQueue.h"
-#include "DShowPinHelper.h"
-
+#include "DShowHelper.h"
+#include "CircleBuffer.hpp"
+#include <Dvdmedia.h>
 
 CAGDShowAudioCapture::CAGDShowAudioCapture()
 	: m_ptrGraphBuilder(NULL)
-	, m_ptrSampleGrabber(NULL)
 	, m_ptrCaptureGraphBuilder2(NULL)
-	, m_lpSampleGrabberCB(NULL)
 	, m_nCapSelected(-1)
 {
 	memset(m_szActiveDeviceID, 0, MAX_PATH*sizeof(TCHAR));
+
+    filterSourceName  = _T("Audio Filter");
+    filterCaptureName = _T("Audio Capture Filter");
 }
 
 
@@ -22,19 +23,13 @@ CAGDShowAudioCapture::~CAGDShowAudioCapture()
 
 BOOL CAGDShowAudioCapture::Create()
 {
-	HRESULT			hResult = S_OK;
-
+	HRESULT	    hResult = S_OK;
+    BOOL        bRet = FALSE;
 	do {
 		hResult = m_ptrGraphBuilder.CoCreateInstance(CLSID_FilterGraph);
 		ATLASSERT(SUCCEEDED(hResult));
 		if (hResult != S_OK)
 			break;
-
-		hResult = m_ptrSampleGrabber.CoCreateInstance(CLSID_SampleGrabber);
-		ATLASSERT(SUCCEEDED(hResult));
-		if (hResult != S_OK)
-			break;
-
 		hResult = m_ptrCaptureGraphBuilder2.CoCreateInstance(CLSID_CaptureGraphBuilder2);
 		ATLASSERT(SUCCEEDED(hResult));
 		if (hResult != S_OK)
@@ -45,107 +40,112 @@ BOOL CAGDShowAudioCapture::Create()
 		if (FAILED(hResult))
 			break;
 
-		hResult = m_ptrSampleGrabber->SetBufferSamples(TRUE);
-		ATLASSERT(SUCCEEDED(hResult));
-		if (hResult != S_OK)
-			break;
-
-		hResult = m_ptrSampleGrabber->SetOneShot(FALSE);
-		ATLASSERT(SUCCEEDED(hResult));
-		if (hResult != S_OK)
-			break;
-
-		CComQIPtr<IBaseFilter, &IID_IBaseFilter> ptrGrabberFilter(m_ptrSampleGrabber);
-		hResult = m_ptrGraphBuilder->AddFilter(ptrGrabberFilter, L"Grabber");
-		ATLASSERT(SUCCEEDED(hResult));
-		if (hResult != S_OK)
-			break;
-
-		return TRUE;
+        if (S_OK != m_ptrGraphBuilder->QueryInterface(IID_IMediaControl, (void**)&control))
+            break;
+        bRet = TRUE;
 
 	} while (FALSE);
 
-	m_ptrGraphBuilder = NULL;
-	m_ptrSampleGrabber = NULL;
-	m_ptrCaptureGraphBuilder2 = NULL;
-
-	return FALSE;
+	return bRet;
 }
 
 void CAGDShowAudioCapture::Close()
 {
-	CloseDevice();
+    CComPtr<IEnumFilters>     filterEnum = nullptr;
+    HRESULT                  hr;
 
-	m_ptrGraphBuilder = NULL;
-	m_ptrSampleGrabber = NULL;
-	m_ptrCaptureGraphBuilder2 = NULL;
+    if (!m_ptrGraphBuilder)
+        return;
+
+    hr = m_ptrGraphBuilder->EnumFilters(&filterEnum);
+    if (FAILED(hr))
+        return;
+
+    if (capturePin)
+        capturePin.Release();
+
+    if (filterPin)
+        filterPin.Release();
+
+    CComPtr<IBaseFilter> filter = nullptr;
+    while (filterEnum->Next(1, &filter, nullptr) == S_OK) {
+        m_ptrGraphBuilder->RemoveFilter(filter);
+        filterEnum->Reset();
+        filter.Release();
+    }
+
+    control.Release();
+    m_ptrGraphBuilder.Release();
+    m_ptrCaptureGraphBuilder2.Release();
 }
 
 BOOL CAGDShowAudioCapture::EnumDeviceList()
 {
-	HRESULT		hResult = S_OK;
+    HRESULT		hResult = S_OK;
 
-	CComVariant		var;
-	WCHAR			*wszDevicePath = NULL;
+    CComVariant		var;
+    WCHAR			*wszDevicePath = NULL;
 
-	CComPtr<ICreateDevEnum>		ptrCreateDevEnum = NULL;
-	CComPtr<IEnumMoniker>		ptrEnumMoniker = NULL;
-	CComPtr<IMoniker>			ptrMoniker = NULL;
-	CComPtr<IPropertyBag>		ptrPropertyBag = NULL;
+    CComPtr<ICreateDevEnum>		ptrCreateDevEnum = NULL;
+    CComPtr<IEnumMoniker>		ptrEnumMoniker = NULL;
+    CComPtr<IMoniker>			ptrMoniker = NULL;
 
-	AGORA_DEVICE_INFO			agDeviceInfo;
+    AGORA_DEVICE_INFO			agDeviceInfo;
 
-	hResult = ptrCreateDevEnum.CoCreateInstance(CLSID_SystemDeviceEnum);
-	if (FAILED(hResult))
-		return FALSE;
+    hResult = ptrCreateDevEnum.CoCreateInstance(CLSID_SystemDeviceEnum);
+    if (FAILED(hResult))
+        return FALSE;
 
-	hResult = ptrCreateDevEnum->CreateClassEnumerator(CLSID_AudioInputDeviceCategory, &ptrEnumMoniker, 0);
-	if (hResult != S_OK)
-		return FALSE;
+    hResult = ptrCreateDevEnum->CreateClassEnumerator(CLSID_AudioInputDeviceCategory, &ptrEnumMoniker, 0);
+    if (hResult != S_OK)
+        return FALSE;
 
-	m_listDeviceInfo.RemoveAll();
+    m_listDeviceInfo.RemoveAll();
 
-	do {
-		ptrMoniker = NULL;
-		hResult = ptrEnumMoniker->Next(1, &ptrMoniker, NULL);
-		if (hResult != S_OK)
-			break;
+    do {
+        ptrMoniker = NULL;
+        hResult = ptrEnumMoniker->Next(1, &ptrMoniker, NULL);
+        if (hResult != S_OK)
+            break;
 
-		ptrPropertyBag = NULL;
-		hResult = ptrMoniker->BindToStorage(NULL, NULL, IID_IPropertyBag, (void**)(&ptrPropertyBag));
-		if (hResult != S_OK)
-			break;
+        IBaseFilter*  filter;
+        if (SUCCEEDED(ptrMoniker->BindToObject(NULL, 0, IID_IBaseFilter,
+            (void**)&filter))) {
+            CComPtr<IPropertyBag>		ptrPropertyBag = NULL;
+            hResult = ptrMoniker->BindToStorage(NULL, NULL, IID_IPropertyBag, (void**)(&ptrPropertyBag));
+            if (hResult != S_OK)
+                break;
 
-		memset(&agDeviceInfo, 0, sizeof(AGORA_DEVICE_INFO));
+            memset(&agDeviceInfo, 0, sizeof(AGORA_DEVICE_INFO));
 
-		var.Clear();
-		hResult = ptrPropertyBag->Read(L"FriendlyName", &var, NULL);
-		if (SUCCEEDED(hResult)){
+            var.Clear();
+            hResult = ptrPropertyBag->Read(L"FriendlyName", &var, NULL);
+            if (SUCCEEDED(hResult)) {
 #ifdef UNICODE
-			_tcscpy_s(agDeviceInfo.szDeviceName, var.bstrVal);
+                _tcscpy_s(agDeviceInfo.szDeviceName, var.bstrVal);
 #else
-			::WideCharToMultiByte(CP_ACP, 0, var.bstrVal, -1, agDeviceInfo.szDeviceName, MAX_PATH, NULL, NULL);
+                ::WideCharToMultiByte(CP_ACP, 0, var.bstrVal, -1, agDeviceInfo.szDeviceName, MAX_PATH, NULL, NULL);
 #endif
-		}
-		
-		hResult = ptrMoniker->GetDisplayName(NULL, NULL, &wszDevicePath);
-		if (SUCCEEDED(hResult)){
+            }
+
+            hResult = ptrMoniker->GetDisplayName(NULL, NULL, &wszDevicePath);
+            if (SUCCEEDED(hResult)) {
 #ifdef UNICODE
-			_tcscpy_s(agDeviceInfo.szDevicePath, wszDevicePath);
+                _tcscpy_s(agDeviceInfo.szDevicePath, wszDevicePath);
 #else
-			::WideCharToMultiByte(CP_ACP, 0, wszDevicePath, -1, agDeviceInfo.szDevicePath, MAX_PATH, NULL, NULL);
+                ::WideCharToMultiByte(CP_ACP, 0, wszDevicePath, -1, agDeviceInfo.szDevicePath, MAX_PATH, NULL, NULL);
 #endif
-			::CoTaskMemFree(wszDevicePath);
-		}	
+                ::CoTaskMemFree(wszDevicePath);
+            }
 
-		m_listDeviceInfo.AddTail(agDeviceInfo);
+            m_listDeviceInfo.AddTail(agDeviceInfo);
+        }
+    } while (TRUE);
 
-	} while (TRUE);
-
-	return TRUE;
+    return TRUE;
 }
 
-BOOL CAGDShowAudioCapture::GetDeviceInfo(int nIndex, LPAGORA_DEVICE_INFO lpDeviceInfo)
+    BOOL CAGDShowAudioCapture::GetDeviceInfo(int nIndex, LPAGORA_DEVICE_INFO lpDeviceInfo)
 {
 	ATLASSERT(lpDeviceInfo != NULL);
 	ATLASSERT(nIndex >= 0 && nIndex < static_cast<int>(m_listDeviceInfo.GetCount()));
@@ -208,7 +208,7 @@ BOOL CAGDShowAudioCapture::OpenDevice(LPCTSTR lpDevicePath)
 	if (hResult != S_OK)
 		return FALSE;
 
-	hResult = m_ptrGraphBuilder->AddFilter(ptrSourceFilter, L"Source");
+	hResult = m_ptrGraphBuilder->AddFilter(ptrSourceFilter, filterSourceName);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (hResult != S_OK)
 		return FALSE;
@@ -241,7 +241,7 @@ void CAGDShowAudioCapture::CloseDevice()
 	CComPtr<IBaseFilter>	ptrSourceFilter = NULL;
 
 	CaptureControl(DEVICE_STOP);
-	HRESULT hResult = m_ptrGraphBuilder->FindFilterByName(L"Source", &ptrSourceFilter);
+	HRESULT hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrSourceFilter);
 
 	if (SUCCEEDED(hResult)) {
 		m_ptrGraphBuilder->RemoveFilter(ptrSourceFilter);
@@ -249,13 +249,6 @@ void CAGDShowAudioCapture::CloseDevice()
 	}
 
 	memset(m_szActiveDeviceID, 0, MAX_PATH*sizeof(TCHAR));
-}
-
-BOOL CAGDShowAudioCapture::SetGrabberCallback(ISampleGrabberCB *lpGrabber, long lSampleType)
-{	
-	HRESULT hResult = m_ptrSampleGrabber->SetCallback(lpGrabber, lSampleType);
-
-	return SUCCEEDED(hResult);
 }
 
 int CAGDShowAudioCapture::GetMediaCapCount()
@@ -267,7 +260,7 @@ int CAGDShowAudioCapture::GetMediaCapCount()
 	CComPtr<IBaseFilter>			ptrCaptureFilter = NULL;
 	CComPtr<IAMStreamConfig>		ptrStreamConfig = NULL;
 
-	hResult = m_ptrGraphBuilder->FindFilterByName(L"Source", &ptrCaptureFilter);
+	hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrCaptureFilter);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (FAILED(hResult))
 		return 0;
@@ -294,7 +287,7 @@ BOOL CAGDShowAudioCapture::GetMediaCap(int nIndex, AM_MEDIA_TYPE **ppMediaType, 
 	CComPtr<IBaseFilter>			ptrCaptureFilter = NULL;
 	CComPtr<IAMStreamConfig>		ptrStreamConfig = NULL;
 
-	hResult = m_ptrGraphBuilder->FindFilterByName(L"Source", &ptrCaptureFilter);
+	hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrCaptureFilter);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (FAILED(hResult))
 		return FALSE;
@@ -338,7 +331,7 @@ BOOL CAGDShowAudioCapture::GetAudioCap(int nIndex, WAVEFORMATEX *lpWaveInfo)
 	else
 		bSuccess = FALSE;
 
-	FreeMediaType(lpAMMediaType);
+    CDShowHelper::FreeMediaType(lpAMMediaType);
 
 	return bSuccess;
 }
@@ -352,7 +345,7 @@ BOOL CAGDShowAudioCapture::GetCurrentAudioCap(WAVEFORMATEX *lpWaveInfo)
 	CComPtr<IBaseFilter>			ptrCaptureFilter = NULL;
 	CComPtr<IAMStreamConfig>		ptrStreamConfig = NULL;
 
-	hResult = m_ptrGraphBuilder->FindFilterByName(L"Source", &ptrCaptureFilter);
+	hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrCaptureFilter);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (FAILED(hResult))
 		return FALSE;
@@ -376,7 +369,7 @@ BOOL CAGDShowAudioCapture::GetCurrentAudioCap(WAVEFORMATEX *lpWaveInfo)
 	else
 		bSuccess = FALSE;
 
-	FreeMediaType(lpAMMediaType);
+    CDShowHelper::FreeMediaType(lpAMMediaType);
 
 	return bSuccess;
 }
@@ -392,7 +385,7 @@ BOOL CAGDShowAudioCapture::SelectMediaCap(int nIndex)
 	CComPtr<IBaseFilter>		ptrCaptureFilter = NULL;
 	CComPtr<IAMStreamConfig>	ptrStreamConfig = NULL;
 
-	hResult = m_ptrGraphBuilder->FindFilterByName(L"Source", &ptrCaptureFilter);
+	hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrCaptureFilter);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (FAILED(hResult))
 		return FALSE;
@@ -424,16 +417,11 @@ BOOL CAGDShowAudioCapture::SelectMediaCap(int nIndex)
 		if (FAILED(hResult))
 			break;
 
-		hResult = m_ptrSampleGrabber->SetMediaType(lpMediaType);
-		ATLASSERT(SUCCEEDED(hResult));
-		if (FAILED(hResult))
-			break;
-
 		m_nCapSelected = nIndex;
 
 	} while (FALSE);
 
-	FreeMediaType(lpMediaType);
+	CDShowHelper::FreeMediaType(lpMediaType);
 
 	return SUCCEEDED(hResult);
 }
@@ -444,19 +432,18 @@ BOOL CAGDShowAudioCapture::FindPin(IPin **ppInputPin, IPin **ppOutputPin)
 
 	CComPtr<IBaseFilter> ptrCaptureFilter = NULL;
 	CComPtr<IBaseFilter> ptrSourceFilter = NULL;
-	CDShowPinHelper	pinHelper;
 
-	hResult = m_ptrGraphBuilder->FindFilterByName(L"Grabber", &ptrCaptureFilter);
+	hResult = m_ptrGraphBuilder->FindFilterByName(filterCaptureName, &ptrCaptureFilter);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (FAILED(hResult))
 		return FALSE;
 
-	hResult = m_ptrGraphBuilder->FindFilterByName(L"Source", &ptrSourceFilter);
+	hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrSourceFilter);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (FAILED(hResult))
-		return FALSE;
+		return FALSE; 
 
-	if (pinHelper.Open(ptrSourceFilter)) {
+/*	if (pinHelper.Open(ptrSourceFilter)) {
 		pinHelper.FindUnconnectedPin(PIN_DIRECTION::PINDIR_OUTPUT, ppOutputPin);
 		pinHelper.Close();
 	}
@@ -464,28 +451,9 @@ BOOL CAGDShowAudioCapture::FindPin(IPin **ppInputPin, IPin **ppOutputPin)
 	if (pinHelper.Open(ptrCaptureFilter)) {
 		pinHelper.FindUnconnectedPin(PIN_DIRECTION::PINDIR_INPUT, ppInputPin);
 		pinHelper.Close();
-	}
+	}*/
 
 	return TRUE;
-}
-
-void CAGDShowAudioCapture::FreeMediaType(AM_MEDIA_TYPE *lpAMMediaType)
-{
-	if (lpAMMediaType == NULL)
-		return;
-
-	if (lpAMMediaType->cbFormat != 0) {
-		::CoTaskMemFree((PVOID)lpAMMediaType->pbFormat);
-		lpAMMediaType->cbFormat = 0;
-		lpAMMediaType->pbFormat = NULL;
-	}
-
-	if (lpAMMediaType->pUnk != NULL) {
-		lpAMMediaType->pUnk->Release();
-		lpAMMediaType->pUnk = NULL;
-	}
-
-	::CoTaskMemFree(lpAMMediaType);
 }
 
 BOOL CAGDShowAudioCapture::GetCaptureBuffer(SIZE_T *nBlockSize, SIZE_T *nBlockCount, SIZE_T *nAlign)
@@ -525,7 +493,7 @@ BOOL CAGDShowAudioCapture::SetCaptureBuffer(SIZE_T nBlockSize, SIZE_T nBlockCoun
 	CComPtr<IBaseFilter>			ptrCaptureFilter = NULL;
 	CComPtr<IAMBufferNegotiation>	ptrBufferNegotiation = NULL;
 
-	hResult = m_ptrGraphBuilder->FindFilterByName(L"Source", &ptrCaptureFilter);
+	hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrCaptureFilter);
 	ATLASSERT(SUCCEEDED(hResult));
 	if (FAILED(hResult))
 		return FALSE;
@@ -584,4 +552,166 @@ BOOL CAGDShowAudioCapture::CaptureControl(int nControlCode)
 	ATLASSERT(SUCCEEDED(hResult));
 
 	return hResult == S_OK ? TRUE : FALSE;
+}
+
+BOOL CAGDShowAudioCapture::GetCurrentMediaType(AM_MEDIA_TYPE **pMediaType)
+{
+    BOOL			bSuccess = FALSE;
+    HRESULT			hResult = S_OK;
+
+    CComPtr<IBaseFilter>			ptrCaptureFilter = nullptr;
+    CComPtr<IAMStreamConfig>		ptrStreamConfig = nullptr;
+
+    hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &ptrCaptureFilter);
+    ATLASSERT(SUCCEEDED(hResult));
+    if (FAILED(hResult))
+        return FALSE;
+
+    hResult = m_ptrCaptureGraphBuilder2->FindInterface(&PIN_CATEGORY_CAPTURE, &MEDIATYPE_Audio, ptrCaptureFilter, IID_IAMStreamConfig, (void**)&ptrStreamConfig);
+    ATLASSERT(SUCCEEDED(hResult));
+    if (FAILED(hResult))
+        return FALSE;
+
+    hResult = ptrStreamConfig->GetFormat(pMediaType);
+    ATLASSERT(SUCCEEDED(hResult));
+    if (FAILED(hResult))
+        return FALSE;
+
+    return TRUE;
+}
+BOOL CAGDShowAudioCapture::CreateCaptureFilter()
+{
+    if (audioCapture) {
+        m_ptrGraphBuilder->RemoveFilter(audioCapture);
+        audioCapture.Release();
+    }
+
+    AM_MEDIA_TYPE* mt;
+    if (GetCurrentMediaType(&mt)) {
+        PinCaptureInfo info;
+        info.callback          = [this](IMediaSample *s) {Receive(false, s); };
+        info.expectedMajorType = mt->majortype;
+        info.expectedSubType   = mt->subtype;
+        audioCapture           = new CaptureFilter(info);
+
+        HRESULT hr = m_ptrGraphBuilder->AddFilter(audioCapture, filterCaptureName);
+        if (SUCCEEDED(hr))
+            return TRUE;
+
+        CDShowHelper::FreeMediaType(mt);
+    }
+
+    return FALSE;
+}
+BOOL CAGDShowAudioCapture::Start()
+{
+    if (ConnectFilters()) {
+        control->Run();
+        active = true;
+        return TRUE;
+    }
+    return FALSE;
+}
+void CAGDShowAudioCapture::Stop()
+{
+    if (active) {
+        control->Stop();
+        active = false;
+    }
+
+    DisconnectPins();
+}
+
+void CAGDShowAudioCapture::Receive(bool video, IMediaSample *sample)
+{
+    BYTE *pBuffer;
+    AM_MEDIA_TYPE* mt;
+    if (!sample)
+        return;
+    
+    int size = sample->GetActualDataLength();
+    if (!size)
+        return;
+
+    if (FAILED(sample->GetPointer(&pBuffer)))
+        return;
+
+    CircleBuffer::GetInstance()->writeBuffer(pBuffer, size, GetTickCount());
+}
+
+void CAGDShowAudioCapture::GetDeviceName(LPTSTR deviceName, SIZE_T *nDeviceLen)
+{
+    for (int i = 0; i < m_listDeviceInfo.GetCount(); ++i) {
+        POSITION pos = m_listDeviceInfo.FindIndex(i);
+        AGORA_DEVICE_INFO &agDeviceInfo = m_listDeviceInfo.GetAt(pos);
+        if (_tcscmp(m_szActiveDeviceID, agDeviceInfo.szDevicePath) == 0) {
+            *nDeviceLen = _tcslen(agDeviceInfo.szDeviceName);
+            _tcscpy_s(deviceName, *nDeviceLen + 1, agDeviceInfo.szDeviceName);
+
+            break;
+        }
+    }
+}
+
+BOOL CAGDShowAudioCapture::ConnectFilters()
+{
+    CComPtr<IBaseFilter>	filter = nullptr;
+    HRESULT hResult = m_ptrGraphBuilder->FindFilterByName(filterSourceName, &filter);
+    TCHAR deviceName[MAX_PATH] = { 0 };
+    SIZE_T len = 0;
+    GetDeviceName(deviceName, &len);
+    if (SUCCEEDED(hResult) && filter && audioCapture) {
+        bool success = ConnectPins(PIN_CATEGORY_CAPTURE,
+            MEDIATYPE_Audio, filter,
+            audioCapture);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+BOOL CAGDShowAudioCapture::ConnectPins(const GUID &category, const GUID &type,
+    IBaseFilter *filter, IBaseFilter *capture)
+{
+    HRESULT hr = S_OK;
+
+    if (!CDShowHelper::GetFilterPin(filter, type, category, PINDIR_OUTPUT, &filterPin)) {
+        OutputDebugString(L"Failed to find pin");
+        return FALSE;
+    }
+
+    if (!CDShowHelper::GetPinByName(capture, PINDIR_INPUT, nullptr, &capturePin)) {
+        OutputDebugString(L"Failed to find capture pin");
+        return FALSE;
+    }
+    OutputDebugString(L"ConnectDirect\n");
+    hr = m_ptrGraphBuilder->ConnectDirect(filterPin, capturePin, nullptr);
+    if (FAILED(hr)) {
+        OutputDebugString(L"failed to connect pins");
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+BOOL CAGDShowAudioCapture::DisconnectPins()
+{
+    if (!m_ptrGraphBuilder)
+        return FALSE;
+
+    if (!capturePin && !filterPin)
+        return FALSE;
+    HRESULT hr = S_FALSE;
+    if (capturePin) {
+        hr = m_ptrGraphBuilder->Disconnect(capturePin);
+        capturePin.Release();
+    }
+    ATLASSERT(SUCCEEDED(hr));
+
+    if (filterPin) {
+        hr = m_ptrGraphBuilder->Disconnect(filterPin);
+        filterPin.Release();
+    }
+    ATLASSERT(SUCCEEDED(hr));
+    return TRUE;
 }

@@ -51,7 +51,7 @@ BEGIN_MESSAGE_MAP(CAgoraExternalCaptureDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTNCLOSE, &CAgoraExternalCaptureDlg::OnBnClickedBtnclose)
 
 	ON_MESSAGE(WM_MSGID(EID_LASTMILE_QUALITY), &CAgoraExternalCaptureDlg::OnLastmileQuality)
-
+    ON_WM_DESTROY()
 END_MESSAGE_MAP()
 
 
@@ -104,12 +104,22 @@ BOOL CAgoraExternalCaptureDlg::OnInitDialog()
     m_ftDes.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
     m_ftPhone.CreateFont(15, 0, 0, 0, FW_BOLD, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
 
-	if (_tcslen(APP_ID) == 0) {
-		MessageBox(_T("Please define your own APP_ID in source code"), _T("information"), MB_OK | MB_ICONINFORMATION);
-		::PostQuitMessage(0);
-	}
+    CString strAppid;
+    if (_tcslen(APP_ID) == 0) {
+        CString appid = m_agConfig.GetAppid();
+        if (appid.IsEmpty()) {
+            m_agConfig.SetAppid(_T(""));
+            ShellExecute(NULL, _T("open"), m_agConfig.GetFilePath(), NULL, NULL, SW_SHOW);
 
-	m_lpAgoraObject = CAgoraObject::GetAgoraObject(APP_ID);
+            MessageBox(_T("Please define your own APP_ID in source code"), _T("information"), MB_OK | MB_ICONINFORMATION);
+            ::PostQuitMessage(0);
+        }
+
+        strAppid = m_agConfig.GetAppid();
+    }
+    else
+        strAppid = APP_ID;
+    m_lpAgoraObject = CAgoraObject::GetAgoraObject(strAppid);
 	m_lpRtcEngine = CAgoraObject::GetEngine();
     m_lpAgoraObject->EnableVideo(TRUE);
     m_lpAgoraObject->SetLogFilePath(NULL);
@@ -272,6 +282,7 @@ void CAgoraExternalCaptureDlg::OnBnClickedBtnmin()
 void CAgoraExternalCaptureDlg::OnBnClickedBtnclose()
 {
 	// TODO:  在此添加控件通知处理程序代码
+    CAgoraObject::GetAgoraObject()->SetMsgHandlerWnd(NULL);
 	CDialogEx::OnCancel();
 }
 
@@ -359,4 +370,10 @@ LRESULT CAgoraExternalCaptureDlg::OnLastmileQuality(WPARAM wParam, LPARAM lParam
 
 	delete lpData;
 	return 0;
+}
+
+void CAgoraExternalCaptureDlg::OnDestroy()
+{
+    CAgoraObject::GetAgoraObject()->CloseAgoraObject();
+    CLanguageSet::GetInstance()->CloseInstance();
 }

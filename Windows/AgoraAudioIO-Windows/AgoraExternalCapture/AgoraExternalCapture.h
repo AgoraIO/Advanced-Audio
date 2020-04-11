@@ -10,23 +10,24 @@
 
 #include "resource.h"		// main symbols
 
-
 // CAgoraVideoCallApp:
 // See AgoraVideoCall.cpp for the implementation of this class
 //
-
+class CAgoraExternalCaptureDlg;
 class CAgoraExternalCaptureApp : public CWinApp
 {
 public:
 	CAgoraExternalCaptureApp();
-
+    ~CAgoraExternalCaptureApp();
 // Overrides
 public:
 	virtual BOOL InitInstance();
-
+    virtual int ExitInstance();
 // Implementation
 
 	DECLARE_MESSAGE_MAP()
+private:
+    CAgoraExternalCaptureDlg* avcDlg;
 };
 
 extern CAgoraExternalCaptureApp theApp;

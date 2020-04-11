@@ -17,32 +17,36 @@ void CAGEngineEventHandler::SetMsgReceiver(HWND hWnd)
 
 void CAGEngineEventHandler::onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed)
 {
-	LPAGE_JOINCHANNEL_SUCCESS lpData = new AGE_JOINCHANNEL_SUCCESS;
+    if (m_hMainWnd != NULL) {
+        LPAGE_JOINCHANNEL_SUCCESS lpData = new AGE_JOINCHANNEL_SUCCESS;
 
-	int nChannelLen = strlen(channel) + 1;
-	lpData->channel = new char[nChannelLen];
-	lpData->uid = uid;
-	lpData->elapsed = elapsed;
+        int nChannelLen = strlen(channel) + 1;
+        lpData->channel = new char[nChannelLen];
+        lpData->uid = uid;
+        lpData->elapsed = elapsed;
 
-	strcpy_s(lpData->channel, nChannelLen, channel);
+        strcpy_s(lpData->channel, nChannelLen, channel);
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_JOINCHANNEL_SUCCESS), (WPARAM)lpData, 0);
+
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_JOINCHANNEL_SUCCESS), (WPARAM)lpData, 0);
+    }
 }
 
 void CAGEngineEventHandler::onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed)
 {
-	LPAGE_REJOINCHANNEL_SUCCESS lpData = new AGE_REJOINCHANNEL_SUCCESS;
+    if (m_hMainWnd != NULL) {
+        LPAGE_REJOINCHANNEL_SUCCESS lpData = new AGE_REJOINCHANNEL_SUCCESS;
 
-	int nChannelLen = strlen(channel) + 1;
-	lpData->channel = new char[nChannelLen];
-	lpData->uid = uid;
-	lpData->elapsed = elapsed;
+        int nChannelLen = strlen(channel) + 1;
+        lpData->channel = new char[nChannelLen];
+        lpData->uid = uid;
+        lpData->elapsed = elapsed;
 
-	strcpy_s(lpData->channel, nChannelLen, channel);
+        strcpy_s(lpData->channel, nChannelLen, channel);
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_REJOINCHANNEL_SUCCESS), (WPARAM)lpData, 0);
+
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_REJOINCHANNEL_SUCCESS), (WPARAM)lpData, 0);
+    }
 
 }
 
@@ -95,16 +99,15 @@ void CAGEngineEventHandler::onAudioQuality(uid_t uid, int quality, unsigned shor
 
 void CAGEngineEventHandler::onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume)
 {
-	LPAGE_AUDIO_VOLUME_INDICATION lpData = new AGE_AUDIO_VOLUME_INDICATION;
+    if (m_hMainWnd != NULL) {
+        LPAGE_AUDIO_VOLUME_INDICATION lpData = new AGE_AUDIO_VOLUME_INDICATION;
 
-	lpData->speakers = new AudioVolumeInfo[speakerNumber];
-	memcpy(lpData->speakers, speakers, speakerNumber*sizeof(AudioVolumeInfo));
-	lpData->speakerNumber = speakerNumber;
-	lpData->totalVolume = totalVolume;
-
-	if (m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_AUDIO_VOLUME_INDICATION), (WPARAM)lpData, 0);
-
+        lpData->speakers = new AudioVolumeInfo[speakerNumber];
+        memcpy(lpData->speakers, speakers, speakerNumber * sizeof(AudioVolumeInfo));
+        lpData->speakerNumber = speakerNumber;
+        lpData->totalVolume = totalVolume;
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_AUDIO_VOLUME_INDICATION), (WPARAM)lpData, 0);
+    }
 }
 
 void CAGEngineEventHandler::onLeaveChannel(const RtcStats& stat)
@@ -127,149 +130,160 @@ void CAGEngineEventHandler::onRtcStats(const RtcStats& stat)
 
 void CAGEngineEventHandler::onAudioDeviceStateChanged(const char* deviceId, int deviceType, int deviceState)
 {
-	LPAGE_AUDIO_DEVICE_STATE_CHANGED lpData = new AGE_AUDIO_DEVICE_STATE_CHANGED;
+    if (m_hMainWnd != NULL) {
+        LPAGE_AUDIO_DEVICE_STATE_CHANGED lpData = new AGE_AUDIO_DEVICE_STATE_CHANGED;
 
-	int nDeviceIDLen = strlen(deviceId) + 1;
+        int nDeviceIDLen = strlen(deviceId) + 1;
 
-	lpData->deviceId = new char[nDeviceIDLen];
+        lpData->deviceId = new char[nDeviceIDLen];
 
-	strcpy_s(lpData->deviceId, nDeviceIDLen, deviceId);
-	lpData->deviceType = deviceType;
-	lpData->deviceState = deviceState;
-
-	if (m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_AUDIO_DEVICE_STATE_CHANGED), (WPARAM)lpData, 0);
+        strcpy_s(lpData->deviceId, nDeviceIDLen, deviceId);
+        lpData->deviceType = deviceType;
+        lpData->deviceState = deviceState;
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_AUDIO_DEVICE_STATE_CHANGED), (WPARAM)lpData, 0);
+    }
 
 }
 
 void CAGEngineEventHandler::onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState)
 {
-	LPAGE_VIDEO_DEVICE_STATE_CHANGED lpData = new AGE_VIDEO_DEVICE_STATE_CHANGED;
+    if (m_hMainWnd != NULL) {
+        LPAGE_VIDEO_DEVICE_STATE_CHANGED lpData = new AGE_VIDEO_DEVICE_STATE_CHANGED;
 
-	int nDeviceIDLen = strlen(deviceId) + 1;
+        int nDeviceIDLen = strlen(deviceId) + 1;
 
-	lpData->deviceId = new char[nDeviceIDLen];
+        lpData->deviceId = new char[nDeviceIDLen];
 
-	strcpy_s(lpData->deviceId, nDeviceIDLen, deviceId);
-	lpData->deviceType = deviceType;
-	lpData->deviceState = deviceState;
+        strcpy_s(lpData->deviceId, nDeviceIDLen, deviceId);
+        lpData->deviceType = deviceType;
+        lpData->deviceState = deviceState;
 
-	if (m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_VIDEO_DEVICE_STATE_CHANGED), (WPARAM)lpData, 0);
+
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_VIDEO_DEVICE_STATE_CHANGED), (WPARAM)lpData, 0);
+    }
 
 }
 
 void CAGEngineEventHandler::onLastmileQuality(int quality)
 {
+    return;
+    if (m_hMainWnd != NULL){
     LPAGE_LASTMILE_QUALITY lpData = new AGE_LASTMILE_QUALITY;
 
 	lpData->quality = quality;
-
-	if(m_hMainWnd != NULL)
         ::PostMessage(m_hMainWnd, WM_MSGID(EID_LASTMILE_QUALITY), (WPARAM)lpData, 0);
+    }
 
 }
 
 void CAGEngineEventHandler::onFirstLocalVideoFrame(int width, int height, int elapsed)
 {
-	LPAGE_FIRST_LOCAL_VIDEO_FRAME lpData = new AGE_FIRST_LOCAL_VIDEO_FRAME;
+    if (m_hMainWnd != NULL) {
+        LPAGE_FIRST_LOCAL_VIDEO_FRAME lpData = new AGE_FIRST_LOCAL_VIDEO_FRAME;
 
-	lpData->width = width;
-	lpData->height = height;
-	lpData->elapsed = elapsed;
+        lpData->width = width;
+        lpData->height = height;
+        lpData->elapsed = elapsed;
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_LOCAL_VIDEO_FRAME), (WPARAM)lpData, 0);
+
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_LOCAL_VIDEO_FRAME), (WPARAM)lpData, 0);
+    }
 
 }
 
 void CAGEngineEventHandler::onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed)
 {
-	LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = new AGE_FIRST_REMOTE_VIDEO_DECODED;
+    if (m_hMainWnd != NULL) {
+        LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = new AGE_FIRST_REMOTE_VIDEO_DECODED;
 
-	lpData->uid = uid;
-	lpData->width = width;
-	lpData->height = height;
-	lpData->elapsed = elapsed;
+        lpData->uid = uid;
+        lpData->width = width;
+        lpData->height = height;
+        lpData->elapsed = elapsed;
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_REMOTE_VIDEO_DECODED), (WPARAM)lpData, 0);
+
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_REMOTE_VIDEO_DECODED), (WPARAM)lpData, 0);
+    }
 
 }
 
 void CAGEngineEventHandler::onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed)
 {
-	LPAGE_FIRST_REMOTE_VIDEO_FRAME lpData = new AGE_FIRST_REMOTE_VIDEO_FRAME;
+    if (m_hMainWnd != NULL) {
+        LPAGE_FIRST_REMOTE_VIDEO_FRAME lpData = new AGE_FIRST_REMOTE_VIDEO_FRAME;
 
-	lpData->uid = uid;
-	lpData->width = width;
-	lpData->height = height;
-	lpData->elapsed = elapsed;
+        lpData->uid = uid;
+        lpData->width = width;
+        lpData->height = height;
+        lpData->elapsed = elapsed;
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_REMOTE_VIDEO_FRAME), (WPARAM)lpData, 0);
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_REMOTE_VIDEO_FRAME), (WPARAM)lpData, 0);
+    }
 
 }
 
 void CAGEngineEventHandler::onUserJoined(uid_t uid, int elapsed)
 {
-	LPAGE_USER_JOINED lpData = new AGE_USER_JOINED;
+    if (m_hMainWnd != NULL) {
+        LPAGE_USER_JOINED lpData = new AGE_USER_JOINED;
 
-	lpData->uid = uid;
-	lpData->elapsed = elapsed;
-
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_JOINED), (WPARAM)lpData, 0);
+        lpData->uid = uid;
+        lpData->elapsed = elapsed;
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_JOINED), (WPARAM)lpData, 0);
+    }
 }
 
 void CAGEngineEventHandler::onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason)
 {
-	LPAGE_USER_OFFLINE lpData = new AGE_USER_OFFLINE;
+    if (m_hMainWnd != NULL) {
+        LPAGE_USER_OFFLINE lpData = new AGE_USER_OFFLINE;
 
-	lpData->uid = uid;
-	lpData->reason = reason;
+        lpData->uid = uid;
+        lpData->reason = reason;
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_OFFLINE), (WPARAM)lpData, 0);
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_OFFLINE), (WPARAM)lpData, 0);
+    }
 }
 
 void CAGEngineEventHandler::onUserMuteAudio(uid_t uid, bool muted)
 {
-	LPAGE_USER_MUTE_AUDIO lpData = new AGE_USER_MUTE_AUDIO;
+    if (m_hMainWnd != NULL) {
+        LPAGE_USER_MUTE_AUDIO lpData = new AGE_USER_MUTE_AUDIO;
 
-	lpData->uid = uid;
-	lpData->muted = muted;
+        lpData->uid = uid;
+        lpData->muted = muted;
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_MUTE_AUDIO), (WPARAM)lpData, 0);
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_MUTE_AUDIO), (WPARAM)lpData, 0);
+    }
 
 }
 
 void CAGEngineEventHandler::onUserMuteVideo(uid_t uid, bool muted)
 {
-	LPAGE_USER_MUTE_VIDEO lpData = new AGE_USER_MUTE_VIDEO;
+    if (m_hMainWnd != NULL) {
+        LPAGE_USER_MUTE_VIDEO lpData = new AGE_USER_MUTE_VIDEO;
 
-	lpData->uid = uid;
-	lpData->muted = muted;
-
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_MUTE_VIDEO), (WPARAM)lpData, 0);
-
+        lpData->uid = uid;
+        lpData->muted = muted;
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_USER_MUTE_VIDEO), (WPARAM)lpData, 0);
+    }
 }
 
 void CAGEngineEventHandler::onStreamMessage(uid_t uid, int streamId, const char* data, size_t length)
 {
-    LPAGE_STREAM_MESSAGE lpData = new AGE_STREAM_MESSAGE;
+    if (m_hMainWnd != NULL) {
+        LPAGE_STREAM_MESSAGE lpData = new AGE_STREAM_MESSAGE;
 
-    lpData->uid = uid;
-    lpData->streamId = streamId;
-    lpData->data = new char[length];
-    lpData->length = length;
+        lpData->uid = uid;
+        lpData->streamId = streamId;
+        lpData->data = new char[length];
+        lpData->length = length;
 
-    memcpy_s(lpData->data, length, data, length);
+        memcpy_s(lpData->data, length, data, length);
 
-    if (m_hMainWnd != NULL)
+
         ::PostMessage(m_hMainWnd, WM_MSGID(EID_STREAM_MESSAGE), (WPARAM)lpData, 0);
+    }
 
 }
 
@@ -300,18 +314,20 @@ void CAGEngineEventHandler::onLocalVideoStats(const LocalVideoStats& stats)
 
 void CAGEngineEventHandler::onRemoteVideoStats(const RemoteVideoStats& stats)
 {
-	LPAGE_REMOTE_VIDEO_STAT lpData = new AGE_REMOTE_VIDEO_STAT;
+    if (m_hMainWnd != NULL) {
+        LPAGE_REMOTE_VIDEO_STAT lpData = new AGE_REMOTE_VIDEO_STAT;
 
-	lpData->uid = stats.uid;
-	lpData->delay = stats.delay;
-	lpData->width = stats.width;
-	lpData->height = stats.height;
-	lpData->decoderOutputFrameRate = stats.decoderOutputFrameRate;
-	lpData->receivedBitrate = stats.receivedBitrate;
-	lpData->renderOutputFrameRate = stats.rendererOutputFrameRate;
+        lpData->uid = stats.uid;
+        lpData->delay = stats.delay;
+        lpData->width = stats.width;
+        lpData->height = stats.height;
+        lpData->decoderOutputFrameRate = stats.decoderOutputFrameRate;
+        lpData->receivedBitrate = stats.receivedBitrate;
+        lpData->renderOutputFrameRate = stats.rendererOutputFrameRate;
 
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_REMOTE_VIDEO_STAT), (WPARAM)lpData, 0);
+
+        ::PostMessage(m_hMainWnd, WM_MSGID(EID_REMOTE_VIDEO_STAT), (WPARAM)lpData, 0);
+    }
 }
 
 void CAGEngineEventHandler::onCameraReady()

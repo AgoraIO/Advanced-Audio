@@ -1,17 +1,17 @@
- #AgoraAudioIO-Windows
+# AgoraAudioIO-Windows
 
 *Read this in other languages: [English](README.md)*
 
 Demo展示外部视频源如何通过音频裸数据接口IAudioFrameObserver把pcm数据传给agora sdk。Demo使用dshow作为外部音频源
 
-##安装 Directx SDK
-需要 [directx sdk 2010 June](https://www.microsoft.com/en-us/download/confirmation.aspx?id=6812)。
+##准备DShow依赖库
 
-成功安装dx之后，需要重启电脑。
+下载 [依赖库](https://github.com/AgoraIO/Advanced-Audio/releases/download/DShow/ThirdParty.zip)
+解压 Thirdparty.zip, 拷贝 Dshow文件夹到sln所在文件夹。
 
 ## 运行环境
-* VC++2013 或更高版本
-* WIN7 或更高版本
+* VS2017 或更高版本
+* WIN8.1 或更高版本
 
 
 ## 运行示例程序

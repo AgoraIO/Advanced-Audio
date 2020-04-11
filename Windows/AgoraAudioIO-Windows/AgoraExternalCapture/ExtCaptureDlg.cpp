@@ -21,9 +21,15 @@ CExtCaptureDlg::CExtCaptureDlg(CWnd* pParent /*=NULL*/)
 
 CExtCaptureDlg::~CExtCaptureDlg()
 {
-	::CloseHandle(m_hExitPlayEvent);
-
-	::CloseHandle(m_hExitPushAudioEvent);
+    if (m_hExitPlayEvent) {
+        ::CloseHandle(m_hExitPlayEvent);
+        m_hExitPlayEvent = nullptr;
+    }
+	
+    if (m_hExitPushAudioEvent) {
+        ::CloseHandle(m_hExitPushAudioEvent);
+        m_hExitPushAudioEvent = nullptr;
+    }
 }
 
 void CExtCaptureDlg::DoDataExchange(CDataExchange* pDX)
@@ -84,8 +90,7 @@ BOOL CExtCaptureDlg::OnInitDialog()
 	m_penFrame.CreatePen(PS_SOLID, 1, RGB(0xD8, 0xD8, 0xD8));
 
 	m_agAudioCaptureDevice.Create();
-	m_agVideoCaptureDevice.Create();
-	m_agXAudioPlayoutDevice.Create();
+	//m_agXAudioPlayoutDevice.Create();
 
 	SetBackgroundColor(RGB(0xFE, 0xFE, 0xFE));
 
@@ -112,6 +117,10 @@ void CExtCaptureDlg::InitCtrls()
 	m_cmbCamCap.SetFaceColor(RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF));
 
 	m_ckExtVideoCapture.MoveWindow(100, 105, 200, 24);
+    m_cmbCamera.ShowWindow(SW_HIDE);
+    m_cmbCamCap.ShowWindow(SW_HIDE);//hide video
+    m_ckExtVideoCapture.ShowWindow(SW_HIDE);//
+
 
 	m_cmbMicrophone.MoveWindow(70, 180, 170, 22, TRUE);
 	m_cmbMicrophone.SetFont(&m_ftHead);
@@ -127,9 +136,11 @@ void CExtCaptureDlg::InitCtrls()
 	m_cmbPlayout.SetFont(&m_ftHead);
 	m_cmbPlayout.SetButtonImage(IDB_CMBBTN, 12, 12, RGB(0xFF, 0x00, 0xFF));
 	m_cmbPlayout.SetFaceColor(RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF));
+    m_cmbPlayout.ShowWindow(SW_HIDE);//hide playout
 
 	m_ckExtAudioCapture.MoveWindow(100, 295, 200, 24);
 	m_ckExtPushAudio.MoveWindow(100, 327, 200, 24);
+    m_ckExtPushAudio.ShowWindow(SW_HIDE);//hide push
 
 	m_btnCancel.MoveWindow(46, 350, 120, 36, TRUE);
 	m_btnCancel.EnableRoundCorner(TRUE);
@@ -150,13 +161,13 @@ void CExtCaptureDlg::DrawClient(CDC *lpDC)
 
 	lpDC->SelectObject(&m_penFrame);
 	rcText.SetRect(54, 55, 426, 87);
-	lpDC->RoundRect(&rcText, CPoint(32, 32));
+	//lpDC->RoundRect(&rcText, CPoint(32, 32));//hide Video
 
 	rcText.OffsetRect(0, 120);
 	lpDC->RoundRect(&rcText, CPoint(32, 32));
 
 	rcText.OffsetRect(0, 70);
-	lpDC->RoundRect(&rcText, CPoint(32, 32));
+	//lpDC->RoundRect(&rcText, CPoint(32, 32));
 }
 
 void CExtCaptureDlg::OnBnClickedBtncancelExtcap()
@@ -169,56 +180,8 @@ void CExtCaptureDlg::OnBnClickedBtncancelExtcap()
 
 void CExtCaptureDlg::OnBnClickedBtnconfirmExtcap()
 {
-	// TODO:  在此添加控件通知处理程序代码
-	VIDEOINFOHEADER videoInfo;
-	WAVEFORMATEX	waveFormat;
-	SIZE_T			nBufferSize = 0;
 
-	CAgoraObject	*lpAgoraObject = CAgoraObject::GetAgoraObject();
-
-	int nCamCapSel = m_cmbCamCap.GetCurSel();
-	if (nCamCapSel == -1) {
-		m_cmbCamCap.SetCurSel(0);
-		nCamCapSel = 0;
-	}
-
-	int nMicCapSel = m_cmbMicCap.GetCurSel();
-	if (nMicCapSel == -1) {
-		m_cmbMicCap.SetCurSel(0);
-		nMicCapSel = 0;
-	}
-
-	if (m_ckExtVideoCapture.GetCheck()) {
-		m_agVideoCaptureDevice.SelectMediaCap(nCamCapSel);
-		m_agVideoCaptureDevice.GetCurrentVideoCap(&videoInfo);
-	//	m_agVideoCaptureDevice.SetCaptureBuffer(videoInfo.bmiHeader.biSizeImage, 30, 4);
-		m_agVideoCaptureDevice.SetGrabberCallback(&m_agVideoCapture, 1);
-		CVideoPackageQueue::GetInstance()->SetVideoFormat(&videoInfo.bmiHeader);
-
-		lpAgoraObject->SetVideoProfileEx(videoInfo.bmiHeader.biWidth, videoInfo.bmiHeader.biHeight, static_cast<int>(10000000 / videoInfo.AvgTimePerFrame), 1000);
-	}
-
-	if (m_ckExtAudioCapture.GetCheck()) {
-		m_agAudioCaptureDevice.SelectMediaCap(nMicCapSel);
-		m_agAudioCaptureDevice.GetCurrentAudioCap(&waveFormat);
-		nBufferSize = waveFormat.nAvgBytesPerSec / 100;
-
-	//	m_agAudioCaptureDevice.SetCaptureBuffer(nBufferSize, 16, waveFormat.nBlockAlign);
-		m_agAudioCaptureDevice.SetGrabberCallback(&m_agAudioCapture, 1);
-		CAudioCapturePackageQueue::GetInstance()->SetAudioFormat(&waveFormat);
-		CAudioCapturePackageQueue::GetInstance()->SetAudioPackageSize(nBufferSize);
-
-		CAudioPlayPackageQueue::GetInstance()->SetAudioFormat(&waveFormat);
-		CAudioPlayPackageQueue::GetInstance()->SetAudioPackageSize(nBufferSize);
-
-		lpAgoraObject->SetAudioProfileEx(waveFormat.nSamplesPerSec, waveFormat.nChannels, waveFormat.nSamplesPerSec*waveFormat.nChannels / 100);
-		m_agXAudioPlayoutDevice.SetAudioFormat(&waveFormat, &m_exCapVoiceContext);
-
-		if (!m_ckExtPushAudio.GetCheck())
-			lpAgoraObject->EnableExtendAudioCapture(TRUE, &m_exCapAudioFrameObserver);
-	}
-
-	CDialogEx::OnOK();
+    OnBnClickedBtnapplyExtcap();
 }
 
 
@@ -230,50 +193,41 @@ void CExtCaptureDlg::OnBnClickedBtnapplyExtcap()
 	SIZE_T			nBufferSize = 0;
 
 	CAgoraObject	*lpAgoraObject = CAgoraObject::GetAgoraObject();
+    if (m_cmbMicrophone.GetCount() > 0) {
+        int nMicSel = m_cmbMicrophone.GetCurSel();
+        if (nMicSel == -1) {
+            AfxMessageBox(_T("Please choose recording device."));
+            nMicSel = 0;
+        }
 
-	int nCamCapSel = m_cmbCamCap.GetCurSel();
-	if (nCamCapSel == -1) {
-		m_cmbCamCap.SetCurSel(0);
-		nCamCapSel = 0;
-	}
+        int nMicCapSel = m_cmbMicCap.GetCurSel();
+        if (nMicCapSel == -1) {
+            m_cmbMicCap.SetCurSel(0);
+            nMicCapSel = 0;
+        }
 
-	int nMicCapSel = m_cmbMicCap.GetCurSel();
-	if (nMicCapSel == -1) {
-		m_cmbMicCap.SetCurSel(0);
-		nMicCapSel = 0;
-	}
+        if (m_ckExtAudioCapture.GetCheck()) {
+            m_agAudioCaptureDevice.SelectMediaCap(nMicCapSel);
+            m_agAudioCaptureDevice.GetCurrentAudioCap(&waveFormat);
+            nBufferSize = waveFormat.nAvgBytesPerSec / AUDIO_CALLBACK_TIMES;
+            m_agAudioCaptureDevice.SetCaptureBuffer(nBufferSize, 16, waveFormat.nBlockAlign);
 
-	if (m_ckExtVideoCapture.GetCheck()) {
-		m_agVideoCaptureDevice.SelectMediaCap(nCamCapSel);
-		m_agVideoCaptureDevice.GetCurrentVideoCap(&videoInfo);
-		//		nBufferSize = 3 * videoInfo.bmiHeader.biHeight*videoInfo.bmiHeader.biWidth;
-		m_agVideoCaptureDevice.SetCaptureBuffer(videoInfo.bmiHeader.biSizeImage, 30, 4);
-		m_agVideoCaptureDevice.SetGrabberCallback(&m_agVideoCapture, 1);
-		CVideoPackageQueue::GetInstance()->SetVideoFormat(&videoInfo.bmiHeader);
 
-		lpAgoraObject->SetVideoProfileEx(videoInfo.bmiHeader.biWidth, videoInfo.bmiHeader.biHeight, static_cast<int>(10000000 / videoInfo.AvgTimePerFrame), 1000);
+            //CAudioPlayPackageQueue::GetInstance()->SetAudioFormat(&waveFormat);
+            //CAudioPlayPackageQueue::GetInstance()->SetAudioPackageSize(nBufferSize);
+            lpAgoraObject->SetAudioProfileEx(waveFormat.nSamplesPerSec, waveFormat.nChannels, waveFormat.nSamplesPerSec*waveFormat.nChannels / 100);
 
-	}
+            //	m_agXAudioPlayoutDevice.SetAudioFormat(&waveFormat, &m_exCapVoiceContext);
+            if (!m_agAudioCaptureDevice.CreateCaptureFilter())
+                return;
 
-	if (m_ckExtAudioCapture.GetCheck()) {
-		m_agAudioCaptureDevice.SelectMediaCap(nMicCapSel);
-		m_agAudioCaptureDevice.GetCurrentAudioCap(&waveFormat);
-		nBufferSize = waveFormat.nAvgBytesPerSec / 100;
-		m_agAudioCaptureDevice.SetCaptureBuffer(nBufferSize, 16, waveFormat.nBlockAlign);
-		m_agAudioCaptureDevice.SetGrabberCallback(&m_agAudioCapture, 1);
-		CAudioCapturePackageQueue::GetInstance()->SetAudioFormat(&waveFormat);
-		CAudioCapturePackageQueue::GetInstance()->SetAudioPackageSize(nBufferSize);
-
-		CAudioPlayPackageQueue::GetInstance()->SetAudioFormat(&waveFormat);
-		CAudioPlayPackageQueue::GetInstance()->SetAudioPackageSize(nBufferSize);
-		lpAgoraObject->SetAudioProfileEx(waveFormat.nSamplesPerSec, waveFormat.nChannels, waveFormat.nSamplesPerSec*waveFormat.nChannels / 100);
-
-		m_agXAudioPlayoutDevice.SetAudioFormat(&waveFormat, &m_exCapVoiceContext);
-
-		if (!m_ckExtPushAudio.GetCheck())
-			lpAgoraObject->EnableExtendAudioCapture(TRUE, &m_exCapAudioFrameObserver);
-	}
-
+            if (!m_ckExtPushAudio.GetCheck())
+                lpAgoraObject->EnableExtendAudioCapture(TRUE, &m_exCapAudioFrameObserver);
+        }
+    }
+      
+   
+    CDialog::OnOK();
 }
 
 void CExtCaptureDlg::OnCmbselCameraDevice()
@@ -286,40 +240,7 @@ void CExtCaptureDlg::OnCmbselCameraDevice()
 	CString				strInfo;
 	CString				strCompress;
 
-	BOOL bSuccess = m_agVideoCaptureDevice.GetCurrentDevice(szDevicePath, &nPathLen);
-	if (bSuccess)
-		m_agVideoCaptureDevice.CloseDevice();
-
-	if (nSel != -1) {
-		m_agVideoCaptureDevice.OpenDevice(nSel);
-	//	m_agVideoCaptureDevice.SetCaptureBuffer(0x1950000, 30, 4);
-	}
-
-	m_cmbCamCap.ResetContent();
-	for (int nIndex = 0; nIndex < m_agVideoCaptureDevice.GetMediaCapCount(); nIndex++) {
-		m_agVideoCaptureDevice.GetVideoCap(nIndex, &vidInfoHeader);
-
-		switch (vidInfoHeader.bmiHeader.biCompression)
-		{
-		case 0x00000000:
-			strInfo.Format(_T("%d*%d %dfps(RGB24)"), vidInfoHeader.bmiHeader.biWidth, vidInfoHeader.bmiHeader.biHeight, 10000000 / vidInfoHeader.AvgTimePerFrame);
-			break;
-		case MAKEFOURCC('I', '4', '2', '0'):
-			strInfo.Format(_T("%d*%d %dfps(YUV420)"), vidInfoHeader.bmiHeader.biWidth, vidInfoHeader.bmiHeader.biHeight, 10000000 / vidInfoHeader.AvgTimePerFrame);
-			break;
-		case MAKEFOURCC('Y', 'U', 'Y', '2'):
-			strInfo.Format(_T("%d*%d %dfps(YUY2)"), vidInfoHeader.bmiHeader.biWidth, vidInfoHeader.bmiHeader.biHeight, 10000000 / vidInfoHeader.AvgTimePerFrame);
-			break;
-		case MAKEFOURCC('M', 'J', 'P', 'G'):
-			strInfo.Format(_T("%d*%d %dfps(MJPEG)"), vidInfoHeader.bmiHeader.biWidth, vidInfoHeader.bmiHeader.biHeight, 10000000 / vidInfoHeader.AvgTimePerFrame);
-			break;
-		case MAKEFOURCC('U', 'Y', 'V', 'Y'):
-			strInfo.Format(_T("%d*%d %dfps(UYVY)"), vidInfoHeader.bmiHeader.biWidth, vidInfoHeader.bmiHeader.biHeight, 10000000 / vidInfoHeader.AvgTimePerFrame);
-			break;
-		}
-
-		m_cmbCamCap.InsertString(nIndex, strInfo);
-	}
+	
 }
 
 void CExtCaptureDlg::OnCmbselCameraCapability()
@@ -327,8 +248,6 @@ void CExtCaptureDlg::OnCmbselCameraCapability()
 	int nCurSel = m_cmbCamCap.GetCurSel();
 	if (nCurSel == -1)
 		return;
-
-	m_agVideoCaptureDevice.SelectMediaCap(nCurSel);
 }
 
 void CExtCaptureDlg::OnCmbselMicroDevice()
@@ -372,10 +291,10 @@ void CExtCaptureDlg::OnCmbselPlayoutDevice()
 	CString				strInfo;
 	CString				strCompress;
 
-	m_agXAudioPlayoutDevice.CloseDevice();
+	//m_agXAudioPlayoutDevice.CloseDevice();
 
-	if (nSel != -1)
-		m_agXAudioPlayoutDevice.OpenDevice(nSel);
+	//if (nSel != -1)
+	//	m_agXAudioPlayoutDevice.OpenDevice(nSel);
 
 }
 
@@ -391,21 +310,6 @@ void CExtCaptureDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 	SIZE_T				nPathLen = MAX_PATH;
 	CString				strInfo;
 	AGORA_DEVICE_INFO	agDeviceInfo;
-
-	nPathLen = MAX_PATH;
-	m_cmbCamera.ResetContent();
-	if (m_agVideoCaptureDevice.EnumDeviceList())
-	{
-		m_agVideoCaptureDevice.GetCurrentDevice(szDevicePath, &nPathLen);
-		for (int nIndex = 0; nIndex < m_agVideoCaptureDevice.GetDeviceCount(); nIndex++) {
-			m_agVideoCaptureDevice.GetDeviceInfo(nIndex, &agDeviceInfo);
-			m_cmbCamera.InsertString(nIndex, agDeviceInfo.szDeviceName);
-
-			if (_tcscmp(szDevicePath, agDeviceInfo.szDevicePath) == 0)
-				m_cmbCamera.SetCurSel(nIndex);
-		}
-	}
-
 
 	nPathLen = MAX_PATH;
 	m_cmbMicrophone.ResetContent();
@@ -425,7 +329,7 @@ void CExtCaptureDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 	nPathLen = MAX_PATH;
 	m_cmbPlayout.ResetContent();
 
-	if (m_agXAudioPlayoutDevice.EnumDeviceList())
+	/*if (m_agXAudioPlayoutDevice.EnumDeviceList())
 	{
 		m_agXAudioPlayoutDevice.GetCurrentDevice(szDevicePath, &nPathLen);
 		for (int nIndex = 0; nIndex < m_agXAudioPlayoutDevice.GetDeviceCount(); nIndex++) {
@@ -436,22 +340,12 @@ void CExtCaptureDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 				m_cmbPlayout.SetCurSel(nIndex);
 		}
 	
-	}
+	}*/
 }
 
 BOOL CExtCaptureDlg::VideoCaptureControl(BOOL bStart)
 {
-	if (!m_ckExtVideoCapture.GetCheck())
-		return TRUE;
-
-	if (bStart) {
-		CAgoraObject::GetAgoraObject()->EnableExtendVideoCapture(TRUE, &m_exCapVideoFrameObserver);
-		return m_agVideoCaptureDevice.CaptureControl(DEVICE_START);
-	}
-	else {
-		CAgoraObject::GetAgoraObject()->EnableExtendVideoCapture(FALSE, NULL);
-		return m_agVideoCaptureDevice.CaptureControl(DEVICE_STOP);
-	}
+	return TRUE;
 }
 
 BOOL CExtCaptureDlg::AudioCaptureControl(BOOL bStart)
@@ -470,18 +364,19 @@ BOOL CExtCaptureDlg::AudioCaptureControl(BOOL bStart)
 		
 		if (!bPushMode) {	
 			
-			m_playThreadParam.lpXAudioSourceVoice = m_agXAudioPlayoutDevice.GetSourceVoicePtr();
+		/*	m_playThreadParam.lpXAudioSourceVoice = m_agXAudioPlayoutDevice.GetSourceVoicePtr();
 			m_playThreadParam.lpXAudioVoiceContext = &m_exCapVoiceContext;
 
-			AfxBeginThread(&CExtCaptureDlg::PlayoutThread, &m_playThreadParam);
+			AfxBeginThread(&CExtCaptureDlg::PlayoutThread, &m_playThreadParam);*/
 		}
 		else {
 			lpAgoraObject->SetExternalAudioSource(TRUE, waveFormatEx.nSamplesPerSec, waveFormatEx.nChannels);
 			m_pushAudioThreadParam.hExitEvent = m_hExitPushAudioEvent;
-			AfxBeginThread(&CExtCaptureDlg::PushAudioDataThread, &m_pushAudioThreadParam);
+           // AfxBeginThread(&CExtCaptureDlg::PushAudioDataThread, (LPVOID)this);//&m_pushAudioThreadParam);
 		}
 
-		return m_agAudioCaptureDevice.CaptureControl(DEVICE_START);
+        return m_agAudioCaptureDevice.Start();
+		//return m_agAudioCaptureDevice.CaptureControl(DEVICE_START);
 	}
 	else {
 		if (!bPushMode) {
@@ -493,7 +388,8 @@ BOOL CExtCaptureDlg::AudioCaptureControl(BOOL bStart)
 			::SetEvent(m_hExitPushAudioEvent);
 		}
 
-		return m_agAudioCaptureDevice.CaptureControl(DEVICE_STOP);
+		//return m_agAudioCaptureDevice.CaptureControl(DEVICE_STOP);
+        m_agAudioCaptureDevice.Stop();
 	}
 }
 
@@ -504,7 +400,7 @@ UINT CExtCaptureDlg::PlayoutThread(LPVOID lParam)
 	StreamingVoiceContext	*lpXAudioVoiceContext = reinterpret_cast<StreamingVoiceContext *>(lpParam->lpXAudioVoiceContext);
 	IXAudio2SourceVoice		*lpXAudioSoruceVoice = reinterpret_cast<IXAudio2SourceVoice *>(lpParam->lpXAudioSourceVoice);
 
-	CAudioPlayPackageQueue	*lpBufferQueue = CAudioPlayPackageQueue::GetInstance();
+	//CAudioPlayPackageQueue	*lpBufferQueue = CAudioPlayPackageQueue::GetInstance();
 
 	XAUDIO2_BUFFER	xAudioBuffer;
 	LPBYTE			lpAudioData = new BYTE[8192];
@@ -516,8 +412,8 @@ UINT CExtCaptureDlg::PlayoutThread(LPVOID lParam)
 
 		nAudioBufferSize = 8192;
 
-		if (!lpBufferQueue->PopAudioPackage(lpAudioData, &nAudioBufferSize))
-			continue;
+		//if (!lpBufferQueue->PopAudioPackage(lpAudioData, &nAudioBufferSize))
+		//	continue;
 
 		memset(&xAudioBuffer, 0, sizeof(XAUDIO2_BUFFER));
 		xAudioBuffer.AudioBytes = nAudioBufferSize;
@@ -534,34 +430,33 @@ UINT CExtCaptureDlg::PlayoutThread(LPVOID lParam)
 
 UINT CExtCaptureDlg::PushAudioDataThread(LPVOID lParam)
 {
-	LPBYTE			lpAudioData = new BYTE[8192];
-	SIZE_T			nAudioBufferSize = 8192;
 	WAVEFORMATEX	waveFormatEx;
-
-	LPPUSHAUDIODATA_THREAD_PARAM lpParam = reinterpret_cast<LPPUSHAUDIODATA_THREAD_PARAM>(lParam);
-	CAudioCapturePackageQueue *lpBufferQueue = CAudioCapturePackageQueue::GetInstance();
+    CExtCaptureDlg* pDlg = reinterpret_cast<CExtCaptureDlg*>(lParam);
+    pDlg->m_agAudioCaptureDevice.GetCurrentAudioCap(&waveFormatEx);
+   
+	//CAudioCapturePackageQueue *lpBufferQueue = CAudioCapturePackageQueue::GetInstance();
 
 	agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
 	mediaEngine.queryInterface(CAgoraObject::GetEngine(), agora::AGORA_IID_MEDIA_ENGINE);
 	IAudioFrameObserver::AudioFrame frame;
 
-	lpBufferQueue->GetAudioFormat(&waveFormatEx);
+	
 	frame.bytesPerSample = waveFormatEx.wBitsPerSample / 8;
-	frame.channels = waveFormatEx.nChannels;
-	frame.renderTimeMs = 10;
-	frame.samples = waveFormatEx.nSamplesPerSec / 100;
-	frame.samplesPerSec = waveFormatEx.nSamplesPerSec;
-	frame.type = IAudioFrameObserver::AUDIO_FRAME_TYPE::FRAME_TYPE_PCM16;
-
+	frame.channels       = waveFormatEx.nChannels;
+	frame.renderTimeMs   = GetTickCount();
+	frame.samples        = waveFormatEx.nSamplesPerSec / AUDIO_CALLBACK_TIMES;
+	frame.samplesPerSec  = waveFormatEx.nSamplesPerSec;
+	frame.type           = IAudioFrameObserver::AUDIO_FRAME_TYPE::FRAME_TYPE_PCM16;
+    SIZE_T nAudioBufferSize = frame.samples * 2 * frame.channels;
+    LPBYTE   lpAudioData =   new BYTE[nAudioBufferSize];
 	do {
-		if (::WaitForSingleObject(lpParam->hExitEvent, 0) == WAIT_OBJECT_0)
+		if (::WaitForSingleObject(pDlg->m_pushAudioThreadParam.hExitEvent, 0) == WAIT_OBJECT_0)
 			break;
 
-		nAudioBufferSize = 8192;
-
-		if (!lpBufferQueue->PopAudioPackage(lpAudioData, &nAudioBufferSize))
-			continue;
-
+		
+        unsigned int readBytes = 0;
+        int ts = 0;
+        CircleBuffer::GetInstance()->readBuffer(lpAudioData,nAudioBufferSize, &readBytes, ts);
 		frame.buffer = lpAudioData;
 
 		mediaEngine->pushAudioFrame(MEDIA_SOURCE_TYPE::AUDIO_RECORDING_SOURCE, &frame, true);
