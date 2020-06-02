@@ -109,21 +109,21 @@ enum EffectRoles {
     
     var agValue: AgoraAudioVoiceChanger {
         switch self {
-        case .OldMan:           return .oldMan
-        case .BabyBoy:          return .babyBoy
-        case .BabyGirl:         return .babyGirl
-        case .ZhuBaJie:         return .zhuBaJie
-        case .Ethereal:         return .ethereal
-        case .Hulk:             return .hulk
+        case .OldMan:           return .voiceChangerOldMan
+        case .BabyBoy:          return .voiceChangerBabyBoy
+        case .BabyGirl:         return .voiceChangerBabyGirl
+        case .ZhuBaJie:         return .voiceChangerZhuBaJie
+        case .Ethereal:         return .voiceChangerEthereal
+        case .Hulk:             return .voiceChangerHulk
         
-        case .KTV:              return .off
-        case .VocalConcert:     return .off
-        case .RecordingRoom:    return .off
-        case .Rock:             return .off
-        case .Pop:              return .off
-        case .RB:               return .off
-        case .Phonograph:       return .off
-        case .Default:          return .off
+        case .KTV:              return .voiceChangerOff
+        case .VocalConcert:     return .voiceChangerOff
+        case .RecordingRoom:    return .voiceChangerOff
+        case .Rock:             return .voiceChangerOff
+        case .Pop:              return .voiceChangerOff
+        case .RB:               return .voiceChangerOff
+        case .Phonograph:       return .voiceChangerOff
+        case .Default:          return .voiceChangerOff
         }
     }
     
