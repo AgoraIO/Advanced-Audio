@@ -15,17 +15,24 @@
 		38AD966F22D2E77C0086A0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38AD966E22D2E77C0086A0BC /* Assets.xcassets */; };
 		38AD967222D2E77C0086A0BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AD967022D2E77C0086A0BC /* LaunchScreen.storyboard */; };
 		38DDBF5E22D316A200CFB4F5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38DDBF5D22D316A100CFB4F5 /* README.md */; };
-		A773BD2F2408DC41003ECBFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD2E2408DC41003ECBFD /* Accelerate.framework */; };
-		A773BD312408DC4F003ECBFD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD302408DC4F003ECBFD /* AudioToolbox.framework */; };
-		A773BD332408DC57003ECBFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD322408DC57003ECBFD /* AVFoundation.framework */; };
-		A773BD352408DC60003ECBFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD342408DC60003ECBFD /* CoreMedia.framework */; };
-		A773BD372408DC67003ECBFD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD362408DC67003ECBFD /* CoreTelephony.framework */; };
-		A773BD392408DC74003ECBFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD382408DC6F003ECBFD /* libc++.tbd */; };
-		A773BD3B2408DC81003ECBFD /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD3A2408DC7A003ECBFD /* libresolv.tbd */; };
-		A773BD3D2408DC87003ECBFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD3C2408DC87003ECBFD /* SystemConfiguration.framework */; };
+		A7584B7A2486A10B0088FACB /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7EA323B4817800335021 /* AgoraRtcKit.framework */; };
+		A7584B7B2486A10B0088FACB /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7EA323B4817800335021 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A79A7EA223B4813200335021 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A7EA123B4813200335021 /* KeyCenter.swift */; };
-		A79A7EA423B4817800335021 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7EA323B4817800335021 /* AgoraRtcKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A7584B7C2486A10B0088FACB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A7584B7B2486A10B0088FACB /* AgoraRtcKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		38789D1222D2EEFA003E019B /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
@@ -58,15 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A773BD332408DC57003ECBFD /* AVFoundation.framework in Frameworks */,
-				A773BD3D2408DC87003ECBFD /* SystemConfiguration.framework in Frameworks */,
-				A773BD392408DC74003ECBFD /* libc++.tbd in Frameworks */,
-				A79A7EA423B4817800335021 /* AgoraRtcKit.framework in Frameworks */,
-				A773BD2F2408DC41003ECBFD /* Accelerate.framework in Frameworks */,
-				A773BD312408DC4F003ECBFD /* AudioToolbox.framework in Frameworks */,
-				A773BD372408DC67003ECBFD /* CoreTelephony.framework in Frameworks */,
-				A773BD352408DC60003ECBFD /* CoreMedia.framework in Frameworks */,
-				A773BD3B2408DC81003ECBFD /* libresolv.tbd in Frameworks */,
+				A7584B7A2486A10B0088FACB /* AgoraRtcKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +143,7 @@
 				38AD965E22D2E7780086A0BC /* Sources */,
 				38AD965F22D2E7780086A0BC /* Frameworks */,
 				38AD966022D2E7780086A0BC /* Resources */,
+				A7584B7C2486A10B0088FACB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

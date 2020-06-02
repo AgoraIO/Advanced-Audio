@@ -17,18 +17,25 @@
 		A71FE8762058CE93007BFDAE /* EffectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71FE8752058CE93007BFDAE /* EffectType.swift */; };
 		A71FE8782058F2EA007BFDAE /* EffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71FE8772058F2EA007BFDAE /* EffectViewController.swift */; };
 		A71FE87A2058F328007BFDAE /* EffectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71FE8792058F328007BFDAE /* EffectCell.swift */; };
-		A773BD1E2408CE04003ECBFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7237F8D212A68C400F2F397 /* Accelerate.framework */; };
-		A773BD1F2408CE0A003ECBFD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CCB7F21E97722C00D25FB1 /* AudioToolbox.framework */; };
-		A773BD202408CE10003ECBFD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CCB7F81E97724800D25FB1 /* CoreTelephony.framework */; };
-		A773BD212408CE27003ECBFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CCB7F01E97722500D25FB1 /* AVFoundation.framework */; };
-		A773BD232408CE37003ECBFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A773BD222408CE37003ECBFD /* CoreMedia.framework */; };
-		A773BD242408CE3F003ECBFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CCB7F61E97724200D25FB1 /* libc++.tbd */; };
-		A773BD252408CE46003ECBFD /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CCB7F41E97723800D25FB1 /* libresolv.tbd */; };
-		A773BD262408CE4E003ECBFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA3A7661FB583E7008526B2 /* SystemConfiguration.framework */; };
-		A79A7E5B23B315BA00335021 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E5923B3159600335021 /* AgoraRtcKit.framework */; };
+		A7584B6E2486A08D0088FACB /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E5923B3159600335021 /* AgoraRtcKit.framework */; };
+		A7584B6F2486A08D0088FACB /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A79A7E5923B3159600335021 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A79A7E5F23B3160B00335021 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A7E5E23B3160B00335021 /* KeyCenter.swift */; };
 		A79A7E6523B34D2A00335021 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A79A7E6423B34D2A00335021 /* README.md */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A7584B702486A08E0088FACB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A7584B6F2486A08D0088FACB /* AgoraRtcKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		07CCB7B31E976AF100D25FB1 /* Agora-RTC-With-Voice-Changer-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-RTC-With-Voice-Changer-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,15 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A773BD232408CE37003ECBFD /* CoreMedia.framework in Frameworks */,
-				A773BD262408CE4E003ECBFD /* SystemConfiguration.framework in Frameworks */,
-				A773BD242408CE3F003ECBFD /* libc++.tbd in Frameworks */,
-				A773BD202408CE10003ECBFD /* CoreTelephony.framework in Frameworks */,
-				A79A7E5B23B315BA00335021 /* AgoraRtcKit.framework in Frameworks */,
-				A773BD212408CE27003ECBFD /* AVFoundation.framework in Frameworks */,
-				A773BD1E2408CE04003ECBFD /* Accelerate.framework in Frameworks */,
-				A773BD1F2408CE0A003ECBFD /* AudioToolbox.framework in Frameworks */,
-				A773BD252408CE46003ECBFD /* libresolv.tbd in Frameworks */,
+				A7584B6E2486A08D0088FACB /* AgoraRtcKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +146,7 @@
 				07CCB7AF1E976AF100D25FB1 /* Sources */,
 				07CCB7B01E976AF100D25FB1 /* Frameworks */,
 				07CCB7B11E976AF100D25FB1 /* Resources */,
+				A7584B702486A08E0088FACB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
