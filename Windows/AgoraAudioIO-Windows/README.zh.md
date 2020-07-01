@@ -1,6 +1,6 @@
 # AgoraAudioIO-Windows
 
-*Read this in other languages: [English](README.md)*
+*Read this in other languages: [English](Readme.md)*
 
 Demo展示外部视频源如何通过音频裸数据接口IAudioFrameObserver把pcm数据传给agora sdk。Demo使用dshow作为外部音频源
 
