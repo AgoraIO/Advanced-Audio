@@ -1,5 +1,7 @@
 # AgoraAudioIO-Windows
 
+*其他语言: [中文](README.zh.md)*
+
 This demo show how extenal audio source give pcm data to agora sdk by using IAudioFrameObserver. This demo impement external audio source by dshow.
 
 ## Install Directx SDK
