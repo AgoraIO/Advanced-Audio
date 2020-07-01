@@ -23,18 +23,18 @@
   <string name="agora_access_token"><#YOUR TOKEN#></string>
   ```
 
-### 集成 Agora 视频 SDK
+### 集成 Agora 音频 SDK
 
 *Demo已默认集成JCenter的方式，可以直接编译运行。*
 
 集成方式有以下两种：
   - 通过JCenter集成：
-    - 在项目对应的模块的 `lib-component/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
+    - 在项目对应的模块的 `lib-component/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 音频 SDK 的地址：
       ```
       implementation 'io.agora.rtc:full-sdk:3.0.0'
       ```
   - 手动集成：
-    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
+    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **音频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
       
       SDK目录|项目目录
       ---|---
