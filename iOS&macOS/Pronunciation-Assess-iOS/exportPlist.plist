@@ -9,7 +9,7 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>io.agora.Pronunciation-Assess</key>
-		<string>AgoraAppsDevProfile</string>
+		<string>App</string>
 	</dict>
 </dict>
 </plist>
