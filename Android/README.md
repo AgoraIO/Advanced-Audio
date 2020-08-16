@@ -24,9 +24,9 @@ To build and run the sample application, get an App ID:
   <string name="agora_access_token"><#YOUR TOKEN#></string>
   ```
 
-### Integrate the Agora Video SDK
+### Integrate the Agora Audio SDK
 
-The SDK must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Video SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
+The SDK must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Audio SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
 
 #### Method 1 - Integrate the SDK Automatically Using JCenter (Recommended)
 
@@ -43,7 +43,7 @@ The SDK must be integrated into the sample project before it can opened and buil
 
 #### Method 2 - Manually copy the SDK files
 
-1. Download the Agora Video SDK from [Agora.io SDK](https://www.agora.io/en/download/).
+1. Download the Agora Audio SDK from [Agora.io SDK](https://www.agora.io/en/download/).
 2. Unzip the downloaded SDK package.
 3. Copy the following files from from the **libs** folder of the downloaded SDK package:
 
@@ -63,9 +63,9 @@ Open project with Android Studio, connect your Android device, build and run.
 Or use `Gradle` to build and run.
 
 
-## Contract Us
+## Contact Us
 
-- For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
+- For potential issues, take a look at our [FAQ](https://docs.agora.io/en/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
 - Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
 - Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)

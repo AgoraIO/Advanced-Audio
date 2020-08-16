@@ -49,15 +49,15 @@ To build and run the sample application, get an App Id:
 2. Open AgoraAudio.xcodeproj, selected **AgoraAudioIO Scheme** for running iOS app, connect your iPhone／iPad device, setup your development signing and run.
 Or selected **AgoraAudioIOmac Scheme** for running macOS app.
 
-## Contract Us
+## Contact Us
 
-- For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- For potential issues, take a look at our [FAQ](https://docs.agora.io/en/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
-- Would like to see how Agora SDK is used in more complicated real use case? Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase)
+- Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
 - Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
-- You can find full API document at [Document Center](https://docs.agora.io/en/)
-- If you encounter problems during integration, you can ask question in [Developer Forum](https://stackoverflow.com/questions/tagged/agora.io)
-- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Audio-Call/issues)
+- You can find full API documentation at [Document Center](https://docs.agora.io/en/)
+- If you encounter problems during integration, you can ask question in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
 
 ## License
 

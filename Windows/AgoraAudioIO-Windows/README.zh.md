@@ -1,10 +1,10 @@
 # AgoraAudioIO-Windows
 
-*Read this in other languages: [English](README.md)*
+*Read this in other languages: [English](Readme.md)*
 
 Demo展示外部视频源如何通过音频裸数据接口IAudioFrameObserver把pcm数据传给agora sdk。Demo使用dshow作为外部音频源
 
-##准备DShow依赖库
+## 准备DShow依赖库
 
 下载 [依赖库](https://github.com/AgoraIO/Advanced-Audio/releases/download/DShow/ThirdParty.zip)
 解压 Thirdparty.zip, 拷贝 Dshow文件夹到sln所在文件夹。
@@ -33,13 +33,14 @@ Demo展示外部视频源如何通过音频裸数据接口IAudioFrameObserver把
 
 ## 联系我们
 
-- [FAQ](https://docs.agora.io/cn/faq)
-- [官方SDK](Github:https://github.com/AgoraIO)
-- [官方案例](Github:https://github.com/AgoraIO-usecase)
-- [社区](Github:https://github.com/AgoraIO-Community)
+- 如果你遇到了困难，可以先参阅 [常见问题](https://docs.agora.io/cn/faq)
+- 如果你想了解更多官方示例，可以参考 [官方SDK示例](https://github.com/AgoraIO)
+- 如果你想了解声网SDK在复杂场景下的应用，可以参考 [官方场景案例](https://github.com/AgoraIO-usecase)
+- 如果你想了解声网的一些社区开发者维护的项目，可以查看 [社区](https://github.com/AgoraIO-Community)
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
-- 如果在集成中遇到问题，你可以到 [开发者社区](https://rtcdeveloper.com/) 提问
-- 如果发现了示例代码的 bug，欢迎提交 [issue](https://github.com/AgoraIO/<#Sample Repository>/issues)
+- 若遇到问题需要开发者帮助，你可以到 [开发者社区](https://rtcdeveloper.com/) 提问
+- 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
+- 如果发现了示例代码的 bug，欢迎提交 [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
 
 ## 代码许可
 

@@ -23,18 +23,18 @@
   <string name="agora_access_token"><#YOUR TOKEN#></string>
   ```
 
-### 集成 Agora 视频 SDK
+### 集成 Agora 音频 SDK
 
 *Demo已默认集成JCenter的方式，可以直接编译运行。*
 
 集成方式有以下两种：
   - 通过JCenter集成：
-    - 在项目对应的模块的 `lib-component/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
+    - 在项目对应的模块的 `lib-component/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 音频 SDK 的地址：
       ```
       implementation 'io.agora.rtc:full-sdk:3.0.0'
       ```
   - 手动集成：
-    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
+    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **音频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
       
       SDK目录|项目目录
       ---|---
@@ -54,12 +54,13 @@
 
 ## 联系我们
 
-- 如果你遇到了困难，可以先参阅[常见问题](https://docs.agora.io/cn/faq)
-- 如果你想了解更多官方示例，可以参考[官方SDK示例](https://github.com/AgoraIO)
-- 如果你想了解声网SDK在复杂场景下的应用，可以参考[官方场景案例](https://github.com/AgoraIO-usecase)
-- 如果你想了解声网的一些社区开发者维护的项目，可以查看[社区](https://github.com/AgoraIO-Community)
+- 如果你遇到了困难，可以先参阅 [常见问题](https://docs.agora.io/cn/faq)
+- 如果你想了解更多官方示例，可以参考 [官方SDK示例](https://github.com/AgoraIO)
+- 如果你想了解声网SDK在复杂场景下的应用，可以参考 [官方场景案例](https://github.com/AgoraIO-usecase)
+- 如果你想了解声网的一些社区开发者维护的项目，可以查看 [社区](https://github.com/AgoraIO-Community)
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
 - 若遇到问题需要开发者帮助，你可以到 [开发者社区](https://rtcdeveloper.com/) 提问
+- 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
 - 如果发现了示例代码的 bug，欢迎提交 [issue](https://github.com/AgoraIO/Advanced-Audio/issues)
 
 ## 代码许可
