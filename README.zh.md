@@ -1,5 +1,5 @@
 # Advanced-Audio
-
+# **本项目会在接下去归档并停止维护. 最新的示例代码请参考 https://github.com/AgoraIO/API-Examples**
 *[English](README.md) | 中文*
 
 这个开源示例项目演示了如何集成 Agora 音频 SDK，并为你的应用加入各种高级特性。
